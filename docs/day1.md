@@ -1,374 +1,217 @@
 # Day 1
 
-1. **YAML Basics:**
+## YAML & Linting Tutorial
 
-   - Key-Value Pairs
-   - Indentation and Structure
-   - Special Characters and Quotes
-   - Case Sensitivity
-   - Validation and Tools
+### Introduction to YAML
 
-2. **Command Line Tools:**
+YAML (YAML Ain't Markup Language) is a human-readable data serialization standard that is commonly used for configuration files and data exchange between languages with different data structures. In this tutorial, we will cover the essentials of YAML, its syntax, and how to use linting tools to ensure your YAML files are properly formatted.
 
-   - Basic Commands: `ls`, `touch`, `nano`, `clear`, `ps -aux`, `base64`, `head`, `tail`
-   - TCP Dump: Capturing network traffic, limiting packets, saving to files
-   - Systemd and journalctl: Viewing system logs
+### Table of Contents
+1. [Introduction to YAML](#introduction-to-yaml)
+2. [Is YAML Case-Sensitive?](#is-yaml-case-sensitive)
+3. [Serialization and Deserialization](#serialization-and-deserialization)
+4. [Data Structures in YAML](#data-structures-in-yaml)
+5. [Quoting in YAML](#quoting-in-yaml)
+6. [Key-Value Pairs](#key-value-pairs)
+7. [Whitespace and Alignment](#whitespace-and-alignment)
+8. [YAML File Format](#yaml-file-format)
+9. [Using Linting Tools](#using-linting-tools)
+10. [Example YAML Documents](#example-yaml-documents)
 
-3. **Docker:**
+### Is YAML Case-Sensitive?
 
-   - Definition and Purpose
-   - Docker File Example
-   - Building and Running Docker Images
+YAML is case-sensitive. This means that `name` and `Name` are considered different keys. Here’s an example:
 
-4. **Kubernetes:**
+```yaml
+name: Prerit
+Name: Rishabh
+```
 
-   - Definition and Components (Master and Node components)
-   - Key Kubernetes Objects: Pod, Service, Deployment
-   - Managing Kubernetes Objects with `kubectl`
-   - CNI, CRI, CSI: Definitions and Examples
-   - Custom Resource Definitions (CRD)
-   - Service Mesh and Examples
-   - Observability and Security Tools
-   - CI/CD Tools
+Both `name` and `Name` are valid keys and can exist together in a YAML file.
 
-5. **Practical Tips and Best Practices:**
-   - Avoiding YAML Errors
-   - Practical Use Cases
-   - Kubernetes Tips
+### Serialization and Deserialization
 
-### Detailed Verification and Additions
+Serialization is the process of converting a data structure into a format that can be easily stored or transmitted, and deserialization is the reverse process. In YAML, this means converting data structures into a human-readable format and back again.
 
-Here is the enhanced detailed notes ensuring all points from the transcript are covered:
+For example, a Python dictionary can be serialized into YAML and then deserialized back into a dictionary:
 
+#### Python Dictionary
+```python
+data = {
+    'name': 'Prerit',
+    'age': 25,
+    'languages': ['Python', 'JavaScript']
+}
+```
+
+#### YAML Representation
+```yaml
+name: Prerit
+age: 25
+languages:
+  - Python
+  - JavaScript
+```
+
+### Data Structures in YAML
+
+YAML supports several data structures, including scalars (single values), lists, and dictionaries (key-value pairs).
+
+#### Scalars
+A scalar is a single value, such as a string or number.
+
+```yaml
+name: Prerit
+age: 25
+```
+
+#### Lists
+A list is an ordered collection of values.
+
+```yaml
+languages:
+  - Python
+  - JavaScript
+  - Go
+```
+
+#### Dictionaries
+A dictionary is a collection of key-value pairs.
+
+```yaml
+person:
+  name: Prerit
+  age: 25
+  languages:
+    - Python
+    - JavaScript
+    - Go
+```
+
+### Quoting in YAML
+
+Quoting is used in YAML to define strings that include special characters or to preserve spaces.
+
+#### Unquoted Strings
+YAML can usually infer the type of data without quotes.
+
+```yaml
+name: Prerit
+```
+
+#### Single Quotes
+Use single quotes for strings that contain special characters or spaces.
+
+```yaml
+name: 'Prerit'
+bio: 'Engineer & Developer'
+```
+
+#### Double Quotes
+Double quotes are used for strings that include escape characters.
+
+```yaml
+greeting: "Hello, \"World\"!"
+```
+
+### Key-Value Pairs
+
+YAML uses key-value pairs to represent data. The key is a unique identifier, and the value can be any data type.
+
+#### Example
+```yaml
+name: Prerit
+age: 25
+```
+
+In this example, `name` and `age` are keys, and `Prerit` and `25` are their respective values.
+
+### Whitespace and Alignment
+
+Whitespace is critical in YAML, and alignment (indentation) is used to represent the structure.
+
+#### Indentation
+Use spaces (not tabs) to indent your YAML files.
+
+```yaml
+person:
+  name: Prerit
+  age: 25
+  languages:
+    - Python
+    - JavaScript
+```
+
+### YAML File Format
+
+YAML files can have either the `.yaml` or `.yml` extension. Both are acceptable and will be recognized by YAML parsers.
+
+### Using Linting Tools
+
+Linting tools help to ensure your YAML files are properly formatted. They check for syntax errors and provide feedback.
+
+#### Example Linting Tool
+One popular linting tool is `yamllint`. You can install it using pip:
+
+```bash
+pip install yamllint
+```
+
+#### Using `yamllint`
+Create a YAML file `example.yaml`:
+
+```yaml
+name: Prerit
+age: 25
+languages:
+  - Python
+  - JavaScript
+```
+
+Run `yamllint` on the file:
+
+```bash
+yamllint example.yaml
+```
+
+### Example YAML Documents
+
+#### Basic Configuration File
+```yaml
+version: 1.0
+service:
+  name: ExampleService
+  port: 8080
+  database:
+    host: localhost
+    port: 5432
+    username: user
+    password: pass
+```
+
+#### Multi-Document File
+YAML allows multiple documents to be included in a single file, separated by `---`.
+
+```yaml
 ---
-
-## Detailed Notes on Kubernetes, YAML, Linux Commands, and Docker
-
-### YAML (YAML Ain't Markup Language)
-
-- **Definition:** YAML is a human-readable data serialization standard that can be used in conjunction with all programming languages.
-- **Syntax Basics:**
-
-  - **Key-Value Pairs:** YAML is built around key-value pairs.
-  - **Indentation:** Indentation denotes structure.
-  - **Special Characters:**
-    - `:` for key-value separation
-    - `-` for lists
-  - **Quotes:** Double quotes `"` or single quotes `'` can be used for strings containing special characters.
-
-- **Basic Structure:**
-
-  ```yaml
-  apiVersion: v1
-  kind: Pod
-  metadata:
-    name: example-pod
-  spec:
-    containers:
-      - name: example-container
-        image: example-image
-  ```
-
-- **List Example:**
-
-  ```yaml
-  - item1
-  - item2
-  - item3
-  ```
-
-- **Nested Structure:**
-
-  ```yaml
-  parent:
-    child1: value1
-    child2: value2
-  ```
-
-- **Multi-line Strings:**
-
-  ```yaml
-  block: |
-    line1
-    line2
-  folded: >
-    line1
-    line2
-  ```
-
-- **Key Concepts:**
-  - **Case Sensitivity:** YAML is case-sensitive.
-  - **Comments:** Use `#` for comments.
-  - **Validation and Tools:** Use online YAML validators and linters for syntax and formatting checks.
-
-### Command Line Tools and Commands
-
-- **Basic Commands:**
-
-  - `ls`: List directory contents.
-  - `touch <filename>`: Create a new empty file.
-  - `nano <filename>`: Edit a file using Nano text editor.
-  - `clear`: Clear the terminal screen.
-  - `ps -aux`: Display all running processes.
-  - `base64 <string>`: Encode a string in Base64.
-  - `base64 -d <encoded_string>`: Decode a Base64 string.
-
-- **Working with YAML Files:**
-
-  - **Creating and Editing YAML Files:**
-    ```bash
-    nano example.yaml
-    ```
-  - **Validating YAML:**
-    Use online tools or integrated development environments (IDEs) with YAML support.
-
-- **Head and Tail Commands:**
-
-  - **head:** Display the first 10 lines of a file.
-    ```bash
-    head example.yaml
-    ```
-  - **tail:** Display the last 10 lines of a file.
-    ```bash
-    tail example.yaml
-    ```
-
-- **TCP Dump Command:**
-
-  - **Capturing Network Traffic:**
-    ```bash
-    sudo tcpdump -i eth0
-    ```
-  - **Limiting Captured Packets:**
-    ```bash
-    sudo tcpdump -c 10 -i eth0
-    ```
-  - **Saving Captured Packets to a File:**
-    ```bash
-    sudo tcpdump -w capture.pcap -i eth0
-    ```
-
-- **Systemd and journalctl:**
-  - **View system logs:**
-    ```bash
-    sudo journalctl -xe
-    ```
-  - **View logs since yesterday:**
-    ```bash
-    sudo journalctl --since=yesterday
-    ```
-  - **Pretty print JSON output:**
-    ```bash
-    sudo journalctl -o json-pretty
-    ```
-
-### Docker
-
-- **Definition:** Docker is a platform for developing, shipping, and running applications inside containers.
-- **Docker File Example:**
-
-  ```Dockerfile
-  # Use an official Python runtime as a parent image
-  FROM python:3.8-slim
-
-  # Set the working directory in the container
-  WORKDIR /app
-
-  # Copy the current directory contents into the container at /app
-  COPY . /app
-
-  # Install any needed packages specified in requirements.txt
-  RUN pip install --no-cache-dir -r requirements.txt
-
-  # Make port 80 available to the world outside this container
-  EXPOSE 80
-
-  # Define environment variable
-  ENV NAME World
-
-  # Run app.py when the container launches
-  CMD ["python", "app.py"]
-  ```
-
-- **Building and Running Docker Image:**
-  ```bash
-  docker build -t my-python-app .
-  docker run -p 4000:80 my-python-app
-  ```
-
-### Kubernetes
-
-- **Definition:** Kubernetes (K8s) is an open-source container orchestration platform that automates deploying, scaling, and managing containerized applications.
-- **Key Components:**
-
-  - **Master Node Components:**
-    - `kube-apiserver`: Exposes the Kubernetes API.
-    - `etcd`: Consistent and highly-available key-value store.
-    - `kube-scheduler`: Watches for newly created pods and assigns them to nodes.
-    - `kube-controller-manager`: Runs controller processes.
-    - `cloud-controller-manager`: Runs cloud-specific controller processes.
-  - **Node Components:**
-    - `kubelet`: Ensures containers are running in a pod.
-    - `kube-proxy`: Network proxy that maintains network rules.
-    - `Container Runtime`: Software responsible for running containers (e.g., Docker).
-
-- **Kubernetes Objects:**
-
-  - **Pod:** The smallest and simplest Kubernetes object. A Pod represents a set of running containers on your cluster.
-
-    ```yaml
-    apiVersion: v1
-    kind: Pod
-    metadata:
-      name: myapp-pod
-    spec:
-      containers:
-        - name: myapp-container
-          image: nginx
-    ```
-
-  - **Service:** An abstract way to expose an application running on a set of Pods as a network service.
-
-    ```yaml
-    apiVersion: v1
-    kind: Service
-    metadata:
-      name: my-service
-    spec:
-      selector:
-        app: MyApp
-      ports:
-        - protocol: TCP
-          port: 80
-          targetPort: 9376
-    ```
-
-  - **Deployment:** Provides declarative updates for Pods and ReplicaSets.
-    ```yaml
-    apiVersion: apps/v1
-    kind: Deployment
-    metadata:
-      name: myapp-deployment
-    spec:
-      replicas: 3
-      selector:
-        matchLabels:
-          app: MyApp
-      template:
-        metadata:
-          labels:
-            app: MyApp
-        spec:
-          containers:
-            - name: myapp-container
-              image: nginx
-    ```
-
-- **Managing Kubernetes Objects with kubectl:**
-
-  - **Get Pods:**
-    ```bash
-    kubectl get pods
-    ```
-  - **Describe Pod:**
-    ```bash
-    kubectl describe pod myapp-pod
-    ```
-  - **Apply Configuration:**
-    ```bash
-    kubectl apply -f myapp-deployment.yaml
-    ```
-  - **Delete Pod:**
-    ```bash
-    kubectl delete pod myapp-pod
-    ```
-
-- **CNI (Container Network Interface):** Responsible for configuring network interfaces in Linux containers.
-
-  - **Example CNI Plugins:**
-    - Flannel
-    - Calico
-    - Weave
-  - **Installing a CNI Plugin:**
-    ```bash
-    kubectl apply -f https://docs.projectcalico.org/v3.14/manifests/calico.yaml
-    ```
-
-- **CRI (Container Runtime Interface):** An API for container runtimes to integrate with kubelet.
-
-  - **Popular CRI Implementations:**
-    - containerd
-    - CRI-O
-
-- **CSI (Container Storage Interface):** Allows storage systems to integrate with Kubernetes.
-  - **Example CSI Plugins:**
-    - Rook
-    - Ceph
-  - **Installing a CSI Plugin:**
-    ```bash
-    kubectl apply -f https://raw.githubusercontent.com/rook/rook/master/cluster/examples/kubernetes/ceph/common.yaml
-    ```
-
-### Additional Concepts and Tools
-
-- **Custom Resource Definitions (CRD):** Extend Kubernetes capabilities by defining custom resources.
-
-  ```yaml
-  apiVersion: apiextensions.k8s.io/v1
-  kind: CustomResourceDefinition
-  metadata:
-    name: crontabs.stable.example.com
-  spec:
-    group: stable.example.com
-    versions:
-      - name: v1
-        served: true
-        storage: true
-    scope: Namespaced
-    names:
-      plural: crontabs
-      singular: crontab
-      kind: CronTab
-      shortNames:
-        - ct
-  ```
-
-- **Service Mesh:** Provides functionalities like service discovery, load balancing, failure recovery, metrics, and monitoring.
-
-  - **Examples:**
-    - Istio
-    - Linkerd
-
-- **Observability and Security Tools:**
-
-  - **Prometheus:** Monitoring and alerting toolkit.
-  - **Grafana:** Open-source analytics and monitoring solution.
-  - **Jaeger:** Distributed tracing system.
-  - **Falco:** Cloud-native runtime security.
-
-- **CI/CD Tools:**
-  - **Argo CD:** Kubernetes-native CI/CD pipeline.
-  - **Installing Argo CD:**
-    ```bash
-    kubectl create namespace argocd
-    kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
-    ```
-
-### Practical Tips and Best Practices
-
-- **Avoiding YAML Errors:**
-
-  - Consistently use spaces instead of tabs.
-  - Ensure proper indentation.
-  - Use a YAML validator to catch syntax errors early.
-
-- **Practical Use Cases:**
-
-  - Configuration files for applications.
-  - Data exchange between programming languages.
-  - Configuration management in DevOps pipelines.
-
-- **Kubernetes Tips:**
-  - Use `kubectl apply` instead of `kubectl create` for idempotency.
-  - Organize manifests in a Git repository for version control.
-  - Monitor resource usage to optimize application performance.
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mypod
+spec:
+  containers:
+  - name: myfrontend
+    image: docker.io/nginx
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: myservice
+spec:
+  selector:
+    app: mypod
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 9376
+```
