@@ -4,7 +4,7 @@
 
 - [01-Day 1](docs/)
 
-  - [01- Day1-YAML and Linting](docs/day_1_yaml_and_linting.md)
+  - [YAML & Linting](docs/day_1_yaml_and_linting.md)
   - [02- Day1-serialization](docs/day1_serialization.md)
 
 
