@@ -5,7 +5,7 @@
 - [01-Day 1](docs/)
 
   - [YAML & Linting](docs/day_1_yaml_and_linting.md)
-  - [02- Day1-serialization](docs/day1_serialization.md)
+  - [Linux Commands](docs/linux_commands.md)
 
 
 - [02-Operations of Running Systems](docs/)
