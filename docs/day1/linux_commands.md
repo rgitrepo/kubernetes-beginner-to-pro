@@ -422,17 +422,97 @@ udp        0      0 0.0.0.0:123             0.0.0.0:*
 ## 24. `tcpdump`
 **Description**: Dump traffic on a network.
 **Usage**: Network packet analysis.
-**Examples**:
+
+`tcpdump` is a powerful command-line packet analyzer tool. It allows users to capture and display the packets being transmitted or received over a network to which the computer is attached.
+
+### Important Flags
+
+- `-c`: Specifies the number of packets to capture.
+- `-w`: Write the raw packets to a file rather than parsing and printing them.
+
+### Examples
+
+#### Using `-c` Flag
+
+The `-c` flag is used to specify the number of packets to capture. This can be useful when you want to capture a specific number of packets for analysis.
+
+**Example**:
 ```sh
-$ sudo tcpdump -i eth0  # Capture packets on interface eth0
+$ sudo tcpdump -c 5
+```
+
+**Output**:
+```plaintext
 tcpdump: verbose output suppressed, use -v or -vv for full protocol decode
 listening on eth0, link-type EN10MB (Ethernet), capture size 262144 bytes
-
-$ sudo tcpdump -c 10 -i eth0  # Capture 10 packets
+12:34:56.789123 IP 192.168.1.10.12345 > 192.168.1.1.http: Flags [S], seq 123456789, win 65535, options [mss 1460,sackOK,TS val 123456789 ecr 0,nop,wscale 7], length 0
+12:34:56.789456 IP 192.168.1.1.http > 192.168.1.10.12345: Flags [S.], seq 987654321, ack 123456790, win 65535, options [mss 1460,sackOK,TS val 987654321 ecr 123456789,nop,wscale 7], length 0
+12:34:56.789789 IP 192.168.1.10.12345 > 192.168.1.1.http: Flags [.], ack 987654322, win 65535, options [TS val 123456790 ecr 987654321], length 0
+12:34:56.790123 IP 192.168.1.10.12345 > 192.168.1.1.http: Flags [P.], seq 123456790:123456811, ack 987654322, win 65535, options [TS val 123456790 ecr 987654321], length 21: HTTP GET / HTTP/1.1
+12:34:56.790456 IP 192.168.1.1.http > 192.168.1.10.12345: Flags [.], ack 123456811, win 65535, options [TS val 987654322 ecr 123456790], length 0
+5 packets captured
+5 packets received by filter
+0 packets dropped by kernel
 ```
-**Important Flags**:
-- `-i`: Interface to capture packets on.
-- `-c`: Number of packets to capture.
+
+In this example, `tcpdump` captures 5 packets and then exits.
+
+#### Using `-w` Flag
+
+The `-w` flag is used to write the raw packet data to a file for later analysis. This can be useful when you want to capture packets for a longer period and analyze them later using tools like Wireshark.
+
+**Example**:
+```sh
+$ sudo tcpdump -w capture.pcap
+```
+
+**Output**:
+```plaintext
+tcpdump: listening on eth0, link-type EN10MB (Ethernet), capture size 262144 bytes
+```
+
+This command will not display the packet information on the screen. Instead, it will save the captured packets in a file named `capture.pcap`. You can stop the capture by pressing `Ctrl+C`.
+
+#### Using Both `-c` and `-w` Flags
+
+You can use both flags together to capture a specific number of packets and save them to a file.
+
+**Example**:
+```sh
+$ sudo tcpdump -c 10 -w capture.pcap
+```
+
+**Output**:
+```plaintext
+tcpdump: listening on eth0, link-type EN10MB (Ethernet), capture size 262144 bytes
+10 packets captured
+10 packets received by filter
+0 packets dropped by kernel
+```
+
+This command captures 10 packets and saves them to `capture.pcap`.
+
+### Analyzing the Capture File
+
+To analyze the captured packets, you can use tools like `tcpdump` itself or Wireshark.
+
+**Example**:
+```sh
+$ tcpdump -r capture.pcap
+```
+
+**Output**:
+```plaintext
+reading from file capture.pcap, link-type EN10MB (Ethernet)
+12:34:56.789123 IP 192.168.1.10.12345 > 192.168.1.1.http: Flags [S], seq 123456789, win 65535, options [mss 1460,sackOK,TS val 123456789 ecr 0,nop,wscale 7], length 0
+12:34:56.789456 IP 192.168.1.1.http > 192.168.1.10.12345: Flags [S.], seq 987654321, ack 123456790, win 65535, options [mss 1460,sackOK,TS val 987654321 ecr 123456789,nop,wscale 7], length 0
+12:34:56.789789 IP 192.168.1.10.12345 > 192.168.1.1.http: Flags [.], ack 987654322, win 65535, options [TS val 123456790 ecr 987654321], length 0
+...
+```
+
+In this example, `tcpdump` reads the packets from the `capture.pcap` file and displays them.
+
+By using the `-c` and `-w` flags, `tcpdump` allows you to control the number of packets captured and save the raw packet data for future analysis.
 
 ## 25. `wc -l`
 **Description**: Print newline counts.
