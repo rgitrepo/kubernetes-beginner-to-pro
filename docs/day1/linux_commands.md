@@ -756,10 +756,26 @@ d3b5a6a16b7f        0.00                512KiB / 1.0GiB     0.05                
 f6e8a6b17b8g        0.01                1.2MiB / 2.0GiB     0.10                2.4kB / 1.2kB
 ```
 
+#### List All Pods
+
+The `crictl pods` command lists all the pods managed by the container runtime. This is particularly useful for getting an overview of all running and stopped pods on a Kubernetes node.
+
+**Example**:
+```sh
+$ crictl pods
+```
+
+**Output**:
+```plaintext
+POD ID              CREATED             STATE               NAME                NAMESPACE           ATTEMPT
+3b4b2f3b2d1a        5 minutes ago       Running             mypod-1             default             0
+7f4b3c2f1a2d        10 minutes ago      Running             mypod-2             kube-system         1
+```
+
 ### Key Features
 
 - **Standardization**: Provides a unified interface to interact with different container runtimes.
-- **Flexibility**: Supports a wide range of operations including listing, inspecting, and managing containers and images.
+- **Flexibility**: Supports a wide range of operations including listing, inspecting, and managing containers, pods, and images.
 - **Interoperability**: Works seamlessly with various container runtimes, not limited to `containerd`.
 
 By using `crictl`, Kubernetes administrators can manage containers efficiently, regardless of the underlying container runtime. It acts as the engine that drives container operations in a consistent and standardized manner.
