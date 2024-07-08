@@ -37,7 +37,7 @@ Sure, here's a detailed tutorial for Linux commands with a table of contents:
 33. [history](#33-history)
 34. [head](#34-head)
 35. [tail](#35-tail)
-36. [crictl](#37-crictl)
+36. [crictl](#36-crictl)
 37. [journalctl](#37-journalctl)
 
 ---
