@@ -1,36 +1,33 @@
 ## Comprehensive Tutorial on Linux Commands and Kubernetes with Detailed Examples
 
-### Introduction
-This tutorial provides an in-depth look at essential Linux commands and their relevance in Kubernetes. We will cover foundational concepts, provide detailed examples, and ensure you understand the practical applications of these tools.
-
 ### Table of Contents
-1. **Introduction to Linux Shell**
-   - Overview of Shell
-   - Types of Shells
-2. **Basic Linux Commands**
-   - Clear Screen (`clear`)
-   - List Files (`ls`)
-   - Hidden Files (`ls -a`)
-   - Long Listing Format (`ls -l`)
-   - Create Files (`touch`)
-   - Edit Files (`nano`, `vim`)
-3. **Process Management**
-   - View Processes (`ps aux`)
-   - Terminate Process (`kill`)
-4. **Network Management**
-   - TCP Dump (`tcpdump`)
-   - Network Status (`netstat`)
-5. **Advanced Commands**
-   - Base64 Encoding/Decoding
-   - Stream Redirection
-6. **Kubernetes Overview**
-   - Kubernetes Architecture
-   - Pods, Nodes, Clusters
-7. **Practical Examples and Exercises**
-   - Managing Kubernetes with CRI
-   - Using `crictl` and `journalctl`
-   - Logging and Monitoring
-8. **Resources and Further Reading**
+1. [Introduction to Linux Shell](#introduction-to-linux-shell)
+   - [Overview of Shell](#overview-of-shell)
+   - [Types of Shells](#types-of-shells)
+2. [Basic Linux Commands](#basic-linux-commands)
+   - [Clear Screen (`clear`)](#clear-screen-clear)
+   - [List Files (`ls`)](#list-files-ls)
+   - [Hidden Files (`ls -a`)](#hidden-files-ls--a)
+   - [Long Listing Format (`ls -l`)](#long-listing-format-ls--l)
+   - [Create Files (`touch`)](#create-files-touch)
+   - [Edit Files (`nano`, `vim`)](#edit-files-nano-vim)
+3. [Process Management](#process-management)
+   - [View Processes (`ps aux`)](#view-processes-ps-aux)
+   - [Terminate Process (`kill`)](#terminate-process-kill)
+4. [Network Management](#network-management)
+   - [TCP Dump (`tcpdump`)](#tcp-dump-tcpdump)
+   - [Network Status (`netstat`)](#network-status-netstat)
+5. [Advanced Commands](#advanced-commands)
+   - [Base64 Encoding/Decoding](#base64-encodingdecoding)
+   - [Stream Redirection](#stream-redirection)
+6. [Kubernetes Overview](#kubernetes-overview)
+   - [Kubernetes Architecture](#kubernetes-architecture)
+   - [Pods, Nodes, Clusters](#pods-nodes-clusters)
+7. [Practical Examples and Exercises](#practical-examples-and-exercises)
+   - [Managing Kubernetes with CRI](#managing-kubernetes-with-cri)
+   - [Using `crictl` and `journalctl`](#using-crictl-and-journalctl)
+   - [Logging and Monitoring](#logging-and-monitoring)
+8. [Resources and Further Reading](#resources-and-further-reading)
 
 ### 1. Introduction to Linux Shell
 
