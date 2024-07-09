@@ -89,7 +89,7 @@ While Docker handles the creation and management of containers, Kubernetes is us
 Kubernetes architecture can be visualized as a series of nested squares, each representing a different component:
 
 <div style="text-align: center;">
-  <img src="../../pics/container-pod-node-cluster.png" alt="Kubernetes Architecture" style="width: 50%;">
+  <img src="../../pics/container-pod-node-cluster.png" alt="Kubernetes Architecture" style="width: 35%;">
 </div>
 
 
