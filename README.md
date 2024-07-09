@@ -2,7 +2,7 @@
 
 # Table of Contents
 
-- [Day 1](docs/)
+- Day 1
 
   - [YAML & Linting](docs/day1/yaml_and_linting.md)
   - [Linux Commands](docs/day1/linux_commands.md)
