@@ -8,4 +8,4 @@
   - [Docker & Kubernetes](docs/day1/docker_and_kubernetes.md)
 
 
-- [02-Operations of Running Systems](docs/)
+- Day 2
