@@ -96,7 +96,9 @@ For example, when you create a deployment, a controller is assigned behind it. T
 ### 7. Kubernetes Components: Pods, Nodes, and Clusters
 Kubernetes architecture can be visualized as a series of nested squares, each representing a different component:
 
-![Kubernetes Architecture](../../pics/container-pod-node-cluster.png)
+<div style="text-align: center;">
+  <img src="../../pics/container-pod-node-cluster.png" alt="Kubernetes Architecture" style="width: 35%;">
+</div>
 
 #### Containers
 The innermost square, representing the basic unit of deployment in Kubernetes. Containers encapsulate applications and their dependencies.
