@@ -23,7 +23,7 @@ Kubernetes follows a four-month release cycle, ensuring continuous improvement a
 - **Coding and Development**: Once features are approved, development begins.
 - **Testing and Release**: Features are tested extensively before the official release.
 
-Each release includes new features, improvements, and bug fixes, contributing to the robust and evolving ecosystem of Kubernetes.
+Each release includes new features, improvements, and bug fixes, contributing to the robust and evolving ecosystem of Kubernetes. For more details, visit the [Kubernetes Release Page](https://kubernetes.io/releases/release/).
 
 ### 3. Understanding Kubernetes Controllers
 
@@ -84,24 +84,34 @@ CMD ["python", "app.py"]
 
 While Docker handles the creation and management of containers, Kubernetes is used to manage and orchestrate those containers in a production environment. Kubernetes automates the deployment, scaling, and operation of containerized applications.
 
-
 ### 7. Kubernetes Components: Pods, Nodes, and Clusters
 
+Kubernetes architecture can be visualized as a series of nested squares, each representing a different component:
+
 <div style="text-align: center;">
-  <img src="../../pics/container-pod-node-cluster.png" alt="Kubernetes Architecture" style="width: 40%;">
+  <img src="../../pics/container-pod-node-cluster.png" alt="Kubernetes Architecture" style="width: 50%;">
 </div>
+
+
+#### Containers
+
+The innermost square, representing the basic unit of deployment in Kubernetes. Containers encapsulate applications and their dependencies.
 
 #### Pods
 
-A pod is the smallest deployable unit in Kubernetes. It can contain one or more containers that share the same network namespace and storage.
+The next layer, encapsulating one or more containers that share the same network namespace and storage.
 
 #### Nodes
 
-Nodes are the worker machines in Kubernetes. Each node runs one or more pods and is managed by the master components.
+The layer around pods, representing the worker machines in Kubernetes. Each node runs one or more pods and is managed by the master components.
 
 #### Clusters
 
-A Kubernetes cluster consists of one or more nodes managed by a control plane. The control plane makes decisions about the cluster, such as scheduling and responding to cluster events.
+The outermost layer, representing the entire Kubernetes environment. A cluster consists of one or more nodes managed by a control plane, making decisions about the cluster, such as scheduling and responding to cluster events.
+
+### Kubernetes End of Life and Current Versions
+
+Kubernetes versions have a defined lifecycle, with new versions being released every four months and each version receiving maintenance for a limited period. It's essential to keep track of the current and retiring versions to ensure your clusters remain secure and up-to-date. For more details, visit the [Kubernetes End of Life page](https://endoflife.date/kubernetes).
 
 ### 8. Creating Docker Images
 
