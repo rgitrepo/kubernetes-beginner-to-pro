@@ -81,7 +81,7 @@ gRPC (gRPC Remote Procedure Calls) is an open-source remote procedure call (RPC)
 - **Multiplexing in gRPC**: gRPC supports full-duplex communication, allowing simultaneous bidirectional data transfer. This is a significant advantage over HTTP/1.1, which only allows one-way communication at a time.
 - **Protocol Buffers**: gRPC uses Protocol Buffers (protobuf) for efficient data serialization. This binary format is faster and more compact than text-based formats like JSON, making it ideal for high-performance applications.
 - **ETCD and Kubernetes**: In Kubernetes, components like ETCD communicate using gRPC. ETCD is a distributed key-value store that Kubernetes uses for storing all its cluster data. Understanding gRPC is essential for working with modern cloud-native technologies like Kubernetes.
-
+- **RESTful APIs** (HTTP/1.1 and JSON) are primarily used for communication between the kube-apiserver and other components like kube-scheduler, kube-controller-manager, and kubelet.
 ---
 
 ### Conclusion
