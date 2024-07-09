@@ -4,15 +4,16 @@
 This tutorial will cover the basics of gRPC and REST, their differences, and their applications. By the end of this tutorial, you will understand what gRPC and REST are, their key features, and when to use each of them.
 
 ### Table of Contents
-1. Introduction to APIs
-2. What is REST?
-   - Key Features of REST
-   - When to Use REST
-3. What is gRPC?
-   - Key Features of gRPC
-   - When to Use gRPC
-4. Comparing REST and gRPC
-5. Conclusion
+1. [Introduction to APIs](#1-introduction-to-apis)
+2. [What is REST?](#2-what-is-rest)
+   - [Key Features of REST](#key-features-of-rest)
+   - [When to Use REST](#when-to-use-rest)
+3. [What is gRPC?](#3-what-is-grpc)
+   - [Key Features of gRPC](#key-features-of-grpc)
+   - [When to Use gRPC](#when-to-use-grpc)
+4. [Comparing REST and gRPC](#4-comparing-rest-and-grpc)
+5. [Additional Details from Translation](#additional-details-from-translation)
+6. [Conclusion](#conclusion)
 
 ---
 
@@ -68,6 +69,8 @@ gRPC (gRPC Remote Procedure Calls) is an open-source remote procedure call (RPC)
 | Type Safety             | Loosely typed                 | Strongly typed               |
 | Tooling                 | Widely available              | gRPC-specific tools          |
 | Use Case                | Web applications, broad compatibility | Microservices, low latency communication |
+
+---
 
 ### Additional Details from Translation
 
