@@ -85,7 +85,7 @@ CMD ["python", "app.py"]
 While Docker handles the creation and management of containers, Kubernetes is used to manage and orchestrate those containers in a production environment. Kubernetes automates the deployment, scaling, and operation of containerized applications.
 
 <div style="padding-left: 25%; padding-right: 25%;">
-  <img src="../../pics/container-pod-node-cluster.png" alt="Kubernetes Architecture" style="display: block; margin: auto; width: 100%;">
+  <img src="../../pics/container-pod-node-cluster.png" alt="Kubernetes Architecture" style="display: block; margin: auto; width: 40%;">
 </div>
 
 ### 7. Kubernetes Components: Pods, Nodes, and Clusters
