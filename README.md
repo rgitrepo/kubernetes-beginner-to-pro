@@ -11,5 +11,5 @@
 - Day 2
   - [What are APIs](docs/day2/api.md)
   - [REST vs gRPC APIs](docs/day2/rest-grpc-api.md)
-  - [Kubernetes Architecture](docs/day2/linux_commands.md)
+  - [ETC vs ETCD](docs/day2/etc-vs-etcd.md)(docs/day2/linux_commands.md)
   - [Other Stuff](docs/day2/docker_and_kubernetes.md)
