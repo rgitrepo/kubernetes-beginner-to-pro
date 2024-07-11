@@ -45,7 +45,7 @@ The Worker Nodes are responsible for running the containerized applications. Eac
 These components work together to ensure the smooth operation and management of Kubernetes clusters, providing a robust platform for running and orchestrating containerized applications.
 
 <div style="text-align: center;">
-  <img src="../../pics/kubernetes-architecture-prerit.png" alt="Kubernetes Architecture" style="width: 600px; height: 450px;">
+  <img src="../../pics/kubernetes-architecture-prerit.gif" alt="Kubernetes Architecture" style="width: 600px; height: 450px;">
 </div>
 
 <div style="text-align: center;">
