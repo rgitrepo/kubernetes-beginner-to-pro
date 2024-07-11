@@ -12,4 +12,4 @@
   - [What are APIs](docs/day2/api.md)
   - [REST vs gRPC APIs](docs/day2/rest-grpc-api.md)
   - [ETC vs ETCD](docs/day2/etc-vs-etcd.md)
-  - [Kubernetes Architecture](docs/day2/kubernetes-architecture.md)
+  - [Kubernetes Architecture Overview](docs/day2/kubernetes-architecture-overview.md)
