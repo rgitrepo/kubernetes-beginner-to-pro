@@ -14,3 +14,4 @@
   - [ETC vs ETCD](docs/day2/etc-vs-etcd.md)
   - [Kubernetes Architecture Overview](docs/day2/kubernetes-architecture-overview.md)
   - [Kube-Api-Server](docs/day2/kube-api-server.md)
+  - [Admission Controllers](docs/day2/admission-controllers.md)
