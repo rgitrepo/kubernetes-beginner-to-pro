@@ -19,6 +19,10 @@ This is a common interview question: "If the master node goes down and the appli
 
 ## Main Functions of Kube-API Server
 
+<div style="text-align: center;">
+  <img src="../../pics/kube-api-server.gif" alt="Kube-Api-Server" style="width: 600px; height: 450px;">
+</div>
+
 ### Authentication
 
 - **Purpose**: To confirm the identity of a user or service accessing the cluster.
