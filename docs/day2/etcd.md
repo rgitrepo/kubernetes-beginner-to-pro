@@ -10,12 +10,22 @@
    - [Data Not Encrypted](#4-data-not-encrypted)
    - [Protobuf](#5-protobuf)
 4. [How etcd Works with Kubernetes](#how-etcd-works-with-kubernetes)
-5. [Visualization and Deep Dive](#visualization-and-deep-dive)
-6. [Practical Insights](#practical-insights)
-7. [Conclusion](#conclusion)
-8. [Additional Resources](#additional-resources)
+5. [Raft Election Process](#raft-election-process)
+6. [Visualization and Deep Dive](#visualization-and-deep-dive)
+7. [Practical Insights](#practical-insights)
+8. [Conclusion](#conclusion)
+9. [Additional Resources](#additional-resources)
 
 ### Introduction
+
+<div style="text-align: center;">
+  <img src="../../pics/etcd.gif" alt="ETCD" style="width: 600px; height: 450px;">
+</div>
+
+
+
+
+
 etcd is a distributed, highly consistent key-value store that plays a crucial role in Kubernetes (k8s) as the only stateful component. The name etcd is derived from “etc,” which is the location of system configuration files in Linux, and “d” stands for distributed.
 
 ### Key Features of etcd
@@ -54,6 +64,48 @@ etcd is a core component of Kubernetes' control plane, interfacing with the kube
 
 The kube-api-server interacts with etcd to store and retrieve the cluster’s state and configuration.
 
+### Raft Election Process
+The Raft consensus algorithm is a fundamental part of etcd, ensuring data consistency and reliability across distributed systems. Here's a detailed explanation of the Raft election process, including the election timeout, heartbeat, and the steps that occur during this process.
+
+#### Raft Consensus Overview
+Raft is a consensus algorithm designed to manage a replicated log. It is used to ensure that distributed systems agree on a common state, even in the presence of network partitions or node failures. Raft breaks down the consensus process into three key roles:
+- **Leader**
+- **Candidate**
+- **Follower**
+
+Only one node can be the leader at any time, while the other nodes act as followers. If the leader fails, a new leader is elected through a process called leader election.
+
+#### Election Process
+The election process in Raft involves several steps to ensure a new leader is chosen when necessary. Here's a detailed breakdown of the process:
+
+1. **Initial State**:
+   - All nodes start as followers. A follower node transitions to a candidate state if it does not hear from a leader within an election timeout.
+
+2. **Election Timeout**:
+   - **Election Timeout**: The election timeout is a random duration between 150ms and 300ms. If a follower does not receive a heartbeat from the leader within this time, it assumes the leader has failed and becomes a candidate.
+   - The randomness in the timeout helps to avoid split votes where multiple candidates simultaneously request votes.
+
+3. **Candidate State**:
+   - **Request Votes**: When a follower becomes a candidate, it increments its term and sends a request for votes to all other nodes in the cluster.
+   - **Voting**: Each node responds to the request. Nodes can vote for at most one candidate in a given term. If a candidate receives votes from a majority of the nodes, it becomes the leader.
+   - **Split Vote**: If there is a split vote (no candidate receives a majority), the election times out, and a new election begins. This process repeats until a candidate wins a majority.
+
+4. **Leader State**:
+   - Once elected, the leader starts sending heartbeats (AppendEntries RPCs) to all followers to assert its leadership and prevent new elections.
+   - **Heartbeat Timeout**: The leader sends heartbeats at regular intervals (much shorter than the election timeout) to ensure that followers do not time out and start new elections.
+
+5. **Heartbeat and Log Replication**:
+   - **Heartbeats**: The leader periodically sends heartbeats to all followers to maintain its authority. This prevents the followers from becoming candidates.
+   - **Log Replication**: When a client sends a request to change the system’s state, the leader appends the request to its log and sends it to the followers. Once a majority of followers have written the entry to their logs, the leader applies the entry to its state machine and responds to the client.
+
+6. **Failure Handling**:
+   - **Leader Failure**: If a leader fails, followers will no longer receive heartbeats. After an election timeout, the followers will transition to candidates and start a new election.
+   - **Candidate Failure**: If a candidate fails to win an election, it returns to the follower state and waits for the next election timeout.
+   - **Network Partitions**: In the event of a network partition, some nodes may become isolated. These nodes will not receive heartbeats and will start an election. If the partitioned nodes form a majority, they will elect a new leader. When the partition heals, the old leader will step down if it discovers a higher term leader.
+
+#### Visual Representation
+A visual representation of the Raft election process can be highly beneficial. Websites like "The Secrets of Raft" provide excellent visual aids that can help you understand the dynamics of leader elections and log replication.
+
 ### Visualization and Deep Dive
 For a visual representation of the Raft consensus and election process in etcd, refer to "The Secrets of Raft" at dataprocessing.com. This site provides excellent visual aids for understanding how leader elections and log replication work in etcd.
 
@@ -65,7 +117,3 @@ etcd is a robust, highly consistent key-value store essential for Kubernetes. It
 
 ### Additional Resources
 To delve deeper into etcd, visit the official etcd documentation and explore resources like "The Secrets of Raft" for a comprehensive understanding of its underlying mechanisms and functionalities.
-
----
-
-Feel free to ask for any specific details or further elaboration on any of the topics covered in this tutorial.
