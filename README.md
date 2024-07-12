@@ -16,3 +16,4 @@
   - [Kube-Api-Server](docs/day2/kube-api-server.md)
   - [Admission Controllers](docs/day2/admission-controllers.md)
   - [ETCD](docs/day2/etcd.md)
+  - [Kube-Scheduler](docs/day2/kube-scheduler.md)
