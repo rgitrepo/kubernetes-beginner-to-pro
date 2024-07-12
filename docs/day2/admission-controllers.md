@@ -296,7 +296,14 @@ Schema validation is critical because it ensures that the resources are created 
 ## Advanced Use Cases
 
 ### Custom Resource Definitions (CRDs)
-CRDs allow you to extend Kubernetes by defining your own object types.
+
+a. What are CRDs?
+Definition: CRDs allow you to extend the Kubernetes API by defining your own custom objects.
+Purpose: Helps in creating new object types that Kubernetes doesn't support out-of-the-box.
+b. Example Use Case
+Scenario: You want an application to automatically create an ingress, a service, and a deployment.
+Solution: Use a CRD to define a new object type (e.g., "Application") that includes all these resources.
+
 
 #### Example:
 - **Custom Resource Definition (CRD)**:
@@ -331,14 +338,6 @@ ls -l /etc/kubernetes/manifests
 cat kube-apiserver.yaml | grep admission
 ```
 
-### Example Output:
-```sh
-total 8
--rw-r--r-- 1 root root 1336 Jul  1 12:34 etcd.yaml
--rw-r--r-- 1 root root 2675 Jul  1 12:34 kube-apiserver.yaml
--rw-r--r-- 1 root root 2240 Jul  1 12:34 kube-controller-manager.yaml
--rw-r--r-- 1 root root 1573 Jul  1 12:34 kube-scheduler.yaml
-```
 
 ## Conclusion
 
