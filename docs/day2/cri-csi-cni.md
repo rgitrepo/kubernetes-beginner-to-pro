@@ -13,16 +13,13 @@ In this tutorial, we'll explore the essential components of Kubernetes networkin
     - [The Solution: Plugin-Based System](#the-solution-plugin-based-system)
 4. [Detailed Breakdown of Processes](#detailed-breakdown-of-processes)
 5. [Key Functions of CNI Plugins](#key-functions-of-cni-plugins)
-6. [Practical Example](#practical-example)
-    - [Scenario 1: Communication Between Pods in Different Namespaces on the Same Node](#scenario-1-communication-between-pods-in-different-namespaces-on-the-same-node)
-    - [Scenario 2: Communication Between Pods in Different Namespaces on Different Nodes](#scenario-2-communication-between-pods-in-different-namespaces-on-different-nodes)
-7. [Understanding OCI, runc, and cgroups](#understanding-oci-runc-and-cgroups)
+6. [Understanding OCI, runc, and cgroups](#understanding-oci-runc-and-cgroups)
     - [Introduction to OCI](#introduction-to-oci)
     - [Understanding runc](#understanding-runc)
     - [Deep Dive into cgroups](#deep-dive-into-cgroups)
     - [Integration in Kubernetes](#integration-in-kubernetes)
-8. [Kubelet Steps in Container Deployment](#kubelet-steps-in-container-deployment)
-9. [Conclusion](#conclusion)
+7. [Kubelet Steps in Container Deployment](#kubelet-steps-in-container-deployment)
+8. [Conclusion](#conclusion)
 
 ### Introduction
 
