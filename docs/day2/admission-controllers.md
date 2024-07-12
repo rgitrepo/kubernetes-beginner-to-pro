@@ -1,4 +1,8 @@
 
+<div style="text-align: center;">
+  <img src="../../pics/admission-controllers.gif" alt="Admission Controllers" style="width: 600px; height: 450px;">
+</div>
+
 # Admission Controllers in Kubernetes
 
 ## Table of Contents
@@ -17,16 +21,6 @@
 12. [CRD: Custom Resource Definitions](#crd-custom-resource-definitions)
 13. [Checking Enabled Admission Controllers](#checking-enabled-admission-controllers)
 14. [Conclusion](#conclusion)
-
-
-
-
-
-<div style="text-align: center;">
-  <img src="../../pics/admission-controllers.gif" alt="Admission Controllers" style="width: 600px; height: 450px;">
-</div>
-
-
 
 ## Introduction
 
@@ -335,6 +329,15 @@ kubectl get apiservices
 cd /etc/kubernetes/manifests
 ls -l /etc/kubernetes/manifests
 cat kube-apiserver.yaml | grep admission
+```
+
+### Example Output:
+```sh
+total 8
+-rw-r--r-- 1 root root 1336 Jul  1 12:34 etcd.yaml
+-rw-r--r-- 1 root root 2675 Jul  1 12:34 kube-apiserver.yaml
+-rw-r--r-- 1 root root 2240 Jul  1 12:34 kube-controller-manager.yaml
+-rw-r--r-- 1 root root 1573 Jul  1 12:34 kube-scheduler.yaml
 ```
 
 ## Conclusion
