@@ -17,16 +17,14 @@
 9. [Additional Resources](#additional-resources)
 
 ### Introduction
-
 etcd is a distributed, highly consistent key-value store that plays a crucial role in Kubernetes (k8s) as the only stateful component. The name etcd is derived from “etc,” which is the location of system configuration files in Linux, and “d” stands for distributed.
 
 <div style="text-align: center;">
   <img src="../../pics/etcd.gif" alt="ETCD" style="width: 600px; height: 450px;">
 </div>
 
-
 ### Key Features of etcd
-1. **Distributed Key-Value Store**: etcd is not just an ordinary database. It is a distributed, highly consistent key-value store essential for maintaining the state of a Kubernetes cluster.
+1. **Distributed Key-Value Store**: etcd is not just an ordinary database. It is a distributed, highly consistent key-value store essential for maintaining the state of a Kubernetes cluster. **etcd is a NoSQL database**, which means it does not use the traditional table-based relational database structure that SQL databases use. Instead, it stores data in a simple key-value format.
 2. **Raft Consensus Algorithm**: etcd is built on the Raft consensus algorithm, ensuring that all nodes hold elections, and the one with the majority becomes the leader, while others become followers. The leader first receives the data and then replicates it across all the followers. Once all nodes have the same data, the log is committed.
 3. **Protobuf Serialization**: etcd uses Protobuf for faster serialization and deserialization of data.
 4. **Data Not Encrypted by Default**: By default, the data stored in etcd is not encrypted, but it can be encrypted if required.
@@ -39,7 +37,7 @@ etcd is a distributed, highly consistent key-value store that plays a crucial ro
 The image provided breaks down etcd into several components, each playing a vital role in its functionality. Here’s a detailed explanation of these components:
 
 #### 1. Distributed Key-Value Store
-etcd functions as a distributed key-value store, making it ideal for maintaining the state and configuration of distributed systems like Kubernetes.
+etcd functions as a distributed key-value store, making it ideal for maintaining the state and configuration of distributed systems like Kubernetes. As a NoSQL database, etcd does not rely on relational table-based structures but instead uses a simple key-value format for storing data.
 
 #### 2. Write Ahead Log (WAL)
 WAL ensures that all operations are logged before they are executed, providing a mechanism for data recovery and maintaining consistency in case of failures.
@@ -114,3 +112,7 @@ etcd is a robust, highly consistent key-value store essential for Kubernetes. It
 
 ### Additional Resources
 To delve deeper into etcd, visit the official etcd documentation and explore resources like "The Secrets of Raft" for a comprehensive understanding of its underlying mechanisms and functionalities.
+
+---
+
+Feel free to ask for any specific details or further elaboration on any of the topics covered in this tutorial.
