@@ -22,9 +22,6 @@
 
 In Kubernetes, Admission Controllers are essential components that govern and enforce certain rules and policies on the incoming API requests. They act as gatekeepers, ensuring that the cluster operates efficiently and securely. There are two main types of Admission Controllers:
 
-<div style="text-align: center;">
-  <img src="../../pics/admission-controllers.gif" alt="Admission Controllers" style="width: 600px; height: 450px;">
-</div>
 
 1. **Mutating Admission Controllers**: These can alter the incoming request before it is persisted.
 2. **Validating Admission Controllers**: These ensure that the incoming request adheres to the set policies and rules without modifying it.
