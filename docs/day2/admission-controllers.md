@@ -19,9 +19,14 @@
 14. [Conclusion](#conclusion)
 
 
+
+
+
 <div style="text-align: center;">
   <img src="../../pics/admission-controllers.gif" alt="Admission Controllers" style="width: 600px; height: 450px;">
 </div>
+
+
 
 ## Introduction
 
