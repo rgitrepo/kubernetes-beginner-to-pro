@@ -1,3 +1,4 @@
+
 ## Kubernetes Scheduler Tutorial
 
 ### Table of Contents
@@ -32,68 +33,69 @@ Before diving into the scheduler, it's essential to have a basic understanding o
   <img src="../../pics/kube-scheduler.gif" alt="Kube-Scheduler style="width: 600px; height: 450px;">
 </div>
 
+
 ### Components Prior to the Scheduling Cycle
 
-1. **PreEnqueue**:
-   - Performs all the necessary checks and segregates pods into the ActiveQ, UnscheduableQ, or PodBackoffQ.
-   - Ensures only valid pods enter the scheduling queue.
+#### PreEnqueue
+- Performs all the necessary checks and segregates pods into the ActiveQ, UnscheduableQ, or PodBackoffQ.
+- Ensures only valid pods enter the scheduling queue.
 
-2. **Sort**: 
-   - Once a pod specification is received, the scheduler sorts the pods in the scheduling queue based on their priorities and other criteria.
-   - This ensures higher priority pods are scheduled before lower priority ones.
+#### Sort
+- Once a pod specification is received, the scheduler sorts the pods in the scheduling queue based on their priorities and other criteria.
+- This ensures higher priority pods are scheduled before lower priority ones.
 
 ### Scheduling Cycle
 
 The scheduling cycle begins once the scheduler receives a scheduling request. The scheduler typically gets its scheduling requests from the ETCD via the API server.
 
-1. **PreFilter**:
-   - PreFilter checks certain criteria before the main filtering process.
-   - This includes validating that the pod can be scheduled based on simple, quick-to-check criteria like node availability, resource requests, and pod/node labels.
-   - It also deals with taints and tolerations to ensure that pods without appropriate tolerations are not scheduled on nodes with taints.
+#### PreFilter
+- PreFilter checks certain criteria before the main filtering process.
+- This includes validating that the pod can be scheduled based on simple, quick-to-check criteria like node availability, resource requests, and pod/node labels.
+- It also deals with taints and tolerations to ensure that pods without appropriate tolerations are not scheduled on nodes with taints.
 
-2. **Filter**:
-   - The Filter stage removes nodes from the list of potential candidates based on specific constraints.
-   - Criteria such as taints and tolerations, node affinity/anti-affinity, and resource capacity are considered.
-   - Nodes with taints that are not tolerated by the pod are filtered out, meaning they are not considered for scheduling the pod.
+#### Filter
+- The Filter stage removes nodes from the list of potential candidates based on specific constraints.
+- Criteria such as taints and tolerations, node affinity/anti-affinity, and resource capacity are considered.
+- Nodes with taints that are not tolerated by the pod are filtered out, meaning they are not considered for scheduling the pod.
 
-3. **PostFilter**:
-   - PostFilter handles scenarios where filtering fails to find suitable nodes.
-   - It may perform actions like preempting lower-priority pods to make room for higher-priority ones.
+#### PostFilter
+- PostFilter handles scenarios where filtering fails to find suitable nodes.
+- It may perform actions like preempting lower-priority pods to make room for higher-priority ones.
 
-4. **PreScore**:
-   - PreScore allows for preliminary calculations that might be needed before scoring nodes.
-   - This can include custom logic to prepare the nodes for scoring.
+#### PreScore
+- PreScore allows for preliminary calculations that might be needed before scoring nodes.
+- This can include custom logic to prepare the nodes for scoring.
 
-5. **Score**:
-   - In the Score stage, each remaining node is assigned a score based on how well it meets the pod’s requirements.
-   - Factors include node capacity, resource usage, and any custom scoring functions defined in the scheduler.
+#### Score
+- In the Score stage, each remaining node is assigned a score based on how well it meets the pod’s requirements.
+- Factors include node capacity, resource usage, and any custom scoring functions defined in the scheduler.
 
-6. **NormalizeScore**:
-   - NormalizeScore adjusts the scores to fit a specific range or scale, ensuring they are comparable.
-   - This step ensures fairness in ranking nodes.
+#### NormalizeScore
+- NormalizeScore adjusts the scores to fit a specific range or scale, ensuring they are comparable.
+- This step ensures fairness in ranking nodes.
 
-7. **Reserve**:
-   - During the Reserve stage, resources on the chosen node are reserved for the pod.
-   - This prevents other pods from being scheduled on the same resources.
+#### Reserve
+- During the Reserve stage, resources on the chosen node are reserved for the pod.
+- This prevents other pods from being scheduled on the same resources.
 
-8. **Permit**:
-   - Permit is a final check before binding, allowing for any last-minute verifications or permissions.
-   - This plugin consists of three phases: Approve, Deny, and Wait. Approve gives a green flag for binding, Deny returns the pod to the scheduling queue, and Wait holds the pod until approval.
+#### Permit
+- Permit is a final check before binding, allowing for any last-minute verifications or permissions.
+- This plugin consists of three phases: Approve, Deny, and Wait. Approve gives a green flag for binding, Deny returns the pod to the scheduling queue, and Wait holds the pod until approval.
 
 ### Binding Cycle
 
-1. **PreBind**:
-   - PreBind is a preparation step before the actual binding.
-   - It can include steps like setting up necessary resources or configurations on the node.
+#### PreBind
+- PreBind is a preparation step before the actual binding.
+- It can include steps like setting up necessary resources or configurations on the node.
 
-2. **Bind**:
-   - Bind is the final step where the pod is officially bound to the node.
-   - The scheduler informs the API server of the decision, and the pod starts running on the node.
+#### Bind
+- Bind is the final step where the pod is officially bound to the node.
+- The scheduler informs the API server of the decision, and the pod starts running on the node.
 
-3. **PostBind**:
-   - PostBind actions occur after the pod is bound to a node.
-   - This can involve cleanup tasks or notifying other components of the binding.
-   - This marks the end of the binding cycle and declares the result.
+#### PostBind
+- PostBind actions occur after the pod is bound to a node.
+- This can involve cleanup tasks or notifying other components of the binding.
+- This marks the end of the binding cycle and declares the result.
 
 If any Binding Cycle plugin rejects the pod, it is again sent to the scheduling queue. Scheduling cycles are run serially, while Binding cycles may run concurrently.
 
