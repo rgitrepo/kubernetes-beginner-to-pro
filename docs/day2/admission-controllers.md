@@ -1,9 +1,8 @@
+# Admission Controllers in Kubernetes
 
 <div style="text-align: center;">
   <img src="../../pics/admission-controllers.gif" alt="Admission Controllers" style="width: 600px; height: 450px;">
 </div>
-
-# Admission Controllers in Kubernetes
 
 ## Table of Contents
 
@@ -234,10 +233,9 @@ webhooks:
 
 ## Object Schema Validation
 
-### YAML Example
 To ensure that the configuration files are valid, you can use schema validation.
 
-#### Example YAML for Object Schema Validation:
+### Example YAML for Object Schema Validation:
 ```yaml
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
@@ -261,7 +259,9 @@ spec:
                 image:
                   type: string
                 replicas:
-                  type: integer
+                  type
+
+: integer
   scope: Namespaced
   names:
     plural: cronjobs
@@ -269,8 +269,6 @@ spec:
     kind: CronJob
     shortNames:
     - cj
-
-
 ```
 
 In this example, the `CustomResourceDefinition` defines a schema for a `CronJob` object. The schema specifies that the `spec` field must be an object containing a `cronSpec` string, an `image` string, and a `replicas` integer.
@@ -297,13 +295,13 @@ Schema validation is critical because it ensures that the resources are created 
 
 ### Custom Resource Definitions (CRDs)
 
-a. What are CRDs?
-Definition: CRDs allow you to extend the Kubernetes API by defining your own custom objects.
-Purpose: Helps in creating new object types that Kubernetes doesn't support out-of-the-box.
-b. Example Use Case
-Scenario: You want an application to automatically create an ingress, a service, and a deployment.
-Solution: Use a CRD to define a new object type (e.g., "Application") that includes all these resources.
+#### What are CRDs?
+- **Definition**: CRDs allow you to extend the Kubernetes API by defining your own custom objects.
+- **Purpose**: Helps in creating new object types that Kubernetes doesn't support out-of-the-box.
 
+#### Example Use Case
+- **Scenario**: You want an application to automatically create an ingress, a service, and a deployment.
+- **Solution**: Use a CRD to define a new object type (e.g., "Application") that includes all these resources.
 
 #### Example:
 - **Custom Resource Definition (CRD)**:
@@ -337,7 +335,6 @@ cd /etc/kubernetes/manifests
 ls -l /etc/kubernetes/manifests
 cat kube-apiserver.yaml | grep admission
 ```
-
 
 ## Conclusion
 
