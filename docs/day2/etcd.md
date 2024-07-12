@@ -183,9 +183,9 @@ Understanding the inner workings of etcd is crucial for clearing interviews, esp
 ### Additional Resources
 To delve deeper into etcd, visit the official etcd documentation and explore resources like "The Secrets of Raft" for a comprehensive understanding of its underlying mechanisms and functionalities.
 
----
+----------------------------
 
-To make the formulas for Quorum and Fault Tolerance calculations look better in Markdown (such as on GitHub), you can use LaTeX-style math notation supported by many Markdown renderers. Here's how you can format the text:
+
 
 ### Number of Nodes and Quorum
 
@@ -196,43 +196,43 @@ Using an odd number of nodes ensures that the cluster can achieve quorum (a majo
 
 #### Formula for Quorum
 The formula to determine the quorum is:
-\[ \text{Quorum} = \left( \frac{N}{2} \right) + 1 \]
+\[ Quorum = \left( \frac{N}{2} \right) + 1 \]
 
 Where \( N \) is the total number of nodes in the cluster. This ensures that the cluster can tolerate up to \( \left( \frac{N - 1}{2} \right) \) node failures.
 
 #### Fault Tolerance
 Fault tolerance refers to the cluster’s ability to continue functioning correctly even when some nodes fail. The number of nodes that can fail while still maintaining quorum is given by:
-\[ \text{Fault Tolerance} = \left( \frac{N - 1}{2} \right) \]
+\[ Fault Tolerance = \left( \frac{N - 1}{2} \right) \]
 
 This means that if the number of node failures is less than or equal to the fault tolerance, the cluster can still reach quorum and function correctly.
 
 #### Examples:
 1. **3 Nodes**:
    - **Quorum Calculation**:
-     \[ \text{Quorum} = \left( \frac{3}{2} \right) + 1 = 2 \]
+     \[ Quorum = \left( \frac{3}{2} \right) + 1 = 2 \]
      (since \( \frac{3}{2} = 1.5 \), rounded up to 2)
    - **Fault Tolerance Calculation**:
-     \[ \text{Fault Tolerance} = \left( \frac{3 - 1}{2} \right) = 1 \]
+     \[ Fault Tolerance = \left( \frac{3 - 1}{2} \right) = 1 \]
    - **Explanation**:
      - With 3 nodes, at least 2 nodes need to be operational to reach quorum.
      - The cluster can tolerate 1 node failure (because with 2 nodes left, quorum can still be achieved).
 
 2. **5 Nodes**:
    - **Quorum Calculation**:
-     \[ \text{Quorum} = \left( \frac{5}{2} \right) + 1 = 3 \]
+     \[ Quorum = \left( \frac{5}{2} \right) + 1 = 3 \]
      (since \( \frac{5}{2} = 2.5 \), rounded up to 3)
    - **Fault Tolerance Calculation**:
-     \[ \text{Fault Tolerance} = \left( \frac{5 - 1}{2} \right) = 2 \]
+     \[ Fault Tolerance = \left( \frac{5 - 1}{2} \right) = 2 \]
    - **Explanation**:
      - With 5 nodes, at least 3 nodes need to be operational to reach quorum.
      - The cluster can tolerate 2 node failures (because with 3 nodes left, quorum can still be achieved).
 
 3. **7 Nodes**:
    - **Quorum Calculation**:
-     \[ \text{Quorum} = \left( \frac{7}{2} \right) + 1 = 4 \]
+     \[ Quorum = \left( \frac{7}{2} \right) + 1 = 4 \]
      (since \( \frac{7}{2} = 3.5 \), rounded up to 4)
    - **Fault Tolerance Calculation**:
-     \[ \text{Fault Tolerance} = \left( \frac{7 - 1}{2} \right) = 3 \]
+     \[ Fault Tolerance = \left( \frac{7 - 1}{2} \right) = 3 \]
    - **Explanation**:
      - With 7 nodes, at least 4 nodes need to be operational to reach quorum.
      - The cluster can tolerate 3 node failures (because with 4 nodes left, quorum can still be achieved).
@@ -244,82 +244,7 @@ This means that if the number of node failures is less than or equal to the faul
 
 By configuring the cluster with an appropriate number of nodes and understanding the relationship between fault tolerance and quorum, you can ensure that the etcd cluster remains highly available and consistent, even in the presence of node failures.
 
-### Practical Example
 
-- **3 Nodes**: 
-  - Quorum Calculation: 
-    \[ \text{Quorum} = \left( \frac{3}{2} \right) + 1 = 2 \]
-    (since \( \frac{3}{2} = 1.5 \), rounded up to 2)
-  - Fault Tolerance Calculation: 
-    \[ \text{Fault Tolerance} = \left( \frac{3 - 1}{2} \right) = 1 \]
-  - Explanation: 
-    - With 3 nodes, at least 2 nodes need to be operational to reach quorum.
-    - The cluster can tolerate 1 node failure (because with 2 nodes left, quorum can still be achieved).
 
-- **5 Nodes**: 
-  - Quorum Calculation: 
-    \[ \text{Quorum} = \left( \frac{5}{2} \right) + 1 = 3 \]
-    (since \( \frac{5}{2} = 2.5 \), rounded up to 3)
-  - Fault Tolerance Calculation: 
-    \[ \text{Fault Tolerance} = \left( \frac{5 - 1}{2} \right) = 2 \]
-  - Explanation: 
-    - With 5 nodes, at least 3 nodes need to be operational to reach quorum.
-    - The cluster can tolerate 2 node failures (because with 3 nodes left, quorum can still be achieved).
 
-- **7 Nodes**: 
-  - Quorum Calculation: 
-    \[ \text{Quorum} = \left( \frac{7}{2} \right) + 1 = 4 \]
-    (since \( \frac{7}{2} = 3.5 \), rounded up to 4)
-  - Fault Tolerance Calculation: 
-    \[ \text{Fault Tolerance} = \left( \frac{7 - 1}{2} \right) = 3 \]
-  - Explanation: 
-    - With 7 nodes, at least 4 nodes need to be operational to reach quorum.
-    - The cluster can tolerate 3 node failures (because with 4 nodes left, quorum can still be achieved).
 
-### Key Points:
-- **Odd Number of Nodes**: Using an odd number of nodes ensures that the cluster can always achieve a majority (quorum) even if some nodes fail.
-- **Quorum**: More than half of the total nodes need to be operational to maintain the cluster’s functionality.
-- **Fault Tolerance**: The number of nodes that can fail while still maintaining quorum is \(\left( \frac{N - 1}{2} \right)\).
-
-By configuring the cluster with an appropriate number of nodes and understanding the relationship between fault tolerance and quorum, you can ensure that the etcd cluster remains highly available and consistent, even in the presence of node failures.
-
-### Practical Example
-
-- **3 Nodes**: 
-  - Quorum Calculation: 
-    \[ \text{Quorum} = \left( \frac{3}{2} \right) + 1 = 2 \]
-    (since \( \frac{3}{2} = 1.5 \), rounded up to 2)
-  - Fault Tolerance Calculation: 
-    \[ \text{Fault Tolerance} = \left( \frac{3 - 1}{2} \right) = 1 \]
-  - Explanation: 
-    - With 3 nodes, at least 2 nodes need to be operational to reach quorum.
-    - The cluster can tolerate 1 node failure (because with 2 nodes left, quorum can still be achieved).
-
-- **5 Nodes**: 
-  - Quorum Calculation: 
-    \[ \text{Quorum} = \left( \frac{5}{2} \right) + 1 = 3 \]
-    (since \( \frac{5}{2} = 2.5 \), rounded up to 3)
-  - Fault Tolerance Calculation: 
-    \[ \text{Fault Tolerance} = \left( \frac{5 - 1}{2} \right) = 2 \]
-  - Explanation: 
-    - With 5 nodes, at least 3 nodes need to be operational to reach quorum.
-    - The cluster can tolerate 2 node failures (because with 3 nodes left, quorum can still be achieved).
-
-- **7 Nodes**: 
-  - Quorum Calculation: 
-    \[ \text{Quorum} = \left( \frac{7}{2} \right) + 1 = 4 \]
-    (since \( \frac{7}{2} = 3.5 \), rounded up to 4)
-  - Fault Tolerance Calculation: 
-    \[ \text{Fault Tolerance} = \left( \frac{7 - 1}{2} \right) = 3 \]
-  - Explanation: 
-    - With 7 nodes, at least 4 nodes need to be operational to reach quorum.
-    - The cluster can tolerate 3 node failures (because with 4 nodes left, quorum can still be
-
- achieved).
-
-### Key Points:
-- **Odd Number of Nodes**: Using an odd number of nodes ensures that the cluster can always achieve a majority (quorum) even if some nodes fail.
-- **Quorum**: More than half of the total nodes need to be operational to maintain the cluster’s functionality.
-- **Fault Tolerance**: The number of nodes that can fail while still maintaining quorum is \(\left( \frac{N - 1}{2} \right)\).
-
-By configuring the cluster with an appropriate number of nodes and understanding the relationship between fault tolerance and quorum, you can ensure that the etcd cluster remains highly available and consistent, even in the presence of node failures.
