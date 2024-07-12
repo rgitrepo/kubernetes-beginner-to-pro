@@ -21,7 +21,8 @@ In this tutorial, we'll explore the essential components of Kubernetes networkin
     - [Understanding runc](#understanding-runc)
     - [Deep Dive into cgroups](#deep-dive-into-cgroups)
     - [Integration in Kubernetes](#integration-in-kubernetes)
-8. [Conclusion](#conclusion)
+8. [Kubelet Steps in Container Deployment](#kubelet-steps-in-container-deployment)
+9. [Conclusion](#conclusion)
 
 ### Introduction
 
@@ -111,7 +112,7 @@ Let's consider a scenario where you have two clusters with multiple nodes. Each 
 - **Hierarchy:** cgroups organize processes into hierarchical groups, with each group having its own resource limits and policies.
 - **Resource Management:** The Linux kernel manages these groups and enforces the specified resource limits, ensuring efficient and stable operation.
 
-#### Integration in Kubernetes
+### Integration in Kubernetes
 
 In Kubernetes, OCI, runc, and cgroups work together to manage and run containers efficiently.
 
@@ -119,17 +120,30 @@ In Kubernetes, OCI, runc, and cgroups work together to manage and run containers
 2. **runc:** As an OCI-compliant runtime, runc is used by the CRI to create and manage containers. runc sets up the necessary namespaces and cgroups for each container.
 3. **cgroups:** runc configures cgroups to enforce resource limits and isolation for containers, ensuring they do not exceed their allocated resources and do not interfere with each other.
 
-#### Steps in Container Deployment:
-1. **API Server:** Authenticates and authorizes the request.
-2. **Scheduler:** Assigns the workload to a node.
-3. **Kubelet:** Instructs the CRI to create the container.
-4. **CRI:** Uses runc to create the container.
-5. **runc:** Sets up cgroups and namespaces, ensuring resource limits and isolation.
-6. **CNI:** Assigns IP addresses and handles networking for the container.
-7. **CSI:** Manages storage provisioning and attachment for the container.
+### Kubelet Steps in Container Deployment
+
+1. **Calls CRI to Take Care of the Container**
+   - The kubelet communicates with the Container Runtime Interface (CRI) to handle container operations. The CRI abstracts the underlying container runtime (e.g., ContainerD, CRI-O), providing a standardized interface for managing containers.
+
+2. **Configure cgroups**
+   - The kubelet, through the CRI and using runc or crun, sets up cgroups (control groups) for the container. cgroups ensure that the container's resource usage (CPU, memory, etc.) is limited and isolated according to the specified resource limits.
+
+3. **Configure Pod's Networking Using CNI**
+   - The kubelet uses the Container Network Interface
+
+ (CNI) to configure the pod's networking. This involves assigning an IP address to the pod and setting up the necessary network routes and policies to ensure proper communication within the cluster.
+
+4. **Pull Image**
+   - The kubelet instructs the container runtime to pull the specified container image from the container registry. This image contains the application code and its dependencies, packaged in a standardized format.
+
+5. **Start the Container**
+   - Once the image is pulled, the kubelet, via the container runtime, starts the container. This involves creating a new process based on the container image and ensuring that all configurations (cgroups, namespaces, networking) are correctly applied.
+
+6. **Run the Application**
+   - With the container started, the application inside the container begins execution. The kubelet monitors the container to ensure it remains running and healthy, restarting it if necessary, according to the specified policies.
+
+These steps ensure that containers are deployed consistently and efficiently in a Kubernetes cluster, with proper resource management and network configuration.
 
 ### Conclusion
 
-Understanding CRI, CSI, CNI, OCI, runc, and cgroups is crucial for managing and deploying applications in Kubernetes effectively. These components work together to provide a standardized, efficient, and isolated environment for running containers. By leveraging these technologies, Kubernetes ensures that containers run
-
- reliably and efficiently, with proper resource management and isolation.
+Understanding CRI, CSI, CNI, OCI, runc, and cgroups is crucial for managing and deploying applications in Kubernetes effectively. These components work together to provide a standardized, efficient, and isolated environment for running containers. By leveraging these technologies, Kubernetes ensures that containers run reliably and efficiently, with proper resource management and isolation.
