@@ -19,3 +19,4 @@
   - [ETCD](docs/day2/etcd.md)
   - [Kube-Scheduler](docs/day2/kube-scheduler.md)
   - [Kube-Controller-Manager](docs/day2/kube-controller-manager.md)
+  - [Kube-Proxy and Kubelet](docs/day2/kube-proxy-and-kubelet.md)
