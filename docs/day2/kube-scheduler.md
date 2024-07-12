@@ -3,8 +3,8 @@
 ### Table of Contents
 1. [Prerequisites](#prerequisites)
 2. [Components Prior to the Scheduling Cycle](#components-prior-to-the-scheduling-cycle)
-    - [Sort](#sort)
     - [PreEnqueue](#preenqueue)
+    - [Sort](#sort)
 3. [Scheduling Cycle](#scheduling-cycle)
     - [PreFilter](#prefilter)
     - [Filter](#filter)
@@ -16,9 +16,8 @@
     - [Permit](#permit)
 4. [Binding Cycle](#binding-cycle)
     - [PreBind](#prebind)
-    - [PostBind](#postbind)
-    - [WaitOnPermit](#waitonpermit)
     - [Bind](#bind)
+    - [PostBind](#postbind)
 5. [Taints and Tolerations](#taints-and-tolerations)
 6. [Preemption and Priorities](#preemption-and-priorities)
 7. [Inter-Relatedness of Components](#inter-relatedness-of-components)
@@ -29,21 +28,19 @@
 
 Before diving into the scheduler, it's essential to have a basic understanding of Kubernetes architecture, including ETCD, API server, and controllers.
 
-
 <div style="text-align: center;">
   <img src="../../pics/kube-scheduler.gif" alt="Kube-Scheduler style="width: 600px; height: 450px;">
 </div>
 
-
 ### Components Prior to the Scheduling Cycle
 
-1. **Sort**: 
+1. **PreEnqueue**:
+   - Performs all the necessary checks and segregates pods into the ActiveQ, UnscheduableQ, or PodBackoffQ.
+   - Ensures only valid pods enter the scheduling queue.
+
+2. **Sort**: 
    - Once a pod specification is received, the scheduler sorts the pods in the scheduling queue based on their priorities and other criteria.
    - This ensures higher priority pods are scheduled before lower priority ones.
-
-2. **PreEnqueue**:
-   - Before a pod enters the scheduling queue, it undergoes a pre-enqueue check.
-   - This step ensures that the pod meets all basic requirements to be considered for scheduling.
 
 ### Scheduling Cycle
 
@@ -81,7 +78,7 @@ The scheduling cycle begins once the scheduler receives a scheduling request. Th
 
 8. **Permit**:
    - Permit is a final check before binding, allowing for any last-minute verifications or permissions.
-   - It ensures that the pod is allowed to run on the selected node.
+   - This plugin consists of three phases: Approve, Deny, and Wait. Approve gives a green flag for binding, Deny returns the pod to the scheduling queue, and Wait holds the pod until approval.
 
 ### Binding Cycle
 
@@ -89,17 +86,16 @@ The scheduling cycle begins once the scheduler receives a scheduling request. Th
    - PreBind is a preparation step before the actual binding.
    - It can include steps like setting up necessary resources or configurations on the node.
 
-2. **PostBind**:
-   - PostBind actions occur after the pod is bound to a node.
-   - This can involve cleanup tasks or notifying other components of the binding.
-
-3. **WaitOnPermit**:
-   - WaitOnPermit handles the time gap between permit approval and binding.
-   - It ensures all preconditions are met and that the pod is ready to be bound.
-
-4. **Bind**:
+2. **Bind**:
    - Bind is the final step where the pod is officially bound to the node.
    - The scheduler informs the API server of the decision, and the pod starts running on the node.
+
+3. **PostBind**:
+   - PostBind actions occur after the pod is bound to a node.
+   - This can involve cleanup tasks or notifying other components of the binding.
+   - This marks the end of the binding cycle and declares the result.
+
+If any Binding Cycle plugin rejects the pod, it is again sent to the scheduling queue. Scheduling cycles are run serially, while Binding cycles may run concurrently.
 
 ### Taints and Tolerations
 
