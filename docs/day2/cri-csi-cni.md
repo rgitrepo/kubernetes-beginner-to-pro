@@ -62,16 +62,6 @@ CNI plugins like Cilium, Calico, and Flannel offer various features:
 - **Network Observability:** Monitor network traffic, packet flow, and data movement.
 - **Networking Solutions:** Provide different networking models and policies to ensure efficient communication within the cluster.
 
-### Practical Example
-
-Let's consider a scenario where you have two clusters with multiple nodes. Each node has multiple namespaces (e.g., NS-Dev and NS-Stage).
-
-#### Scenario 1: Communication Between Pods in Different Namespaces on the Same Node
-- **Solution:** CNI handles IP assignment and ensures that pods in different namespaces can communicate through the assigned IPs and network policies.
-
-#### Scenario 2: Communication Between Pods in Different Namespaces on Different Nodes
-- **Solution:** CNI ensures that network policies and routing rules are in place to enable communication between pods across different nodes. This involves assigning appropriate IP addresses and setting up network routes.
-
 ### Understanding OCI, runc, and cgroups
 
 #### Introduction to OCI
