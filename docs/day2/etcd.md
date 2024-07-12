@@ -27,7 +27,7 @@ etcd is a distributed, highly consistent key-value store that plays a crucial ro
 </div>
 
 ### Key Features of etcd
-1. **Distributed Key-Value Store**: etcd is not just an ordinary database. It is a distributed, highly consistent key-value store essential for maintaining the state of a Kubernetes cluster. **etcd is a NoSQL database**, which means it does not use the traditional table-based relational database structure that SQL databases use. Instead, it stores data in a simple key-value format.
+1. **Distributed Key-Value Store**: etcd is not just an ordinary database. It is a distributed, highly consistent key-value store essential for **maintaining the state** of a Kubernetes cluster. **etcd is a NoSQL database**, which means it does not use the traditional table-based relational database structure that SQL databases use. Instead, it stores data in a simple key-value format.
 2. **Raft Consensus Algorithm**: etcd is built on the Raft consensus algorithm, ensuring that all nodes hold elections, and the one with the majority becomes the leader, while others become followers. **The leader first receives the data and then replicates it across all the followers. Once all nodes have the same data, the log is committed.**
 3. **Protobuf Serialization**: etcd uses Protobuf for faster serialization and deserialization of data.
 4. **Data Not Encrypted by Default**: By default, the data stored in etcd is not encrypted, but it can be encrypted if required.
