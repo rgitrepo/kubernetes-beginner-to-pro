@@ -1,4 +1,6 @@
-Yes, that's correct. In the context of Kubernetes, a DaemonSet ensures that a copy of a pod is running on all (or some) nodes in a cluster. It is often used for tasks that need to run on every node, such as logging daemons, monitoring daemons, or other background tasks. 
+#DaemonSet
+
+DaemonSet ensures that a copy of a pod is running on all (or some) nodes in a cluster. It is often used for tasks that need to run on every node, such as logging daemons, monitoring daemons, or other background tasks. 
 
 Here are some key points about DaemonSets in Kubernetes:
 
