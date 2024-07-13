@@ -1,3 +1,5 @@
+
+
 ### Scenarios on Pod Communication in Kubernetes
 
 This assignment explores how pods in different namespaces, nodes, and clusters can communicate within a Kubernetes environment. We will address five specific scenarios to understand pod communication mechanisms.
@@ -9,11 +11,12 @@ This assignment explores how pods in different namespaces, nodes, and clusters c
 4. [Scenario 4: Communication Between Pods in Different Clusters, Different Nodes, and Different Namespaces](#scenario-4-communication-between-pods-in-different-clusters-different-nodes-and-different-namespaces)
 5. [Scenario 5: Communication Between Containers in the Same Pod](#scenario-5-communication-between-containers-in-the-same-pod)
 
+### Diagram
+
 
 <div style="text-align: center;">
   <img src="../../pics/scenarios-on-pod-communication.png" alt="Pod Communication Scenarios" style="width: 600px; height: 450px;">
 </div>
-
 
 ### Scenario 1: Communication Between Pods in the Same Cluster, Same Node, and Same Namespace
 
@@ -30,6 +33,8 @@ Pods within the same namespace can communicate with each other directly using th
 2. **Using Service Discovery:**
    - Kubernetes services provide a stable network endpoint to access pods. If pods in the same namespace need to communicate, they can use the service name to resolve the pod IPs.
    - This approach abstracts the actual pod IPs and provides load balancing across multiple pod instances.
+
+**Answer: kube-proxy**
 
 #### Example YAML for Service:
 ```yaml
@@ -64,6 +69,8 @@ In Kubernetes, communication between pods in different namespaces is possible bu
 2. **Network Policies:**
    - Ensure that Network Policies, if used, allow traffic between the namespaces. By default, Kubernetes allows all traffic, but restrictive policies might block communication.
 
+**Answer: kube-proxy**
+
 #### Example YAML for Service:
 ```yaml
 apiVersion: v1
@@ -97,6 +104,8 @@ Kubernetes ensures that pods can communicate across nodes within a cluster by de
 
 3. **Service Mesh (Optional):**
    - For more advanced communication and observability features, a service mesh (e.g., Istio) can be implemented. This helps manage traffic and provides additional security and telemetry.
+
+**Answer: service mesh**
 
 #### Example YAML for Service (Cross-Node):
 ```yaml
@@ -133,6 +142,8 @@ Communication between pods in different clusters is more complex and requires ad
    - Implement custom networking solutions, such as using an ingress controller and external DNS to route traffic between clusters.
    - Configure each cluster’s network to allow traffic from the other cluster’s network.
 
+**Answer: VPN or VPC Peering**
+
 #### Example Setup for Cross-Cluster Communication:
 1. **Establish a VPN Connection:**
    - Set up a VPN connection between the clusters to allow secure communication.
@@ -141,7 +152,9 @@ Communication between pods in different clusters is more complex and requires ad
    - Use external DNS to resolve service names across clusters.
 
 3. **Use Istio for Multi-Cluster Setup:**
-   - Deploy Istio in both clusters and configure it for multi-cluster communication. This involves setting up gateways and configuring the service mesh to route traffic between clusters.
+   - Deploy Istio in both clusters and configure it for multi-cluster communication. This
+
+ involves setting up gateways and configuring the service mesh to route traffic between clusters.
 
 ### Scenario 5: Communication Between Containers in the Same Pod
 
@@ -157,6 +170,8 @@ Containers within the same pod share the same network namespace, meaning they ca
 
 2. **Shared Storage Volumes:**
    - Containers can also share data by mounting the same volume. This allows them to read and write to a common file system.
+
+**Answer: localhost**
 
 #### Example YAML for a Pod with Multiple Containers:
 ```yaml
