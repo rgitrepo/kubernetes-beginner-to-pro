@@ -181,3 +181,4 @@ Understanding the inner workings of etcd is crucial for clearing interviews, esp
 
 ### Additional Resources
 To delve deeper into etcd, visit the official etcd documentation and explore resources like "The Secrets of Raft" for a comprehensive understanding of its underlying mechanisms and functionalities.
+- [The Secrets of Raft](https://thesecretlivesofdata.com/raft/)
