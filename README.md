@@ -24,3 +24,6 @@
   - [Optional: Scenarios on Pod Communication](docs/day2/scenarios-on-pod-communication.md)
   - [Key Metrics](docs/day2/key-metrics.md)
   - [Resources](docs/day2/resources.md)
+
+- Day 3
+  - [Kubernetes Clusters](docs/day3/kubernetes-clusters.md)
