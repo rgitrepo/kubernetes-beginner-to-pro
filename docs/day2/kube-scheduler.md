@@ -140,7 +140,3 @@ If any Binding Cycle plugin rejects the pod, it is again sent to the scheduling 
 ### Memorization vs Understanding
 
 It's essential not to memorize the sequence of stages by rote but to understand their purpose and how they interact. Understanding the functions and relationships between each component will better prepare you for practical applications and problem-solving.
-
-### Conclusion
-
-Understanding the Kubernetes scheduler involves knowing the flow from pod submission to binding. Each component in the scheduling and binding cycles plays a critical role in ensuring pods are efficiently and correctly scheduled on suitable nodes. By following this tutorial, you should have a comprehensive understanding of the kube-scheduler and its inner workings. Focus on understanding the concepts and their interrelationships rather than memorizing the steps, as this will provide a more robust foundation for both practical applications and system troubleshooting.
