@@ -102,11 +102,11 @@ If any Binding Cycle plugin rejects the pod, it is again sent to the scheduling 
 ### Taints and Tolerations
 
 **Taints**:
-- A taint is a property that can be added to a node to indicate that it should not accept any pods that do not explicitly tolerate the taint.
+- A taint is a property that can be added to a **node** to indicate that it should not accept any pods that do not explicitly tolerate the taint.
 - Taints have three parts: key, value, and effect. The effect can be one of three values: `NoSchedule`, `PreferNoSchedule`, or `NoExecute`.
 
 **Tolerations**:
-- A toleration is a property added to a pod that allows it to be scheduled onto a node with matching taints.
+- A toleration is a property added to a **pod** that allows it to be scheduled onto a node with matching taints.
 - Tolerations allow pods to tolerate the taints applied to nodes, thereby being scheduled onto those nodes despite the taints.
 
 **PreFilter and Filter Stages**:
