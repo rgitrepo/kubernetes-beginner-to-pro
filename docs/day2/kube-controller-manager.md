@@ -1,94 +1,108 @@
-### Comprehensive Tutorial: Understanding kube-controller-manager
 
-#### Table of Contents
+## Table of Contents
 
-1. [Introduction](#introduction)
-2. [Workflow Before `kube-controller-manager`](#workflow-before-kube-controller-manager)
-3. [Role of `kube-controller-manager`](#role-of-kube-controller-manager)
-   - [Observer-Compare-Action](#observer-compare-action)
-   - [SharedInformer](#sharedinformer)
-   - [WorkQueue](#workqueue)
-4. [Built-in Kubernetes Controllers](#built-in-kubernetes-controllers)
-   - [Node Controller](#node-controller)
-   - [Service Controller](#service-controller)
-5. [Internal Mechanisms](#internal-mechanisms)
-   - [Node Eviction](#node-eviction)
-   - [Cron Jobs](#cron-jobs)
-   - [Custom Controllers and Daemon Sets](#custom-controllers-and-daemon-sets)
-6. [Example Process Flow](#example-process-flow)
-7. [Conclusion](#conclusion)
+1. [Kubernetes Controller Manager Overview](#kubernetes-controller-manager-overview)
+2. [General Overview](#general-overview)
+3. [Controllers](#controllers)
+   - [Node Controller](#1-node-controller)
+   - [Service Controller](#2-service-controller)
+   - [Namespace Controller](#3-namespace-controller)
+   - [DaemonSet Controller](#4-daemonset-controller)
+   - [CronJob Controller](#5-cronjob-controller)
+   - [Custom Controller](#6-custom-controller)
+4. [Conclusion](#conclusion)
 
----
+## Kubernetes Controller Manager Overview
 
-#### Introduction
-
-In Kubernetes, the `kube-controller-manager` plays a crucial role in maintaining the desired state of the cluster. It ensures that the actual state of resources matches the desired state defined by the user.
+The Kubernetes Controller Manager is a key component of the Kubernetes control plane. It is responsible for running controllers that regulate the state of the Kubernetes cluster. Each controller watches the state of the cluster through the API server and makes necessary changes to move the current state towards the desired state.
 
 <div style="text-align: center;">
   <img src="../../pics/kube-controller-manager.gif" alt="Kube-Scheduler style="width: 600px; height: 450px;">
 </div>
 
-#### Workflow Before `kube-controller-manager`
+## General Overview
 
-Before the `kube-controller-manager` comes into play, a series of steps are performed on any request:
+1. **Purpose**: The Controller Manager ensures that the cluster is always in the desired state. It does this by running a series of controllers that perform routine tasks, such as creating pods, maintaining node status, and managing endpoints.
+2. **Functionality**: Each controller manages a specific aspect of the cluster. They watch the state of objects through the API server and take action to achieve the desired state.
+3. **Execution**: Controllers can be run as individual processes, but to simplify deployment and reduce overhead, they are typically compiled into a single binary and run in a single process.
 
-1. **Authenticated & Authorized:** The request is authenticated and authorized to ensure it has the necessary permissions.
-2. **Passed by the Admission Controllers:** The request is then evaluated by admission controllers for additional checks and transformations.
-3. **Persisted in etcd:** Once approved, the request is persisted in `etcd`, the key-value store used by Kubernetes.
-4. **Scheduled:** The `kube-scheduler` assigns the request to the appropriate node, ensuring it gets the green flag from all plugins involved.
+## Controllers
 
-#### Role of `kube-controller-manager`
+### 1. Node Controller
 
-After these preliminary steps, the `kube-controller-manager` takes over to ensure that the desired state (.spec) and the current state (.status) of the cluster resources are synchronized.
+**Purpose**: Manages the state of nodes in the cluster.
 
-##### Observer-Compare-Action
+- **Responsibilities**:
+  - Monitors the health of nodes.
+  - Detects node failures and updates the node status.
+  - Initiates the eviction of pods from a node if it becomes unreachable.
 
-This daemon continuously polls the API Server to check the state of various resources. It observes the current state, compares it with the desired state, and takes action if discrepancies are found. This cycle repeats indefinitely.
+- **Details**:
+  - **Node Monitoring**: Periodically checks the status of each node.
+  - **Node Eviction**: If a node does not respond within a specified time, it marks the node as "NotReady" and starts pod eviction.
 
-##### SharedInformer
+### 2. Service Controller
 
-To optimize performance and reduce latency, `SharedInformer` is used. This creates a single watch state on the API Server which can be consumed by multiple controllers, thus reducing CPU pressure and avoiding redundant API calls.
+**Purpose**: Manages the state of services in the cluster.
 
-##### WorkQueue
+- **Responsibilities**:
+  - Ensures that the service endpoints are correctly configured.
+  - Manages cloud provider-specific load balancers.
 
-Tasks are sent to a queue, where they are processed one at a time. This ensures efficient management and execution of tasks, preventing overload.
+- **Details**:
+  - **Endpoint Management**: Watches services and endpoints objects, ensuring that the service’s endpoints match the expected state.
+  - **Load Balancers**: Interacts with the cloud provider API to create, update, or delete load balancers.
 
-#### Built-in Kubernetes Controllers
+### 3. Namespace Controller
 
-Several built-in controllers handle different aspects of cluster management:
+**Purpose**: Manages namespaces in the cluster.
 
-##### Node Controller
+- **Responsibilities**:
+  - Ensures that the lifecycle of all objects within a namespace is managed correctly.
+  - Handles the cleanup of resources when a namespace is deleted.
 
-Manages worker nodes based on metrics provided by `kubelet`. It ensures nodes are healthy and replaces unhealthy nodes with healthy ones.
+- **Details**:
+  - **Namespace Deletion**: When a namespace is deleted, it ensures that all related resources (pods, services, etc.) are also deleted.
+  - **Resource Cleanup**: Cleans up leftover resources that might have been stuck due to failures or partial deletions.
 
-##### Service Controller
+### 4. DaemonSet Controller
 
-Configures and manages services within the cluster. It ensures that services are correctly defined and available.
+**Purpose**: Manages DaemonSets, ensuring that a daemon pod runs on every node (or a subset of nodes).
 
-#### Internal Mechanisms
+- **Responsibilities**:
+  - Schedules daemon pods on nodes.
+  - Ensures that pods are created and maintained as specified.
 
-##### Node Eviction
+- **Details**:
+  - **Pod Scheduling**: Ensures that a daemon pod is running on all eligible nodes.
+  - **Pod Management**: Monitors the health of daemon pods and recreates them if they fail.
 
-If a node is found unhealthy, it is evicted and replaced by a healthy one. This is a high-level mechanism to maintain cluster integrity.
+### 5. CronJob Controller
 
-##### Cron Jobs
+**Purpose**: Manages CronJobs, which run jobs on a scheduled basis.
 
-Automates tasks to run at specified times, ensuring periodic tasks are managed without manual intervention.
+- **Responsibilities**:
+  - Ensures that jobs are created and run according to the specified schedule.
+  - Handles job failures and retries.
 
-##### Custom Controllers and Daemon Sets
+- **Details**:
+  - **Scheduling**: Uses Cron syntax to schedule jobs.
+  - **Job Execution**: Creates Job objects based on the schedule and manages their lifecycle.
 
-These handle specific tasks and configurations, ensuring custom requirements and background processes are managed efficiently.
+### 6. Custom Controller
 
-#### Example Process Flow
+**Purpose**: Manages custom resources and their lifecycle.
 
-1. **Observation:** The `kube-controller-manager` observes the current state of a pod.
-2. **Comparison:** It compares this state with the desired state defined in the specification.
-3. **Action:** If the states do not match, it triggers actions such as evicting an unhealthy pod or node and scheduling a new one.
-4. **SharedInformer Utilization:** Multiple controllers access a single watch state to optimize resource usage.
-5. **Task Queue:** Actions are queued and processed sequentially to maintain order and efficiency.
+- **Responsibilities**:
+  - Allows users to define custom resources and controllers to manage them.
+  - Integrates with the Kubernetes API to provide custom functionality.
 
-#### Conclusion
+- **Details**:
+  - **Custom Resources**: Allows for the extension of Kubernetes API with new resource types.
+  - **Custom Logic**: Users can write their own controllers to manage the lifecycle and state of these custom resources.
 
-The `kube-controller-manager` is vital for ensuring the stability and consistency of a Kubernetes cluster. By continuously monitoring and reconciling the state of resources, it maintains the desired configuration and health of the cluster. Understanding its mechanisms helps in managing and troubleshooting Kubernetes environments effectively.
+## Conclusion
 
-This comprehensive understanding of the `kube-controller-manager` showcases its importance in Kubernetes' architecture and its role in maintaining the cluster's desired state.
+The Kubernetes Controller Manager is a vital component of the Kubernetes control plane, responsible for maintaining the desired state of the cluster by running a set of controllers. Each controller focuses on managing specific resources and ensuring that their state matches the declared specifications. By handling tasks like node health monitoring, service endpoint management, and job scheduling, the Controller Manager helps maintain the robustness and reliability of the Kubernetes cluster.
+
+
