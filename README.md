@@ -20,7 +20,7 @@
   - [Kube-Scheduler](docs/day2/kube-scheduler.md)
   - [Kube-Controller-Manager](docs/day2/kube-controller-manager.md)
   - [Kube-Proxy and Kubelet](docs/day2/kube-proxy-and-kubelet.md)
-  - [Networking and Runtime Interfaces: CRI, CSI, and CNI](docs/day2/cri-csi-cni.md)
+  - [CRI, CSI, and CNI](docs/day2/cri-csi-cni.md)
   - [Optional: Scenarios on Pod Communication](docs/day2/scenarios-on-pod-communication.md)
   - [Key Metrics](docs/day2/key-metrics.md)
   - [Resources](docs/day2/resources.md)
