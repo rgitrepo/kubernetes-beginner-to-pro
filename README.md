@@ -22,8 +22,6 @@
   - [Kube-Proxy and Kubelet](docs/day2/kube-proxy-and-kubelet.md)
   - [CRI, CSI, and CNI](docs/day2/cri-csi-cni.md)
   - [Kube-Proxy vs CNI](docs/day2/kube-proxy-vs-cni.md)
-
-  - Additional Learning
   - [Blog Summary: Scaling Kubernetes to 7,500 Nodes](docs/day2/scaling-kubernetes-to-7500-nodes-summary.md)
   - [Optional: Scenarios on Pod Communication](docs/day2/scenarios-on-pod-communication.md)
   - [Optional: Key Metrics](docs/day2/key-metrics.md)
