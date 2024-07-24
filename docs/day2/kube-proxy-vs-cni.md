@@ -59,5 +59,3 @@ CNI operates at the container level and handles the networking setup for pods, e
 
 ## How They Work Together
 In a Kubernetes cluster, CNI plugins provide the foundational network connectivity for pods. Once the pod network is established, kube-proxy leverages this network to manage traffic routing and load balancing for services. Together, they ensure that both intra-cluster pod communication and service-based communication are handled efficiently.
-
-Understanding the distinction and the interaction between kube-proxy and CNI helps in designing and troubleshooting Kubernetes networking effectively.
