@@ -94,7 +94,7 @@ The election process in Raft involves several steps to ensure a new leader is ch
    - All nodes start as followers. A follower node transitions to a candidate state if it does not hear from a leader within an election timeout.
 
 2. **Election Timeout**:
-   - **Election Timeout**: The election timeout is a random duration between 150ms and 300ms. If a follower does not receive a heartbeat from the leader within this time, it assumes the leader has failed and becomes a candidate.
+   - **Election Timeout**: The election timeout is a random duration between **150ms and 300ms**. If a follower does not receive a heartbeat from the leader within this time, it assumes the leader has failed and becomes a candidate.
    - The randomness in the timeout helps to avoid split votes where multiple candidates simultaneously request votes.
 
 3. **Candidate State**:
