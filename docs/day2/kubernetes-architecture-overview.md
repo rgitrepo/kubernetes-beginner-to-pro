@@ -1,8 +1,8 @@
 ### Kubernetes Architecture
 
-Kubernetes architecture is primarily divided into two main components: the Master Node (Control Plane) and the Worker Node (Slave Node).
+Kubernetes architecture is primarily divided into two main components: the Control Plane (Master Node) and the Data Plane (Worker Node).
 
-#### Master Node (Control Plane)
+#### Control Plane (Master Node)
 
 The Master Node is responsible for managing and controlling the cluster. The Master Node consists of five main components, although in some cases, there might be four. These components are:
 
