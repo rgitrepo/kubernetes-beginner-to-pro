@@ -36,3 +36,5 @@
   - [Understanding Containers](docs/day3/understanding-containers.md)
   - [Kubectl](docs/day3/kubectl.md)
   - [Pods](docs/day3/pods.md)
+  - [Exec In The Pods](docs/day3/exec-in-the-pods.md)
+  
