@@ -20,7 +20,7 @@
 7. [Understanding Naming Conventions](#understanding-naming-conventions)
 8. [Working with Different Cluster Types](#working-with-different-cluster-types)
 9. [K8s: The Short Form of Kubernetes](#k8s-the-short-form-of-kubernetes)
-10. [Olly: The Short Form of Observability](#understanding-olly-the-short-form-of-observability)
+10. [Olly: The Short Form of Observability](#olly-the-short-form-of-observability)
 11. [Image Types and Best Practices](#image-types-and-best-practices)
 12. [Understanding kubectl](#understanding-kubectl)
 13. [Pod Lifecycle and Tools](#pod-lifecycle-and-tools)
