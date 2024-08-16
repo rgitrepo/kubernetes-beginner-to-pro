@@ -129,7 +129,7 @@ In interviews, a common question is why Kubernetes is called "K8s." The explanat
 
 ## Olly: The Short Form of Observability
 
-"Olly" is a shorthand used to refer to "Observability." Observability is a key concept in managing and monitoring complex systems like Kubernetes, where understanding the internal state of the system through data such as logs, metrics, and traces is crucial.
+"Olly" is a shorthand used to refer to "Observability." The eleven letters in between are replaced by the digit 11 and it looks like two l's. Observability is a key concept in managing and monitoring complex systems like Kubernetes, where understanding the internal state of the system through data such as logs, metrics, and traces is crucial.
 
 ### Example:
 
