@@ -28,4 +28,5 @@
   - [Resources](docs/day2/resources.md)
 
 - Day 3
-  - [Kubernetes Clusters](docs/day3/kubernetes-clusters.md)
+  - [Kubernetes Clusters - GKE](docs/day3/kubernetes-clusters.md)
+  - [Kind Cluster](docs/day3/kind-cluster.md)
