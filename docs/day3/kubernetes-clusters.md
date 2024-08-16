@@ -20,7 +20,7 @@
 7. [Understanding Naming Conventions](#understanding-naming-conventions)
 8. [Working with Different Cluster Types](#working-with-different-cluster-types)
 9. [K8s: The Short Form of Kubernetes](#k8s-the-short-form-of-kubernetes)
-10. [Understanding Olly: The Short Form of Observability](#understanding-olly-the-short-form-of-observability)
+10. [Olly: The Short Form of Observability](#understanding-olly-the-short-form-of-observability)
 11. [Image Types and Best Practices](#image-types-and-best-practices)
 12. [Understanding kubectl](#understanding-kubectl)
 13. [Pod Lifecycle and Tools](#pod-lifecycle-and-tools)
@@ -127,7 +127,7 @@ Kubernetes is often abbreviated as "K8s." This abbreviation comes from the fact 
 
 In interviews, a common question is why Kubernetes is called "K8s." The explanation is simple: the eight letters in between are replaced by the digit "8." This kind of abbreviation is typical in technical jargon to simplify communication.
 
-## Understanding Olly: The Short Form of Observability
+## Olly: The Short Form of Observability
 
 "Olly" is a shorthand used to refer to "Observability." Observability is a key concept in managing and monitoring complex systems like Kubernetes, where understanding the internal state of the system through data such as logs, metrics, and traces is crucial.
 
