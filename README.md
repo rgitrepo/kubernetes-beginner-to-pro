@@ -33,4 +33,4 @@
   - [Kubeadm](docs/day3/kubeadm.md)
   - [Cluster & Objects](docs/day3/cluster-and-objects.md)
   - [Docker Containers](docs/day3/docker-containers.md)
-  - [Understanding Containers, Docker, and Kubernetes](docs/day3/understanding-containers.md)
+  - [Understanding Containers](docs/day3/understanding-containers.md)
