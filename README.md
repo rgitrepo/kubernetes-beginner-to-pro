@@ -35,3 +35,4 @@
   - [Docker Containers](docs/day3/docker-containers.md)
   - [Understanding Containers](docs/day3/understanding-containers.md)
   - [Kubectl](docs/day3/kubectl.md)
+  - [Pods](docs/day3/pods.md)
