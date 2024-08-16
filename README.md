@@ -2,13 +2,13 @@
 
 ## Table of Contents
 
-- Day 1
+- Day 1: Introduction to Kubernetes
   - [YAML & Linting](docs/day1/yaml_and_linting.md)
   - [Linux Commands](docs/day1/linux_commands.md)
   - [Docker & Kubernetes](docs/day1/docker_and_kubernetes.md)
 
 
-- Day 2
+- Day 2: Kubernetes Architecture
   - [What are APIs](docs/day2/api.md)
   - [REST vs gRPC APIs](docs/day2/rest-grpc-api.md)
   - [Daemon vs DaemonSet](docs/day2/daemon-vs-daemonset.md)
@@ -27,7 +27,7 @@
   - [Optional: Key Metrics](docs/day2/key-metrics.md)
   - [Resources](docs/day2/resources.md)
 
-- Day 3
+- Day 3: Cloud & on-Prem Clusters, Images, Debug Container & Pods, kubectl
   - [Kubernetes Clusters - GKE](docs/day3/kubernetes-clusters.md)
   - [Kind Cluster](docs/day3/kind-cluster.md)
   - [Kubeadm](docs/day3/kubeadm.md)
