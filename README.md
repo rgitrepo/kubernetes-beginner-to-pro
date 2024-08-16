@@ -31,3 +31,4 @@
   - [Kubernetes Clusters - GKE](docs/day3/kubernetes-clusters.md)
   - [Kind Cluster](docs/day3/kind-cluster.md)
   - [Kubeadm](docs/day3/kubeadm.md)
+  - [Cluster & Objects](docs/day3/cluster-and-objects.md)
