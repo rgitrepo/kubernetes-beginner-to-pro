@@ -32,7 +32,7 @@
   - [Kind Cluster](docs/day3/kind-cluster.md)
   - [Kubeadm](docs/day3/kubeadm.md)
   - [Cluster & Objects](docs/day3/cluster-and-objects.md)
-  - [Docker Containers](docs/day3/docker-containers.md)
+  - [Images - Docker Containers](docs/day3/docker-containers.md)
   - [Understanding Containers](docs/day3/understanding-containers.md)
   - [Kubectl](docs/day3/kubectl.md)
   - [Pods](docs/day3/pods.md)
