@@ -30,4 +30,4 @@
 - Day 3
   - [Kubernetes Clusters - GKE](docs/day3/kubernetes-clusters.md)
   - [Kind Cluster](docs/day3/kind-cluster.md)
-  - [Kubeadmin](docs/day3/kubeadmin.md)
+  - [Kubeadm](docs/day3/kubeadm.md)
