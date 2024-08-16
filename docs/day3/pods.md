@@ -11,7 +11,6 @@
 8. [Ports in Pods](#ports-in-pods)
 9. [Creating and Running a Pod](#creating-and-running-a-pod)
 10. [Editing and Describing a Pod](#editing-and-describing-a-pod)
-11. [Conclusion](#conclusion)
 
 ---
 
