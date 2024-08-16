@@ -37,4 +37,5 @@
   - [Kubectl](docs/day3/kubectl.md)
   - [Pods](docs/day3/pods.md)
   - [Exec In The Pod](docs/day3/exec-in-the-pod.md)
+  - [Debug Containers](docs/day3/debug-containers.md)
   
