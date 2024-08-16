@@ -12,7 +12,7 @@
 8. [Understanding Naming Conventions](#understanding-naming-conventions)
 9. [Working with Different Cluster Types](#working-with-different-cluster-types)
 10. [K8s: The Short Form of Kubernetes](#k8s-the-short-form-of-kubernetes)
-11. [Understanding Olly: The Short Form of Observatory](#understanding-olly-the-short-form-of-observatory)
+11. [Understanding Olly: The Short Form of Obserability](#understanding-olly-the-short-form-of-observability)
 12. [Image Types and Best Practices](#image-types-and-best-practices)
 13. [Understanding kubectl](#understanding-kubectl)
 14. [Pod Lifecycle and Tools](#pod-lifecycle-and-tools)
@@ -91,13 +91,13 @@ Kubernetes is often abbreviated as "K8s." This abbreviation comes from the fact 
 
 In interviews, a common question is why Kubernetes is called "K8s." The explanation is simple: the eight letters in between are replaced by the digit "8." This kind of abbreviation is typical in technical jargon to simplify communication.
 
-## Understanding Olly: The Short Form of Observatory
+## Understanding Olly: The Short Form of Observability
 
-"Olly" is a shorthand used to refer to "Observatory." Similar to the abbreviation "K8s" for Kubernetes, "Olly" simplifies the term "Observatory" by shortening the word and making it easier to refer to in conversation.
+"Olly" is a shorthand used to refer to "Observability." Similar to the abbreviation "K8s" for Kubernetes, "Olly" simplifies the term "Observability" by shortening the word and making it easier to refer to in conversation.
 
 ### Example:
 
-Just as "K8s" is derived from "Kubernetes," "Olly" is derived from "Observatory." This form of abbreviation is often used to create shorter, more manageable terms in technical discussions.
+Just as "K8s" is derived from "Kubernetes," "Olly" is derived from "Observability." This form of abbreviation is often used to create shorter, more manageable terms in technical discussions.
 
 ## Image Types and Best Practices
 
