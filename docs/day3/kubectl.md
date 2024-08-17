@@ -207,6 +207,11 @@ K9s - Kubernetes CLI To Manage Your Clusters In Style!
 Context  : my-k8s-context
 Namespace: default
 Cluster  : my-k8s-cluster
+User:      kind-day3
+K9s Rev:   v0.32.4
+K8s Rev:   v1.29.2
+CPU:       n/a
+MEM:       n/a
 
 ╭───────────────────────────────────────────────────────────────────────────────────────╮
 │ Nodes [2]                                                                             │
@@ -219,16 +224,16 @@ Cluster  : my-k8s-cluster
 ╭───────────────────────────────────────────────────────────────────────────────────────╮
 │ Pods [5/5]                                                                            │
 ├───────────────────────────────────────────────────────────────────────────────────────┤
-│ NAME                READY   STATUS    RESTARTS   AGE      CPU(%)   MEM(%)              │
+│ NAME                READY   STATUS    RESTARTS   AGE      CPU(%)   MEM(%)             │
 │ nginx-deployment-1  1/1     Running   0          10m      10%      20Mi               │
 │ nginx-deployment-2  1/1     Running   0          10m      10%      20Mi               │
-│ redis-pod          1/1     Running   0          15m      15%      25Mi               │
+│ redis-pod           1/1     Running   0          15m      15%      25Mi               │
 ╰───────────────────────────────────────────────────────────────────────────────────────╯
 
 ╭───────────────────────────────────────────────────────────────────────────────────────╮
-│ Logs for Pod: nginx-deployment-1                                                       │
+│ Logs for Pod: nginx-deployment-1                                                      │
 ├───────────────────────────────────────────────────────────────────────────────────────┤
-│ 2024-08-16T12:34:56.789Z info: Starting nginx...                                       │
+│ 2024-08-16T12:34:56.789Z info: Starting nginx...                                      │
 │ 2024-08-16T12:34:58.123Z info: nginx started successfully                             │
 │ 2024-08-16T12:35:10.456Z info: Handling request from 10.244.0.1                       │
 ╰───────────────────────────────────────────────────────────────────────────────────────╯
