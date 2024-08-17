@@ -1,4 +1,4 @@
-# Kubernetes Version Management: A Guide
+# Interview Questions: Kubernetes Version Management
 
 ## Table of Contents
 
