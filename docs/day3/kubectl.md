@@ -1,4 +1,4 @@
-Certainly! Below is the updated tutorial that now includes the `k9s` section with a sample output description.
+Sure! Below is the updated tutorial with corrected links in the Table of Contents. I've also added a link at the end of each section to return to the Table of Contents.
 
 ---
 
@@ -6,31 +6,31 @@ Certainly! Below is the updated tutorial that now includes the `k9s` section wit
 
 ## Table of Contents
 
-1. [Introduction to `kubectl`](#introduction-to-kubectl)
-2. [Basic `kubectl` Command Structure](#basic-kubectl-command-structure)
+1. [Introduction to `kubectl`](#1-introduction-to-kubectl)
+2. [Basic `kubectl` Command Structure](#2-basic-kubectl-command-structure)
    - [Example: Creating and Getting Clusters](#example-creating-and-getting-clusters)
    - [Sample Output for `kubectl get nodes`](#sample-output-for-kubectl-get-nodes)
-3. [Understanding Aliases in Kubernetes](#understanding-aliases-in-kubernetes)
+3. [Understanding Aliases in Kubernetes](#3-understanding-aliases-in-kubernetes)
    - [Analogy: Nicknames](#analogy-nicknames)
    - [Example: Setting an Alias for `kubectl`](#example-setting-an-alias-for-kubectl)
    - [Sample Command and Output for Alias](#sample-command-and-output-for-alias)
    - [Important Note on Production Usage](#important-note-on-production-usage)
-4. [Key Differences Between `kubectl` and `eksctl`](#key-differences-between-kubectl-and-eksctl)
-5. [Using `kubectl` to Get Node Information](#using-kubectl-to-get-node-information)
+4. [Key Differences Between `kubectl` and `eksctl`](#4-key-differences-between-kubectl-and-eksctl)
+5. [Using `kubectl` to Get Node Information](#5-using-kubectl-to-get-node-information)
    - [Example: Getting Nodes with `-o wide` Flag](#example-getting-nodes-with-o-wide-flag)
    - [Sample Output for `kubectl get nodes -o wide`](#sample-output-for-kubectl-get-nodes-o-wide)
-6. [Describing Nodes in Kubernetes](#describing-nodes-in-kubernetes)
+6. [Describing Nodes in Kubernetes](#6-describing-nodes-in-kubernetes)
    - [Example: `kubectl describe node`](#example-kubectl-describe-node)
    - [Sample Output for `kubectl describe node`](#sample-output-for-kubectl-describe-node)
-7. [Important Commands for Debugging](#important-commands-for-debugging)
+7. [Important Commands for Debugging](#7-important-commands-for-debugging)
    - [Example: `kubectl get events`](#example-kubectl-get-events)
    - [Sample Output for `kubectl get events`](#sample-output-for-kubectl-get-events)
-8. [Introduction to `k9s`](#introduction-to-k9s)
+8. [Introduction to `k9s`](#8-introduction-to-k9s)
    - [Purpose and Use Case](#purpose-and-use-case)
    - [Installation and Usage](#installation-and-usage)
    - [Example: Using `k9s` for Monitoring](#example-using-k9s-for-monitoring)
    - [Sample Output Description for `k9s`](#sample-output-description-for-k9s)
-9. [Understanding the Kubernetes Hierarchy](#understanding-the-kubernetes-hierarchy)
+9. [Understanding the Kubernetes Hierarchy](#9-understanding-the-kubernetes-hierarchy)
    - [Analogy: Boxes Within Boxes](#analogy-boxes-within-boxes)
    - [Hierarchy Explanation](#hierarchy-explanation)
 
@@ -38,6 +38,8 @@ Certainly! Below is the updated tutorial that now includes the `k9s` section wit
 
 ## 1. Introduction to `kubectl`
 `kubectl` is a command-line utility specifically designed for interacting with Kubernetes clusters. It allows users to create, manage, and monitor various Kubernetes resources.
+
+[Back to Table of Contents](#table-of-contents)
 
 ---
 
@@ -54,6 +56,8 @@ The structure for writing a `kubectl` command follows this pattern:
 kubectl create cluster
 kubectl get cluster
 ```
+
+[Back to Table of Contents](#table-of-contents)
 
 ---
 
@@ -84,11 +88,15 @@ node2         Ready    <none>   22h   v1.20.0
 ### Important Note on Production Usage
 While aliases can save time during certification exams, they should **never** be used in production environments. Many companies block the use of aliases by default to prevent potential issues.
 
+[Back to Table of Contents](#table-of-contents)
+
 ---
 
 ## 4. Key Differences Between `kubectl` and `eksctl`
 - **`kubectl`**: A general-purpose command-line utility for interacting with Kubernetes clusters.
 - **`eksctl`**: A specific tool for managing EKS (Elastic Kubernetes Service) clusters on AWS.
+
+[Back to Table of Contents](#table-of-contents)
 
 ---
 
@@ -107,6 +115,8 @@ node1         Ready    master   22h   v1.20.0   192.168.1.1   <none>        Ubun
 node2         Ready    <none>   22h   v1.20.0   192.168.1.2   <none>        Ubuntu 20.04.1 LTS   5.4.0-66-generic    docker://19.3.13
 ```
 This output provides additional information like internal IP, external IP, OS image, and container runtime, which are useful for debugging.
+
+[Back to Table of Contents](#table-of-contents)
 
 ---
 
@@ -144,6 +154,8 @@ Allocatable:
 ```
 This command shows the node's details, including labels, annotations, taints, conditions, capacity, and allocatable resources.
 
+[Back to Table of Contents](#table-of-contents)
+
 ---
 
 ## 7. Important Commands for Debugging
@@ -165,6 +177,8 @@ LAST SEEN   TYPE      REASON              OBJECT                  MESSAGE
 ```
 This output captures events in your cluster, providing insights into recent activities and changes.
 
+[Back to Table of Contents](#table-of-contents)
+
 ---
 
 ## 8. Introduction to `k9s`
@@ -173,7 +187,9 @@ This output captures events in your cluster, providing insights into recent acti
 ### Purpose and Use Case
 `k9s` provides a visual representation of your cluster resources, making it easier to monitor large applications without the need to repeatedly enter commands.
 
-### Installation and Usage
+###
+
+ Installation and Usage
 `k9s` can be installed on your terminal and is simple to use. Once installed, you can enter the tool by typing:
 ```bash
 k9s
@@ -203,16 +219,16 @@ Cluster  : my-k8s-cluster
 ╭───────────────────────────────────────────────────────────────────────────────────────╮
 │ Pods [5/5]                                                                            │
 ├───────────────────────────────────────────────────────────────────────────────────────┤
-│ NAME                READY   STATUS    RESTARTS   AGE      CPU(%)   MEM(%)             │
+│ NAME                READY   STATUS    RESTARTS   AGE      CPU(%)   MEM(%)              │
 │ nginx-deployment-1  1/1     Running   0          10m      10%      20Mi               │
 │ nginx-deployment-2  1/1     Running   0          10m      10%      20Mi               │
-│ redis-pod           1/1     Running   0          15m      15%      25Mi               │
+│ redis-pod          1/1     Running   0          15m      15%      25Mi               │
 ╰───────────────────────────────────────────────────────────────────────────────────────╯
 
 ╭───────────────────────────────────────────────────────────────────────────────────────╮
-│ Logs for Pod: nginx-deployment-1                                                      │
+│ Logs for Pod: nginx-deployment-1                                                       │
 ├───────────────────────────────────────────────────────────────────────────────────────┤
-│ 2024-08-16T12:34:56.789Z info: Starting nginx...                                      │
+│ 2024-08-16T12:34:56.789Z info: Starting nginx...                                       │
 │ 2024-08-16T12:34:58.123Z info: nginx started successfully                             │
 │ 2024-08-16T12:35:10.456Z info: Handling request from 10.244.0.1                       │
 ╰───────────────────────────────────────────────────────────────────────────────────────╯
@@ -233,6 +249,8 @@ Cluster  : my-k8s-cluster
 - **Ease of Navigation**: You can quickly navigate between nodes, pods, logs, and other resources without leaving the terminal.
 
 By using `k9s`, you gain a powerful visual tool that simplifies the monitoring and management of Kubernetes clusters, especially in environments where you need to keep track of many resources simultaneously.
+
+[Back to Table of Contents](#table-of-contents)
 
 ---
 
@@ -256,6 +274,5 @@ Imagine the structure as a series of boxes within boxes:
 
 Understanding this hierarchy is crucial for effectively managing and debugging your Kubernetes cluster.
 
----
+[Back to Table of Contents](#table-of-contents)
 
-This tutorial should give you a solid foundation in using `kubectl` and understanding the structure and tools in a Kubernetes environment. Feel free to revisit any section using the table of contents as needed!
