@@ -142,3 +142,5 @@ In this example, the cluster name is "day-three," and it includes both a worker 
 Upgrading a Kind cluster involves updating the node images to newer versions. You can do this by modifying your YAML configuration file with the desired image versions and then recreating the cluster.
 
 > **Note**: Updating the cluster with the latest versions might take some time due to image updates. For testing purposes, you can use Kubernetes’ main branch or prebuilt images provided by the Kubernetes SIG.
+
+https://github.com/kubernetes-sigs/kind/releases
