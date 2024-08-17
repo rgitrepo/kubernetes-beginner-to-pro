@@ -13,9 +13,10 @@
 7. [The Importance of Layer Reduction](#7-the-importance-of-layer-reduction)
 8. [Alpine Images and Their Usage](#8-alpine-images-and-their-usage)
 9. [Distroless Images](#9-distroless-images)
-10. [Introduction to Containers](#10-introduction-to-containers)
-11. [Understanding Root Privileges in Images](#11-understanding-root-privileges-in-images)
-12. [Conclusion and Best Practices](#12-conclusion-and-best-practices)
+10. [Understanding Scratch Images](#10-understanding-scratch-images)
+11. [Introduction to Containers](#11-introduction-to-containers)
+12. [Understanding Root Privileges in Images](#12-understanding-root-privileges-in-images)
+13. [Conclusion and Best Practices](#13-conclusion-and-best-practices)
 
 ---
 
@@ -86,7 +87,8 @@ Reducing the number of layers in an image is crucial for performance and efficie
 
 **Alpine images** are a type of lightweight Docker image based on the Alpine Linux distribution. They are minimalistic, containing only the essential components needed to run your application, which results in a much smaller image size. Alpine images are often used as a base image for production-grade Dockerfiles due to their small size and efficiency.
 
-Alpine images are particularly popular because they reduce the overall image size, making it faster to pull the image from a registry and reducing the attack surface by including fewer packages.
+**Size:**  
+Alpine images are typically around **5 MB** for the base image. They provide a good balance between functionality and size, making them a popular choice for many applications.
 
 ---
 
@@ -94,21 +96,33 @@ Alpine images are particularly popular because they reduce the overall image siz
 
 **Distroless images** are minimal images that contain only the essential components needed to run an application, without any extra tools or packages. This reduces the attack surface, making them more secure and efficient. Unlike Alpine images, which include a package manager, Distroless images do not, meaning they contain even fewer components, making them even smaller and more secure.
 
+**Size:**  
+Distroless images are generally very small, typically ranging from **5 to 50 MB** depending on the specific image and what is included. They are smaller than Alpine images due to their lack of unnecessary components.
+
 ---
 
-### 10. Introduction to Containers
+### 10. Understanding Scratch Images
+
+**Scratch images** are the smallest possible Docker images because they start from nothing—an empty base image. This makes them the foundation for building entirely custom images that contain only what you explicitly add.
+
+**Size:**  
+Scratch images are **0 bytes** in size because they contain nothing by default. This makes them the smallest possible base image, ideal for highly optimized and minimal Docker images.
+
+---
+
+### 11. Introduction to Containers
 
 A container is an abstraction that packages the image and runs it in an isolated environment. Containers are similar to shipping containers—they carry the packaged image and ensure it runs consistently in different environments. Containers leverage the layered structure of Docker images to efficiently use resources and maintain portability across different environments.
 
 ---
 
-### 11. Understanding Root Privileges in Images
+### 12. Understanding Root Privileges in Images
 
 Some Docker images run with root privileges by default, meaning they have administrative access. To enhance security, it's recommended to run containers without root privileges, using custom user IDs (UID) and group IDs (GID) instead. Running containers as non-root reduces the risk of security vulnerabilities being exploited.
 
 ---
 
-### 12. Conclusion and Best Practices
+### 13. Conclusion and Best Practices
 
 - **Server Evolution:** From servers to VMs, and now to containers.
 - **Dockerfiles:** Write them to create images.
@@ -117,6 +131,7 @@ Some Docker images run with root privileges by default, meaning they have admini
 - **Layers:** Reduce them for better performance.
 - **Alpine Images:** Use them for a lightweight and efficient base.
 - **Distroless Images:** Use them for security and efficiency.
+- **Scratch Images:** Use them when you need the smallest possible image.
 - **Containers:** Run images in isolated environments.
 - **Root Privileges:** Avoid them for better security.
 
@@ -126,6 +141,7 @@ Some Docker images run with root privileges by default, meaning they have admini
 - Write efficient Dockerfiles with minimal layers.
 - Use Alpine images as a base for production-grade Dockerfiles.
 - Use Distroless images where possible for enhanced security.
+- Use Scratch images for the smallest possible image size.
 - Avoid running containers with root privileges.
 
 ---
@@ -145,7 +161,15 @@ Some Docker images run with root privileges by default, meaning they have admini
    - **Answer:** Alpine images are minimal Docker images based on Alpine Linux, used for their small size and efficiency. They are commonly used as a base image in production environments to reduce the overall image size and improve performance.
 
 5. **What are Distroless images?**
-   - **Answer:** Distroless images are minimal images that include only the necessary runtime components without any extra tools or packages, making them more secure and lightweight.
+   - **Answer:** Dist
+
+roless images are minimal images that include only the necessary runtime components without any extra tools or packages, making them more secure and lightweight.
 
 6. **What are root privileges in Docker images?**
    - **Answer:** Root privileges mean that the Docker image runs with administrative access by default. To improve security, it’s recommended to run containers without root privileges, using custom UID and GID settings.
+
+7. **What is the size order from smallest to largest among Scratch, Distroless, and Alpine images?**
+   - **Answer:**  
+     - **Scratch:** 0 bytes (smallest)
+     - **Distroless:** 5-50 MB
+     - **Alpine:** ~5 MB (largest among the three)
