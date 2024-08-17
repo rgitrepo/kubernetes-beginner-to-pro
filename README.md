@@ -30,6 +30,7 @@
 - Day 3: Cloud & on-Prem Clusters, Images, Debug Container & Pods, kubectl
   - [Kubernetes Clusters - GKE](docs/day3/kubernetes-clusters.md)
   - [Kind Cluster](docs/day3/kind-cluster.md)
+  - [Interview Questions: Kubernetes Version Management](docs/day3/interview-questions.md)
   - [Kubeadm](docs/day3/kubeadm.md)
   - [Cluster & Objects](docs/day3/cluster-and-objects.md)
   - [Images - Docker Containers](docs/day3/docker-containers.md)
