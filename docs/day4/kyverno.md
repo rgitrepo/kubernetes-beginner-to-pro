@@ -11,7 +11,9 @@
    - [Installing Kyverno Using Helm](#installing-kyverno-using-helm)
    - [Validating Kyverno Installation](#validating-kyverno-installation)
 5. [Creating and Applying Kyverno Policies](#creating-and-applying-kyverno-policies)
-   - [Example: Adding CPU and Memory to Pods](#example-adding-cpu-and-memory-to-pods)
+   - [Use Case: Adding CPU and Memory to Pods](#use-case-adding-cpu-and-memory-to-pods)
+   - [Use Case: Enforcing Specific Images](#use-case-enforcing-specific-images)
+   - [Use Case: Adding Specific Labels](#use-case-adding-specific-labels)
    - [Validating Policies](#validating-policies)
    - [Viewing Policy Reports](#viewing-policy-reports)
 6. [Advanced Policy Creation](#advanced-policy-creation)
@@ -22,21 +24,21 @@
 ---
 
 ### 1. Introduction
-In this tutorial, we will dive deep into Kubernetes admission controllers, specifically focusing on the Kyverno tool. Kyverno is a Kubernetes-native policy engine that simplifies the management of policies and security configurations. This guide will walk you through the setup, creation, and application of Kyverno policies, along with examples to solidify your understanding.
+In this tutorial, we will explore Kubernetes admission controllers, focusing specifically on the Kyverno tool. Kyverno is a Kubernetes-native policy engine that simplifies policy management and security configurations. This guide will walk you through the setup, creation, and application of Kyverno policies, including several real-world use cases to help you apply what you learn.
 
 [Back to TOC](#table-of-contents)
 
 ---
 
 ### 2. What is Kyverno?
-Kyverno is a policy engine designed for Kubernetes. It allows you to manage and enforce policies for your Kubernetes resources using YAML configurations. Being Kubernetes-native, Kyverno does not require you to learn a new language or complex configurations, making it a beginner-friendly yet powerful tool.
+Kyverno is a policy engine designed specifically for Kubernetes. It enables you to manage and enforce policies on your Kubernetes resources using YAML configurations. As a Kubernetes-native tool, Kyverno does not require you to learn a new programming language. Instead, you can leverage the power of YAML to define and enforce your policies. Kyverno’s official documentation contains 200-225 pre-defined policy examples, making it easy to get started. You can simply copy and paste these policies, and writing new ones is straightforward as well.
 
 [Back to TOC](#table-of-contents)
 
 ---
 
 ### 3. Understanding Kubernetes Admission Controllers
-Kubernetes admission controllers are key components that intercept requests to the Kubernetes API server before they are persisted as objects in etcd. They help enforce policies and ensure security within the cluster.
+Kubernetes admission controllers are essential components that intercept requests to the Kubernetes API server before they are persisted as objects in etcd. They enforce policies and ensure security within the cluster.
 
 #### Authentication
 When you issue a `kubectl` command, the request first goes to the API server, which checks if you are authenticated. This step verifies if you have the authority to log in.
@@ -82,8 +84,8 @@ You should see the Kyverno pods running, indicating a successful installation.
 
 ### 5. Creating and Applying Kyverno Policies
 
-#### Example: Adding CPU and Memory to Pods
-Let's start with a simple Kyverno policy that adds default CPU and memory specifications to any pod that doesn’t already have them defined.
+#### Use Case: Adding CPU and Memory to Pods
+One common use case for Kyverno is to ensure that every pod in your cluster has specified CPU and memory limits. This can help prevent resource hogging and ensure fair distribution of resources across your cluster.
 
 1. **Create a Policy YAML File:**
    ```yaml
@@ -131,6 +133,96 @@ Let's start with a simple Kyverno policy that adds default CPU and memory specif
    Requests:
      cpu:  100m
      memory:  100Mi
+   ```
+
+[Back to TOC](#table-of-contents)
+
+---
+
+#### Use Case: Enforcing Specific Images
+Another practical application of Kyverno is to enforce the use of specific container images in your Kubernetes pods. This can be crucial for security and compliance, ensuring that only approved images are used across your cluster.
+
+1. **Create a Policy YAML File:**
+   ```yaml
+   apiVersion: kyverno.io/v1
+   kind: ClusterPolicy
+   metadata:
+     name: enforce-image
+   spec:
+     rules:
+       - name: require-specific-image
+         match:
+           resources:
+             kinds:
+             - Pod
+         validate:
+           message: "Only nginx image is allowed."
+           pattern:
+             spec:
+               containers:
+                 - (name): "*"
+                   image: "nginx"
+   ```
+
+2. **Apply the Policy:**
+   ```bash
+   kubectl apply -f enforce-image.yaml
+   ```
+
+3. **Test the Policy:**
+   Try creating a pod with a different image:
+   ```bash
+   kubectl run test-pod --image=busybox -- sleep 1d
+   ```
+   You should receive an error message indicating that the pod was blocked due to the validation policy.
+
+[Back to TOC](#table-of-contents)
+
+---
+
+#### Use Case: Adding Specific Labels
+You may want to ensure that all pods in a certain namespace or across the entire cluster have specific labels. This can be useful for categorization, monitoring, or applying additional policies.
+
+1. **Create a Policy YAML File:**
+   ```yaml
+   apiVersion: kyverno.io/v1
+   kind: ClusterPolicy
+   metadata:
+     name: add-label
+   spec:
+     rules:
+       - name: add-environment-label
+         match:
+           resources:
+             kinds:
+             - Pod
+         mutate:
+           patchStrategicMerge:
+             metadata:
+               labels:
+                 environment: "production"
+   ```
+
+2. **Apply the Policy:**
+   ```bash
+   kubectl apply -f add-label.yaml
+   ```
+
+3. **Create a Pod Without Labels:**
+   ```bash
+   kubectl run nginx --image=nginx -- sleep 1d
+   ```
+
+4. **Check the Applied Policy:**
+   Describe the pod to verify that the label was automatically added:
+   ```bash
+   kubectl describe pod nginx
+   ```
+
+   You should see the following under the pod's metadata:
+   ```yaml
+   Labels:
+     environment: production
    ```
 
 [Back to TOC](#table-of-contents)
@@ -186,7 +278,9 @@ Kyverno generates policy reports that help you understand which resources have p
    ```
    This command lists the policy reports, showing you which policies passed or failed.
 
-[Back to TOC](#table-of-contents)
+[Back to TO
+
+C](#table-of-contents)
 
 ---
 
