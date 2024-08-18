@@ -228,9 +228,7 @@ Consider you need to deploy a logging agent on every node in your Kubernetes clu
 2. **Apply the DaemonSet:**
    Use `kubectl` to apply the DaemonSet configuration:
    ```bash
-   kubectl
-
- apply -f fluentd-daemonset.yaml
+   kubectl apply -f fluentd-daemonset.yaml
    ```
 
 3. **Verify the DaemonSet:**
