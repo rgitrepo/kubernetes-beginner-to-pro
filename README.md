@@ -46,3 +46,4 @@
   - [Kube Linter](docs/day4/kube-linter.md)
   - [Kube Bench](docs/day4/kube-bench.md)
   - [Static Pods](docs/day4/static-pods.md)
+  - [Init Container](docs/day4/init-container.md)
