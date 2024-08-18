@@ -1,4 +1,4 @@
-### Detailed Tutorial on Kube Bench
+## Kube Bench
 
 ---
 
