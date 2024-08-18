@@ -1,6 +1,6 @@
 # Debug Containers Tutorial
 
-Welcome to this comprehensive tutorial on Debug Containers. This guide will take you step by step through the process of creating, copying, and managing debug and ephemeral containers, highlighting their uses, limitations, and best practices. 
+Welcome to this comprehensive tutorial on Debug Containers. This guide will take you step by step through the process of creating, copying, and managing debug and ephemeral containers, highlighting their uses, limitations, and best practices.
 
 ### Table of Contents
 
@@ -10,7 +10,8 @@ Welcome to this comprehensive tutorial on Debug Containers. This guide will take
 4. [Challenges with Debug Containers](#challenges-with-debug-containers)
 5. [Managing Ephemeral Containers](#managing-ephemeral-containers)
 6. [Practical Example of Creating an Ephemeral Container](#practical-example-of-creating-an-ephemeral-container)
-
+7. [Using the `kubectl run` Command with `--dry-run`](#using-the-kubectl-run-command-with--dry-run)
+8. [Conclusion](#conclusion)
 
 ---
 
@@ -140,3 +141,47 @@ Let's walk through the process of creating an ephemeral container with a real ex
 
 [Back to top](#table-of-contents)
 
+---
+
+## Using the `kubectl run` Command with `--dry-run`
+
+The `kubectl run` command is commonly used to create and run a pod. However, when using the `--dry-run` flag, it allows you to simulate the creation of the pod without actually running it, which is useful for generating YAML files for inspection and troubleshooting.
+
+### Command Explanation:
+```bash
+kubectl run munal --image=nginx --dry-run=client -o yaml -- sleep 1d
+```
+
+In this command:
+
+1. **`kubectl run munal`**: Creates a new pod named "munal".
+2. **`--image=nginx`**: Specifies the image to use for the pod, in this case, Nginx.
+3. **`--dry-run=client`**: Simulates the creation of the pod. The `client` option ensures that the request is not sent to the API server but instead processed locally.
+4. **`-o yaml`**: Outputs the result in YAML format.
+5. **`-- sleep 1d`**: Adds the sleep command with a duration of one day (`1d`) to the pod's command.
+
+### Important Note:
+The flags like `-- sleep 1d` must come **after** the `--dry-run=client -o yaml` flags. If you place the sleep command or any other arguments before these flags, it can cause the command to not function as intended.
+
+### Example Use Case:
+You might want to inspect the YAML configuration of a pod before actually creating it. This allows you to ensure everything is configured correctly.
+
+```bash
+kubectl run example-pod --image=nginx --dry-run=client -o yaml -- sleep 1d > pod.yaml
+```
+
+This command will create a YAML file named `pod.yaml` that contains the configuration of the pod named `example-pod`. You can then inspect or modify this file before applying it with `kubectl apply -f pod.yaml`.
+
+This technique is particularly useful for troubleshooting or when you need to generate a pod's configuration to share with others or to keep as part of your version-controlled infrastructure.
+
+[Back to top](#table-of-contents)
+
+---
+
+## Conclusion
+
+Debug containers are powerful tools for troubleshooting and managing pods in Kubernetes. While they offer significant advantages, such as safe debugging in production environments, they also come with challenges, particularly with the management of ephemeral containers. By understanding the best practices and limitations of these tools, you can effectively maintain and troubleshoot your Kubernetes environments.
+
+This tutorial has covered the essential aspects of working with debug containers, from creation to advanced topics like the `kubectl run` command with `--dry-run`. As you continue to explore Kubernetes, keep these concepts in mind to ensure your environments remain secure, efficient, and easy to manage.
+
+[Back to top](#table-of-contents)
