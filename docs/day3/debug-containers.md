@@ -10,10 +10,7 @@ Welcome to this comprehensive tutorial on Debug Containers. This guide will take
 4. [Challenges with Debug Containers](#challenges-with-debug-containers)
 5. [Managing Ephemeral Containers](#managing-ephemeral-containers)
 6. [Practical Example of Creating an Ephemeral Container](#practical-example-of-creating-an-ephemeral-container)
-7. [Differences Between Init Containers and Sidecar Containers](#differences-between-init-containers-and-sidecar-containers)
-8. [Advanced Topics: Runtime Classes, Kata Containers, and GVisor](#advanced-topics-runtime-classes-kata-containers-and-gvisor)
-9. [Applying Kyverno Policies](#applying-kyverno-policies)
-10. [Conclusion](#conclusion)
+
 
 ---
 
@@ -143,74 +140,3 @@ Let's walk through the process of creating an ephemeral container with a real ex
 
 [Back to top](#table-of-contents)
 
----
-
-## Differences Between Init Containers and Sidecar Containers
-
-### Init Containers:
-Init containers run before application containers and are used to set up or prepare the environment for the main containers.
-
-### Sidecar Containers:
-Sidecar containers run alongside the main containers and provide additional functionalities like logging, proxying, or monitoring.
-
-### Key Differences:
-
-- **Purpose**:
-  - **Init Containers**: Setup or initialization tasks.
-  - **Sidecar Containers**: Ongoing auxiliary tasks.
-- **Execution Time**:
-  - **Init Containers**: Before the main container starts.
-  - **Sidecar Containers**: Concurrently with the main container.
-  
-### Example:
-In the transcript, the user planned to discuss the differences between these two types but decided to leave it for a future session due to its complexity.
-
-[Back to top](#table-of-contents)
-
----
-
-## Advanced Topics: Runtime Classes, Kata Containers, and GVisor
-
-### Runtime Classes:
-These are used to define different container runtimes in Kubernetes. They allow you to specify which runtime should be used for a given pod.
-
-### Kata Containers:
-Kata containers combine the security of virtual machines with the speed and manageability of containers.
-
-### GVisor:
-GVisor is a user-space kernel that can be used to sandbox containers. It provides additional security by isolating the container from the host system.
-
-### Example:
-These topics were mentioned as advanced topics that require further exploration. The user planned to cover these in a future session, showing their relevance to secure and efficient container management.
-
-[Back to top](#table-of-contents)
-
----
-
-## Applying Kyverno Policies
-
-Kyverno is a policy engine designed for Kubernetes. It allows you to manage and enforce policies for Kubernetes resources using configurations written in YAML.
-
-### Steps:
-
-1. **Write a Policy**: Create a Kyverno policy to enforce certain conditions in your cluster.
-2. **Apply the Policy**: Use the `kubectl` command to apply the policy to your cluster.
-    ```bash
-    kubectl apply -f policy.yaml
-    ```
-3. **Validate**: Ensure that the policy is correctly enforced in your cluster.
-
-### Example:
-The user intended to demonstrate how to apply a Kyverno policy that would automatically validate certain configurations. This is an essential tool for maintaining security and compliance in Kubernetes environments.
-
-[Back to top](#table-of-contents)
-
----
-
-## Conclusion
-
-Debug containers are powerful tools for troubleshooting and managing pods in Kubernetes. While they offer significant advantages, such as safe debugging in production environments, they also come with challenges, particularly with the management of ephemeral containers. By understanding the best practices and limitations of these tools, you can effectively maintain and troubleshoot your Kubernetes environments.
-
-This tutorial has covered the essential aspects of working with debug containers, from creation to advanced topics like Kyverno policies. As you continue to explore Kubernetes, keep these concepts in mind to ensure your environments remain secure, efficient, and easy to manage.
-
-[Back to top](#table-of-contents)
