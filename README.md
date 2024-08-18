@@ -42,3 +42,4 @@
 
 - Day 4: Pods in Production, SideCar vs init Containers, Trivy, Kyverno
   - [Image Security: Trivy](docs/day4/image-security.md)
+  - [Admission Control: Kyverno](docs/day4/kyverno.md)
