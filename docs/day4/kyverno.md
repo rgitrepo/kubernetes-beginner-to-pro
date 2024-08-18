@@ -245,9 +245,7 @@ Kyverno allows you to validate policies to ensure they meet certain conditions. 
 
 1. **Create a Validation Policy:**
    ```yaml
-   apiVersion: ky
-
-verno.io/v1
+   apiVersion: kyverno.io/v1
    kind: ClusterPolicy
    metadata:
      name: validate-runtime-class
