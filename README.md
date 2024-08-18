@@ -40,3 +40,5 @@
   - [Exec In The Pod](docs/day3/exec-in-the-pod.md)
   - [Debug Containers](docs/day3/debug-containers.md)
 
+- Day 4: Pods in Production, SideCar vs init Containers, Trivy, Kyverno
+  - [Image Security: Trivy](docs/day4/image-security.md)
