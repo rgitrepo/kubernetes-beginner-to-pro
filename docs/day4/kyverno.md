@@ -110,6 +110,10 @@ One common use case for Kyverno is to ensure that every pod in your cluster has 
                        memory: "100Mi"
                        cpu: "100m"
    ```
+   - **Explanation:**
+     - `match`: This key specifies the types of resources that the policy should apply to. In this case, it targets `Pod` resources.
+     - `mutate`: This block defines how the matched resources should be modified. Here, it adds default CPU and memory requests to all containers within the pods.
+     - `patchStrategicMerge`: This is the method used by Kyverno to apply changes. It merges the specified fields with the existing configuration of the resource.
 
 2. **Apply the Policy:**
    ```bash
@@ -163,6 +167,10 @@ Another practical application of Kyverno is to enforce the use of specific conta
                  - (name): "*"
                    image: "nginx"
    ```
+   - **Explanation:**
+     - `validate`: This block is used to enforce specific conditions on the resource. In this case, it ensures that all containers in the pod use the `nginx` image.
+     - `message`: The message field specifies the error message that will be returned if the validation fails.
+     - `pattern`: This key defines the expected pattern that the resource must match. If the resource doesn't match this pattern, it will be rejected.
 
 2. **Apply the Policy:**
    ```bash
@@ -202,6 +210,9 @@ You may want to ensure that all pods in a certain namespace or across the entire
                labels:
                  environment: "production"
    ```
+   - **Explanation:**
+     - `metadata`: This block within `mutate` allows you to modify the metadata of the resource, such as adding or updating labels.
+     - `labels`: Here, a specific label `environment: production` is added to all pods that match the criteria.
 
 2. **Apply the Policy:**
    ```bash
@@ -234,7 +245,9 @@ Kyverno allows you to validate policies to ensure they meet certain conditions. 
 
 1. **Create a Validation Policy:**
    ```yaml
-   apiVersion: kyverno.io/v1
+   apiVersion: ky
+
+verno.io/v1
    kind: ClusterPolicy
    metadata:
      name: validate-runtime-class
@@ -252,6 +265,9 @@ Kyverno allows you to validate policies to ensure they meet certain conditions. 
              spec:
                runtimeClassName: "kata"
    ```
+   - **Explanation:**
+     - `validationFailureAction`: This key determines the action Kyverno should take when a policy fails. In this case, `enforce` will block the resource creation if the policy is not met. Another common value is `audit`, which logs the failure without blocking the resource.
+     - `runtimeClassName`: This specifies the required runtime class for the pod. If a pod does not match this runtime class, it will be rejected.
 
 2. **Apply the Validation Policy:**
    ```bash
@@ -278,9 +294,7 @@ Kyverno generates policy reports that help you understand which resources have p
    ```
    This command lists the policy reports, showing you which policies passed or failed.
 
-[Back to TO
-
-C](#table-of-contents)
+[Back to TOC](#table-of-contents)
 
 ---
 
