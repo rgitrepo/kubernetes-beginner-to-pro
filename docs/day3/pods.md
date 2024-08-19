@@ -11,8 +11,6 @@
 6. [Creating Pods in Kubernetes](#creating-pods-in-kubernetes)
 7. [Editing Pods in Kubernetes](#editing-pods-in-kubernetes)
 8. [Working with Pod Networking](#working-with-pod-networking)
-9. [Executing Commands Inside a Pod](#executing-commands-inside-a-pod)
-10. [Common Interview Questions](#common-interview-questions)
 
 ---
 
@@ -202,59 +200,4 @@ Networking is a critical aspect of how pods communicate within a Kubernetes clus
 
 [Back to Table of Contents](#table-of-contents)
 
----
 
-### Executing Commands Inside a Pod
-
-You can directly interact with a pod by executing commands inside its containers using `kubectl exec`. This is particularly useful for debugging, troubleshooting, or inspecting the environment within the container.
-
-**Executing Command:**
-
-```bash
-kubectl exec -it nginx-pod -- /bin/bash
-```
-
-**Explanation:**
-
-- `-it`: Opens an interactive terminal session.
-- `nginx-pod`: The name of the pod.
-- `/bin/bash`: The command to run inside the pod (in this case, opening a bash shell).
-
-**Use
-
- Case:**
-- This is useful when you need to directly inspect the running environment or make changes within a container.
-
-[Back to Table of Contents](#table-of-contents)
-
----
-
-### Common Interview Questions
-
-Understanding the concepts and commands related to pods is crucial for DevOps interviews. Here are some commonly asked questions:
-
-1. **What is a Pod in Kubernetes?**
-   - A pod is the smallest deployable unit in Kubernetes that encapsulates one or more containers.
-
-2. **Explain the lifecycle of a Pod.**
-   - Pods are ephemeral and disposable, meaning they exist to perform a task and then terminate.
-
-3. **What are API Versions in Kubernetes?**
-   - API versions are used to manage different Kubernetes resources, with `v1` being the first and most basic version.
-
-4. **What does 'Kind' mean in a Kubernetes YAML file?**
-   - 'Kind' specifies the type of Kubernetes object, such as a Pod, Service, or Deployment.
-
-5. **How do you create and delete a Pod?**
-   - Pods can be created using the `kubectl run` command or by applying a YAML file. Deletion is done using `kubectl delete pod <pod-name>`.
-
-6. **How do Pods communicate with each other?**
-   - Pods communicate through IPs, services, or by using localhost within the same pod.
-
-7. **How can you edit a running Pod in Kubernetes?**
-   - Use the `kubectl edit pod <pod-name>` command to open and modify the pod's YAML configuration.
-
-8. **What is the purpose of the `kubectl exec` command?**
-   - The `kubectl exec` command allows you to execute commands inside a container within a pod.
-
-[Back to Table of Contents](#table-of-contents)
