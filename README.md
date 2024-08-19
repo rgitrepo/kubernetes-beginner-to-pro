@@ -43,8 +43,8 @@
 - Day 4: Pods in Production, SideCar vs init Containers, Trivy, Kyverno
   - [Image Security: Trivy](docs/day4/image-security.md)
   - [Admission Control: Kyverno for Policy](docs/day4/kyverno.md)
-  - [Kube Linter for Poduction Grade YAML standars](docs/day4/kube-linter.md)
-  - [Kube Bench](docs/day4/kube-bench.md)
+  - [Kube Linter for Poduction Grade YAML](docs/day4/kube-linter.md)
+  - [Kube Bench for Cluster Security](docs/day4/kube-bench.md)
   - [Static Pods](docs/day4/static-pods.md)
   - [Init Container](docs/day4/init-container.md)
   - [Sidecar vs Init Containers](docs/day4/sidecar-vs-init-containers.md)
