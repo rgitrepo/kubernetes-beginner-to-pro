@@ -182,7 +182,7 @@ The `kubectl describe pod my-pod` command provides detailed information about th
          Exit Code:    0
          Started:      Wed, 18 Aug 2024 10:22:00 -0400
          Finished:     Wed, 18 Aug 2024 10:23:00 -0400
-...
+  ```
 
 
 #### **Describing Container State with `grep`** <a name="describe-container"></a>
