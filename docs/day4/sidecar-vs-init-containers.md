@@ -1,4 +1,4 @@
-### Tutorial: Understanding Sidecar vs. Init Containers in Kubernetes
+### Sidecar vs. Init Containers in Kubernetes
 
 ---
 
