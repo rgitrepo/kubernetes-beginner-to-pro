@@ -153,35 +153,35 @@ The `kubectl describe pod my-pod` command provides detailed information about th
 
 - **Example:**
   ```bash
-Name:           my-pod
-Namespace:      default
-Priority:       0
-Node:           node-1/192.168.1.1
-Start Time:     Wed, 18 Aug 2024 10:20:00 -0400
-Labels:         app=my-app
-Status:         Running
-IP:             10.1.1.1
-...
-Containers:
-  container-1:
-    Container ID:   docker://abcd1234
-    Image:          nginx:1.19
-    Image ID:       docker-pullable://nginx@sha256:123456789abcdef
-    Port:           80/TCP
-    Host Port:      0/TCP
-    State:          Running
-      Started:      Wed, 18 Aug 2024 10:21:00 -0400
-    Ready:          True
-    Restart Count:  0
-  container-2:
-    Container ID:   docker://efgh5678
-    Image:          busybox:1.32
-    Image ID:       docker-pullable://busybox@sha256:abcdef123456789
-    State:          Terminated
-      Reason:       Completed
-      Exit Code:    0
-      Started:      Wed, 18 Aug 2024 10:22:00 -0400
-      Finished:     Wed, 18 Aug 2024 10:23:00 -0400
+      Name:           my-pod
+      Namespace:      default
+      Priority:       0
+      Node:           node-1/192.168.1.1
+      Start Time:     Wed, 18 Aug 2024 10:20:00 -0400
+      Labels:         app=my-app
+      Status:         Running
+      IP:             10.1.1.1
+      ...
+      Containers:
+        container-1:
+          Container ID:   docker://abcd1234
+          Image:          nginx:1.19
+          Image ID:       docker-pullable://nginx@sha256:123456789abcdef
+          Port:           80/TCP
+          Host Port:      0/TCP
+          State:          Running
+            Started:      Wed, 18 Aug 2024 10:21:00 -0400
+          Ready:          True
+          Restart Count:  0
+        container-2:
+          Container ID:   docker://efgh5678
+          Image:          busybox:1.32
+          Image ID:       docker-pullable://busybox@sha256:abcdef123456789
+          State:          Terminated
+            Reason:       Completed
+            Exit Code:    0
+            Started:      Wed, 18 Aug 2024 10:22:00 -0400
+            Finished:     Wed, 18 Aug 2024 10:23:00 -0400
 ...
 
 
