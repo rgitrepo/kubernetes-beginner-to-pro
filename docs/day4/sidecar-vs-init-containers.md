@@ -1,4 +1,4 @@
-### Sidecar vs. Init Containers in Kubernetes
+### Tutorial: Understanding Sidecar vs. Init Containers in Kubernetes
 
 ---
 
@@ -14,7 +14,10 @@
 7. [Sidecar Containers: Use Cases and Advantages](#sidecar-containers-use-cases-and-advantages)
 8. [Init Containers: Use Cases and Limitations](#init-containers-use-cases-and-limitations)
 9. [Service Mesh and Sidecar Containers](#service-mesh-and-sidecar-containers)
-10. [Conclusion](#conclusion)
+10. [Exec into Pods and Sidecar Containers](#exec-into-pods-and-sidecar-containers)
+    - [Using the `-c` Flag](#using-the--c-flag)
+    - [Why Monitoring Isn't Run in the Same Container](#why-monitoring-isnt-run-in-the-same-container)
+11. [Conclusion](#conclusion)
 
 ---
 
@@ -203,8 +206,69 @@ Service mesh simplifies the management of microservices by offloading tasks such
 
 ---
 
+### Exec into Pods and Sidecar Containers
+
+In Kubernetes, you can use the `kubectl exec` command to access a running container within a pod. By default, if a pod contains multiple containers (such as a main application container and a Sidecar Container), executing into the pod without specifying a container will connect you to the main application container. However, you can specify which container to access using the `-c` flag.
+
+#### Using the `-c` Flag
+
+When a pod has multiple containers, you can use the `-c` flag to specify which container to exec into. Here’s an example:
+
+**Pod Definition with a Sidecar Container:**
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myapp-pod
+spec:
+  containers:
+  - name: myapp-container
+    image:
+
+ myapp:latest
+  - name: log-sidecar
+    image: logcollector:latest
+```
+
+**Exec into the Main Application Container:**
+```bash
+kubectl exec -it myapp-pod -- bash
+```
+This command will connect you to the `myapp-container` (the main application container) by default.
+
+**Exec into the Sidecar Container:**
+```bash
+kubectl exec -it myapp-pod -c log-sidecar -- bash
+```
+This command will connect you to the `log-sidecar` container instead. The `-c` flag specifies the container you want to access.
+
+This is useful when you need to interact with or debug a specific container within a multi-container pod.
+
+[Back to TOC](#table-of-contents)
+
+---
+
+### Why Monitoring Isn't Run in the Same Container
+
+A common question arises: Why isn’t monitoring typically run in the same container as the application? The answer lies in the architecture and best practices of container design.
+
+**Single Responsibility Principle:**
+Containers are designed to handle a single responsibility or process. This design philosophy is based on the idea that each container should do one thing well. Running multiple processes (such as an application and a monitoring tool) in the same container can complicate the container’s lifecycle and make it harder to manage.
+
+**Resource Isolation:**
+By separating the monitoring process into its own Sidecar Container, you can better manage resources like CPU and memory. Each container can be allocated the resources it needs, ensuring that the monitoring process does not interfere with the application’s performance.
+
+**Easier Management and Scaling:**
+When monitoring is separated into a Sidecar Container, it can be independently managed, updated, or scaled. This flexibility is crucial in dynamic environments where applications and their monitoring needs can change frequently.
+
+In short, using a Sidecar Container for monitoring allows for better modularity, resource management, and adherence to best practices in container design.
+
+[Back to TOC](#table-of-contents)
+
+---
+
 ### Conclusion
 
-In this tutorial, we explored the roles and functionalities of Sidecar and Init Containers in Kubernetes. We covered their differences, use cases, and how they integrate into the broader Kubernetes ecosystem. Understanding these concepts is crucial for designing and managing robust, scalable Kubernetes applications.
+In this tutorial, we explored the roles and functionalities of Sidecar and Init Containers in Kubernetes. We covered their differences, use cases, and how they integrate into the broader Kubernetes ecosystem. We also explained how to exec into specific containers within a pod and why monitoring is typically separated into a Sidecar Container. Understanding these concepts is crucial for designing and managing robust, scalable Kubernetes applications.
 
 [Back to TOC](#table-of-contents)
