@@ -48,4 +48,4 @@
   - [Static Pods](docs/day4/static-pods.md)
   - [Init Container](docs/day4/init-container.md)
   - [Sidecar vs Init Containers](docs/day4/sidecar-vs-init-containers.md)
-  - [Container Cycle](docs/day4/container-cycle.md)
+  - [Pod/Container Lifecycle](docs/day4/container-cycle.md)
