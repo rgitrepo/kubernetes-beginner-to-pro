@@ -51,6 +51,7 @@
   - [Sidecar vs Init Containers](docs/day4/sidecar-vs-init-containers.md)
   - [Pod/Container Lifecycle](docs/day4/container-cycle.md)
   - [Termination of Pods](docs/day4/termination-of-pods.md)
+  - [Runtime Class](docs/day4/runtime-class.md)
  
 
 
