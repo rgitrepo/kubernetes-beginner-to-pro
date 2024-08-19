@@ -1,4 +1,4 @@
-### Termination of Pods
+### Termination of Pods: A Detailed Guide
 
 ---
 
@@ -149,29 +149,47 @@ To monitor and manage the lifecycle states of pods and containers, you can use t
 
 #### **Describing Pod State** <a name="describe-pod"></a>
 
-The pod's state can be described using the following command, which provides details about the pod's current status.
+The `kubectl describe pod my-pod` command provides detailed information about the pod, including the status of the pod and all its containers. 
 
 - **Example:**
   ```bash
   kubectl describe pod my-pod
   ```
-  Output:
-  ```
-  Status: Running
+  **Output:**
+  ```bash
+  Name:           my-pod
+  Namespace:      default
+  Node:           node-1/192.168.1.1
+  Start Time:     Wed, 18 Aug 2024 10:20:00 -0400
+  Labels:         app=my-app
+  Status:         Running
+  IP:             10.1.1.1
+  ...
+  Containers:
+    container-1:
+      State:      Running
+      ...
+    container-2:
+      State:      Terminated
+      ...
   ```
 
-#### **Describing Container State** <a name="describe-container"></a>
+#### **Describing Container State with `grep`** <a name="describe-container"></a>
 
-Similarly, each container within a pod has its own state, which can be described with the `kubectl describe` command.
+When you want to specifically see the state of each container in a pod, you can filter the output with `grep "State"`:
 
 - **Example:**
   ```bash
   kubectl describe pod my-pod | grep "State"
   ```
-  Output:
+  **Output:**
+  ```bash
+  State:          Running
+  State:          Terminated
   ```
-  State: Running
-  ```
+
+- **Explanation:** 
+  - The `grep "State"` command filters out the full output and shows only the lines where the state of the containers is mentioned. This is useful for quickly checking the status of each container within a pod.
 
 [Back to TOC](#table-of-contents)
 
@@ -181,8 +199,8 @@ Similarly, each container within a pod has its own state, which can be described
 
 Understanding pod termination in Kubernetes is essential for effectively managing workloads. By following the proper procedures and utilizing the Kubernetes commands, you can ensure that pods are terminated gracefully, minimizing the risk of resource leakage and ensuring a smooth shutdown process.
 
-[Back to TOC](#table-of-contents) 
+[Back to TOC](#table-of-contents)
 
 ---
 
-This detailed tutorial provides a comprehensive overview of pod termination, including the steps, signals, and lifecycle stages involved. By understanding and applying these concepts, you can enhance your Kubernetes management practices.
+This tutorial provides a comprehensive overview of pod termination, including essential commands and their outputs, to help you manage Kubernetes clusters more effectively.
