@@ -1,4 +1,4 @@
-### Tutorial: Understanding the Pod/Container Lifecycle in Kubernetes
+### Pod/Container Lifecycle
 
 ---
 
