@@ -47,3 +47,4 @@
   - [Kube Bench](docs/day4/kube-bench.md)
   - [Static Pods](docs/day4/static-pods.md)
   - [Init Container](docs/day4/init-container.md)
+  - [Sidecar vs Init Containers](docs/day4/sidecar-vs-init-containers.md)
