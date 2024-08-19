@@ -22,6 +22,9 @@
 
 In this tutorial, we will delve into the concepts of Sidecar and Init Containers in Kubernetes. We will explore their differences, use cases, and how they interact with other components within a Kubernetes cluster. By the end of this guide, you will have a comprehensive understanding of how to implement and utilize these containers effectively.
 
+**Important Note:**  
+An **interview question** that might be asked is related to the version of Kubernetes in which Sidecar Containers were introduced. Sidecar Containers were introduced in the **beta phase in Kubernetes version 1.29**. This is an important detail to remember, especially for interviews.
+
 [Back to TOC](#table-of-contents)
 
 ---
