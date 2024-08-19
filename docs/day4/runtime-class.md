@@ -1,6 +1,6 @@
 
 
-### Tutorial: Runtime Classes in Kubernetes
+### Runtime Classes
 
 ---
 
