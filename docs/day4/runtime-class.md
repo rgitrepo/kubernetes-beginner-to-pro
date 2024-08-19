@@ -1,6 +1,4 @@
-Here is the updated tutorial with the "Container Lifecycle vs. Pod Lifecycle" section removed:
 
----
 
 ### Tutorial: Understanding Runtime Classes in Kubernetes
 
