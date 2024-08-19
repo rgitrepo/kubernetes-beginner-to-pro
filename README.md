@@ -42,7 +42,7 @@
 
 - Day 4: Pods in Production, SideCar vs init Containers, Trivy, Kyverno
   - [Image Security: Trivy](docs/day4/image-security.md)
-  - [Bat Command](docs/day4/bat-command.md)
+  - ['bat' Command](docs/day4/bat-command.md)
   - [Admission Control: Kyverno for Policy](docs/day4/kyverno.md)
   - [Kube Linter for Poduction Grade YAML](docs/day4/kube-linter.md)
   - [Kube Bench for Cluster Security](docs/day4/kube-bench.md)
