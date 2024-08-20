@@ -2,7 +2,7 @@
 
 ### Table of Contents
 
-1. [Introduction to Kubernetes Architecture](#introduction-to-kubernetes-architecture)
+1. [Kubernetes Layered Architecture](#introduction-to-kubernetes-architecture)
 2. [Clusters](#clusters)
 3. [Nodes](#nodes)
 4. [Namespaces](#namespaces)
@@ -13,13 +13,14 @@
 
 ---
 
-### Introduction to Kubernetes Architecture
+### Kubernetes Layered Architecture
 
 Kubernetes is built on a layered architecture that helps manage containerized applications at scale. Each layer serves a distinct purpose, contributing to the flexibility, scalability, and security of your application infrastructure.
 
 <div style="text-align: center;">
   <img src="../../pics/container-pod-rs-deployment-ns-node-cluster.png" alt="Kubernetes Layered Architecture" style="width: 400px; height: 400px;">
 </div>
+
 
 [Kubernetes Architecture](https://kubernetes.io/docs/concepts/overview/components/)
 
