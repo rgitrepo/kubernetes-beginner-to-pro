@@ -52,7 +52,10 @@
   - [Pod/Container Lifecycle](docs/day4/container-cycle.md)
   - [Termination of Pods](docs/day4/termination-of-pods.md)
   - [Runtime Class](docs/day4/runtime-class.md)
- 
+    
+ - Day 5:  Labels, Selectors, ReplicaSets, Deployments, Production Strategies
+  - [Labels & Selectors](docs/day5/labels-selectors.md)
+  - [Other than Labels & Selectors](docs/day5/other-than-labels-selectors.md)
 
 
 
