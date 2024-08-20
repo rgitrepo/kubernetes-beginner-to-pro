@@ -55,7 +55,12 @@
     
 - Day 5:  Labels, Selectors, ReplicaSets, Deployments, Production Strategies
   - [Labels & Selectors](docs/day5/labels-selectors.md)
-  - [Other than Labels & Selectors](docs/day5/other-than-labels-selectors.md)
+  - [Revisiting Kubernetes Architeture](docs/day5/revisiting-kubernetes-architecture.md)
+ 
+
+
+
+
 
 
 
