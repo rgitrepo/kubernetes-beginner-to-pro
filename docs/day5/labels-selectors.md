@@ -99,6 +99,15 @@ metadata:
     app: my-app
     environment: staging
 ```
+What are the labels here?
+
+Label 1:
+Key: app
+Value: my-app
+Label 2:
+Key: environment
+Value: staging
+
 
 To apply the configuration:
 ```bash
