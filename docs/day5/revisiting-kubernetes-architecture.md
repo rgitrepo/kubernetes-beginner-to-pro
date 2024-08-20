@@ -2,7 +2,7 @@
 
 ### Table of Contents
 
-1. [Kubernetes Layered Architecture](#introduction-to-kubernetes-architecture)
+1. [Kubernetes Layered Architecture](#kubernetes-layered-architecture)
 2. [Clusters](#clusters)
 3. [Nodes](#nodes)
 4. [Namespaces](#namespaces)
