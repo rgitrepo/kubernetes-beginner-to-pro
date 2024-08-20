@@ -5,7 +5,8 @@
 2. [Understanding Labels in Kubernetes](#understanding-labels)
     - 2.1 [What are Labels?](#what-are-labels)
     - 2.2 [Key-Value Pairs](#key-value-pairs)
-    - 2.3 [Adding Labels](#adding-labels)
+    - 2.3 [Default Label Values](#default-label-values)
+    - 2.4 [Adding Labels](#adding-labels)
 3. [Selectors in Kubernetes](#selectors)
     - 3.1 [Types of Selectors](#types-of-selectors)
     - 3.2 [Using Equality-Based Selectors](#equality-selectors)
@@ -37,7 +38,7 @@ Labels and selectors are fundamental concepts in Kubernetes that allow you to or
 
 #### 2.1 What are Labels? <a name="what-are-labels"></a>
 
-Labels are key-value pairs that are attached to objects such as pods. They are used to organize and select subsets of objects. Labels are not unique; many objects can carry the same label. 
+Labels are key-value pairs that are attached to objects such as pods. They are used to organize and select subsets of objects. Labels are not unique; many objects can carry the same label.
 
 **Example:**
 ```yaml
@@ -63,7 +64,28 @@ metadata:
 
 [Back to TOC](#table-of-contents)
 
-#### 2.3 Adding Labels <a name="adding-labels"></a>
+#### 2.3 Default Label Values <a name="default-label-values"></a>
+
+When labels are not explicitly added to a Kubernetes object, Kubernetes assigns a default label to ensure every pod is identifiable.
+
+- **Default Key:** `run`
+- **Default Value:** The name of the pod.
+
+This default labeling mechanism helps maintain a basic level of organization within your cluster.
+
+**Example:**
+If no labels are added:
+```yaml
+metadata:
+  labels:
+    run: <pod_name>
+```
+
+This ensures that even without user-defined labels, each pod can still be managed and queried effectively.
+
+[Back to TOC](#table-of-contents)
+
+#### 2.4 Adding Labels <a name="adding-labels"></a>
 
 Labels can be added to Kubernetes objects at creation or later by editing the object. Labels are defined in the `metadata` section of the object’s YAML configuration.
 
