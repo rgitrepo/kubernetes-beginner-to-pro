@@ -85,6 +85,10 @@ This ensures that even without user-defined labels, each pod can still be manage
 
 [Back to TOC](#table-of-contents)
 
+Certainly! Here's the updated section with the addition:
+
+---
+
 #### 2.4 Adding Labels <a name="adding-labels"></a>
 
 Labels can be added to Kubernetes objects at creation or later by editing the object. Labels are defined in the `metadata` section of the object’s YAML configuration.
@@ -99,15 +103,16 @@ metadata:
     app: my-app
     environment: staging
 ```
-What are the labels here?
 
-Label 1:
-Key: app
-Value: my-app
-Label 2:
-Key: environment
-Value: staging
+**What are the labels here?**
+- **Label 1:**
+  - **Key:** `app`
+  - **Value:** `my-app`
+- **Label 2:**
+  - **Key:** `environment`
+  - **Value:** `staging`
 
+These labels help in organizing and identifying the pod (`my-pod`) within the Kubernetes cluster.
 
 To apply the configuration:
 ```bash
@@ -115,6 +120,7 @@ kubectl apply -f pod.yaml
 ```
 
 [Back to TOC](#table-of-contents)
+
 
 ---
 
