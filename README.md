@@ -57,6 +57,7 @@
   - [Labels & Selectors](docs/day5/labels-selectors.md)
   - [Revisiting Kubernetes Architeture](docs/day5/revisiting-kubernetes-architecture.md)
   - [Kubernetes YAML File Key Value Details](docs/day5/pod-yaml-file.md)
+  - [See Labels](docs/day5/see-labels.md)
  
 
 
