@@ -302,11 +302,6 @@ ownerReferences:
 
 [Back to TOC](#toc)
 
----
-
-This updated section ensures that the tutorial thoroughly covers how `ownerReferences` work and their importance in managing Kubernetes resources effectively.
-
-[Back to TOC](#toc)
 
 ---
 
