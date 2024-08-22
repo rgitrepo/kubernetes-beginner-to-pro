@@ -56,7 +56,7 @@
 - Day 5:  Labels, Selectors, ReplicaSets, Deployments, Production Strategies
   - [Labels & Selectors](docs/day5/labels-selectors.md)
   - [Revisiting Kubernetes Architeture](docs/day5/revisiting-kubernetes-architecture.md)
-  - [Kubernetes Yaml File Key Value Details](docs/day5/pod-yaml-file.md)
+  - [Kubernetes YAML File Key Value Details](docs/day5/pod-yaml-file.md)
  
 
 
