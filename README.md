@@ -71,6 +71,7 @@
   - [Problems with Deployment](docs/day6/problems-with-deployment.md)
   - [Application Deployent Begins](docs/day6/application-deployment-begins.md)
   - [Service Types](docs/day6/service-types.md)
+  - [Endpoints & Endpoint-Slices](docs/day6/endpoints-and-endpoint-slices.md)
  
 
 
