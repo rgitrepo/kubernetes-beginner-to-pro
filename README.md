@@ -66,6 +66,9 @@
   - [Deployment Strategies](docs/day5/deployment-strategy.md)
   - [Rollout Strategy](docs/day5/rollout-strategy.md)
  
+- Day 6:  Services, Custom Domain Ingress
+  - [Application Demo](docs/day6/labels-selectors.md)
+ 
 
 
 
