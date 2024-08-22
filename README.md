@@ -64,6 +64,7 @@
   - [ReplicaSets](docs/day5/replicasets.md)
   - [Deployments](docs/day5/deployments.md)
   - [Deployment Strategies](docs/day5/deployment-strategy.md)
+  - [Rollout Strategy](docs/day5/rollout-strategy.md)
  
 
 
