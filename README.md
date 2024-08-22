@@ -59,6 +59,7 @@
   - [Kubernetes YAML File Key Value Details](docs/day5/pod-yaml-file.md)
   - [See Labels](docs/day5/see-labels.md)
   - [kubectl Create vs Apply](docs/day5/kubectl-create-vs-apply.md)
+  - [Update and Add Labels](docs/day5/update-and-add-labels.md)
  
 
 
