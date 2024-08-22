@@ -81,7 +81,7 @@ metadata:
     run: <pod_name>
 ```
 
-This ensures that even without user-defined labels, each pod can still be managed and queried effectively.
+This ensures that even without user-defined labels, each pod can still be managed and queried effectively. This can also be an **interview question.**
 
 [Back to TOC](#table-of-contents)
 
