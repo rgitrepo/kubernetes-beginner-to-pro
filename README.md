@@ -68,7 +68,7 @@
  
 - Day 6:  Services, Custom Domain Ingress
   - [Application Demo](docs/day6/labels-selectors.md)
- 
+  - [Problems with Deployment](docs/day6/problems-with-deployment.md)
 
 
 
