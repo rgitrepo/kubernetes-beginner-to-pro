@@ -11,7 +11,7 @@
 6. [Deleting Pods in a ReplicaSet](#deleting-pods-in-a-replicaset)
 7. [Annotations in ReplicaSets](#annotations-in-replicasets)
 8. [Checking if a Pod is Part of a ReplicaSet](#checking-if-a-pod-is-part-of-a-replicaset)
-9. [Conclusion](#conclusion)
+9. [Conclusion](#scaling-down-pods)
 
 ---
 
