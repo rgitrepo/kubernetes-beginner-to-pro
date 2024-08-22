@@ -70,6 +70,7 @@
   - [Application Demo](docs/day6/labels-selectors.md)
   - [Problems with Deployment](docs/day6/problems-with-deployment.md)
   - [Application Deployent Begins](docs/day6/application-deployment-begins.md)
+  - [Service Types](docs/day6/service-types.md)
  
 
 
