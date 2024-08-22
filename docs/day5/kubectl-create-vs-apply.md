@@ -1,3 +1,5 @@
+## Kubectl Create vs Apply
+
 The `kubectl create -f` and `kubectl apply -f` commands in Kubernetes are both used to create or manage resources using a configuration file, but they serve slightly different purposes and behave differently in certain scenarios:
 
 ### `kubectl create -f`
