@@ -2,7 +2,7 @@
 
 ---
 
-## Table of Contents (TOC)
+## [Table of Contents](#toc)
 1. [Introduction to ReplicaSets](#introduction)
 2. [Homogeneous vs. Heterogeneous Pods](#homogeneous-vs-heterogeneous-pods)
 3. [Creating and Scaling a ReplicaSet](#creating-and-scaling-a-replicaset)
