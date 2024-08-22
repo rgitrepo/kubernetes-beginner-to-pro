@@ -61,6 +61,7 @@
   - [kubectl Create vs Apply](docs/day5/kubectl-create-vs-apply.md)
   - [Update and Add Labels](docs/day5/update-and-add-labels.md)
   - [Metadata vs Spec Labels](docs/day5/metadata-vs-spec-labels.md)
+  - [ReplicaSets](docs/day5/replicasets.md)
  
 
 
