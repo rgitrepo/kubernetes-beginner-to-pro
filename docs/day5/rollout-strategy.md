@@ -9,12 +9,17 @@
     - [Strategy Section](#strategy-section)
 3. [Explanation of YAML Key/Values](#explanation-of-yaml-keyvalues)
 4. [YAML Outputs Explained](#yaml-outputs-explained)
-5. [Conclusion](#conclusion)
+5. [Using Rollout Commands](#using-rollout-commands)
+    - [Undo](#undo)
+    - [Pause and Resume](#pause-and-resume)
+    - [--to-revision](#to-revision)
+    - [Scale](#scale)
+6. [Conclusion](#conclusion)
 
 ---
 
 ### **Introduction**
-In Kubernetes, the deployment strategy defines how updates to applications are rolled out. One of the most commonly used strategies is the rolling update, which allows for updating pods without downtime. This section provides a detailed YAML file example for a rollout strategy, including metadata, labels, specs, and strategy with key values. 
+In Kubernetes, the deployment strategy defines how updates to applications are rolled out. One of the most commonly used strategies is the rolling update, which allows for updating pods without downtime. This section provides a detailed YAML file example for a rollout strategy, including metadata, labels, specs, and strategy with key values.
 
 [Back to TOC](#table-of-contents)
 
@@ -149,7 +154,111 @@ The `strategy` section defines how the deployment should be updated:
 
 ---
 
+### **Using Rollout Commands**
+
+Kubernetes provides several rollout commands to manage deployment updates efficiently. These commands help control the deployment process, handle issues during rollout, and manage the deployment lifecycle.
+
+#### **Undo**
+
+The `kubectl rollout undo` command allows you to revert a deployment to a previous revision. This is useful when a new deployment causes issues, and you need to quickly return to a known stable state.
+
+**Example:**
+
+```bash
+kubectl rollout undo deployment/rollout-demo
+```
+
+**Output:**
+
+```
+deployment.apps/rollout-demo rolled back
+```
+
+If you need to roll back to a specific revision, you can use the `--to-revision` flag:
+
+```bash
+kubectl rollout undo deployment/rollout-demo --to-revision=2
+```
+
+**Reason:** The undo command is essential for disaster recovery. If a deployment introduces bugs or breaks functionality, undoing it to a stable version ensures minimal disruption.
+
+[Back to TOC](#table-of-contents)
+
+#### **Pause and Resume**
+
+The `kubectl rollout pause` command pauses a rollout, stopping the deployment of new pods. This is useful if you want to halt the rollout to investigate an issue or make adjustments.
+
+**Example:**
+
+```bash
+kubectl rollout pause deployment/rollout-demo
+```
+
+**Output:**
+
+```
+deployment.apps/rollout-demo paused
+```
+
+To resume the rollout after pausing:
+
+```bash
+kubectl rollout resume deployment/rollout-demo
+```
+
+**Output:**
+
+```
+deployment.apps/rollout-demo resumed
+```
+
+**Reason:** Pausing a rollout allows you to temporarily stop the process if issues are detected or if you need to analyze the system before proceeding. It provides control over the deployment process.
+
+[Back to TOC](#table-of-contents)
+
+#### **--to-revision**
+
+The `--to-revision` flag is used with the `kubectl rollout undo` command to revert a deployment to a specific revision.
+
+**Example:**
+
+```bash
+kubectl rollout undo deployment/rollout-demo --to-revision=2
+```
+
+**Output:**
+
+```
+deployment.apps/rollout-demo rolled back to revision 2
+```
+
+**Reason:** Sometimes, you need to roll back to a specific previous state rather than the immediate last one. The `--to-revision` flag allows precise control over which deployment revision you revert to, ensuring that you can return to a stable version if necessary.
+
+[Back to TOC](#table-of-contents)
+
+#### **Scale**
+
+The `kubectl scale` command allows you to manually adjust the number of replicas in a deployment. This is often used in response to changing demand or after a rollout.
+
+**Example:**
+
+```bash
+kubectl scale deployment/rollout-demo --replicas=3
+```
+
+**Output:**
+
+```
+deployment.apps/rollout-demo scaled
+```
+
+**Reason:** Scaling a deployment is crucial for adjusting the number of running instances to match traffic demand. This command allows you to quickly increase or decrease the number of replicas in response to operational needs.
+
+[Back to TOC](#table-of-contents)
+
+---
+
 ### **Conclusion**
-The `RollingUpdate` strategy in Kubernetes allows for seamless application updates with controlled surges and minimal downtime. By understanding and configuring `maxSurge` and `maxUnavailable`, you can fine-tune the deployment process to meet your specific requirements, ensuring a balance between availability and the speed of rollout.
+Kubernetes rollout commands provide powerful tools for managing and controlling the deployment process. By understanding and using these commands effectively, you can ensure smooth and reliable application updates, recover quickly from issues, and maintain the desired state of your deployments.
 
 [Back to TOC](#table-of-contents)
