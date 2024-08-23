@@ -1,4 +1,8 @@
-### Problems with Deployments and the Need for Services in Kubernetes
+Here's the tutorial with a connected Table of Contents (TOC) and links to return to the TOC at the end of each section:
+
+---
+
+### Tutorial: Understanding Problems with Deployments and the Need for Services in Kubernetes
 
 ---
 
