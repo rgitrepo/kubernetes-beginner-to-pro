@@ -140,6 +140,7 @@ In large-scale Kubernetes deployments, the ability to efficiently manage and upd
 - **Optimizing Resource Utilization:** By reducing the need to frequently update a large single list, Endpoint Slices help in conserving CPU and network bandwidth.
 
 [Back to TOC](#tutorial-understanding-endpoints--endpoint-slices-in-kubernetes)
+
 ---
 
 ### 8. Conclusion
