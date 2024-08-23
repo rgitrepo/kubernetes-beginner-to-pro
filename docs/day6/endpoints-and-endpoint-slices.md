@@ -34,7 +34,7 @@ Endpoints were the previous version used to manage network connections in Kubern
 
 ### 3. How Endpoint Slices Work
 
-Endpoint Slices group network endpoints (pods) and manage them more efficiently by abstracting the underlying infrastructure. This section explains the architecture and the lifecycle of an Endpoint Slice, including how they automatically update when pods are added or removed.
+**Endpoint Slices group network endpoints (pods) and manage them more efficiently** by abstracting the underlying infrastructure. This section explains the architecture and the lifecycle of an Endpoint Slice, including how they automatically update when pods are added or removed.
 
 [Back to TOC](#tutorial-understanding-endpoints--endpoint-slices-in-kubernetes)
 
