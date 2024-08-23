@@ -1,4 +1,4 @@
-# Endpoints & Endpoint Slices in Kubernetes
+# Tutorial: Understanding Endpoints & Endpoint Slices in Kubernetes
 
 ## Table of Contents
 
@@ -111,3 +111,6 @@ Endpoint slices represent an evolution in Kubernetes networking, addressing the 
 
 [Back to TOC](#tutorial-understanding-endpoints--endpoint-slices-in-kubernetes)
 
+---
+
+This version should have all the links functioning properly.
