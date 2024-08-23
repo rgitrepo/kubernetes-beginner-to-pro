@@ -1,6 +1,3 @@
-Here's the updated tutorial with properly formatted links for the Table of Contents (TOC) that should work correctly:
-
----
 
 ### Tutorial: Understanding Problems with Deployments and the Need for Services in Kubernetes
 
