@@ -18,40 +18,7 @@
 
 ### 1. Introduction to Endpoints & Endpoint Slices
 
-**Endpoint Slices are a crucial abstraction in Kubernetes that simplify the management of network endpoints (pods) associated with a service**. 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Endpoint Slices are a crucial **abstraction** in Kubernetes that simplify the management of **network endpoints (pods)** associated with a **service**. 
 
 [Back to TOC](#tutorial-understanding-endpoints--endpoint-slices-in-kubernetes)
 
@@ -75,7 +42,7 @@ Endpoint Slices group network endpoints (pods) and manage them more efficiently 
 
 ### 4. Creating and Managing Endpoint Slices
 
-When a service is created in Kubernetes, an Endpoint Slice is automatically generated. This section provides step-by-step instructions on how to create and manage Endpoint Slices, including the default settings and how to customize them.
+When a **service is created** in Kubernetes, an Endpoint Slice is **automatically generated**. This section provides step-by-step instructions on how to create and manage Endpoint Slices, including the default settings and how to customize them.
 
 Example:
 ```bash
