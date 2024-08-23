@@ -13,7 +13,7 @@
 
 ---
 
-### 1. Introduction to Endpoints & Endpoint Slices
+### 1. Introduction to Endpoints & Endpoint Slices (#introduction-to-endpoints--endpoint-slices)
 
 Endpoint slices are a crucial abstraction in Kubernetes that simplify the management of network endpoints (pods) associated with a service. This section explains what endpoint slices are and how they differ from traditional endpoints.
 
