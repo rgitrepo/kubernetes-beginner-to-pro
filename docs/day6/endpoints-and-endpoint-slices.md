@@ -111,7 +111,7 @@ However, if your cluster handles large-scale workloads, you can configure this l
 
 Stick to the default 100 endpoints per slice unless your deployment requires higher limits, ensuring you maintain a good balance between performance and reliability.
 
-[Back to Use Cases and Best Practices](#7-use-cases-and-best-practices)
+[Back to TOC](#tutorial-understanding-endpoints--endpoint-slices-in-kubernetes)
 
 ---
 
