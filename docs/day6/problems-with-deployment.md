@@ -1,4 +1,4 @@
-### Tutorial: Understanding Problems with Deployments and the Need for Services in Kubernetes
+### Problems with Deployments and the Need for Services in Kubernetes
 
 ---
 
