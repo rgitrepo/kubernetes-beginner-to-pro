@@ -73,6 +73,7 @@
   - [Service Types](docs/day6/service-types.md)
   - [Endpoints & Endpoint-Slices](docs/day6/endpoints-and-endpoint-slices.md)
   - [Ports in Services](docs/day6/ports-in-services.md)
+  - [Load Balancer Service](docs/day6/load-balancer-service.md)
  
 
 
