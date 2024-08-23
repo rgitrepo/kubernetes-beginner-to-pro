@@ -1,6 +1,3 @@
-Here’s the updated tutorial with two distinct sub-sections addressing the default and maximum number of endpoints per slice and the handling of pod failures:
-
----
 
 # Tutorial: Understanding Endpoints & Endpoint Slices in Kubernetes
 
