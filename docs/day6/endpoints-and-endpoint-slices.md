@@ -2,22 +2,22 @@
 
 ## Table of Contents
 
-1. [Introduction to Endpoints & Endpoint Slices](#introduction-to-endpoints--endpoint-slices)
-2. [The Importance of Endpoint Slices](#the-importance-of-endpoint-slices)
-3. [How Endpoint Slices Work](#how-endpoint-slices-work)
-4. [Creating and Managing Endpoint Slices](#creating-and-managing-endpoint-slices)
-5. [Live Implementation Example](#live-implementation-example)
-6. [Editing Endpoint Slices](#editing-endpoint-slices)
-7. [Use Cases and Best Practices](#use-cases-and-best-practices)
-8. [Conclusion](#conclusion)
+1. [Introduction to Endpoints & Endpoint Slices](#1-introduction-to-endpoints--endpoint-slices)
+2. [The Importance of Endpoint Slices](#2-the-importance-of-endpoint-slices)
+3. [How Endpoint Slices Work](#3-how-endpoint-slices-work)
+4. [Creating and Managing Endpoint Slices](#4-creating-and-managing-endpoint-slices)
+5. [Live Implementation Example](#5-live-implementation-example)
+6. [Editing Endpoint Slices](#6-editing-endpoint-slices)
+7. [Use Cases and Best Practices](#7-use-cases-and-best-practices)
+8. [Conclusion](#8-conclusion)
 
 ---
 
-### 1. [Introduction to Endpoints & Endpoint Slices ](#introduction-to-endpoints--endpoint-slices)
+### 1. Introduction to Endpoints & Endpoint Slices
 
 Endpoint slices are a crucial abstraction in Kubernetes that simplify the management of network endpoints (pods) associated with a service. This section explains what endpoint slices are and how they differ from traditional endpoints.
 
-[Back to TOC](#table-of-contents)
+[Back to TOC](#tutorial-understanding-endpoints--endpoint-slices-in-kubernetes)
 
 ---
 
@@ -25,7 +25,7 @@ Endpoint slices are a crucial abstraction in Kubernetes that simplify the manage
 
 Endpoints were the previous version used to manage network connections in Kubernetes, but they had limitations. Endpoint slices were introduced to address these issues, offering better scalability and efficiency. This section details why endpoint slices are essential in modern Kubernetes environments.
 
-[Back to TOC](#table-of-contents)
+[Back to TOC](#tutorial-understanding-endpoints--endpoint-slices-in-kubernetes)
 
 ---
 
@@ -33,7 +33,7 @@ Endpoints were the previous version used to manage network connections in Kubern
 
 Endpoint slices group network endpoints (pods) and manage them more efficiently by abstracting the underlying infrastructure. This section explains the architecture and the lifecycle of an endpoint slice, including how they automatically update when pods are added or removed.
 
-[Back to TOC](#table-of-contents)
+[Back to TOC](#tutorial-understanding-endpoints--endpoint-slices-in-kubernetes)
 
 ---
 
@@ -49,7 +49,7 @@ kubectl expose deployment my-deployment --type=ClusterIP --port=8080
 kubectl get endpointslice
 ```
 
-[Back to TOC](#table-of-contents)
+[Back to TOC](#tutorial-understanding-endpoints--endpoint-slices-in-kubernetes)
 
 ---
 
@@ -63,7 +63,7 @@ NAME                      ADDRESSTYPE   ENDPOINTS           AGE
 my-deployment-xxxx        IPv4          10.10.4.2,10.10.4.3  2m
 ```
 
-[Back to TOC](#table-of-contents)
+[Back to TOC](#tutorial-understanding-endpoints--endpoint-slices-in-kubernetes)
 
 ---
 
@@ -81,7 +81,7 @@ kubectl edit endpointslice my-deployment-xxxx
   - "10.10.4.4"
 ```
 
-[Back to TOC](#table-of-contents)
+[Back to TOC](#tutorial-understanding-endpoints--endpoint-slices-in-kubernetes)
 
 ---
 
@@ -101,7 +101,7 @@ However, if your cluster handles large-scale workloads, you can configure this l
 
 Stick to the default 100 endpoints per slice unless your deployment requires higher limits, ensuring you maintain a good balance between performance and reliability.
 
-[Back to TOC](#table-of-contents)
+[Back to TOC](#tutorial-understanding-endpoints--endpoint-slices-in-kubernetes)
 
 ---
 
@@ -109,5 +109,5 @@ Stick to the default 100 endpoints per slice unless your deployment requires hig
 
 Endpoint slices represent an evolution in Kubernetes networking, addressing the limitations of traditional endpoints. By understanding and effectively managing endpoint slices, you can improve the efficiency and scalability of your Kubernetes clusters.
 
-[Back to TOC](#table-of-contents)
+[Back to TOC](#tutorial-understanding-endpoints--endpoint-slices-in-kubernetes)
 
