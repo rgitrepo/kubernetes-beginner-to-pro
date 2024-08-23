@@ -139,8 +139,7 @@ In large-scale Kubernetes deployments, the ability to efficiently manage and upd
 - **Minimizing the Impact of Pod Failures:** Only the slices containing the failed pods are affected, ensuring that the rest of the service continues to function smoothly.
 - **Optimizing Resource Utilization:** By reducing the need to frequently update a large single list, Endpoint Slices help in conserving CPU and network bandwidth.
 
-[Back to Use Cases and Best Practices](#7-use-cases-and-best-practices)
-
+[Back to TOC](#tutorial-understanding-endpoints--endpoint-slices-in-kubernetes)
 ---
 
 ### 8. Conclusion
