@@ -1,6 +1,4 @@
-Here's a detailed tutorial based on the translated transcript about Endpoints & Endpoint Slices:
 
----
 
 # Tutorial: Understanding Endpoints & Endpoint Slices in Kubernetes
 
