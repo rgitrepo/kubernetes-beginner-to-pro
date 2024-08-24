@@ -95,6 +95,7 @@ One of the most common issues is misconfiguring ports, where the exposed port in
   <img src="../../pics/dockerfile-expose-port-8080.png" alt="docker file expose port">
 </div>
 
+
 [Back to TOC](#table-of-contents)
 
 #### Default Behavior of Ports
