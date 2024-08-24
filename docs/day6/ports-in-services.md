@@ -4,7 +4,7 @@
 
 #### Table of Contents
 - [Introduction to Ports in Kubernetes](#introduction)
-- [Node Port, Target Port, and Service Port Explained](#node-port-target-port-and-service-port-explained)
+- [Node Port, Target Port, and Service Port Explained](#node-port-service-port-and-target-portexplained)
   - [Node Port](#node-port)
   - [Service Port](#service-port)
   - [Target Port](#target-port)
@@ -31,7 +31,7 @@ In Kubernetes, understanding how ports function is crucial for ensuring that you
 
 ---
 
-### Node Port, Target Port, and Service Port Explained
+### Node Port, Service Port, and Target Port Explained
 
 <div style="text-align: center;">
   <img src="../../pics/nodeport-port-targetport.png" alt="nodeport port targetport">
