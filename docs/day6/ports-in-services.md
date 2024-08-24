@@ -127,9 +127,9 @@ If no target port is specified, the service assumes the container listens on the
 
 #### Services Without Selectors
 
-**Interivew Question: Is it possible to have a service wtihout selectors?**
+**Interivew Question:** Is it possible to have a service wtihout selectors?
 
-It is possible to create a service without selectors. However, in such cases, you must manually create endpoint slices to define where the service should direct traffic.
+Yes. It is possible to create a service without selectors. However, in such cases, you must manually create endpoint slices to define where the service should direct traffic.
 
 Example:
 ```yaml
@@ -141,12 +141,12 @@ spec:
   ports:
     - port: 80
 ```
-In this configuration, the service is created without a selector, and you need to manually define the endpoints.
+In this configuration, the service is created without a selector, and you need to **manually** define the endpoints.
 
 [Back to TOC](#table-of-contents)
 
 #### Creating Endpoint Slices
-Endpoint slices need to be manually created if your service lacks selectors. This method allows for more flexible routing of traffic.
+_Endpoint slices need to be manually created if your service lacks selectors_. This method allows for more flexible routing of traffic.
 
 Example:
 ```yaml
@@ -163,7 +163,7 @@ endpoints:
 ports:
   - port: 80
 ```
-This endpoint slice directs traffic to the specified IPs and ports, even without a service selector.
+This endpoint slice directs traffic to the specified IPs and ports, even **without** a service selector.
 
 [Back to TOC](#table-of-contents)
 
@@ -195,7 +195,6 @@ Here, the service is exposed internally on port `80`, forwarding traffic to port
 #### NodePort vs. Service IPs
 NodePort services expose the service on a static port on each node's IP, while ClusterIP services use an internal IP within the cluster. These two have different use cases and should be chosen based on the requirement.
 
-**Interview Tip**: Understanding the difference between NodePort and ClusterIP is crucial for answering questions about service exposure in Kubernetes.
 
 [Back to TOC](#table-of-contents)
 
