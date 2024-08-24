@@ -126,6 +126,9 @@ If no target port is specified, the service assumes the container listens on the
 ### Selectors in Services
 
 #### Services Without Selectors
+
+**Interivew Question: Is it possible to have a service wtihout selectors?**
+
 It is possible to create a service without selectors. However, in such cases, you must manually create endpoint slices to define where the service should direct traffic.
 
 Example:
