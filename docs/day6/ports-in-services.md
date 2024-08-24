@@ -6,8 +6,8 @@
 - [Introduction to Ports in Kubernetes](#introduction)
 - [Node Port, Target Port, and Service Port Explained](#port-explanation)
   - [Node Port](#node-port)
-  - [Target Port](#target-port)
   - [Service Port](#service-port)
+  - [Target Port](#target-port)
 - [Common Issues and Best Practices](#issues-best-practices)
   - [Misconfigured Ports](#misconfigured-ports)
   - [Default Behavior of Ports](#default-behavior)
@@ -60,18 +60,6 @@ In this example, the Node Port is `30007`, meaning the service can be accessed v
 
 [Back to TOC](#table-of-contents)
 
-#### Target Port
-The Target Port is where the container inside the pod listens for traffic. It is crucial to ensure that the target port specified in the service matches the port exposed by the container.
-
-Example:
-```yaml
-ports:
-  - port: 80
-    targetPort: 8080
-```
-In this example, the container listens on port `8080`, but the service exposes port `80`.
-
-[Back to TOC](#table-of-contents)
 
 #### Service Port
 The Service Port is the port on which the Kubernetes service is exposed within the cluster. This port allows communication between services or pods within the Kubernetes environment.
@@ -85,6 +73,21 @@ ports:
 Here, the service listens on port `80` and forwards traffic to the target port `8080`.
 
 [Back to TOC](#table-of-contents)
+
+
+#### Target Port
+The Target Port is where the container inside the pod listens for traffic. It is crucial to ensure that the target port specified in the service matches the port exposed by the container.
+
+Example:
+```yaml
+ports:
+  - port: 80
+    targetPort: 8080
+```
+In this example, the container listens on port `8080`, but the service exposes port `80`.
+
+[Back to TOC](#table-of-contents)
+
 
 ---
 
