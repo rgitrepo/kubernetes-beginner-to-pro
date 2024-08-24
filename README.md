@@ -80,6 +80,7 @@
   - [ClusterIP (Service IP) vs Service IP](docs/day6/clusterip-vs-service-ip.md)
   - [Load Balancer Service](docs/day6/load-balancer-service.md)
   - [Ingress & Ingress Controller](docs/day6/ingress-and-ingress-controller.md)
+  - [Customizing Load Balancer Algorithms in Kubernetes](docs/day6/customizing-load-balancer-algorithms.md)
  
 
 
