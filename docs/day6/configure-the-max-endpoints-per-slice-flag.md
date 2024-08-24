@@ -33,7 +33,7 @@ spec:
     - --cluster-cidr=10.244.0.0/16
     - --service-cluster-ip-range=10.96.0.0/12
     - --use-service-account-credentials=true
-    - --max-endpoints-per-slice=1000
+    - --max-endpoints-per-slice=1000           #updated to 1000
     volumeMounts:
     - mountPath: /etc/kubernetes/pki
       name: k8s-certs
