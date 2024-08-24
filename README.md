@@ -77,6 +77,7 @@
   - [Configure the --max-endpoints-per-slice Flag](docs/day6/configure-the-max-endpoints-per-slice-flag.md)
   - [Ports in Services](docs/day6/ports-in-services.md)
   - [IPs: Cluster, Node, and Service](docs/day6/kubernetes-ips.md)
+  - [ClusterIP (Service IP) vs Service IP](docs/day6/clusterip-vs-service-ip.md)
   - [Load Balancer Service](docs/day6/load-balancer-service.md)
   - [Ingress & Ingress Controller](docs/day6/ingress-and-ingress-controller.md)
  
