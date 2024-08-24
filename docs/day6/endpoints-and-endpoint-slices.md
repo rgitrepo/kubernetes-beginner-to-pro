@@ -116,6 +116,8 @@ Stick to the default 100 endpoints per slice unless your deployment requires hig
 
 Endpoint Slices offer significant improvements over traditional Endpoints in Kubernetes, especially when dealing with the ephemeral nature of pods (where pods can be created and destroyed frequently).
 
+Kubernetes Documentation: With EndpointSlices, adding or removing a single Pod triggers the same **number** of updates to clients that are watching for changes, but the **size** of those update message is much smaller at large scale.
+
 **Handling Pod Failures Efficiently**
 
 Imagine a scenario where you have a Kubernetes service with 200 pods. These pods are running smoothly, but suddenly, 50 of them fail. Kubernetes will automatically create new pods to replace the failed ones, but this process highlights the key differences between how Endpoints and Endpoint Slices handle this situation.
