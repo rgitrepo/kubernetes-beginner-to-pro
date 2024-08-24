@@ -91,6 +91,10 @@ One of the most common issues is misconfiguring ports, where the exposed port in
 
 **Best Practice**: Always ensure that the port exposed by your container (in the Dockerfile) matches the target port in your Kubernetes service configuration.
 
+<div style="text-align: center;">
+  <img src="../../pics/dockerfile-expose-port-8080.png" alt="Kubernetes Architecture" style="width: 400px; height: 400px;">
+</div>
+
 [Back to TOC](#table-of-contents)
 
 #### Default Behavior of Ports
