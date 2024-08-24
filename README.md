@@ -76,7 +76,7 @@
   - [Endpoint Slices Review](docs/day6/endpoint-slices-review.md)
   - [Configure the --max-endpoints-per-slice Flag](docs/day6/configure-the-max-endpoints-per-slice-flag.md)
   - [Ports in Services](docs/day6/ports-in-services.md)
-  - [Kubernetes IPs: Cluster, Node, and Service](docs/day6/kubernetes-ips.md)
+  - [IPs: Cluster, Node, and Service](docs/day6/kubernetes-ips.md)
   - [Load Balancer Service](docs/day6/load-balancer-service.md)
   - [Ingress & Ingress Controller](docs/day6/ingress-and-ingress-controller.md)
  
