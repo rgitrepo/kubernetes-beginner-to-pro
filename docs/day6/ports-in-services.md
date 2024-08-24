@@ -4,7 +4,7 @@
 
 #### Table of Contents
 - [Introduction to Ports in Kubernetes](#introduction)
-- [Node Port, Target Port, and Service Port Explained](#node-port-service-port-and-target-portexplained)
+- [Node Port, Target Port, and Service Port Explained](#node-port-service-port-and-target-port-explained)
   - [Node Port](#node-port)
   - [Service Port](#service-port)
   - [Target Port](#target-port)
