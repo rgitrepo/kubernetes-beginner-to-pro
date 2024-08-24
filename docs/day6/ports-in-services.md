@@ -37,6 +37,9 @@ In Kubernetes, understanding how ports function is crucial for ensuring that you
   <img src="../../pics/nodeport-port-targetport.png" alt="nodeport port targetport">
 </div>
 
+
+[Back to TOC](#table-of-contents)
+
 #### Node Port
 The Node Port is the port on the node where your application is exposed. It’s a straightforward concept that indicates where the application is accessible on the node itself.
 
