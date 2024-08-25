@@ -1,6 +1,6 @@
 Here are some popular Ingress controllers used in Kubernetes:
 
-1. **NGINX Ingress Controller**: One of the most widely used ingress controllers, known for its robustness and extensive community support.
+1. **NGINX Ingress Controller**: One of the most widely used ingress controllers, known for its robustness and extensive community support. (now deprecated)
 
 2. **Traefik**: A dynamic ingress controller that integrates with various backends and supports features like automatic HTTPS and routing based on request properties.
 
