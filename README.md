@@ -81,8 +81,9 @@
   - [Load Balancer Service](docs/day6/load-balancer-service.md)
   - [Ingress & Ingress Controller](docs/day6/ingress-and-ingress-controller.md)
   - [Customizing Load Balancer Algorithms in Kubernetes](docs/day6/customizing-load-balancer-algorithms.md)
+  - [Project: Geolocation based Ingress Project](docs/day6/geolocation-ingress-step-by-step-guide.md)
  
-
+geolocation-ingress-step-by-step-guide.md
 
 
 
