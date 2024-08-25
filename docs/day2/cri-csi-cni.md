@@ -116,9 +116,7 @@ In Kubernetes, OCI, runc, and cgroups work together to manage and run containers
    - The kubelet, through the CRI and using runc or crun, sets up cgroups (control groups) for the container. cgroups ensure that the container's resource usage (CPU, memory, etc.) is limited and isolated according to the specified resource limits.
 
 3. **Configure Pod's Networking Using CNI**
-   - The kubelet uses the Container Network Interface
-
- (CNI) to configure the pod's networking. This involves assigning an IP address to the pod and setting up the necessary network routes and policies to ensure proper communication within the cluster.
+   - The kubelet uses the Container Network Interface (CNI) to configure the pod's networking. This involves assigning an IP address to the pod and setting up the necessary network routes and policies to ensure proper communication within the cluster.
 
 4. **Pull Image**
    - The kubelet instructs the container runtime to pull the specified container image from the container registry. This image contains the application code and its dependencies, packaged in a standardized format.
