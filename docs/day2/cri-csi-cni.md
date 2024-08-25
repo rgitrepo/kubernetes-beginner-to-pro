@@ -1,4 +1,4 @@
-## Understanding Kubernetes Networking and Runtime Interfaces: CRI, CSI, and CNI
+## Container Interfaces: CRI, CSI, and CNI
 
 In this tutorial, we'll explore the essential components of Kubernetes networking and runtime interfaces, specifically focusing on CRI (Container Runtime Interface), CSI (Container Storage Interface), and CNI (Container Network Interface). We will also delve into the processes involved in container deployment and how various plugins and interfaces work together to ensure efficient operations.
 
