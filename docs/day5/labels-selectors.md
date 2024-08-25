@@ -22,7 +22,6 @@
 7. [Deployment Strategies Using Labels and Selectors](#deployment-strategies)
     - 7.1 [Rolling Updates](#rolling-updates)
     - 7.2 [Canary Deployments](#canary-deployments)
-8. [Conclusion](#conclusion)
 
 ---
 
