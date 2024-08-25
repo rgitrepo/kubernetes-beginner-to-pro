@@ -244,9 +244,7 @@ Check logs for any issues with the Ingress Controller.
 ### **Advanced Topics: Custom Domains and Certificates**
 [Back to TOC](#table-of-contents)
 
-You can map custom domains to your services using Ingress and secure them with
-
- SSL certificates. This typically involves creating an A-record in your domain registrar and configuring the Ingress resource to use the certificate.
+You can map custom domains to your services using Ingress and secure them with SSL certificates. This typically involves creating an A-record in your domain registrar and configuring the Ingress resource to use the certificate.
 
 **Example:**
 ```yaml
