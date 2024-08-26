@@ -60,11 +60,11 @@ The Gateway API in Kubernetes can be understood through the concept of "box with
 
 Because of this modular structure, different teams can manage each component independently:
 
-- **Infrastructure Team**: Might be responsible for managing `GatewayClass`, ensuring that the infrastructure layer is consistent and aligned with the organization’s networking policies.
+- **Infrastructure Provider Team**: Might be responsible for managing `GatewayClass`, ensuring that the infrastructure layer is consistent and aligned with the organization’s networking policies.
 
-- **Platform or Operations Team**: Could manage the `Gateways`, ensuring they are correctly configured to route traffic appropriately, while also monitoring and scaling them as needed.
+- **Platform or Cluster Opertation Team**: Could manage the `Gateways`, ensuring they are correctly configured to route traffic appropriately, while also monitoring and scaling them as needed.
 
-- **Development or Application Team**: May manage `HTTPRoute` configurations, focusing on how traffic is routed to specific applications or services. This allows for granular control over traffic management without needing to understand the underlying infrastructure details.
+- **Application Development Team**: May manage `HTTPRoute` configurations, focusing on how traffic is routed to specific applications or services. This allows for granular control over traffic management without needing to understand the underlying infrastructure details.
 
 This modular design makes the Gateway API highly flexible, allowing teams to work on their specific components without stepping on each other’s toes, ensuring better collaboration and clearer responsibilities.
 
