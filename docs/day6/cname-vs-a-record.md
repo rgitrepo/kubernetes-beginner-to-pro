@@ -1,7 +1,3 @@
-Here's a detailed tutorial that combines the explanations of CNAME and A-Record in Kubernetes with YAML examples. The tutorial includes a Table of Contents (TOC) with links to each section and links back to the TOC at the end of each section.
-
----
-
 # **CNAME vs A-Record in Kubernetes: A Comprehensive Tutorial**
 
 ## **Table of Contents**
