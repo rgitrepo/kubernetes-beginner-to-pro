@@ -16,7 +16,7 @@ spec:
     email: your-email@example.com
     # Name of the secret used to store the ACME account private key
     privateKeySecretRef:
-      name: letsencrypt-prod-clusterissuer-key
+      name: letsencrypt-prod-cluster-issuer-key
     # Enable the HTTP-01 challenge provider
     solvers:
     - http01:
