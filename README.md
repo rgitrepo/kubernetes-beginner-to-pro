@@ -91,6 +91,7 @@
   - [Certificates: Issuer vs Cluster Issuer](docs/day7/certificates-issuer-vs-cluster-issuer.md)
   - [Public and Priavate Keys](docs/day7/public-and-private-keys.md)
   - [TLS and mTLS](docs/day7/tls-and-mtls.md)
+  - [Let's Encrypt: Revolutionizing Web Security with Free, Automated SSL/TLS Certificates](docs/day7/lets-encrypt.md)
 
 
 
