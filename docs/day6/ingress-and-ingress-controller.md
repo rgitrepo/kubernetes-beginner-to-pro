@@ -1,6 +1,3 @@
-Here’s the updated tutorial with the requested examples, including path-based, domain-based, and geolocation-based routing with comments in the YAML files:
-
----
 
 ### **Table of Contents**
 - [Ingress Overview](#ingress-overview)
