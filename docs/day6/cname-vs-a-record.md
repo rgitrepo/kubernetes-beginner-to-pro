@@ -1,4 +1,4 @@
-# **CNAME vs A-Record in Kubernetes: A Comprehensive Tutorial**
+# **DNS Record Types: CNAME vs A-Record**
 
 ## **Table of Contents**
 
@@ -14,7 +14,7 @@
 ---
 
 ## **Introduction**
-In Kubernetes, DNS records play a crucial role in service discovery and external access. Two common types of DNS records used are CNAME (Canonical Name Record) and A-Record (Address Record). This tutorial will explain the differences between CNAME and A-Record, and provide YAML examples for configuring them in Kubernetes.
+In Kubernetes, DNS records play a crucial role in service discovery and external access. Two common types of DNS records used are CNAME (Canonical Name Record) and A-Record (Address Record). 
 
 [Back to TOC](#table-of-contents)
 
