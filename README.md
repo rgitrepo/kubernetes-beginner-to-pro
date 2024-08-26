@@ -79,7 +79,7 @@
   - [IPs: Cluster, Node, and Service](docs/day6/kubernetes-ips.md)
   - [ClusterIP (Service IP) vs Service IP](docs/day6/clusterip-vs-service-ip.md)
   - [Load Balancer Service](docs/day6/load-balancer-service.md)
-  - [Ingress & Ingress Controller](docs/day6/ingress-and-ingress-controller.md)
+  - [Ingress](docs/day6/ingress-and-ingress-controller.md)
   - [Names of Some Ingress Controllers](docs/day6/names-of-some-ingress-controllers.md)
   - [Annotations](docs/day6/annotations.md)
   - [Ingress Class](docs/day6/use-of-ingress-class.md)
