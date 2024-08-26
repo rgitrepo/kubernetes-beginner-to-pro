@@ -46,7 +46,7 @@ Each layer is independent yet interacts with the others to create a comprehensiv
 The Gateway API in Kubernetes can be understood through the concept of "box within a box." This analogy helps to illustrate how the different components like `GatewayClass`, `Gateway`, and `HTTPRoute` are designed to be modular and can be managed independently.
 
 <div style="text-align: center;">
-  <img src="../../pics/gatewayclass-gateway-httproute.png" alt="Gateway API" style="width: 500px; height: 500px;">
+  <img src="../../pics/gatewayclass-gateway-httproute.png" alt="Gateway API" style="width: 400px; height: 400px;">
 </div>
 
 
