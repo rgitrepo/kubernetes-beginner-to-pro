@@ -238,7 +238,7 @@ kubectl apply -f ingress.yaml
 
 ### Explanation:
 - **Annotations**: The annotation `cert-manager.io/cluster-issuer: "letsencrypt-prod"` tells Cert-Manager to use the specified `ClusterIssuer` to manage the certificates for this Ingress.
-- **TLS Block**: The `tls` block specifies the domains (`hosts`) and the secret (`secretName`) where the certificate is stored.
+- **TLS Block**: The `tls` block specifies the domains (`hosts`) and the secret (`secretName`) where the certificate is stored. Adding this TLS blocck of tls, hosts, secretname adds a certificate.
 - **Rules**: The rules define the routing for your domain, directing traffic to the appropriate backend service.
 
 [Back to TOC](#table-of-contents)
