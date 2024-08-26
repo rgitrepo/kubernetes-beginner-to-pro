@@ -7,11 +7,11 @@ Ingress is a widely used resource in Kubernetes, enabling HTTP and HTTPS routing
 ### Table of Contents
 
 1. [Introduction to Ingress](#1-introduction-to-ingress)
-2. [The Challenge of Backend Updates](#the-challenge-of-backend-updates)
-3. [Configuration Drift and Clutter](#configuration-drift-and-clutter)
-4. [Lack of Standardization Across Ingress Controllers](#lack-of-standardization-across-ingress-controllers)
-5. [Exploring Alternatives: The Gateway API](#exploring-alternatives-the-gateway-api)
-6. [Conclusion](#conclusion)
+2. [The Challenge of Backend Updates](#2-the-challenge-of-backend-updates)
+3. [Configuration Drift and Clutter](#3-configuration-drift-and-clutter)
+4. [Lack of Standardization Across Ingress Controllers](#4-lack-of-standardization-across-ingress-controllers)
+5. [Exploring Alternatives: The Gateway API](#5-exploring-alternatives-the-gateway-api)
+6. [Conclusion](#6-conclusion)
 
 ---
 
