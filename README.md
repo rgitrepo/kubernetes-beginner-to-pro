@@ -87,7 +87,7 @@
   - [Optional Project: Geolocation based Ingress Project](docs/day6/geolocation-ingress-step-by-step-guide.md)
   
 - Day 7:  Adding SSL Cert to Applicaton, Cert-Manager, Gateway API, Namespaces, TLS
-  - [Certificates OVerview](docs/day7/certificates.md)
+  - [Certificates Overview](docs/day7/certificates.md)
   - [Certificates: Issuer vs Cluster Issuer](docs/day7/certificates-issuer-vs-cluster-issuer.md)
 
 
