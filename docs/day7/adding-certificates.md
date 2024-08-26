@@ -1,4 +1,4 @@
-## cAdding a Certificate and Integrating it into Ingress Using Cert-Manager
+## Adding a Certificate and Integrating it into Ingress Using Cert-Manager
 
 This tutorial will guide you through the process of adding a certificate in a Kubernetes cluster using Cert-Manager and later integrating that certificate into an Ingress resource. The steps are based on the explanation from the provided transcript.
 
