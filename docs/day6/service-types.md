@@ -22,7 +22,7 @@
 
 ### 1. Introduction to Service Types <a name="introduction"></a>
 
-Kubernetes services enable communication between different parts of an application or with external users. There are several types of services, each suited to specific use cases. This tutorial will cover the four main types of Kubernetes services: Cluster IP, Load Balancer, NodePort, Headless, and External Name. We will explore their functions, use cases, and potential security concerns.
+Kubernetes services enable communication between different parts of an application or with external users. There are several types of services, each suited to specific use cases. This tutorial will cover the five main types of Kubernetes services: Cluster IP, Load Balancer, NodePort, Headless, and External Name. We will explore their functions, use cases, and potential security concerns.
 
 [Back to TOC](#table-of-contents)
 
