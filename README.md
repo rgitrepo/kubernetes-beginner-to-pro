@@ -81,8 +81,9 @@
   - [Load Balancer Service](docs/day6/load-balancer-service.md)
   - [Ingress & Ingress Controller](docs/day6/ingress-and-ingress-controller.md)
   - [Names of Some Ingress Controllers](docs/day6/names-of-some-ingress-controllers.md)
-  - [Use of 'ingressClass'](docs/day6/use-of-ingress-class.md)
-  - [DNS Record Types: CNAME vs A-Record'](docs/day6/cname-vs-a-record.md)
+  - [Annotations](docs/day6/annotations.md)
+  - [ingressClass](docs/day6/use-of-ingress-class.md)
+  - [DNS Record Types: CNAME vs A-Record](docs/day6/cname-vs-a-record.md)
   - [Optional Project: Customizing Load Balancer Algorithms in Kubernetes](docs/day6/customizing-load-balancer-algorithms.md)
   - [Optional Project: Geolocation based Ingress Project](docs/day6/geolocation-ingress-step-by-step-guide.md)
   
