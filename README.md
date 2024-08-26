@@ -95,6 +95,7 @@
   - [Install Cert Manager](docs/day7/install-cert-manager.md)
   - [Cluster Issuer YAML Manifest](docs/day7/cluster-issuer-yaml-manifest.md)
   - [Prod vs Staging Servers](docs/day7/prod-vs-staging-server.md)
+  - [Adding Certificates](docs/day7/adding-certificates.md)
 
 
 
