@@ -97,6 +97,7 @@
   - [Prod vs Staging Servers](docs/day7/prod-vs-staging-server.md)
   - [Adding Certificates](docs/day7/adding-certificates.md)
   - [Project TBD: Currency Converter + Weather App + Best Places to Visit](docs/day7/weather-app.md)
+  - [Problems with Ingress](docs/day7/problems-with-ingress.md)
   - [Gateway API](docs/day7/gateway-api.md)
 
 
