@@ -1,3 +1,4 @@
+
 ## Adding a Certificate and Integrating it into Ingress Using Cert-Manager
 
 This tutorial will guide you through the process of adding a certificate in a Kubernetes cluster using Cert-Manager and later integrating that certificate into an Ingress resource. The steps are based on the explanation from the provided transcript.
@@ -99,7 +100,38 @@ After a few moments, you can verify that the certificate has been issued and sto
 kubectl get secret example-com-tls -o yaml
 ```
 
-You should see a `tls.crt` and `tls.key` stored in the secret, which indicates that the certificate has been successfully issued.
+To further inspect the certificate, you can use the `kubectl describe` command:
+
+```bash
+kubectl describe secret example-com-tls
+```
+
+#### Example Output:
+```plaintext
+Name:         example-com-tls
+Namespace:    default
+Labels:       <none>
+Annotations:  cert-manager.io/alt-names: example.com,www.example.com
+              cert-manager.io/certificate-name: example-com-tls
+              cert-manager.io/common-name: example.com
+              cert-manager.io/ip-sans: 
+              cert-manager.io/issuer-group: cert-manager.io
+              cert-manager.io/issuer-kind: ClusterIssuer
+              cert-manager.io/issuer-name: letsencrypt-prod
+              cert-manager.io/uri-sans: 
+
+Type:  kubernetes.io/tls
+
+Data
+====
+tls.crt:  3647 bytes
+tls.key:  1675 bytes
+```
+
+### Explanation of Output:
+- **Annotations**: These annotations provide details about the certificate, including the domain names (Common Name and Subject Alternative Names) and the issuer.
+- **Type**: This indicates that the secret is of type `kubernetes.io/tls`, which is specifically for storing TLS certificates and keys.
+- **Data**: This section shows the `tls.crt` (the certificate) and `tls.key` (the private key) stored in the secret.
 
 ### Step 6: Integrate the Certificate into Ingress
 
@@ -168,4 +200,4 @@ Once the Ingress is configured and applied, your domain (e.g., `example.com`) sh
 
 ### Conclusion
 
-This tutorial demonstrated how to add a certificate to a Kubernetes cluster using Cert-Manager, verify it using the `kubectl get clusterissuer` command, and integrate that certificate into an Ingress resource. Cert-Manager automates the management of SSL/TLS certificates, ensuring that your applications remain secure and compliant with minimal effort.
+This tutorial demonstrated how to add a certificate to a Kubernetes cluster using Cert-Manager, verify it using the `kubectl get clusterissuer` command, inspect it using `kubectl describe secret`, and integrate that certificate into an Ingress resource. Cert-Manager automates the management of SSL/TLS certificates, ensuring that your applications remain secure and compliant with minimal effort.
