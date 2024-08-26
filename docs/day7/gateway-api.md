@@ -255,4 +255,4 @@ The Gateway API provides a powerful, layered approach to managing ingress traffi
 
 ### References
 
-[Gateway API Documentation]([#table-of-contents](https://gateway-api.sigs.k8s.io/concepts/api-overview/))
+[Gateway API Documentation](https://gateway-api.sigs.k8s.io/concepts/api-overview/)
