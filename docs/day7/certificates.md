@@ -22,7 +22,7 @@ When you're accessing a secure site over HTTPS, the browser will display a padlo
 
    Example Screenshot:
    <div style="text-align: center;">
-  <img src="../../pics/certificate-details.png" alt="Certificate Details" style="width: 500px; height: 500px;">
+  <img src="../../pics/certificate-details.png" alt="Certificate Details">
 </div>
    *This image shows a sample certificate with fields like 'Issued On' and 'Expires On.'*
 
