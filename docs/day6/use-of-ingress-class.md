@@ -1,25 +1,57 @@
 ### Use of IngressClass
 
-The `IngressClass` in Kubernetes is a resource that defines the controller that should implement an Ingress resource. Essentially, it tells Kubernetes which Ingress controller should handle the traffic rules defined in your Ingress resource.
+The `IngressClass` in Kubernetes defines which controller should implement an Ingress resource, specifying how traffic should be managed and routed. This is crucial in environments with multiple Ingress controllers or when specific traffic behavior is required.
 
-#### Key Points about IngressClass:
+#### YAML Example with `IngressClass`
 
-1. **Controller Selection**: An `IngressClass` allows you to specify which Ingress controller (e.g., NGINX, Traefik) should manage the Ingress resource. Different Ingress controllers might have different capabilities and configurations. By specifying the `IngressClassName` in your Ingress resource, you ensure that the correct controller processes the traffic routing.
+Here's an example of an Ingress resource that includes an `IngressClassName`:
 
-2. **Multiple Controllers**: In environments where multiple Ingress controllers are running, `IngressClass` is crucial for distinguishing which controller should manage which Ingress resources. This is especially important in complex deployments where different applications might require different types of traffic management.
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: example-ingress
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: example.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: example-service
+            port:
+              number: 8080
+```
 
-3. **Custom Behavior**: With `IngressClass`, you can define custom behavior for specific types of traffic routing. For example, you might have one Ingress controller for external HTTP traffic and another for internal services. `IngressClass` allows you to direct traffic appropriately based on these needs.
+In this YAML file:
+- The `ingressClassName: nginx` specifies that the NGINX Ingress controller should handle the traffic routing for this Ingress resource.
 
 ### Why Not Having `IngressClass` Causes an Issue
 
-If an `Ingress` resource does not specify an `IngressClass` and there's no default `IngressClass` set up, Kubernetes will not know which Ingress controller should manage the resource. This causes several issues:
+If an Ingress resource does not specify an `IngressClass`, Kubernetes cannot determine which controller should manage the resource, leading to errors and traffic routing failures.
 
-1. **Controller Ambiguity**: Without an `IngressClass`, Kubernetes is unable to determine which controller should handle the Ingress resource. This can lead to situations where the traffic routing rules are not applied at all, resulting in errors like 404 when trying to access the service.
+#### Output of Logs Without `IngressClass` Defined
 
-2. **Failure to Apply Traffic Rules**: The Ingress resource's rules (such as routing HTTP traffic to specific services) won't be applied if Kubernetes doesn't know which controller to use. This failure can render the Ingress resource ineffective, causing the application to be inaccessible.
+When an `Ingress` resource is applied without specifying an `IngressClass` and no default IngressClass is set, the logs from the Ingress controller might show errors similar to the following:
 
-3. **Potential Conflicts**: In environments with multiple Ingress controllers, not specifying an `IngressClass` can lead to conflicts where multiple controllers might attempt to process the same Ingress resource or, conversely, none may process it at all. This lack of clarity can lead to unpredictable behavior in how traffic is routed.
+```bash
+kubectl logs -l app=nginx-ingress -n ingress-nginx
+```
 
-### Summary
+Example log output without `IngressClass`:
 
-The `IngressClass` is essential for directing Kubernetes on which Ingress controller to use for handling traffic defined in an Ingress resource. Without it, Kubernetes cannot correctly apply traffic rules, leading to accessibility issues for your application and potential conflicts in environments with multiple controllers.
+```
+E0825 14:32:15.123456 1 leaderelection.go:331] error retrieving resource lock kube-system/nginx-ingress-controller-leader-nginx: configmaps "nginx-ingress-controller-leader-nginx" is forbidden: User "system:serviceaccount:ingress-nginx:nginx-ingress-serviceaccount" cannot get resource "configmaps" in API group "" in the namespace "kube-system"
+E0825 14:32:15.223456 1 controller.go:1288] Ingress example-ingress does not contain a valid IngressClass. Please ensure that the `ingressClassName` field is correctly set in the Ingress resource or that a default IngressClass exists.
+```
+
+In this example:
+- The log shows that the Ingress resource does not contain a valid `IngressClass`, leading to the controller not processing the Ingress resource.
+- The error indicates the absence of an `IngressClass`, causing the Ingress controller to fail to route traffic as expected.
+
+### Conclusion
+
+The `IngressClass` is crucial for specifying which controller should handle the traffic rules defined in an Ingress resource. Without it, Kubernetes may not be able to correctly apply traffic rules, leading to errors and an inaccessible application. Adding the `IngressClassName` field in the Ingress YAML ensures the correct controller manages the resource, avoiding issues such as the 404 errors mentioned earlier.
