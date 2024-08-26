@@ -20,12 +20,12 @@ When you're accessing a secure site over HTTPS, the browser will display a padlo
      - **Issuer:** The authority that issued the certificate.
      - **Subject:** The entity to whom the certificate was issued.
 
-   Example Screenshot:
-   <div style="text-align: center;">
-  <img src="../../pics/certificate-details.png" alt="Certificate Details">
-</div>
-   *This image shows a sample certificate with fields like 'Issued On' and 'Expires On.'*
 
+      <div style="text-align: center;">
+        <img src="../../pics/certificate-details.png" alt="Certificate Details">
+      </div>
+
+  
 #### Understanding Certificate Expiry
 
 Certificates have an expiration date to ensure that they remain secure and up-to-date. It's important to regularly check the expiration date of certificates in your cluster to avoid potential downtime.
