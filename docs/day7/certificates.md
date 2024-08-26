@@ -20,7 +20,7 @@ When you're accessing a secure site over HTTPS, the browser will display a padlo
      - **Issuer:** The authority that issued the certificate.
      - **Subject:** The entity to whom the certificate was issued.
 
-
+---
       <div style="text-align: center;">
         <img src="../../pics/certificate-details.png" alt="Certificate Details">
       </div>
