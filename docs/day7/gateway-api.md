@@ -45,6 +45,11 @@ Each layer is independent yet interacts with the others to create a comprehensiv
 
 The Gateway API in Kubernetes can be understood through the concept of "box within a box." This analogy helps to illustrate how the different components like `GatewayClass`, `Gateway`, and `HTTPRoute` are designed to be modular and can be managed independently.
 
+<div style="text-align: center;">
+  <img src="../../pics/gatewayclass-gateway-httproute.png" alt="Gateway API" style="width: 500px; height: 500px;">
+</div>
+
+
 1. **GatewayClass as the Outer Box**: The `GatewayClass` represents the top-level configuration, defining how Gateways are instantiated and managed. It serves as the blueprint for creating Gateways, specifying parameters and behaviors that apply to all Gateways using this class. The `GatewayClass` can be thought of as the "outer box," setting the overarching rules and infrastructure setup.
 
 2. **Gateway as the Inner Box**: Within the `GatewayClass`, you have individual `Gateways`. Each `Gateway` is a concrete instance that represents an entry point for network traffic. It inherits the configuration from the `GatewayClass` but can have its own specific settings, such as listeners and routing policies. The `Gateway` is like an "inner box" within the `GatewayClass`, tailored to handle specific traffic management needs.
