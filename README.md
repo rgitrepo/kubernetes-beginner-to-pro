@@ -89,7 +89,7 @@
 - Day 7:  Adding SSL Cert to Applicaton, Cert-Manager, Gateway API, Namespaces, TLS
   - [Certificates Overview](docs/day7/certificates.md)
   - [Certificates: Issuer vs Cluster Issuer](docs/day7/certificates-issuer-vs-cluster-issuer.md)
-  - [Public and Priavate Keys](docs/day7/plublic-and-private-keys.md)
+  - [Public and Priavate Keys](docs/day7/public-and-private-keys.md)
 
 
 
