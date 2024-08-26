@@ -97,6 +97,7 @@
   - [Prod vs Staging Servers](docs/day7/prod-vs-staging-server.md)
   - [Adding Certificates](docs/day7/adding-certificates.md)
   - [Project TBD: Weather App](docs/day7/weather-app.md)
+  - [Gateway API](docs/day7/gateway-api.md)
 
 
 
