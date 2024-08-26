@@ -21,7 +21,9 @@ When you're accessing a secure site over HTTPS, the browser will display a padlo
      - **Subject:** The entity to whom the certificate was issued.
 
    Example Screenshot:
-   ![Certificate Details](https://i.imgur.com/6yNfw7y.png) 
+   <div style="text-align: center;">
+  <img src="../../pics/certificate-details.png" alt="Certificate Details" style="width: 500px; height: 500px;">
+</div>
    *This image shows a sample certificate with fields like 'Issued On' and 'Expires On.'*
 
 #### Understanding Certificate Expiry
