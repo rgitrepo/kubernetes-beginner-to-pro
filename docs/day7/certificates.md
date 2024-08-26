@@ -14,7 +14,7 @@ When you're accessing a secure site over HTTPS, the browser will display a padlo
    - A dropdown will appear; select the option that says "Certificate", "Connection is Secure", or "View Certificate." Then there will be something like "Certificate is Valid". Behavior or presented options may be different but generally speaking the certificate is viewable with some exploration.
   
        <div style="text-align: center;">
-        <img src="../../pics/view-certificate.png" alt="View Certificate">
+        <img src="../../pics/check-certificate.png" alt="Check Certificate">
       </div>
 
 3. **Certificate Information:**
