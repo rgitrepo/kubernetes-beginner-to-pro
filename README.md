@@ -67,7 +67,7 @@
   - [Rollout Strategy](docs/day5/rollout-strategy.md)
  
 - Day 6:  Services, Custom Domain Ingress
-  - [Deployment and Problems with Deployment](docs/day6/problems-with-deployment.md)
+  - [Deployments and Service](docs/day6/problems-with-deployment.md)
   - [Application Deployment Begins](docs/day6/application-deployment-begins.md)
   - [Service Types](docs/day6/service-types.md)
   - [Endpoints vs Endpoint-Slices](docs/day6/endpoints-and-endpoint-slices.md)
