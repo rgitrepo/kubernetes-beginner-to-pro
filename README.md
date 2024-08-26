@@ -94,7 +94,7 @@
   - [Let's Encrypt: Revolutionizing Web Security with Free, Automated SSL/TLS Certificates](docs/day7/lets-encrypt.md)
   - [Install Cert Manager](docs/day7/install-cert-manager.md)
   - [Cluster Issuer YAML Manifest](docs/day7/cluster-issuer-yaml-manifest.md)
-  - [Prod vs Stating Servers](docs/day7/prod-vs-stating-server.md)
+  - [Prod vs Staging Servers](docs/day7/prod-vs-staging-server.md)
 
 
 
