@@ -1,8 +1,4 @@
-Certainly! Let's incorporate a brief explanation about the `kubectl get clusterissuer` command into the tutorial.
-
----
-
-### Tutorial: Adding a Certificate and Integrating it into Ingress Using Cert-Manager
+## cAdding a Certificate and Integrating it into Ingress Using Cert-Manager
 
 This tutorial will guide you through the process of adding a certificate in a Kubernetes cluster using Cert-Manager and later integrating that certificate into an Ingress resource. The steps are based on the explanation from the provided transcript.
 
