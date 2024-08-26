@@ -96,6 +96,8 @@
   - [Cluster Issuer YAML Manifest](docs/day7/cluster-issuer-yaml-manifest.md)
   - [Prod vs Staging Servers](docs/day7/prod-vs-staging-server.md)
   - [Adding Certificates](docs/day7/adding-certificates.md)
+  - [Project TBD: Weather App](docs/day7/weather-app.md)
+
 
 
 
