@@ -122,6 +122,3 @@ Both `forwardTo` and `backendRefs` are powerful tools in the Gateway API's `HTTP
 
 [Back to TOC](#table-of-contents)
 
----
-
-This concludes the tutorial on `forwardTo` and `backendRefs`. By using the Table of Contents and the provided examples, you should now have a clear understanding of these fields and how to implement them effectively in your `HTTPRoute` configurations.
