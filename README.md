@@ -102,7 +102,76 @@
 
 
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kubernetes Beginner to Pro - Table of Contents</title>
+    <style>
+        .toggle-content {
+            display: none;
+            margin-left: 20px;
+        }
 
+        .toggle-header {
+            cursor: pointer;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Kubernetes Beginner to Pro - Table of Contents</h1>
+
+    <div>
+        <div class="toggle-header" onclick="toggleSection('day1-content')">Day 1: Introduction to Kubernetes</div>
+        <div id="day1-content" class="toggle-content">
+            <ul>
+                <li><a href="docs/day1/yaml_and_linting.md">YAML & Linting</a></li>
+                <li><a href="docs/day1/linux_commands.md">Linux Commands</a></li>
+                <li><a href="docs/day1/docker_and_kubernetes.md">Docker & Kubernetes</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div>
+        <div class="toggle-header" onclick="toggleSection('day2-content')">Day 2: Kubernetes Architecture</div>
+        <div id="day2-content" class="toggle-content">
+            <ul>
+                <li><a href="docs/day2/api.md">What are APIs</a></li>
+                <li><a href="docs/day2/rest-grpc-api.md">REST vs gRPC APIs</a></li>
+                <li><a href="docs/day2/daemon-vs-daemonset.md">Daemon vs DaemonSet</a></li>
+                <!-- Add other links here -->
+            </ul>
+        </div>
+    </div>
+
+    <div>
+        <div class="toggle-header" onclick="toggleSection('day3-content')">Day 3: Cloud & on-Prem Clusters, Images, Debug Container & Pods, kubectl</div>
+        <div id="day3-content" class="toggle-content">
+            <ul>
+                <li><a href="docs/day3/kubernetes-clusters.md">Kubernetes Clusters - GKE</a></li>
+                <li><a href="docs/day3/kind-cluster.md">Kind Cluster</a></li>
+                <li><a href="docs/day3/interview-questions.md">Interview Questions: Kubernetes Version Management</a></li>
+                <!-- Add other links here -->
+            </ul>
+        </div>
+    </div>
+
+    <!-- Continue adding sections for Day 4, Day 5, etc. -->
+
+    <script>
+        function toggleSection(sectionId) {
+            var content = document.getElementById(sectionId);
+            if (content.style.display === "none" || content.style.display === "") {
+                content.style.display = "block";
+            } else {
+                content.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
 
 
 
