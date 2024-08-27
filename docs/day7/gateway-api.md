@@ -1,5 +1,11 @@
 # Gateway API in Kubernetes
 
+Here’s the updated version of the tutorial with the new information added and using the more real-world relevant label `environment: prod` to clarify that it’s a namespace:
+
+---
+
+# Gateway API in Kubernetes: A Comprehensive Guide
+
 This tutorial delves into the Gateway API in Kubernetes, explaining its purpose, structure, and how to set it up. We’ll explore various aspects of the Gateway API, providing examples with YAML manifests and output commands to illustrate the concepts clearly.
 
 ## Table of Contents
@@ -111,10 +117,10 @@ spec:
         from: Selector
         selector:
           matchLabels:
-            expose-apps: "true"
+            environment: "prod"
 ```
 
-In this configuration, the `Gateway` listens on port 80 for HTTP traffic. It allows `HTTPRoute` resources from namespaces with the label `expose-apps: "true"` to attach to this listener. This setup ensures that only Routes from specific namespaces can attach to this Gateway, adding an additional layer of control.
+In this configuration, the `Gateway` listens on port 80 for HTTP traffic. It allows `HTTPRoute` resources from namespaces with the label `environment: "prod"` to attach to this listener. This setup ensures that only Routes from specific namespaces (e.g., production environments) can attach to this Gateway, adding an additional layer of control.
 
 [Back to TOC](#table-of-contents)
 
@@ -151,6 +157,8 @@ This `HTTPRoute` configuration directs traffic from `example.com` to the `my-ser
 - The listener in the `Gateway` must allow attachments from the namespace of this `HTTPRoute` for the Route to be successfully attached.
 
 [Back to TOC](#table-of-contents)
+
+
 
 ### Managing and Troubleshooting Gateways
 
