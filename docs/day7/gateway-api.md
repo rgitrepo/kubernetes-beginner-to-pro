@@ -1,8 +1,4 @@
-Here’s the revised version of the tutorial with the corrections and additions:
-
----
-
-# Gateway API in Kubernetes: A Comprehensive Guide
+# Gateway API in Kubernetes
 
 This tutorial delves into the Gateway API in Kubernetes, explaining its purpose, structure, and how to set it up. We’ll explore various aspects of the Gateway API, providing examples with YAML manifests and output commands to illustrate the concepts clearly.
 
@@ -41,6 +37,8 @@ The `GatewayClass` defines a set of gateways with a common configuration and beh
 #### Gateway
 
 A `Gateway` represents an entry point for network traffic into the Kubernetes cluster. It is configured according to the specifications defined by the `GatewayClass`. The `Gateway` essentially requests a point where traffic can be translated to Services within the cluster. It can have various listeners that define how traffic is accepted and routed.
+
+**Important Note:** For a `Route` to attach to a `Gateway`, at least one listener on the `Gateway` must explicitly allow this attachment. This means the listener must satisfy any conditions set by the `Route` for attachment, such as matching hostnames, namespaces, or kinds.
 
 #### Routes
 
@@ -99,19 +97,24 @@ apiVersion: gateway.networking.k8s.io/v1alpha2
 kind: Gateway
 metadata:
   name: my-gateway
+  namespace: gateway-api-example-ns1
 spec:
   gatewayClassName: my-gateway-class
   listeners:
-  - protocol: HTTP
+  - name: web-listener
+    protocol: HTTP
     port: 80
-    routes:
-      kind: HTTPRoute
-      selector:
-        matchLabels:
-          app: my-app
+    allowedRoutes:
+      kinds:
+      - kind: HTTPRoute
+      namespaces:
+        from: Selector
+        selector:
+          matchLabels:
+            expose-apps: "true"
 ```
 
-In this configuration, the `Gateway` listens on port 80 for HTTP traffic and forwards it to routes with the label `app: my-app`.
+In this configuration, the `Gateway` listens on port 80 for HTTP traffic. It allows `HTTPRoute` resources from namespaces with the label `expose-apps: "true"` to attach to this listener. This setup ensures that only Routes from specific namespaces can attach to this Gateway, adding an additional layer of control.
 
 [Back to TOC](#table-of-contents)
 
@@ -124,9 +127,11 @@ apiVersion: gateway.networking.k8s.io/v1alpha2
 kind: HTTPRoute
 metadata:
   name: my-http-route
+  namespace: gateway-api-example-ns2
 spec:
   parentRefs:
   - name: my-gateway
+    namespace: gateway-api-example-ns1
   hostnames:
   - "example.com"
   rules:
@@ -139,7 +144,11 @@ spec:
       port: 80
 ```
 
-This `HTTPRoute` configuration directs traffic from `example.com` to the `my-service` service on port 80, ensuring that requests to the root path (`/`) are handled correctly.
+This `HTTPRoute` configuration directs traffic from `example.com` to the `my-service` service on port 80, ensuring that requests to the root path (`/`) are handled correctly. Additionally, since the `my-http-route` is in a different namespace (`gateway-api-example-ns2`) from the `Gateway`, it relies on the selector specified in the `Gateway` listener to be allowed to attach.
+
+**Key Points:**
+- The `parentRefs` field specifies the `Gateway` this `HTTPRoute` wants to attach to.
+- The listener in the `Gateway` must allow attachments from the namespace of this `HTTPRoute` for the Route to be successfully attached.
 
 [Back to TOC](#table-of-contents)
 
@@ -196,14 +205,17 @@ kubectl describe gateway my-gateway
 
 ```sh
 Name:         my-gateway
-Namespace:    default
+Namespace:    gateway-api-example-ns1
 Address:      10.0.0.1
 Listeners:
-  - Port: 80
+  - Name: web-listener
+
+
+    Port: 80
     Protocol: HTTP
 Routes:
   - Kind: HTTPRoute
-    Selector: app=my-app
+    Selector: expose-apps=true
 ```
 
 This command provides a detailed description of the Gateway, including its listeners and associated routes.
@@ -233,12 +245,10 @@ This output confirms that the Gateway has been successfully deleted.
 When managing Gateways, you may encounter issues. Here are some common troubleshooting tips:
 
 - **Check Gateway Status:** Ensure the Gateway is in a `Ready` state. If not, inspect the `GatewayClass` and `Listeners`.
-- **Verify Routes:** Ensure your `HTTPRoute` or other route types are correctly linked to the Gateway and have valid configurations.
+- **Verify Routes:** Ensure your `HTTPRoute` or other route types are correctly linked to the Gateway and have valid configurations. Also, ensure that the Gateway's listener explicitly allows the attachment of the Routes.
 - **Logs:** Check the logs of your Gateway controller for any errors or warnings.
 
 [Back to TOC](#table-of-contents)
-
-
 
 ### Conclusion
 
@@ -246,12 +256,8 @@ The Gateway API provides a powerful, layered approach to managing ingress traffi
 
 [Back to TOC](#table-of-contents)
 
-
-
 ### References
 
 [Gateway API Documentation](https://gateway-api.sigs.k8s.io/concepts/api-overview/)
-
-
 
 [Back to TOC](#table-of-contents)
