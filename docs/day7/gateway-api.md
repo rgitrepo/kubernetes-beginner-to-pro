@@ -1,11 +1,5 @@
 # Gateway API in Kubernetes
 
-Here’s the updated version of the tutorial with the new information added and using the more real-world relevant label `environment: prod` to clarify that it’s a namespace:
-
----
-
-# Gateway API in Kubernetes: A Comprehensive Guide
-
 This tutorial delves into the Gateway API in Kubernetes, explaining its purpose, structure, and how to set it up. We’ll explore various aspects of the Gateway API, providing examples with YAML manifests and output commands to illustrate the concepts clearly.
 
 ## Table of Contents
@@ -120,45 +114,94 @@ spec:
             environment: "prod"
 ```
 
-In this configuration, the `Gateway` listens on port 80 for HTTP traffic. It allows `HTTPRoute` resources from namespaces with the label `environment: "prod"` to attach to this listener. This setup ensures that only Routes from specific namespaces (e.g., production environments) can attach to this Gateway, adding an additional layer of control.
+In this configuration:
+- The `Gateway` listens on port 80 for HTTP traffic.
+- It allows `HTTPRoute` resources from namespaces with the label `environment: "prod"` to attach to this listener.
+- This setup ensures that only Routes from specific namespaces (e.g., production environments) can attach to this Gateway, adding an additional layer of control.
 
 [Back to TOC](#table-of-contents)
 
 #### Setting Up Routes
 
-Routes are defined at the application layer. Here’s an example of an `HTTPRoute` that directs traffic based on specific rules.
+Routes are defined at the application layer. Let’s explore two types of routing: path-based and header-based routing.
+
+##### Path-Based Routing Example
+
+Path-based routing directs traffic based on the URL path. Here’s an example of an `HTTPRoute` that routes traffic for `foo.example.com` to a specific service.
 
 ```yaml
 apiVersion: gateway.networking.k8s.io/v1alpha2
 kind: HTTPRoute
 metadata:
-  name: my-http-route
+  name: foo-route
   namespace: gateway-api-example-ns2
 spec:
   parentRefs:
   - name: my-gateway
     namespace: gateway-api-example-ns1
   hostnames:
-  - "example.com"
+  - "foo.example.com"
   rules:
   - matches:
     - path:
-        type: Prefix
-        value: "/"
-    forwardTo:
-    - serviceName: my-service
-      port: 80
+        type: PathPrefix
+        value: /login
+    backendRefs:
+    - name: foo-svc
+      port: 8080
 ```
 
-This `HTTPRoute` configuration directs traffic from `example.com` to the `my-service` service on port 80, ensuring that requests to the root path (`/`) are handled correctly. Additionally, since the `my-http-route` is in a different namespace (`gateway-api-example-ns2`) from the `Gateway`, it relies on the selector specified in the `Gateway` listener to be allowed to attach.
+In this configuration:
+- The `HTTPRoute` matches any traffic for `foo.example.com`.
+- Only traffic with the path prefix `/login` will be routed to the `foo-svc` service on port 8080.
+- Traffic to other paths that do not begin with `/login` will not be matched by this Route.
 
-**Key Points:**
-- The `parentRefs` field specifies the `Gateway` this `HTTPRoute` wants to attach to.
-- The listener in the `Gateway` must allow attachments from the namespace of this `HTTPRoute` for the Route to be successfully attached.
+##### Header-Based Routing Example
+
+Header-based routing directs traffic based on HTTP headers. Here’s an example of an `HTTPRoute` for `bar.example.com`, which uses the `env` header to route traffic differently.
+
+```yaml
+apiVersion: gateway.networking.k8s.io/v1alpha2
+kind: HTTPRoute
+metadata:
+  name: bar-route
+  namespace: gateway-api-example-ns2
+spec:
+  parentRefs:
+  - name: my-gateway
+    namespace: gateway-api-example-ns1
+  hostnames:
+  - "bar.example.com"
+  rules:
+  - matches:
+    - headers:
+        - type: Exact
+          name: env
+          value: canary
+    backendRefs:
+    - name: bar-svc-canary
+      port: 8080
+  - backendRefs:
+    - name: bar-svc
+      port: 8080
+```
+
+In this configuration:
+- The `HTTPRoute` matches traffic for `bar.example.com`.
+- Traffic with the `env: canary` header will be routed to the `bar-svc-canary` service on port 8080.
+- If the `env` header is missing or set to any value other than `canary`, the traffic will be routed to the `bar-svc` service on port 8080.
+
+**Key Differences:**
+- **Path-Based Routing**: Routes traffic based on the URL path (e.g., `/login`). It is generally
+
+ used when different parts of the website or application need to be served by different backends.
+- **Header-Based Routing**: Routes traffic based on HTTP headers (e.g., `env: canary`). It is useful for canary deployments, where a subset of traffic is routed to a new version of the service for testing purposes.
+
+**Important Notes:**
+- Both `foo-route` and `bar-route` are bound to the same `my-gateway` but serve different hostnames and routing criteria.
+- More than one `HTTPRoute` can bind to the same `Gateway` as long as they do not conflict. This allows for flexible and powerful routing configurations.
 
 [Back to TOC](#table-of-contents)
-
-
 
 ### Managing and Troubleshooting Gateways
 
