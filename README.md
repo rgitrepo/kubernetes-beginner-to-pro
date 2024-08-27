@@ -56,7 +56,7 @@
 
 - [Image Security: Trivy](docs/day4/image-security.md)
 - ['bat' Command](docs/day4/bat-command.md)
-- [Admission Control: Kyverno for Policy](docs/day4/kyverno.md)
+- [Policy: Admission Control - Kyverno](docs/day4/kyverno.md)
 - [Kube Linter for Poduction Grade YAML](docs/day4/kube-linter.md)
 - [Kube Bench for Cluster Security](docs/day4/kube-bench.md)
 - [Static Pods, DaemonSets, Deployments, and Back-Off Algorithms](docs/day4/static-pods.md)
