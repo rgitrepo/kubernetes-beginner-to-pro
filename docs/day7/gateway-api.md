@@ -38,7 +38,7 @@ The Gateway API resource model is built around three key components:
 
 #### GatewayClass
 
-The `GatewayClass` defines a set of gateways with a common configuration and behavior. It represents the top-level configuration, specifying how gateways are instantiated and managed. This resource allows infrastructure providers to offer different classes of service, each tailored to specific networking needs.
+The `GatewayClass` defines a set of gateways with a common configuration and behavior. It represents the top-level configuration, specifying how gateways are instantiated and managed. This resource allows infrastructure providers to offer different classes of service, each tailored to specific networking needs. _GatewayClass is an abstraction for Load Balancer_. Generally used are external and internal gateway classes.
 
 #### Gateway
 
