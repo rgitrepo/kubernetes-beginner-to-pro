@@ -66,7 +66,7 @@ metadata:
   name: my-gcp-gateway
   namespace: default
 spec:
-  gatewayClassName: gke-l7-regional-gateway
+  gatewayClassName: gke-l7-regional-gateway  #picked fro\m sample output above
   listeners:
     - name: http
       protocol: HTTP
