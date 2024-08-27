@@ -125,7 +125,7 @@
 - [Problems with Ingress](docs/day7/problems-with-ingress.md)
 - [Gateway API Advantages](docs/day7/advantages-of-gateway-api.md)
 - [Gateway API Configuration](docs/day7/gateway-api.md)
-- [HTTPRoute - forwardTo vs backendRefs](forwardto-vs-backendrefs.md)
+- [HTTPRoute - forwardTo vs backendRefs](docs/day7/forwardto-vs-backendrefs.md)
 - [Gateway API on Cloud Providers: GCP, AWS, and Azure](docs/day7/gateway-api-on-gcp-aws-and-azure.md)
 
 </details>
