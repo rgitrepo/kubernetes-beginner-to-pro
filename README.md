@@ -1,6 +1,7 @@
 
-# Kubernetes Beginner to Pro - Table of Contents
+# Kubernetes Beginner to Pro
 
+## Table of Contents
 <details>
 <summary>Day 1: Introduction to Kubernetes</summary>
 
