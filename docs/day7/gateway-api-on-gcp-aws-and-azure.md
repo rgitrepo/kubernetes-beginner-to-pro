@@ -193,3 +193,7 @@ my-cloud-gateway cloud-nlb   1m
 This approach streamlines your Kubernetes networking setup across multiple cloud providers, ensuring consistent traffic management regardless of the underlying infrastructure.
 
 [Back to TOC](#table-of-contents)
+
+
+## **References:**
+[GCP Documentation for Gateway API](#https://cloud.google.com/kubernetes-engine/docs/concepts/gateway-api)
