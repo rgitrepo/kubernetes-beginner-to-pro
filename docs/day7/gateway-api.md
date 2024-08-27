@@ -253,9 +253,12 @@ The Gateway API provides a powerful, layered approach to managing ingress traffi
 
 [Back to TOC](#table-of-contents)
 
-[Back to TOC](#table-of-contents)
 
 
 ### References
 
 [Gateway API Documentation](https://gateway-api.sigs.k8s.io/concepts/api-overview/)
+
+
+
+[Back to TOC](#table-of-contents)
