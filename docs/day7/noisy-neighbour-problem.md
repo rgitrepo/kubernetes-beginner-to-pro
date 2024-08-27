@@ -50,7 +50,7 @@ To prevent the Noisy Neighbor problem, it's crucial to segregate applications in
 
 3. **Limit Ranges**: Use limit ranges to enforce minimum and maximum resource usage on individual pods within a namespace.
 
-[Back to Top](#tutorial-2-understanding-the-noisy-neighbor-problem-in-kubernetes)
+[Back to Top](#table-of-contents)
 
 ---
 
@@ -81,7 +81,7 @@ kubectl apply -f namespace-quota.yaml
 
 This configuration ensures that the total resource usage within the namespace does not exceed the specified limits.
 
-[Back to Top](#tutorial-2-understanding-the-noisy-neighbor-problem-in-kubernetes)
+[Back to Top](#table-of-contents)
 
 ---
 
@@ -109,7 +109,7 @@ spec:
 
 In this example, the pod is limited to 1 GiB of memory and 1 CPU core, preventing it from consuming more than its fair share of resources.
 
-[Back to Top](#tutorial-2-understanding-the-noisy-neighbor-problem-in-kubernetes)
+[Back to Top](#table-of-contents)
 
 ---
 
@@ -132,7 +132,7 @@ To monitor and troubleshoot the Noisy Neighbor problem:
 
 4. **Out of Memory (OOM) Kill**: When a pod exceeds its memory limit, the Kubernetes scheduler may kill it with an "Out of Memory" (OOM) error. It’s important to analyze these events to understand and resolve resource contention issues.
 
-[Back to Top](#tutorial-2-understanding-the-noisy-neighbor-problem-in-kubernetes)
+[Back to Top](#table-of-contents)
 
 ---
 
@@ -140,5 +140,5 @@ To monitor and troubleshoot the Noisy Neighbor problem:
 
 The Noisy Neighbor problem can cause significant disruptions in a Kubernetes cluster if not properly managed. By segregating applications into different namespaces, applying resource quotas, and setting pod-level restrictions, you can prevent this issue and ensure that your cluster runs smoothly. Regular monitoring and proactive troubleshooting are key to maintaining a healthy Kubernetes environment.
 
-[Back to Top](#tutorial-2-understanding-the-noisy-neighbor-problem-in-kubernetes)
+[Back to Top](#table-of-contents)
 
