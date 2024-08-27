@@ -123,6 +123,7 @@
 - [Adding Certificates](docs/day7/adding-certificates.md)
 - [Project TBD: Currency Converter + Weather App + Best Places to Visit](docs/day7/weather-app.md)
 - [Problems with Ingress](docs/day7/problems-with-ingress.md)
+- [Advantages of Gateway API](docs/day7/advantages-of-gateway-api.md)
 - [Gateway API](docs/day7/gateway-api.md)
 
 </details>
