@@ -36,7 +36,7 @@ The Noisy Neighbor problem can occur under several scenarios:
 
 For example, imagine a scenario where a single pod is compromised and starts using all available CPU and memory for a resource-intensive task. Without proper controls, this pod can monopolize resources, causing other applications to fail.
 
-[Back to Top](#tutorial-2-understanding-the-noisy-neighbor-problem-in-kubernetes)
+[Back to Top](#table-of-contents)
 
 ---
 
