@@ -6,11 +6,11 @@ This tutorial explores the key advantages of using the Gateway API in Kubernetes
 
 ## Table of Contents
 
-1. [HTTP Header-Based Matching](#http-header-based-matching)
-2. [HTTP Header Manipulation](#http-header-manipulation)
+1. [HTTP Header-Based Matching](#1-http-header-based-matching)
+2. [HTTP Header Manipulation](#2-http-header-manipulation)
 3. [Traffic Mirroring](#traffic-mirroring)
-4. [Weighted Traffic Splitting](#weighted-traffic-splitting)
-5. [Custom Resource Definitions (CRDs)](#custom-resource-definitions-crds)
+4. [Weighted Traffic Splitting](#3-weighted-traffic-splitting)
+5. [Custom Resource Definitions (CRDs)](#4-custom-resource-definitions-crds)
 6. [L4 & L7 Support (TCP, UDP, HTTP, gRPC)](#l4-l7-support-tcp-udp-http-grpc)
 
 ---
