@@ -20,7 +20,7 @@ The "Noisy Neighbor" problem occurs when one application or pod in a shared envi
 
 This problem is particularly concerning in environments where multiple applications or services share the same resources, such as in a multi-tenant Kubernetes cluster.
 
-[Back to Top](#tutorial-2-understanding-the-noisy-neighbor-problem-in-kubernetes)
+[Back to Top](#table-of-contents)
 
 ---
 
