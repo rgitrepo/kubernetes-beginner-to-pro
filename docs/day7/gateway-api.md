@@ -192,9 +192,7 @@ In this configuration:
 - If the `env` header is missing or set to any value other than `canary`, the traffic will be routed to the `bar-svc` service on port 8080.
 
 **Key Differences:**
-- **Path-Based Routing**: Routes traffic based on the URL path (e.g., `/login`). It is generally
-
- used when different parts of the website or application need to be served by different backends.
+- **Path-Based Routing**: Routes traffic based on the URL path (e.g., `/login`). It is generally used when different parts of the website or application need to be served by different backends.
 - **Header-Based Routing**: Routes traffic based on HTTP headers (e.g., `env: canary`). It is useful for canary deployments, where a subset of traffic is routed to a new version of the service for testing purposes.
 
 **Important Notes:**
