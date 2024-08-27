@@ -125,6 +125,7 @@
 - [Problems with Ingress](docs/day7/problems-with-ingress.md)
 - [Advantages of Gateway API](docs/day7/advantages-of-gateway-api.md)
 - [Gateway API](docs/day7/gateway-api.md)
+- [Gateway API on GCP, AWS, and Azure](docs/day7/gateway-api-on-gcp-aws-and-azure.md)
 
 </details>
 
