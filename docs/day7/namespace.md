@@ -36,7 +36,7 @@ Namespaces serve two primary purposes:
 - **Resource Control**: Ensures that resources are allocated appropriately, preventing one application from monopolizing resources.
 - **Security**: Helps in applying role-based access control (RBAC) and other security policies to specific namespaces.
 
-[Back to Top](#comprehensive-guide-to-kubernetes-namespaces)
+[Back to Top](#table-of-contents
 
 ---
 
@@ -80,7 +80,7 @@ namespace "staging" deleted
 
 Deleting a namespace removes all resources within that namespace, so use this command with caution.
 
-[Back to Top](#comprehensive-guide-to-kubernetes-namespaces)
+[Back to Top](#table-of-contents
 
 ---
 
@@ -133,7 +133,7 @@ No limit range.
 
 This command provides detailed information about the namespace, including any resource quotas or limit ranges applied.
 
-[Back to Top](#comprehensive-guide-to-kubernetes-namespaces)
+[Back to Top](#table-of-contents
 
 ---
 
@@ -211,7 +211,7 @@ limits.memory           2Gi   16Gi
 
 This output shows the current usage and the maximum allowed resources for the namespace.
 
-[Back to Top](#comprehensive-guide-to-kubernetes-namespaces)
+[Back to Top](#table-of-contents
 
 ---
 
@@ -227,7 +227,7 @@ This output shows the current usage and the maximum allowed resources for the na
 
 5. **Namespace Naming Conventions**: Use clear and consistent naming conventions for namespaces to avoid confusion and to make management easier.
 
-[Back to Top](#comprehensive-guide-to-kubernetes-namespaces)
+[Back to Top](#table-of-contents
 
 ---
 
@@ -237,4 +237,4 @@ Namespaces in Kubernetes are essential for managing resources, applying security
 
 Implementing namespaces effectively ensures that your cluster remains secure, organized, and resource-efficient, making it easier to manage large-scale deployments.
 
-[Back to Top](#comprehensive-guide-to-kubernetes-namespaces)
+[Back to Top](#table-of-contents
