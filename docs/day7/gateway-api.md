@@ -18,6 +18,7 @@ This tutorial delves into the Gateway API in Kubernetes, explaining its purpose,
    - [Deleting a Gateway](#deleting-a-gateway)
    - [Troubleshooting Tips](#troubleshooting-tips)
 8. [Conclusion](#conclusion)
+9. [References](#references)
 
 ---
 
@@ -249,6 +250,8 @@ When managing Gateways, you may encounter issues. Here are some common troublesh
 ### Conclusion
 
 The Gateway API provides a powerful, layered approach to managing ingress traffic in Kubernetes. By separating infrastructure concerns from application-level routing, it allows for more flexible and scalable networking configurations. This tutorial walked you through setting up and managing Gateways, Routes, and understanding the layered structure that makes the Gateway API so versatile.
+
+[Back to TOC](#table-of-contents)
 
 [Back to TOC](#table-of-contents)
 
