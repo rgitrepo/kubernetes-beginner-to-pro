@@ -15,6 +15,7 @@ This tutorial guides you through setting up the Kubernetes Gateway API on Google
   - [Listing Gateway Classes](#listing-gateway-classes-1)
   - [Creating a Gateway on AWS and Azure](#creating-a-gateway-on-aws-and-azure)
 - [Summary](#summary)
+- [References](#references)
 
 ---
 
