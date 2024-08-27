@@ -197,4 +197,4 @@ This approach streamlines your Kubernetes networking setup across multiple cloud
 
 
 ## **References:**
-[GCP Documentation for Gateway API](#https://cloud.google.com/kubernetes-engine/docs/concepts/gateway-api)
+[GCP Documentation for Gateway API](https://cloud.google.com/kubernetes-engine/docs/concepts/gateway-api)
