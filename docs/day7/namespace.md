@@ -18,7 +18,7 @@
 
 Namespaces in Kubernetes are a way to divide cluster resources between multiple users or teams. They provide logical separation within a cluster, allowing different environments or projects to coexist on the same cluster without interfering with each other. Namespaces help organize and manage resources, making it easier to apply security policies, resource quotas, and access controls.
 
-[Back to Top](#comprehensive-guide-to-kubernetes-namespaces)
+[Back to Top](#table-of-contents)
 
 ---
 
