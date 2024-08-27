@@ -11,7 +11,7 @@ This tutorial explores the key advantages of using the Gateway API in Kubernetes
 3. [Traffic Mirroring](#3-traffic-mirroring)
 4. [Weighted Traffic Splitting](#4-weighted-traffic-splitting)
 5. [Custom Resource Definitions (CRDs)](#5-custom-resource-definitions-crds)
-6. [L4 & L7 Support (TCP, UDP, HTTP, gRPC)](#6-l4-l7-support-tcp-udp-http-grpc)
+6. [L4 & L7 Support (TCP, UDP, HTTP, gRPC)](#6-l4--l7-support-tcp-udp-http-grpc)
 
 ---
 
