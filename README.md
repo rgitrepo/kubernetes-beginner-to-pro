@@ -136,7 +136,7 @@
 <details>
 <summary>Day 8: Tweaking the Kubernetes Scheduling Algo, Taints-Tolerations, Affinity, QOS, OpenCost</summary>
 
-- [TBD](docs/day8/yaml_and_linting.md)
+- [CPU vs Memory](docs/day8/cpu-vs-memory.md)
 
 </details>
 
