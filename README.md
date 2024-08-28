@@ -134,7 +134,7 @@
 </details>
 
 <details>
-<summary>Day 8: Introduction to Kubernetes</summary>
+<summary>Day 8: Tweaking the Kubernetes Scheduling Algo, Taints-Tolerations, Affinity, QOS, OpenCost</summary>
 
 - [TBD](docs/day8/yaml_and_linting.md)
 
