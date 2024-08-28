@@ -17,6 +17,10 @@
 
 ---
 
+<div style="text-align: center;">
+  <img src="../../pics/container-pod-rs-deployment-svc-ns-node-cluster.png" alt="Namespaces" style="width: 500px; height: 500px;">
+</div>
+
 ### Introduction to Namespaces
 
 Namespaces in Kubernetes provide a way to divide cluster resources among multiple users or teams, offering logical separation within the cluster. This separation allows different environments or projects to coexist without interference, making it easier to apply security policies, resource quotas, and access controls.
