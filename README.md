@@ -133,7 +133,12 @@
 
 </details>
 
+<details>
+<summary>Day 8: Introduction to Kubernetes</summary>
 
+- [TBD](docs/day8/yaml_and_linting.md)
+
+</details>
 
 
 
