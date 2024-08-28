@@ -36,6 +36,8 @@ Namespaces serve two primary purposes:
 - **Resource Control**: Ensures that resources are allocated appropriately, preventing one application from monopolizing resources.
 - **Security**: Helps in applying role-based access control (RBAC) and other security policies to specific namespaces.
 
+Note: Namespaces can't be nested by default. In GCP there is a workout to nest them but generally they are not nested.
+
 [Back to Top](#table-of-contents)
 
 ---
