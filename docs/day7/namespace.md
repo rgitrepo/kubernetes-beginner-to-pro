@@ -11,6 +11,7 @@
 - [Applying Resource Quotas and Limits](#applying-resource-quotas-and-limits)
 - [Best Practices for Using Namespaces](#best-practices-for-using-namespaces)
 - [Cost Reduction Using Namespaces](#cost-reduction-using-namespaces)
+- [When Not to Implement Namespaces](#when-not-to-implement-namespaces)
 - [Summary](#summary)
 - [Interview Questions and Answers](#interview-questions-and-answers)
 
@@ -259,6 +260,30 @@ By leveraging namespaces, organizations can achieve significant cost savings, es
 
 ---
 
+Here's the information about when not to implement namespaces, extracted from the transcript and added to the tutorial:
+
+---
+
+### When Not to Implement Namespaces
+
+While namespaces are beneficial for organizing resources and managing multi-tenant environments, there are scenarios where using namespaces may not be appropriate:
+
+1. **Versioning (v1 vs. v2)**: Namespaces should not be used for versioning applications (e.g., v1 and v2). Instead, use deployments or other Kubernetes resources designed for version management.
+
+2. **Region-Based Deployments**: Avoid using namespaces for separating environments by geographic region (e.g., Europe, Asia). Instead, create separate clusters for each region, as Kubernetes does not natively support region-based distribution within namespaces.
+
+3. **Compliance and Security**: For stringent compliance requirements (e.g., GDPR, HIPAA), it's often better to use separate clusters rather than namespaces. Separate clusters provide better isolation and make it easier to meet audit requirements.
+
+4. **Fine-Grained Billing**: Namespaces do not support fine-grained billing natively. If your use case requires detailed cost tracking at a granular level, consider using separate clusters with more sophisticated billing tools.
+
+5. **Cross-Cluster Communication Costs**: If your application requires extensive cross-cluster communication, using namespaces within a single cluster can reduce networking costs and complexity compared to managing multiple clusters.
+
+In these scenarios, using separate clusters instead of namespaces ensures better isolation, security, and compliance, while also potentially simplifying management and reducing costs.
+
+
+[Back to Top](#table-of-contents)
+
+---
 ### Summary
 
 Namespaces in Kubernetes are essential for managing resources, applying security policies, and ensuring the efficient operation of a cluster. By segregating environments, setting resource quotas, and following best practices, you can maintain a well-organized and efficient Kubernetes cluster.
