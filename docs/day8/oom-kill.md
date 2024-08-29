@@ -46,8 +46,8 @@ By not setting a CPU limit, you allow Kubernetes to manage CPU resources dynamic
 
 Here are some practical tips to help you avoid OOM Kill situations in your Kubernetes environment:
 
-- **Always set memory requests and limits to equal values:** _This practice helps ensure that your pod stays within its allocated memory, avoiding the risk of being killed by the system._
-- **Avoid setting CPU limits:** _Allow Kubernetes to dynamically manage CPU resources, which can lead to better overall efficiency._
+- **Always set memory requests and limits to equal values:** This practice helps ensure that your pod stays within its allocated memory, avoiding the risk of being killed by the system.
+- **Avoid setting CPU limits:** Allow Kubernetes to dynamically manage CPU resources, which can lead to better overall efficiency.
 - **Test your configurations before production:** Ensure that your memory and CPU settings are optimized for your application's needs in a non-production environment before deploying them live.
 
 These best practices are based on extensive experience and are designed to help you maintain a stable and efficient Kubernetes deployment.
