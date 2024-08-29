@@ -138,6 +138,7 @@
 
 - [CPU vs Memory](docs/day8/cpu-vs-memory.md)
 - [OOM Kill - Out Of Memory Kill](docs/day8/oom-kill.md)
+- [QoS: Quality of Service](docs/day8/qos-quality-of-service.md)
 
 </details>
 
