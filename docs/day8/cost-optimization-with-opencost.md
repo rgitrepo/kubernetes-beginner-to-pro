@@ -29,8 +29,9 @@ OpenCost is a powerful tool that provides real-time visibility into the cost of 
 4. **Custom Dashboards and Alerts:** Users can create custom dashboards and receive alerts when costs exceed specified thresholds.
 5. **Export to Prometheus:** Pricing data can be easily exported to Prometheus using the `/metrics` endpoint.
 
-   ![OpenCost Dashboard](https://github.com/opencost/opencost/blob/develop/ui/src/opencost-ui.png)  
-   *Figure 1: OpenCost Dashboard showing CPU and Memory Usage*
+      <div style="text-align: center;">
+        <img src="../../pics/opencost-screenshot.png" alt="OpenCost" style="width: 500px; height: 500px;">
+      </div>
 
 [Back to TOC](#table-of-contents)
 
