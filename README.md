@@ -144,7 +144,7 @@
 - [Kyverno vs. LimitRanges and ResourceQuotas](docs/day8/kyverno-vs-limitranges-and-resourcequotas.md)
 - [Cost Optimization with OpenCost](docs/day8/cost-optimization-with-opencost.md)
 - [Taints & Tolerations](docs/day8/taints-and-tolerations.md)
-- [Nodename & Selector](docs/day8/nodename-and-selector.md)
+- [Nodename & NodeSelector](docs/day8/nodename-and-nodeselector.md)
 
 </details>
 
