@@ -1,14 +1,14 @@
 ### Tutorial on Cost Optimization with OpenCost Using Kubernetes
 
 ### Table of Contents
-1. [Introduction](#introduction)
-2. [Overview of OpenCost](#overview-of-opencost)
-3. [Installation and Setup](#installation-and-setup)
-4. [Importance of Namespaces in Cost Optimization](#importance-of-namespaces-in-cost-optimization)
-5. [Managing Node Pools for Cost Efficiency](#managing-node-pools-for-cost-efficiency)
-6. [Taints and Tolerations](#taints-and-tolerations)
-7. [Deleting OpenCost](#deleting-opencost)
-8. [Conclusion](#conclusion)
+1. [Introduction](#1=introduction)
+2. [Overview of OpenCost](#2-overview-of-opencost)
+3. [Installation and Setup](#3-installation-and-setup)
+4. [Importance of Namespaces in Cost Optimization](#4-importance-of-namespaces-in-cost-optimization)
+5. [Managing Node Pools for Cost Efficiency](#5-managing-node-pools-for-cost-efficiency)
+6. [Taints and Tolerations](#6-taints-and-tolerations)
+7. [Deleting OpenCost](#7-deleting-opencost)
+8. [Conclusion](#8-conclusion)
 
 ---
 
