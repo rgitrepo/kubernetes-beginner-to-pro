@@ -1,3 +1,4 @@
+
 ### Tutorial on Nodename & NodeSelector in Kubernetes
 
 #### Table of Contents
@@ -9,12 +10,18 @@
    - [Setting Nodename in a Pod Spec](#setting-nodename-in-a-pod-spec)
 3. [NodeSelector in Kubernetes](#nodeselector-in-kubernetes)
    - [Understanding NodeSelector](#understanding-nodeselector)
+   - [Labeling a Node](#labeling-a-node)
    - [Implementing NodeSelector in a Pod Spec](#implementing-nodeselector-in-a-pod-spec)
 4. [Practical Example: Creating a Pod with Nodename](#practical-example-creating-a-pod-with-nodename)
-   - [YAML File for Pod with Nodename](#yaml-file-for-pod-with-nodename)
+   - [YAML File Example for Nodename](#yaml-file-example-for-nodename)
    - [Applying the Pod Spec](#applying-the-pod-spec)
    - [Verifying the Pod Deployment](#verifying-the-pod-deployment)
-5. [Conclusion](#conclusion)
+5. [Practical Example: Creating a Pod with NodeSelector](#practical-example-creating-a-pod-with-nodeselector)
+   - [YAML File Example for Node with Labels](#yaml-file-example-for-node-with-labels)
+   - [YAML File Example for Pod with NodeSelector](#yaml-file-example-for-pod-with-nodeselector)
+   - [Applying the Configuration](#applying-the-configuration)
+   - [Verifying the Pod Deployment](#verifying-the-pod-deployment)
+6. [Conclusion](#conclusion)
 
 ---
 
@@ -64,6 +71,27 @@ In this example, replace `your-node-name` with the actual name of the node where
 
 `NodeSelector` is a mechanism in Kubernetes that allows you to constrain which nodes your Pod can be scheduled on based on node labels. Unlike `Nodename`, which directly targets a specific node, `NodeSelector` matches Pods to nodes that have specific labels, offering more flexibility.
 
+#### Labeling a Node
+
+Before you can use `NodeSelector`, you need to ensure that the nodes in your Kubernetes cluster are labeled appropriately. You can label a node using the following command:
+
+```bash
+kubectl label nodes your-node-name disktype=ssd
+```
+
+This command assigns the label `disktype=ssd` to the node named `your-node-name`. Below is an example YAML file that represents how a node might be labeled:
+
+```yaml
+apiVersion: v1
+kind: Node
+metadata:
+  name: your-node-name
+  labels:
+    disktype: ssd
+```
+
+In this example, the node is labeled with `disktype=ssd`, which will be used in the Pod specification to target this node.
+
 #### Implementing NodeSelector in a Pod Spec
 
 To use a `NodeSelector` in a Pod spec, you define a label in the node configuration and then specify a `nodeSelector` in your Pod spec. Here's an example:
@@ -89,7 +117,7 @@ In this example, the Pod will be scheduled on a node that has a label `disktype`
 
 ### Practical Example: Creating a Pod with Nodename
 
-#### YAML File for Pod with Nodename
+#### YAML File Example for Nodename
 
 Below is a YAML file example where we specify a `Nodename` for the Pod:
 
@@ -126,6 +154,68 @@ kubectl get pod my-pod -o wide
 ```
 
 This will display detailed information about the Pod, including the node it is running on.
+
+[Back to TOC](#table-of-contents)
+
+---
+
+### Practical Example: Creating a Pod with NodeSelector
+
+#### YAML File Example for Node with Labels
+
+To create a node with specific labels, you might label it manually or through a YAML file. Here’s an example YAML file that shows how the node might be labeled:
+
+```yaml
+apiVersion: v1
+kind: Node
+metadata:
+  name: your-node-name
+  labels:
+    disktype: ssd
+    environment: production
+```
+
+In this example, the node `your-node-name` is labeled with `disktype=ssd` and `environment=production`.
+
+#### YAML File Example for Pod with NodeSelector
+
+Here’s a YAML file where we specify a `NodeSelector` to ensure the Pod is scheduled on a node with the labels we defined:
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-pod
+spec:
+  nodeSelector:
+    disktype: ssd
+    environment: production
+  containers:
+  - name: my-container
+    image: nginx
+```
+
+Save this file as `pod-with-nodeselector.yaml`.
+
+#### Applying the Configuration
+
+To apply the configuration, use the following command:
+
+```bash
+kubectl apply -f pod-with-nodeselector.yaml
+```
+
+This command will create the Pod and ensure it is scheduled on a node that matches the specified labels.
+
+#### Verifying the Pod Deployment
+
+To verify that the Pod is deployed on the correct node with the matching labels, use:
+
+```bash
+kubectl get pods -o wide
+```
+
+This command will display the node on which the Pod is running, allowing you to confirm that the NodeSelector worked as intended.
 
 [Back to TOC](#table-of-contents)
 
