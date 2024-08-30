@@ -1,8 +1,4 @@
-Certainly! Here's the tutorial reorganized for better learning flow, with separate sections for managing taints and tolerations using commands and YAML files.
-
----
-
-### Tutorial on Using Taints and Tolerations in Kubernetes
+## Taints and Tolerations in Kubernetes
 
 ### Table of Contents
 1. [Introduction](#introduction)
@@ -55,7 +51,7 @@ A taint is applied to a Kubernetes node and prevents pods from being scheduled o
 
 #### Tolerations
 
-Tolerations allow pods to be scheduled on nodes with specific taints. A toleration in the pod’s specification must match the taint's key, value, and effect for the pod to be scheduled on the tainted node.
+Tolerations allow pods to be scheduled on nodes with specific taints. A toleration in the pod’s specification must match the taint's key, value, and effect for the pod to be scheduled on the tainted node. Having a toleration doesn't guarantee a pod will be scheduled on a node. It just has the permission to if it happens to be scheduled on that node.
 
 [Back to TOC](#table-of-contents)
 
