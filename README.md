@@ -139,6 +139,8 @@
 - [CPU vs Memory](docs/day8/cpu-vs-memory.md)
 - [OOM Kill - Out Of Memory Kill](docs/day8/oom-kill.md)
 - [QoS: Quality of Service](docs/day8/qos-quality-of-service.md)
+- [LimitRanges & Resource Quotas](docs/day8/limitranges-and-resourcequotas.md)
+- [Policies: API Objects, Admission Controllers, Validating Admission Policy, Dynamic Admission Controllers, Kubelet ](docs/day8/policies.md)
 
 </details>
 
