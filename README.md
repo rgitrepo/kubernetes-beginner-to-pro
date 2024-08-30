@@ -141,7 +141,7 @@
 - [QoS: Quality of Service](docs/day8/qos-quality-of-service.md)
 - [Policies: API Objects, Admission Controllers, Validating Admission Policy, Dynamic Admission Controllers, Kubelet ](docs/day8/policies.md)
 - [LimitRanges & Resource Quotas](docs/day8/limitranges-and-resourcequotas.md)
-- [Key Differences: Kyverno (Dynamic Admission Controller) vs. LimitRanges and ResourceQuotas (API Objects)](docs/day8/kyverno-vs-limitranges-and-resourcequotas.md)
+- [Kyverno vs. LimitRanges and ResourceQuotas](docs/day8/kyverno-vs-limitranges-and-resourcequotas.md)
 
 </details>
 
