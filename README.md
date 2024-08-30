@@ -143,6 +143,7 @@
 - [LimitRanges & Resource Quotas](docs/day8/limitranges-and-resourcequotas.md)
 - [Kyverno vs. LimitRanges and ResourceQuotas](docs/day8/kyverno-vs-limitranges-and-resourcequotas.md)
 - [Cost Optimization with OpenCost](docs/day8/cost-optimization-with-opencost.md)
+- [Taints & Tolerations](docs/day8/taints-and-tolerations.md)
 
 </details>
 
