@@ -30,7 +30,7 @@ OpenCost is a powerful tool that provides real-time visibility into the cost of 
 5. **Export to Prometheus:** Pricing data can be easily exported to Prometheus using the `/metrics` endpoint.
 
       <div style="text-align: center;">
-        <img src="../../pics/opencost-screenshot.png" alt="OpenCost" style="width: 500px; height: 500px;">
+        <img src="../../pics/opencost-screenshot.png" alt="OpenCost" style="width: 700px; height: 500px;">
       </div>
 
 [Back to TOC](#table-of-contents)
