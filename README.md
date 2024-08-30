@@ -146,6 +146,11 @@
 - [Taints & Tolerations](docs/day8/taints-and-tolerations.md)
 - [Nodename & NodeSelector](docs/day8/nodename-and-nodeselector.md)
 - [Pod Topology Spread Constraints](docs/day8/pod-topology-spread-constraints.md)
+- [Node Affinity and Pod Affinity/Anti-Affinity](docs/day8/node-affinity-and-pod-affinity-anti-affinity.md)
+
+
+
+
 
 </details>
 
