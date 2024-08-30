@@ -145,6 +145,7 @@
 - [Cost Optimization with OpenCost](docs/day8/cost-optimization-with-opencost.md)
 - [Taints & Tolerations](docs/day8/taints-and-tolerations.md)
 - [Nodename & NodeSelector](docs/day8/nodename-and-nodeselector.md)
+- [Pod Topology Spread Constraints](docs/day8/pod-topology-spread-constraints.md)
 
 </details>
 
