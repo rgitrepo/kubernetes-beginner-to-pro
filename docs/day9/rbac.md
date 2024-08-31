@@ -10,10 +10,11 @@
    - [Roles and ClusterRoles](#31-roles-and-clusterroles)
    - [RoleBindings and ClusterRoleBindings](#32-rolebindings-and-clusterrolebindings)
 4. [Creating and Applying Roles and Bindings](#4-creating-and-applying-roles-and-bindings)
-5. [Wildcard Usage in RBAC](#5-wildcard-usage-in-rbac)
-6. [Validating RBAC Configurations](#6-validating-rbac-configurations)
-7. [Best Practices for RBAC](#7-best-practices-for-rbac)
-8. [Troubleshooting and Common Errors](#8-troubleshooting-and-common-errors)
+5. [Permissions, Authorizations, and Authentications](#5-permissions-authorizations-and-authentications)
+6. [Wildcard Usage in RBAC](#6-wildcard-usage-in-rbac)
+7. [Validating RBAC Configurations](#7-validating-rbac-configurations)
+8. [Best Practices for RBAC](#8-best-practices-for-rbac)
+9. [Troubleshooting and Common Errors](#9-troubleshooting-and-common-errors)
 
 ---
 
@@ -33,37 +34,6 @@ Kubernetes supports several authorization modes, which determine how access is g
 - **AlwaysDeny**: Denies all requests, typically used for clusters that store sensitive information and need to ensure no unauthorized access.
 - **RBAC**: This mode allows the use of RBAC for fine-grained control over who can do what within the cluster.
 - **ABAC (Attribute-Based Access Control)**: This older method provides a more flexible but less structured approach than RBAC, where access is granted based on policies defined in a file.
-
-#### Example of Configuring Authorization Mode
-
-To configure the authorization mode in Kubernetes, you typically need to edit the API server configuration file located at `/etc/kubernetes/manifests/kube-apiserver.yaml`. This directory contains the key manifest files that define the Kubernetes control plane components, including `kube-apiserver`, `kube-controller-manager`, and `kube-scheduler`.
-
-**Important Notes**:
-- **Location**: The configuration files for the Kubernetes control plane are located in `/etc/kubernetes/manifests`.
-- **Impact of Changes**: Making changes to any files in this directory will automatically trigger a reboot of the respective control plane component. This is because these files are monitored by the `kubelet`, and any updates cause the component to restart, applying the new configuration.
-- **systemd Involvement**: These control plane components are managed as static pods by the `kubelet`. However, the underlying processes and services are also managed by `systemd`, which is responsible for starting the `kubelet` and ensuring it runs continuously. Any changes to the control plane files trigger actions managed by both the `kubelet` and `systemd`.
-
-The relevant section of the `kube-apiserver.yaml` file might look like this:
-
-```yaml
-- --authorization-mode=Node,RBAC
-```
-
-In this example, `Node` and `RBAC` modes are enabled. The API server checks authorization using these modes in left-to-right order.
-
-**Explanation of `authorization-mode=Node,RBAC`:**
-
-- **Node**: This mode is used to authorize kubelets. It ensures that each node in the cluster has access only to the API resources necessary to manage its own workloads and nothing more.
-- **RBAC**: Role-Based Access Control mode allows defining granular access controls for users and service accounts.
-
-**Significance of Left-to-Right Evaluation**:
-
-- The modes are evaluated in the order they are listed, from left to right. This means that when a request comes to the API server, it first checks the `Node` authorization mode. If the request is authorized by this mode, the API server does not evaluate the subsequent modes.
-- If `Node` authorization does not allow the request, the server then checks `RBAC` to see if the request can be authorized. Other modes such as AlwaysDeny, or ABAC can be added to the authorization-mode separated by commas.
-
-**Tweaking to Read Right-to-Left**:
-
-- By default, Kubernetes processes the authorization modes from left to right, but with some custom configurations or by modifying the order in the `kube-apiserver.yaml`, it could potentially prioritize modes differently. However, this is not typical and should be approached with caution as it may lead to unexpected behavior.
 
 [Back to TOC](#table-of-contents)
 
@@ -164,9 +134,7 @@ roleRef:
 
 ##### Example ClusterRoleBinding YAML
 
-Here’s an example of a `ClusterRoleBinding` that binds the `ClusterRole` from the previous example to a user across the
-
- cluster:
+Here’s an example of a `ClusterRoleBinding` that binds the `ClusterRole` from the previous example to a user across the cluster:
 
 ```yaml
 apiVersion: rbac.authorization.k8s.io/v1
@@ -238,7 +206,9 @@ kubectl get clusterrolebindings
 
 **Expected Output**:
 
-```bash
+```
+
+bash
 NAME                    AGE
 cluster-pod-reader      2m
 ...
@@ -282,7 +252,100 @@ These commands list all `Roles` and `RoleBindings` within the specified namespac
 
 ---
 
-### 5. [Wildcard Usage in RBAC](#wildcard-usage-in-rbac)
+### 5. [Permissions, Authorizations, and Authentications](#permissions-authorizations-and-authentications)
+
+After applying the various bindings (`RoleBindings` and `ClusterRoleBindings`) described in this tutorial, specific permissions are granted to the users or service accounts specified in those bindings. Here’s what kind of permissions or authorizations become available and to whom:
+
+#### 5.1. RoleBinding: Binding a Role within a Namespace
+
+##### Example:
+```yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: read-pods
+  namespace: my-namespace
+subjects:
+- kind: User
+  name: jane
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: Role
+  name: pod-reader
+  apiGroup: rbac.authorization.k8s.io
+```
+
+**Permissions Granted:**
+
+- **User:** `jane`
+- **Permissions:** `get`, `watch`, `list` actions on all `pods`
+- **Scope:** Only within the `my-namespace` namespace
+
+**Explanation:** The `RoleBinding` grants user `jane` the ability to read (`get`, `watch`, `list`) all pods within the `my-namespace` namespace. This means `jane` can view and monitor pods in that namespace but cannot create, delete, or modify them.
+
+#### 5.2. ClusterRoleBinding: Binding a ClusterRole across the Cluster
+
+##### Example:
+```yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: read-pods-cluster-wide
+subjects:
+- kind: User
+  name: john
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: ClusterRole
+  name: cluster-pod-reader
+  apiGroup: rbac.authorization.k8s.io
+```
+
+**Permissions Granted:**
+
+- **User:** `john`
+- **Permissions:** `get`, `watch`, `list` actions on all `pods`
+- **Scope:** Across the entire Kubernetes cluster
+
+**Explanation:** The `ClusterRoleBinding` grants user `john` the ability to read (`get`, `watch`, `list`) all pods across the entire cluster. This means `john` can view and monitor pods in any namespace within the cluster, but again, cannot create, delete, or modify them.
+
+#### 5.3. ClusterRoleBinding: Binding a Namespace-Specific Role across the Cluster
+
+##### Example:
+```yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: read-pods-namespace-wide
+subjects:
+- kind: User
+  name: alice
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: Role
+  name: pod-reader
+  namespace: my-namespace
+  apiGroup: rbac.authorization.k8s.io
+```
+
+**Permissions Granted:**
+
+- **User:** `alice`
+- **Permissions:** `get`, `watch`, `list` actions on all `pods`
+- **Scope:** Across the entire cluster, but using the `Role` defined in `my-namespace`
+
+**Explanation:** This `ClusterRoleBinding` grants user `alice` the ability to read (`get`, `watch`, `list`) all pods across the entire cluster, but using the permissions defined in the `pod-reader` Role, which was originally scoped to `my-namespace`. Despite the Role being defined in a specific namespace, the `ClusterRoleBinding` elevates the scope of these permissions to the entire cluster.
+
+#### 5.4. Authentication and Authorization in Kubernetes
+
+- **Authentication:** Kubernetes assumes that the users (`jane`, `john`, `alice`) have been authenticated (i.e., their identity has been verified). This process typically involves using certificates, tokens, or other mechanisms.
+- **Authorization:** Once authenticated, Kubernetes checks what the user is authorized to do based on the RBAC policies (Roles, RoleBindings, ClusterRoles, ClusterRoleBindings) defined for them.
+
+[Back to TOC](#table-of-contents)
+
+---
+
+### 6. [Wildcard Usage in RBAC](#wildcard-usage-in-rbac)
 
 Wildcards can be used in RBAC to grant permissions broadly:
 
@@ -307,7 +370,7 @@ rules:
 
 ---
 
-### 6. [Validating RBAC Configurations](#validating-rbac-configurations)
+### 7. [Validating RBAC Configurations](#validating-rbac-configurations)
 
 To validate whether a specific action is allowed under a given role, Kubernetes provides the `kubectl auth can-i` command.
 
@@ -323,7 +386,7 @@ This command checks whether the user `jane` can create pods in the `my-namespace
 
 ---
 
-### 7. [Best Practices for RBAC](#best-practices-for-rbac)
+### 8. [Best Practices for RBAC](#best-practices-for-rbac)
 
 - **Least Privilege**: Always assign the least privilege necessary. Use RoleBindings rather than ClusterRoleBindings where possible to limit the scope.
 - **Namespace Isolation**: Use namespaces to isolate resources and permissions.
@@ -333,7 +396,7 @@ This command checks whether the user `jane` can create pods in the `my-namespace
 
 ---
 
-### 8. [Troubleshooting and Common Errors](#troubleshooting-and-common-errors)
+### 9. [Troubleshooting and Common Errors](#troubleshooting-and-common-errors)
 
 - **401 Unauthorized**: This error indicates that the user is not authenticated.
 - **403 Forbidden**: This indicates that the user is authenticated but does not have permission to perform the action.
