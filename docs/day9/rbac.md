@@ -1,6 +1,3 @@
-Sure! Here's the updated tutorial with additional YAML examples and explanations for `ClusterRoles` and `ClusterRoleBindings`, including their outputs.
-
----
 
 ## Kubernetes Role-Based Access Control (RBAC) Tutorial
 
