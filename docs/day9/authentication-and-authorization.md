@@ -39,7 +39,7 @@ In Kubernetes, Authentication (AuthN) and Authorization (AuthZ) are crucial mech
 
 #### What is Authorization (AuthZ)?
 
-**Authorization** (often abbreviated as AuthZ) is the process of determining whether a user or service has the right to perform a specific action within the system. After authentication, Kubernetes checks whether the authenticated entity is authorized to perform the requested operation.
+**Authorization** (often abbreviated as AuthZ) is the process of determining whether a user or service has the right to perform a specific action within the system. After authentication, Kubernetes checks whether the authenticated entity is authorized to perform the requested operation. Users are given access to API endpoints if authrorization is successful.
 
 **Example**: After verifying your identity, the bank checks whether you have the right to access your account or perform certain transactions. In Kubernetes, authorization checks whether you have the necessary permissions to perform actions like creating a Pod or accessing a resource.
 
