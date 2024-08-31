@@ -7,16 +7,16 @@ Here's the complete tutorial with proper links for the Table of Contents (TOC) i
 **Objective**: This tutorial aims to provide a comprehensive understanding of Role-Based Access Control (RBAC) in Kubernetes, including its configuration, use cases, and practical examples. By the end of this tutorial, you should be able to configure and manage RBAC for your Kubernetes clusters effectively.
 
 ### Table of Contents
-1. [Introduction to RBAC](#introduction-to-rbac)
-2. [Authorization Modes in Kubernetes](#authorization-modes-in-kubernetes)
-3. [Core Components of RBAC](#core-components-of-rbac)
+1. [Introduction to RBAC](#1-introduction-to-rbac)
+2. [Authorization Modes in Kubernetes](#2-authorization-modes-in-kubernetes)
+3. [Core Components of RBAC](#3-core-components-of-rbac)
    - [Roles and ClusterRoles](#roles-and-clusterroles)
    - [RoleBindings and ClusterRoleBindings](#rolebindings-and-clusterrolebindings)
-4. [Creating and Applying Roles and Bindings](#creating-and-applying-roles-and-bindings)
-5. [Wildcard Usage in RBAC](#wildcard-usage-in-rbac)
-6. [Validating RBAC Configurations](#validating-rbac-configurations)
-7. [Best Practices for RBAC](#best-practices-for-rbac)
-8. [Troubleshooting and Common Errors](#troubleshooting-and-common-errors)
+4. [Creating and Applying Roles and Bindings](#4-creating-and-applying-roles-and-bindings)
+5. [Wildcard Usage in RBAC](#5-wildcard-usage-in-rbac)
+6. [Validating RBAC Configurations](#6-validating-rbac-configurations)
+7. [Best Practices for RBAC](#7-best-practices-for-rbac)
+8. [Troubleshooting and Common Errors](#8-troubleshooting-and-common-errors)
 
 ---
 
@@ -28,7 +28,7 @@ Here's the complete tutorial with proper links for the Table of Contents (TOC) i
 
 ---
 
-### 2. [Authorization Modes in Kubernetes](#2-authorization-modes-in-kubernetes)
+### 2. [Authorization Modes in Kubernetes](#authorization-modes-in-kubernetes)
 
 Kubernetes supports several authorization modes, which determine how access is granted within the cluster:
 
