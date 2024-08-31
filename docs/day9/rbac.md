@@ -58,23 +58,13 @@ In this example, `Node` and `RBAC` modes are enabled. The API server checks auth
 **Significance of Left-to-Right Evaluation**:
 
 - The modes are evaluated in the order they are listed, from left to right. This means that when a request comes to the API server, it first checks the `Node` authorization mode. If the request is authorized by this mode, the API server does not evaluate the subsequent modes.
-- If `Node` authorization does not allow the request, the server then checks `RBAC` to see if the request can be authorized. 
+- If `Node` authorization does not allow the request, the server then checks `RBAC` to see if the request can be authorized. Other modes such as AlwaysDeny, or ABAC can be added to the authorization-mode separated by commas.
 
 **Tweaking to Read Right-to-Left**:
 
 - By default, Kubernetes processes the authorization modes from left to right, but with some custom configurations or by modifying the order in the `kube-apiserver.yaml`, it could potentially prioritize modes differently. However, this is not typical and should be approached with caution as it may lead to unexpected behavior.
 
-For instance, if you wanted to prioritize RBAC before Node, you would configure it as:
 
-```yaml
-- --authorization-mode=RBAC,Node
-```
-
-In this case, the RBAC rules would be checked first before the Node mode, which may have implications depending on how you manage permissions within your cluster.
-
-[Back to TOC](#table-of-contents)
-
----
 
 ### 3. [Core Components of RBAC](#core-components-of-rbac)
 
