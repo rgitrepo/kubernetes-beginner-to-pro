@@ -154,6 +154,7 @@
 <summary>Day 9: Data Storage & User Management in Kubernetes, RBAC, Volumes, Storage Classes</summary>
 
 - [Authentication and Authorization (AuthN & AuthZ)](docs/day9/authentication-and-authorization.md)
+- [Kube Config File](docs/day9/kubeconfig-file.md)
 
 
 </details>
