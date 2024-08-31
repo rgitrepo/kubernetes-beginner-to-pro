@@ -155,7 +155,8 @@
 
 - [Authentication and Authorization (AuthN & AuthZ)](docs/day9/authentication-and-authorization.md)
 - [Kube Config File](docs/day9/kubeconfig-file.md)
-- [Cluster Questions & Answers](docs/day9/cluster-questions-and-answers.md)
+- [Questions & Answers - Cluster](docs/day9/cluster-questions-and-answers.md)
+- [RBAC](docs/day9/rbac.md)
 
 
 </details>
