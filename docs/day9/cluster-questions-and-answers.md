@@ -1,18 +1,19 @@
+Here is the recreated document with working links:
 
 ### Interview Questions - Table of Contents
 
-1. [What are the differences between Authentication (AuthN) and Authorization (AuthZ)?](#question-1)
-2. [Which Kubernetes component is responsible for both authentication and authorization?](#question-2)
-3. [What is the purpose of the `kubeconfig` file?](#question-3)
-4. [Where is the `kubeconfig` file typically located?](#question-4)
-5. [What are the key components of a `kubeconfig` file?](#question-5)
-6. [How can you switch between different contexts in Kubernetes?](#question-6)
-7. [What happens if you create a service account or user account without defining any permissions?](#question-7)
-8. [How can authorization be performed in Kubernetes?](#question-8)
-9. [What should you check first when troubleshooting authorization issues in Kubernetes?](#question-9)
-10. [What are the potential issues of running multiple workloads in a single cluster?](#question-10)
-11. [Why is it important to define namespaces or contexts in large organizations?](#question-11)
-12. [If we have namespaces to deal with the Noisy Neighbor problem, why do we need contexts?](#question-12)
+1. [What are the differences between Authentication (AuthN) and Authorization (AuthZ)?](#1-what-are-the-differences-between-authentication-authn-and-authorization-authz)
+2. [Which Kubernetes component is responsible for both authentication and authorization?](#2-which-kubernetes-component-is-responsible-for-both-authentication-and-authorization)
+3. [What is the purpose of the `kubeconfig` file?](#3-what-is-the-purpose-of-the-kubeconfig-file)
+4. [Where is the `kubeconfig` file typically located?](#4-where-is-the-kubeconfig-file-typically-located)
+5. [What are the key components of a `kubeconfig` file?](#5-what-are-the-key-components-of-a-kubeconfig-file)
+6. [How can you switch between different contexts in Kubernetes?](#6-how-can-you-switch-between-different-contexts-in-kubernetes)
+7. [What happens if you create a service account or user account without defining any permissions?](#7-what-happens-if-you-create-a-service-account-or-user-account-without-defining-any-permissions)
+8. [How can authorization be performed in Kubernetes?](#8-how-can-authorization-be-performed-in-kubernetes)
+9. [What should you check first when troubleshooting authorization issues in Kubernetes?](#9-what-should-you-check-first-when-troubleshooting-authorization-issues-in-kubernetes)
+10. [What are the potential issues of running multiple workloads in a single cluster?](#10-what-are-the-potential-issues-of-running-multiple-workloads-in-a-single-cluster)
+11. [Why is it important to define namespaces or contexts in large organizations?](#11-why-is-it-important-to-define-namespaces-or-contexts-in-large-organizations)
+12. [If we have namespaces to deal with the Noisy Neighbor problem, why do we need contexts?](#12-if-we-have-namespaces-to-deal-with-the-noisy-neighbor-problem-why-do-we-need-contexts)
 
 ---
 
@@ -89,3 +90,4 @@
   - **Namespaces** help isolate resources within a cluster, ensuring that workloads don't interfere with each other by providing logical boundaries. However, **contexts** go a step further by linking specific users, clusters, and namespaces together, allowing for easier management across different environments and teams. Contexts are especially useful in large organizations where multiple clusters are used for different purposes (e.g., development, staging, production). They allow users to switch between different environments (contexts) seamlessly without manually configuring their `kubeconfig` file each time. This ensures that a team working on a particular cluster or namespace can focus on their work without affecting other teams, even if they are working within the same Kubernetes ecosystem.
 - [Back to TOC](#interview-questions---table-of-contents)
 
+This document now has working links in the Table of Contents that will navigate to each corresponding question.
