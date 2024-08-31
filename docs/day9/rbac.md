@@ -1,3 +1,6 @@
+Here is the complete revised Kubernetes Role-Based Access Control (RBAC) Tutorial with the added information about the `kubectl api-resources` command and how to sort the output alphabetically:
+
+---
 
 ## Kubernetes Role-Based Access Control (RBAC) Tutorial
 
@@ -17,7 +20,7 @@
 
 ---
 
-### 1. [Introduction to RBAC](#introduction-to-rbac)
+### 1. [Introduction to RBAC](#1-introduction-to-rbac)
 
 **RBAC** (Role-Based Access Control) in Kubernetes is a method for controlling access to the Kubernetes API based on the roles assigned to users or service accounts. Each role consists of rules that define the permissible actions on resources within the cluster.
 
@@ -25,7 +28,7 @@
 
 ---
 
-### 2. [Authorization Modes in Kubernetes](#authorization-modes-in-kubernetes)
+### 2. [Authorization Modes in Kubernetes](#2-authorization-modes-in-kubernetes)
 
 Kubernetes supports several authorization modes, which determine how access is granted within the cluster:
 
@@ -69,26 +72,24 @@ In this example, `Node` and `RBAC` modes are enabled. The API server checks auth
 
 ---
 
-### 3. [Core Components of RBAC](#core-components-of-rbac)
+### 3. [Core Components of RBAC](#3-core-components-of-rbac)
 
 RBAC in Kubernetes revolves around four main components:
 
-#### 3.1. [Roles and ClusterRoles](#roles-and-clusterroles)
+#### 3.1. [Roles and ClusterRoles](#31-roles-and-clusterroles)
 
 - **Roles**: Define permissions within a specific **namespace**.
 - **ClusterRoles**: Define permissions **cluster-wide**.
 
-#### 3.2. [RoleBindings and ClusterRoleBindings](#rolebindings-and-clusterrolebindings)
+#### 3.2. [RoleBindings and ClusterRoleBindings](#32-rolebindings-and-clusterrolebindings)
 
 - **RoleBindings**: Grant the permissions defined in a Role to a user or service account within a **namespace**. Note that `RoleBinding` can only be used with a `Role`, and it does not work with a `ClusterRole`.
 
 - **ClusterRoleBindings**: Grant the permissions defined in a `ClusterRole` to a user or service account across the **entire cluster**. Unlike `RoleBinding`, `ClusterRoleBinding` is versatile and can bind either a `ClusterRole` or a `Role` (effectively elevating the `Role`'s permissions to cluster-wide scope).
 
-
    <div style="text-align: center;">
      <img src="../../pics/clusterrole-and-role-bindings.png" alt="ClusterRole & Role Bindings" style="width: 500px; height:300px;">
    </div>
-
 
 ##### Example Role YAML
 
@@ -126,11 +127,50 @@ roleRef:
 
 The above `RoleBinding` grants the `pod-reader` role to a user named `jane` in the `my-namespace` namespace.
 
-[Back to TOC](#table-of-contents)
+### Using `kubectl api-resources` Command
+
+To explore and understand the resources available in your Kubernetes cluster, including those related to RBAC, you can use the `kubectl api-resources` command.
+
+```bash
+kubectl api-resources
+```
+
+This command lists all available resources in the cluster, showing details such as the resource name, API group, whether it is namespaced, and its kind. Below is a sample output specifically highlighting some RBAC-related resources and nodes:
+
+```plaintext
+NAME                     SHORTNAMES   APIGROUP                       NAMESPACED   KIND
+roles                                 rbac.authorization.k8s.io      true         Role
+rolebindings                          rbac.authorization.k8s.io      true         RoleBinding
+clusterroles                          rbac.authorization.k8s.io      false        ClusterRole
+clusterrolebindings                   rbac.authorization.k8s.io      false        ClusterRoleBinding
+nodes                    no           <none>                         false        Node
+```
+
+**Explanation of the Output**:
+
+- **roles**: This resource represents Roles, which are namespaced resources defined by the `rbac.authorization.k8s.io` API group.
+- **rolebindings**: These are namespaced RoleBindings, which associate roles with users or service accounts.
+- **clusterroles**: These are cluster-wide roles defined by the `rbac.authorization.k8s.io` API group.
+- **clusterrolebindings**: These bind cluster-wide roles to users or service accounts across the entire cluster.
+- **nodes**: Nodes represent the physical or virtual machines in the Kubernetes cluster.
+
+### Sorting the Output Alphabetically
+
+You can sort the output of `kubectl api-resources` in alphabetical order using the `--sort-by` flag. Here’s how you can do it:
+
+```bash
+kubectl api-resources --sort-by=name
+```
+
+This command will list the resources alphabetically by their names, making it easier to find specific resources.
+
+[Back to TOC](#table-of-
+
+contents)
 
 ---
 
-### 4. [Creating and Applying Roles and Bindings](#creating-and-applying-roles-and-bindings)
+### 4. [Creating and Applying Roles and Bindings](#4-creating-and-applying-roles-and-bindings)
 
 Roles and bindings can be created and applied using `kubectl` commands or by applying YAML manifests. Here is how you can create a role and bind it:
 
@@ -150,7 +190,7 @@ kubectl get rolebindings -n my-namespace
 
 ---
 
-### 5. [Wildcard Usage in RBAC](#wildcard-usage-in-rbac)
+### 5. [Wildcard Usage in RBAC](#5-wildcard-usage-in-rbac)
 
 Wildcards can be used in RBAC to grant permissions broadly:
 
@@ -175,7 +215,7 @@ rules:
 
 ---
 
-### 6. [Validating RBAC Configurations](#validating-rbac-configurations)
+### 6. [Validating RBAC Configurations](#6-validating-rbac-configurations)
 
 To validate whether a specific action is allowed under a given role, Kubernetes provides the `kubectl auth can-i` command.
 
@@ -191,19 +231,17 @@ This command checks whether the user `jane` can create pods in the `my-namespace
 
 ---
 
-### 7. [Best Practices for RBAC](#best-practices-for-rbac)
+### 7. [Best Practices for RBAC](#7-best-practices-for-rbac)
 
 - **Least Privilege**: Always assign the least privilege necessary. Use RoleBindings rather than ClusterRoleBindings where possible to limit the scope.
 - **Namespace Isolation**: Use namespaces to isolate resources and permissions.
-- **RoleBinding Over ClusterRoleBinding**: Prefer RoleBindings to
-
- limit permissions to a specific namespace rather than across the entire cluster.
+- **RoleBinding Over ClusterRoleBinding**: Prefer RoleBindings to limit permissions to a specific namespace rather than across the entire cluster.
 
 [Back to TOC](#table-of-contents)
 
 ---
 
-### 8. [Troubleshooting and Common Errors](#troubleshooting-and-common-errors)
+### 8. [Troubleshooting and Common Errors](#8-troubleshooting-and-common-errors)
 
 - **401 Unauthorized**: This error indicates that the user is not authenticated.
 - **403 Forbidden**: This indicates that the user is authenticated but does not have permission to perform the action.
