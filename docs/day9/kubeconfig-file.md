@@ -141,6 +141,12 @@ In larger organizations, each team might have its own cluster or context within 
 
    This command sets a new context in the `kubeconfig` file.
 
+3. **Check the Current Context**:
+   ```bash
+   kubectl config current-context
+   ```
+   This command shows the currently active context that `kubectl` is using.
+
 #### Switching Between Contexts
 
 1. **List Available Contexts**:
