@@ -151,7 +151,7 @@
 </details>
 
 <details>
-<summary>Day 8: Tweaking the Kubernetes Scheduling Algo, Taints-Tolerations, Affinity, QOS, OpenCost</summary>
+<summary>Day 9: Data Storage & User Management in Kubernetes, RBAC, Volumes, Storage Classes</summary>
 
 - [Authentication and Authorization (AuthN & AuthZ)](docs/day9/authentication-and-authorization.md)
 
