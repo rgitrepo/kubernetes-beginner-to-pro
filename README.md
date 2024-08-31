@@ -148,13 +148,18 @@
 - [Pod Topology Spread Constraints](docs/day8/pod-topology-spread-constraints.md)
 - [Node Affinity and Pod Affinity/Anti-Affinity](docs/day8/node-affinity-and-pod-affinity-anti-affinity.md)
 
+</details>
 
+<details>
+<summary>Day 8: Tweaking the Kubernetes Scheduling Algo, Taints-Tolerations, Affinity, QOS, OpenCost</summary>
 
+- [Authentication and Authorization (AuthN & AuthZ)](docs/day9/authentication-and-authorization.md)
 
 
 </details>
 
 
+authentication-and-authorization.md
 
 
 
