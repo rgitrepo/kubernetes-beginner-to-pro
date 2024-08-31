@@ -1,4 +1,4 @@
-Certainly! Here's the updated tutorial with links for the Table of Contents (TOC) and links at the end of each section to return to the TOC.
+Here's the complete tutorial with proper links for the Table of Contents (TOC) items and links at the end of each section to return to the TOC.
 
 ---
 
@@ -47,6 +47,28 @@ To configure the authorization mode in Kubernetes, you typically need to edit th
 
 In this example, `Node` and `RBAC` modes are enabled. The API server checks authorization using these modes in left-to-right order.
 
+**Explanation of `authorization-mode=Node,RBAC`:**
+
+- **Node**: This mode is used to authorize kubelets. It ensures that each node in the cluster has access only to the API resources necessary to manage its own workloads and nothing more.
+- **RBAC**: Role-Based Access Control mode allows defining granular access controls for users and service accounts.
+
+**Significance of Left-to-Right Evaluation**:
+
+- The modes are evaluated in the order they are listed, from left to right. This means that when a request comes to the API server, it first checks the `Node` authorization mode. If the request is authorized by this mode, the API server does not evaluate the subsequent modes.
+- If `Node` authorization does not allow the request, the server then checks `RBAC` to see if the request can be authorized. 
+
+**Tweaking to Read Right-to-Left**:
+
+- By default, Kubernetes processes the authorization modes from left to right, but with some custom configurations or by modifying the order in the `kube-apiserver.yaml`, it could potentially prioritize modes differently. However, this is not typical and should be approached with caution as it may lead to unexpected behavior.
+
+For instance, if you wanted to prioritize RBAC before Node, you would configure it as:
+
+```yaml
+- --authorization-mode=RBAC,Node
+```
+
+In this case, the RBAC rules would be checked first before the Node mode, which may have implications depending on how you manage permissions within your cluster.
+
 [Back to TOC](#table-of-contents)
 
 ---
@@ -79,6 +101,8 @@ rules:
   verbs: ["get", "watch", "list"]
 ```
 
+In this example, the `Role` named `pod-reader` is defined to allow the `get`, `watch`, and `list` actions on `pods` within the `my-namespace`.
+
 ##### Example RoleBinding YAML
 
 ```yaml
@@ -96,6 +120,8 @@ roleRef:
   name: pod-reader
   apiGroup: rbac.authorization.k8s.io
 ```
+
+The above `RoleBinding` grants the `pod-reader` role to a user named `jane` in the `my-namespace` namespace.
 
 [Back to TOC](#table-of-contents)
 
@@ -188,3 +214,6 @@ This command will show you the details of the RoleBinding, helping to identify a
 
 [Back to TOC](#table-of-contents)
 
+---
+
+This detailed tutorial should provide a thorough understanding of how to configure and manage RBAC in Kubernetes, enabling you to control access effectively and securely within your clusters.
