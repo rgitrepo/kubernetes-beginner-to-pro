@@ -1,8 +1,4 @@
-Here's the complete tutorial with proper links for the Table of Contents (TOC) items and links at the end of each section to return to the TOC.
-
----
-
-### Kubernetes Role-Based Access Control (RBAC) Tutorial
+## Kubernetes Role-Based Access Control (RBAC) Tutorial
 
 **Objective**: This tutorial aims to provide a comprehensive understanding of Role-Based Access Control (RBAC) in Kubernetes, including its configuration, use cases, and practical examples. By the end of this tutorial, you should be able to configure and manage RBAC for your Kubernetes clusters effectively.
 
