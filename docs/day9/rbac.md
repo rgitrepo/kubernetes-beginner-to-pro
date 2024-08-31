@@ -86,7 +86,7 @@ RBAC in Kubernetes revolves around four main components:
 
 
 <div style="text-align: center;">
-  <img src="../../pics/clusterrole-and-role-bindings.png" alt="ClusterRole & Role Bindings" style="width: 600px; height: 400px;">
+  <img src="../../pics/clusterrole-and-role-bindings.png" alt="ClusterRole & Role Bindings" style="width: 500px; height:300px;">
 </div>
 
 
