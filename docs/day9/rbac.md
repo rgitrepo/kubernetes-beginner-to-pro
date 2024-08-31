@@ -72,13 +72,13 @@ RBAC in Kubernetes revolves around four main components:
 
 #### 3.1. [Roles and ClusterRoles](#roles-and-clusterroles)
 
-- **Roles**: Define permissions within a specific namespace.
-- **ClusterRoles**: Define permissions cluster-wide.
+- **Roles**: Define permissions within a specific **namespace**.
+- **ClusterRoles**: Define permissions **cluster-wide**.
 
 #### 3.2. [RoleBindings and ClusterRoleBindings](#rolebindings-and-clusterrolebindings)
 
-- **RoleBindings**: Grant the permissions defined in a Role to a user or service account within a namespace.
-- **ClusterRoleBindings**: Grant the permissions defined in a ClusterRole to a user or service account across the entire cluster.
+- **RoleBindings**: Grant the permissions defined in a Role to a user or service account within a **namespace**.
+- **ClusterRoleBindings**: Grant the permissions defined in a ClusterRole to a user or service account across the **entire cluster**.
 
 ##### Example Role YAML
 
