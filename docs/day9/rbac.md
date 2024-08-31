@@ -73,6 +73,10 @@ In this example, `Node` and `RBAC` modes are enabled. The API server checks auth
 
 RBAC in Kubernetes revolves around four main components:
 
+   <div style="text-align: center;">
+     <img src="../../pics/container-pod-node-cluster.png" alt="Kubernetes Architecture" style="width: 500px; height: 300px;">
+   </div>
+
 #### 3.1. [Roles and ClusterRoles](#roles-and-clusterroles)
 
 - **Roles**: Define permissions within a specific **namespace**.
