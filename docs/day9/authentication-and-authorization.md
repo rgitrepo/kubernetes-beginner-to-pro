@@ -11,6 +11,7 @@
    - [Client-Side and Server-Side Authentication](#client-side-and-server-side-authentication)
    - [Authentication Flow](#authentication-flow)
 5. [How Authorization Works in Kubernetes](#how-authorization-works-in-kubernetes)
+   - [Ways to Perform Authorization](#ways-to-perform-authorization)
    - [Role-Based Access Control (RBAC)](#role-based-access-control-rbac)
    - [Authorization Flow](#authorization-flow)
 6. [Practical Examples](#practical-examples)
@@ -79,6 +80,20 @@ Authentication in Kubernetes can occur both on the client-side and server-side.
 ---
 
 ### How Authorization Works in Kubernetes
+
+#### Ways to Perform Authorization
+
+Kubernetes provides several methods for performing authorization, allowing flexibility in how access control is implemented:
+
+1. **Webhook Authorization**: A dynamic authorization method where the API Server sends the authorization request to an external webhook server. The webhook server processes the request and returns whether the action is allowed or denied.
+
+2. **Static Token File**: Uses a pre-defined file containing tokens and associated usernames. This method is simple but less flexible, as it requires manual updates to the token file whenever a change is needed.
+
+3. **X.509 Certificates**: A common and secure method where users and services authenticate using X.509 client certificates. The certificates are validated by the API Server using a configured certificate authority (CA).
+
+4. **OpenID Connect (OIDC)**: An identity layer on top of the OAuth 2.0 protocol, OIDC allows users to authenticate using external identity providers like Google, Microsoft, or other OAuth 2.0 compatible providers. This is common in large organizations that have centralized identity management.
+
+5. **Custom Authorization**: For more specific use cases, Kubernetes allows for custom authorization modules. These are typically rare and used in environments with unique security requirements.
 
 #### Role-Based Access Control (RBAC)
 
@@ -153,8 +168,8 @@ roleRef:
 
 ### Conclusion
 
-Authentication and Authorization (AuthN & AuthZ) are vital components of Kubernetes security, ensuring that only authenticated users can access your cluster and that they can only perform actions they are authorized for. Understanding how these processes work and how to implement them using RBAC is essential for managing a secure Kubernetes environment.
+Authentication and Authorization (AuthN & AuthZ) are vital components of Kubernetes security, ensuring that only authenticated users can access your cluster and that they can only perform actions they are authorized for. Understanding how these processes work and how to implement them using RBAC and other methods is essential for managing a secure Kubernetes environment.
 
-This tutorial provided an overview of AuthN and AuthZ, how they are handled in Kubernetes, and practical examples of implementing RBAC.
+This tutorial provided an overview of AuthN and AuthZ, different authorization methods, how they are handled in Kubernetes, and practical examples of implementing RBAC.
 
 [Back to TOC](#table-of-contents)
