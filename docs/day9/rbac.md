@@ -1,5 +1,5 @@
 
-## Kubernetes Role-Based Access Control (RBAC) Tutorial
+## Role-Based Access Control (RBAC)
 
 **Objective**: This tutorial aims to provide a comprehensive understanding of Role-Based Access Control (RBAC) in Kubernetes, including its configuration, use cases, and practical examples. By the end of this tutorial, you should be able to configure and manage RBAC for your Kubernetes clusters effectively.
 
@@ -8,9 +8,19 @@
 2. [Authorization Modes in Kubernetes](#2-authorization-modes-in-kubernetes)
 3. [Core Components of RBAC](#3-core-components-of-rbac)
    - [Roles and ClusterRoles](#31-roles-and-clusterroles)
+     - [Example Role YAML](#example-role-yaml)
+     - [Example ClusterRole YAML](#example-clusterrole-yaml)
    - [RoleBindings and ClusterRoleBindings](#32-rolebindings-and-clusterrolebindings)
+     - [Example RoleBinding YAML](#example-rolebinding-yaml)
+     - [Example ClusterRoleBinding YAML](#example-clusterrolebinding-yaml)
+     - [Example of Binding a Role with ClusterRoleBinding](#example-of-binding-a-role-with-clusterrolebinding)
 4. [Creating and Applying Roles and Bindings](#4-creating-and-applying-roles-and-bindings)
 5. [Permissions, Authorizations, and Authentications](#5-permissions-authorizations-and-authentications)
+   - [RoleBinding: Binding a Role within a Namespace](#51-rolebinding-binding-a-role-within-a-namespace)
+   - [ClusterRoleBinding: Binding a ClusterRole across the Cluster](#52-clusterrolebinding-binding-a-clusterrole-across-the-cluster)
+   - [RoleBinding: Binding a Role to a Service Account within a Namespace](#53-rolebinding-binding-a-role-to-a-service-account-within-a-namespace)
+   - [ClusterRoleBinding: Binding a Namespace-Specific Role across the Cluster](#54-clusterrolebinding-binding-a-namespace-specific-role-across-the-cluster)
+   - [Authentication and Authorization in Kubernetes](#55-authentication-and-authorization-in-kubernetes)
 6. [Wildcard Usage in RBAC](#6-wildcard-usage-in-rbac)
 7. [Validating RBAC Configurations](#7-validating-rbac-configurations)
 8. [Best Practices for RBAC](#8-best-practices-for-rbac)
@@ -18,7 +28,7 @@
 
 ---
 
-### 1. [Introduction to RBAC](#introduction-to-rbac)
+### 1. [Introduction to RBAC](#1-introduction-to-rbac)
 
 **RBAC** (Role-Based Access Control) in Kubernetes is a method for controlling access to the Kubernetes API based on the roles assigned to users or service accounts. Each role consists of rules that define the permissible actions on resources within the cluster.
 
@@ -26,7 +36,7 @@
 
 ---
 
-### 2. [Authorization Modes in Kubernetes](#authorization-modes-in-kubernetes)
+### 2. [Authorization Modes in Kubernetes](#2-authorization-modes-in-kubernetes)
 
 Kubernetes supports several authorization modes, which determine how access is granted within the cluster:
 
@@ -39,7 +49,7 @@ Kubernetes supports several authorization modes, which determine how access is g
 
 ---
 
-### 3. [Core Components of RBAC](#core-components-of-rbac)
+### 3. [Core Components of RBAC](#3-core-components-of-rbac)
 
 RBAC in Kubernetes revolves around four main components: Roles, ClusterRoles, RoleBindings, and ClusterRoleBindings.
 
@@ -47,12 +57,12 @@ RBAC in Kubernetes revolves around four main components: Roles, ClusterRoles, Ro
      <img src="../../pics/clusterrole-and-role-bindings.png" alt="ClusterRole & RoleBindings" style="width: 500px; height: 300px;">
 </div>
 
-#### 3.1. [Roles and ClusterRoles](#roles-and-clusterroles)
+#### 3.1. [Roles and ClusterRoles](#31-roles-and-clusterroles)
 
 - **Roles**: Define permissions within a specific **namespace**.
 - **ClusterRoles**: Define permissions **cluster-wide**.
 
-##### Example Role YAML
+##### [Example Role YAML](#example-role-yaml)
 
 Here’s an example of a `Role` that grants read access to all pods within a specific namespace:
 
@@ -76,7 +86,7 @@ rules:
 - `metadata.name: pod-reader`: Names the `Role`.
 - `rules`: Defines what actions can be performed on which resources. Here, it allows reading (`get`, `watch`, `list`) on all pods in the `my-namespace`.
 
-##### Example ClusterRole YAML
+##### [Example ClusterRole YAML](#example-clusterrole-yaml)
 
 Here’s an example of a `ClusterRole` that grants read access to all pods across the entire cluster:
 
@@ -98,13 +108,13 @@ rules:
 - `metadata.name: cluster-pod-reader`: Names the `ClusterRole`.
 - `rules`: Defines what actions can be performed on which resources. Here, it allows reading (`get`, `watch`, `list`) on all pods in the cluster.
 
-#### 3.2. [RoleBindings and ClusterRoleBindings](#rolebindings-and-clusterrolebindings)
+#### 3.2. [RoleBindings and ClusterRoleBindings](#32-rolebindings-and-clusterrolebindings)
 
 - **RoleBindings**: Grant the permissions defined in a Role to a user or service account within a **namespace**. Note that `RoleBinding` can only be used with a `Role`, and it does not work with a `ClusterRole`.
 
 - **ClusterRoleBindings**: Grant the permissions defined in a `ClusterRole` to a user or service account across the **entire cluster**. Unlike `RoleBinding`, `ClusterRoleBinding` is versatile and can bind either a `ClusterRole` or a `Role` (effectively elevating the `Role`'s permissions to cluster-wide scope).
 
-##### Example RoleBinding YAML
+##### [Example RoleBinding YAML](#example-rolebinding-yaml)
 
 Here’s an example of a `RoleBinding` that binds the `Role` from the previous example to a user within a namespace:
 
@@ -132,7 +142,7 @@ roleRef:
 - `subjects`: Specifies who the binding applies to. In this case, it’s a user named `jane`.
 - `roleRef`: Refers to the `Role` named `pod-reader` that was defined earlier.
 
-##### Example ClusterRoleBinding YAML
+##### [Example ClusterRoleBinding YAML](#example-clusterrolebinding-yaml)
 
 Here’s an example of a `ClusterRoleBinding` that binds the `ClusterRole` from the previous example to a user across the cluster:
 
@@ -158,7 +168,7 @@ roleRef:
 - `subjects`: Specifies who the binding applies to. In this case, it’s a user named `john`.
 - `roleRef`: Refers to the `ClusterRole` named `cluster-pod-reader` that was defined earlier.
 
-##### Example of Binding a Role with ClusterRoleBinding
+##### [Example of Binding a Role with ClusterRoleBinding](#example-of-binding-a-role-with-clusterrolebinding)
 
 Here's an example where `ClusterRoleBinding` binds a `Role` (not a `ClusterRole`) to a user across the cluster:
 
@@ -172,7 +182,9 @@ subjects:
   name: alice
   apiGroup: rbac.authorization.k8s.io
 roleRef:
-  kind: Role
+  kind:
+
+ Role
   name: pod-reader
   namespace: my-namespace
   apiGroup: rbac.authorization.k8s.io
@@ -188,7 +200,7 @@ roleRef:
 
 ---
 
-### 4. [Creating and Applying Roles and Bindings](#creating-and-applying-roles-and-bindings)
+### 4. [Creating and Applying Roles and Bindings](#4-creating-and-applying-roles-and-bindings)
 
 Roles and bindings can be created and applied using `kubectl` commands or by applying YAML manifests. Here is how you can create a `ClusterRole` and bind it:
 
@@ -206,9 +218,7 @@ kubectl get clusterrolebindings
 
 **Expected Output**:
 
-```
-
-bash
+```bash
 NAME                    AGE
 cluster-pod-reader      2m
 ...
@@ -252,15 +262,11 @@ These commands list all `Roles` and `RoleBindings` within the specified namespac
 
 ---
 
-Here’s the updated Section 5 of the tutorial with an example using a service account instead of a user account:
-
----
-
-### 5. [Permissions, Authorizations, and Authentications](#permissions-authorizations-and-authentications)
+### 5. [Permissions, Authorizations, and Authentications](#5-permissions-authorizations-and-authentications)
 
 After applying the various bindings (`RoleBindings` and `ClusterRoleBindings`) described in this tutorial, specific permissions are granted to the users or service accounts specified in those bindings. Here’s what kind of permissions or authorizations become available and to whom:
 
-#### 5.1. RoleBinding: Binding a Role within a Namespace
+#### 5.1. [RoleBinding: Binding a Role within a Namespace](#51-rolebinding-binding-a-role-within-a-namespace)
 
 ##### Example:
 ```yaml
@@ -287,7 +293,7 @@ roleRef:
 
 **Explanation:** The `RoleBinding` grants user `jane` the ability to read (`get`, `watch`, `list`) all pods within the `my-namespace` namespace. This means `jane` can view and monitor pods in that namespace but cannot create, delete, or modify them.
 
-#### 5.2. ClusterRoleBinding: Binding a ClusterRole across the Cluster
+#### 5.2. [ClusterRoleBinding: Binding a ClusterRole across the Cluster](#52-clusterrolebinding-binding-a-clusterrole-across-the-cluster)
 
 ##### Example:
 ```yaml
@@ -313,7 +319,7 @@ roleRef:
 
 **Explanation:** The `ClusterRoleBinding` grants user `john` the ability to read (`get`, `watch`, `list`) all pods across the entire cluster. This means `john` can view and monitor pods in any namespace within the cluster, but again, cannot create, delete, or modify them.
 
-#### 5.3. RoleBinding: Binding a Role to a Service Account within a Namespace
+#### 5.3. [RoleBinding: Binding a Role to a Service Account within a Namespace](#53-rolebinding-binding-a-role-to-a-service-account-within-a-namespace)
 
 ##### Example:
 ```yaml
@@ -340,7 +346,7 @@ roleRef:
 
 **Explanation:** The `RoleBinding` grants the service account `my-service-account` the ability to read (`get`, `watch`, `list`) all pods within the `my-namespace` namespace. This service account could be used by applications or controllers running in the `my-namespace` to interact with the Kubernetes API and perform read operations on pods.
 
-#### 5.4. ClusterRoleBinding: Binding a Namespace-Specific Role across the Cluster
+#### 5.4. [ClusterRoleBinding: Binding a Namespace-Specific Role across the Cluster](#54-clusterrolebinding-binding-a-namespace-specific-role-across-the-cluster)
 
 ##### Example:
 ```yaml
@@ -367,7 +373,7 @@ roleRef:
 
 **Explanation:** This `ClusterRoleBinding` grants user `alice` the ability to read (`get`, `watch`, `list`) all pods across the entire cluster, but using the permissions defined in the `pod-reader` Role, which was originally scoped to `my-namespace`. Despite the Role being defined in a specific namespace, the `ClusterRoleBinding` elevates the scope of these permissions to the entire cluster.
 
-#### 5.5. Authentication and Authorization in Kubernetes
+#### 5.5. [Authentication and Authorization in Kubernetes](#55-authentication-and-authorization-in-kubernetes)
 
 - **Authentication:** Kubernetes assumes that the users (`jane`, `john`, `alice`) or service accounts (`my-service-account`) have been authenticated (i.e., their identity has been verified). This process typically involves using certificates, tokens, or other mechanisms.
 - **Authorization:** Once authenticated, Kubernetes checks what the user or service account is authorized to do based on the RBAC policies (Roles, RoleBindings, ClusterRoles, ClusterRoleBindings) defined for them.
@@ -377,7 +383,7 @@ roleRef:
 --- 
 
 
-### 6. [Wildcard Usage in RBAC](#wildcard-usage-in-rbac)
+### 6. [Wildcard Usage in RBAC](#6-wildcard-usage-in-rbac)
 
 Wildcards can be used in RBAC to grant permissions broadly:
 
@@ -402,7 +408,7 @@ rules:
 
 ---
 
-### 7. [Validating RBAC Configurations](#validating-rbac-configurations)
+### 7. [Validating RBAC Configurations](#7-validating-rbac-configurations)
 
 To validate whether a specific action is allowed under a given role, Kubernetes provides the `kubectl auth can-i` command.
 
@@ -418,17 +424,19 @@ This command checks whether the user `jane` can create pods in the `my-namespace
 
 ---
 
-### 8. [Best Practices for RBAC](#best-practices-for-rbac)
+### 8. [Best Practices for RBAC](#8-best-practices-for-rbac)
 
 - **Least Privilege**: Always assign the least privilege necessary. Use RoleBindings rather than ClusterRoleBindings where possible to limit the scope.
 - **Namespace Isolation**: Use namespaces to isolate resources and permissions.
-- **RoleBinding Over ClusterRoleBinding**: Prefer RoleBindings to limit permissions to a specific namespace rather than across the entire cluster.
+- **RoleBinding Over ClusterRoleBinding**: Prefer RoleBindings to limit permissions to a specific namespace rather than across the entire cluster
+
+.
 
 [Back to TOC](#table-of-contents)
 
 ---
 
-### 9. [Troubleshooting and Common Errors](#troubleshooting-and-common-errors)
+### 9. [Troubleshooting and Common Errors](#9-troubleshooting-and-common-errors)
 
 - **401 Unauthorized**: This error indicates that the user is not authenticated.
 - **403 Forbidden**: This indicates that the user is authenticated but does not have permission to perform the action.
@@ -443,4 +451,3 @@ kubectl describe rolebinding read-pods -n my-namespace
 This command will show you the details of the RoleBinding, helping to identify any misconfigurations.
 
 [Back to TOC](#table-of-contents)
-
