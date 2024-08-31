@@ -35,7 +35,14 @@ Kubernetes supports several authorization modes, which determine how access is g
 
 #### Example of Configuring Authorization Mode
 
-To configure the authorization mode in Kubernetes, you typically need to edit the API server configuration file located at `/etc/kubernetes/manifests/kube-apiserver.yaml`. The relevant section of the file might look like this:
+To configure the authorization mode in Kubernetes, you typically need to edit the API server configuration file located at `/etc/kubernetes/manifests/kube-apiserver.yaml`. This directory contains the key manifest files that define the Kubernetes control plane components, including `kube-apiserver`, `kube-controller-manager`, and `kube-scheduler`.
+
+**Important Notes**:
+- **Location**: The configuration files for the Kubernetes control plane are located in `/etc/kubernetes/manifests`.
+- **Impact of Changes**: Making changes to any files in this directory will automatically trigger a reboot of the respective control plane component. This is because these files are monitored by the `kubelet`, and any updates cause the component to restart, applying the new configuration.
+- **systemd Involvement**: These control plane components are managed as static pods by the `kubelet`. However, the underlying processes and services are also managed by `systemd`, which is responsible for starting the `kubelet` and ensuring it runs continuously. Any changes to the control plane files trigger actions managed by both the `kubelet` and `systemd`.
+
+The relevant section of the `kube-apiserver.yaml` file might look like this:
 
 ```yaml
 - --authorization-mode=Node,RBAC
@@ -190,7 +197,9 @@ This command checks whether the user `jane` can create pods in the `my-namespace
 - **Namespace Isolation**: Use namespaces to isolate resources and permissions.
 - **RoleBinding Over ClusterRoleBinding**: Prefer RoleBindings to limit permissions to a specific namespace rather than across the entire cluster.
 
-[Back to TOC](#table-of-contents)
+[Back to TOC](
+
+#table-of-contents)
 
 ---
 
@@ -209,7 +218,3 @@ kubectl describe rolebinding read-pods -n my-namespace
 This command will show you the details of the RoleBinding, helping to identify any misconfigurations.
 
 [Back to TOC](#table-of-contents)
-
----
-
-This detailed tutorial should provide a thorough understanding of how to configure and manage RBAC in Kubernetes, enabling you to control access effectively and securely within your clusters.
