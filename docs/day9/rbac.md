@@ -161,7 +161,7 @@ kubectl api-resources --sort-by=name
 
 This command will list the resources alphabetically by their names, making it easier to find specific resources.
 
-[Back to TOC](#table-of-
+[Back to TOC](#table-of-contents)
 
 contents)
 
