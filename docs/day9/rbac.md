@@ -28,7 +28,7 @@ Here's the complete tutorial with proper links for the Table of Contents (TOC) i
 
 ---
 
-### 2. [Authorization Modes in Kubernetes](#authorization-modes-in-kubernetes)
+### 2. [Authorization Modes in Kubernetes](#2-authorization-modes-in-kubernetes)
 
 Kubernetes supports several authorization modes, which determine how access is granted within the cluster:
 
