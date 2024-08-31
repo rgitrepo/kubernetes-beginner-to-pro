@@ -1,6 +1,3 @@
-Here is the complete revised Kubernetes Role-Based Access Control (RBAC) Tutorial with the added information about the `kubectl api-resources` command and how to sort the output alphabetically:
-
----
 
 ## Kubernetes Role-Based Access Control (RBAC) Tutorial
 
