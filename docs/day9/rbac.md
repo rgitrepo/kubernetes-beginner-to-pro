@@ -71,16 +71,40 @@ In this example, `Node` and `RBAC` modes are enabled. The API server checks auth
 
 ### 3. [Core Components of RBAC](#core-components-of-rbac)
 
-RBAC in Kubernetes revolves around four main components: Roles, ClusterRoles, RoleBindings, ClusterRoleBinding.
+RBAC in Kubernetes revolves around four main components: Roles, ClusterRoles, RoleBindings, and ClusterRoleBindings.
 
-   <div style="text-align: center;">
+<div style="text-align: center;">
      <img src="../../pics/clusterrole-and-role-bindings.png" alt="ClusterRole & RoleBindings" style="width: 500px; height: 300px;">
-   </div>
+</div>
 
 #### 3.1. [Roles and ClusterRoles](#roles-and-clusterroles)
 
 - **Roles**: Define permissions within a specific **namespace**.
 - **ClusterRoles**: Define permissions **cluster-wide**.
+
+##### Example Role YAML
+
+Here’s an example of a `Role` that grants read access to all pods within a specific namespace:
+
+```yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: my-namespace
+  name: pod-reader
+rules:
+- apiGroups: [""]
+  resources: ["pods"]
+  verbs: ["get", "watch", "list"]
+```
+
+**Explanation**:
+
+- `apiVersion: rbac.authorization.k8s.io/v1`: Specifies the API version.
+- `kind: Role`: Defines that this resource is a `Role`.
+- `metadata.namespace: my-namespace`: Defines the namespace where this role is applicable.
+- `metadata.name: pod-reader`: Names the `Role`.
+- `rules`: Defines what actions can be performed on which resources. Here, it allows reading (`get`, `watch`, `list`) on all pods in the `my-namespace`.
 
 ##### Example ClusterRole YAML
 
@@ -110,9 +134,39 @@ rules:
 
 - **ClusterRoleBindings**: Grant the permissions defined in a `ClusterRole` to a user or service account across the **entire cluster**. Unlike `RoleBinding`, `ClusterRoleBinding` is versatile and can bind either a `ClusterRole` or a `Role` (effectively elevating the `Role`'s permissions to cluster-wide scope).
 
+##### Example RoleBinding YAML
+
+Here’s an example of a `RoleBinding` that binds the `Role` from the previous example to a user within a namespace:
+
+```yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: read-pods
+  namespace: my-namespace
+subjects:
+- kind: User
+  name: jane
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: Role
+  name: pod-reader
+  apiGroup: rbac.authorization.k8s.io
+```
+
+**Explanation**:
+
+- `kind: RoleBinding`: Defines that this resource is a `RoleBinding`.
+- `metadata.name: read-pods`: Names the `RoleBinding`.
+- `metadata.namespace: my-namespace`: Defines the namespace where this binding applies.
+- `subjects`: Specifies who the binding applies to. In this case, it’s a user named `jane`.
+- `roleRef`: Refers to the `Role` named `pod-reader` that was defined earlier.
+
 ##### Example ClusterRoleBinding YAML
 
-Here’s an example of a `ClusterRoleBinding` that binds the `ClusterRole` from the previous example to a user:
+Here’s an example of a `ClusterRoleBinding` that binds the `ClusterRole` from the previous example to a user across the
+
+ cluster:
 
 ```yaml
 apiVersion: rbac.authorization.k8s.io/v1
@@ -121,7 +175,7 @@ metadata:
   name: read-pods-cluster-wide
 subjects:
 - kind: User
-  name: jane
+  name: john
   apiGroup: rbac.authorization.k8s.io
 roleRef:
   kind: ClusterRole
@@ -133,7 +187,7 @@ roleRef:
 
 - `kind: ClusterRoleBinding`: Defines that this resource is a `ClusterRoleBinding`.
 - `metadata.name: read-pods-cluster-wide`: Names the `ClusterRoleBinding`.
-- `subjects`: Specifies who the binding applies to. In this case, it’s a user named `jane`.
+- `subjects`: Specifies who the binding applies to. In this case, it’s a user named `john`.
 - `roleRef`: Refers to the `ClusterRole` named `cluster-pod-reader` that was defined earlier.
 
 ##### Example of Binding a Role with ClusterRoleBinding
@@ -147,7 +201,7 @@ metadata:
   name: read-pods-namespace-wide
 subjects:
 - kind: User
-  name: john
+  name: alice
   apiGroup: rbac.authorization.k8s.io
 roleRef:
   kind: Role
@@ -171,9 +225,7 @@ roleRef:
 Roles and bindings can be created and applied using `kubectl` commands or by applying YAML manifests. Here is how you can create a `ClusterRole` and bind it:
 
 ```bash
-kub
-
-ectl apply -f clusterrole.yaml
+kubectl apply -f clusterrole.yaml
 kubectl apply -f clusterrolebinding.yaml
 ```
 
@@ -197,6 +249,34 @@ read-pods-cluster-wide      2m
 ```
 
 These commands list all `ClusterRoles` and `ClusterRoleBindings` in the cluster, allowing you to confirm that they were applied correctly.
+
+To create and bind a `Role`, you can use the following commands:
+
+```bash
+kubectl apply -f role.yaml
+kubectl apply -f rolebinding.yaml
+```
+
+To verify that the `Role` and `RoleBinding` were created successfully, you can use:
+
+```bash
+kubectl get roles -n my-namespace
+kubectl get rolebindings -n my-namespace
+```
+
+**Expected Output**:
+
+```bash
+NAME            AGE
+pod-reader      2m
+...
+
+NAME            AGE
+read-pods       2m
+...
+```
+
+These commands list all `Roles` and `RoleBindings` within the specified namespace, allowing you to confirm that they were applied correctly.
 
 [Back to TOC](#table-of-contents)
 
