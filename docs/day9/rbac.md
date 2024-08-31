@@ -1,3 +1,4 @@
+
 ## Kubernetes Role-Based Access Control (RBAC) Tutorial
 
 **Objective**: This tutorial aims to provide a comprehensive understanding of Role-Based Access Control (RBAC) in Kubernetes, including its configuration, use cases, and practical examples. By the end of this tutorial, you should be able to configure and manage RBAC for your Kubernetes clusters effectively.
@@ -64,7 +65,9 @@ In this example, `Node` and `RBAC` modes are enabled. The API server checks auth
 
 - By default, Kubernetes processes the authorization modes from left to right, but with some custom configurations or by modifying the order in the `kube-apiserver.yaml`, it could potentially prioritize modes differently. However, this is not typical and should be approached with caution as it may lead to unexpected behavior.
 
+[Back to TOC](#table-of-contents)
 
+---
 
 ### 3. [Core Components of RBAC](#core-components-of-rbac)
 
@@ -77,8 +80,9 @@ RBAC in Kubernetes revolves around four main components:
 
 #### 3.2. [RoleBindings and ClusterRoleBindings](#rolebindings-and-clusterrolebindings)
 
-- **RoleBindings**: Grant the permissions defined in a Role to a user or service account within a **namespace**.
-- **ClusterRoleBindings**: Grant the permissions defined in a ClusterRole to a user or service account across the **entire cluster**.
+- **RoleBindings**: Grant the permissions defined in a Role to a user or service account within a **namespace**. Note that `RoleBinding` can only be used with a `Role`, and it does not work with a `ClusterRole`.
+
+- **ClusterRoleBindings**: Grant the permissions defined in a `ClusterRole` to a user or service account across the **entire cluster**. Unlike `RoleBinding`, `ClusterRoleBinding` is versatile and can bind either a `ClusterRole` or a `Role` (effectively elevating the `Role`'s permissions to cluster-wide scope).
 
 ##### Example Role YAML
 
@@ -185,11 +189,11 @@ This command checks whether the user `jane` can create pods in the `my-namespace
 
 - **Least Privilege**: Always assign the least privilege necessary. Use RoleBindings rather than ClusterRoleBindings where possible to limit the scope.
 - **Namespace Isolation**: Use namespaces to isolate resources and permissions.
-- **RoleBinding Over ClusterRoleBinding**: Prefer RoleBindings to limit permissions to a specific namespace rather than across the entire cluster.
+- **RoleBinding Over ClusterRoleBinding**: Prefer RoleBindings to
 
-[Back to TOC](
+ limit permissions to a specific namespace rather than across the entire cluster.
 
-#table-of-contents)
+[Back to TOC](#table-of-contents)
 
 ---
 
@@ -208,3 +212,4 @@ kubectl describe rolebinding read-pods -n my-namespace
 This command will show you the details of the RoleBinding, helping to identify any misconfigurations.
 
 [Back to TOC](#table-of-contents)
+
