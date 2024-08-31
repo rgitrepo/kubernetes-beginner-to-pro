@@ -81,7 +81,7 @@ Authentication in Kubernetes can occur both on the client-side and server-side.
 
 ### How Authorization Works in Kubernetes
 
-#### Ways to Perform Authorization
+#### Ways to Perform Authorization - Modes
 
 Kubernetes provides several methods for performing authorization, allowing flexibility in how access control is implemented:
 
