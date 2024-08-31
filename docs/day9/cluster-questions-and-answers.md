@@ -1,6 +1,5 @@
-Here is the recreated document with working links:
 
-### Interview Questions - Table of Contents
+## Interview Questions - Table of Contents
 
 1. [What are the differences between Authentication (AuthN) and Authorization (AuthZ)?](#1-what-are-the-differences-between-authentication-authn-and-authorization-authz)
 2. [Which Kubernetes component is responsible for both authentication and authorization?](#2-which-kubernetes-component-is-responsible-for-both-authentication-and-authorization)
@@ -90,4 +89,3 @@ Here is the recreated document with working links:
   - **Namespaces** help isolate resources within a cluster, ensuring that workloads don't interfere with each other by providing logical boundaries. However, **contexts** go a step further by linking specific users, clusters, and namespaces together, allowing for easier management across different environments and teams. Contexts are especially useful in large organizations where multiple clusters are used for different purposes (e.g., development, staging, production). They allow users to switch between different environments (contexts) seamlessly without manually configuring their `kubeconfig` file each time. This ensures that a team working on a particular cluster or namespace can focus on their work without affecting other teams, even if they are working within the same Kubernetes ecosystem.
 - [Back to TOC](#interview-questions---table-of-contents)
 
-This document now has working links in the Table of Contents that will navigate to each corresponding question.
