@@ -71,7 +71,7 @@ In this example, `Node` and `RBAC` modes are enabled. The API server checks auth
 
 ### 3. [Core Components of RBAC](#core-components-of-rbac)
 
-RBAC in Kubernetes revolves around four main components:
+RBAC in Kubernetes revolves around four main components: Roles, ClusterRoles, RoleBindings, ClusterRoleBinding.
 
    <div style="text-align: center;">
      <img src="../../pics/clusterrole-and-role-bindings.png" alt="ClusterRole & RoleBindings" style="width: 500px; height: 300px;">
