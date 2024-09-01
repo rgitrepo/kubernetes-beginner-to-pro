@@ -156,7 +156,7 @@
 - [Authentication and Authorization (AuthN & AuthZ)](docs/day9/authentication-and-authorization.md)
 - [Kube Config File](docs/day9/kubeconfig-file.md)
 - [Questions & Answers - Cluster](docs/day9/cluster-questions-and-answers.md)
-- [RBAC: Role Based Access Control](docs/day9/rbac.md)
+- [RBAC: Role-Based Access Control](docs/day9/rbac.md)
 - [Volumes & Dynamic Provisioning](docs/day9/volumes-and-dynamic-provisioning.md)
   
 
