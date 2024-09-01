@@ -157,8 +157,10 @@
 - [Kube Config File](docs/day9/kubeconfig-file.md)
 - [Questions & Answers - Cluster](docs/day9/cluster-questions-and-answers.md)
 - [RBAC](docs/day9/rbac.md)
+- [Volumes & Dynamic Provisioning](docs/day9/volumes-and-dynamic-provisioning.md)
+  
 
-
+volumes-and-dynamic-provisioning.md
 </details>
 
 
