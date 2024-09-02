@@ -2,7 +2,7 @@
 
 ### Table of Contents
 
-0. [Three States of PVC](#three-states-of-pvc)
+0. [Three States of PVC](#three-states-of-a-pvc)
 1. [Access Mode Mismatch](#1-access-mode-mismatch)
 2. [Size Mismatch](#2-size-mismatch)
 3. [StorageClass Issues](#3-storageclass-issues)
