@@ -115,7 +115,7 @@ This configuration creates a Pod with a container that writes a file to the `emp
 
 ##### 2.1.2 HostPath
 
-`hostPath` allows the Pod to use a directory or file on the host node. This can introduce security risks if not managed carefully.
+`hostPath` allows the Pod to use a directory or file on the host **node**. This can introduce security risks if not managed carefully.
 
 **YAML Example:**
 ```yaml
@@ -139,7 +139,7 @@ spec:
 ```
 
 **Explanation and Output:**
-This configuration mounts the `/data` directory from the host node into the Pod. It should be used cautiously, as it can expose the host to security vulnerabilities.
+This configuration mounts the `/data` directory from the host **node** into the Pod. It should be used cautiously, as it can expose the host to security vulnerabilities.
 
 [Back to TOC](#table-of-contents-toc)
 
