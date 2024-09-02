@@ -160,7 +160,7 @@
 - [In-Tree vs Out-of-Tree](docs/day9/in-tree-vs-out-of-tree.md)
 - [Volumes & Dynamic Provisioning](docs/day9/volumes-and-dynamic-provisioning.md)
 - [PV & PVC: Persistent Volumes & Persistent Volume Claims](docs/day9/persisten-volumes-and-persistent-volume-claims.md)
-- [PV Modes & Dynamic Provisioning](docs/day9/persistent-volume-modes-and-dynamic-provisioning.md)
+- [PV Modes, Dynamic Provisioning & Reclaim Policies](docs/day9/persistent-volume-modes-and-dynamic-provisioning.md)
   
 
 
