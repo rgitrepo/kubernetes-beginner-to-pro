@@ -2,12 +2,12 @@
 
 ### Table of Contents
 
-1. [Access Mode Mismatch](#access-mode-mismatch)
-2. [Size Mismatch](#size-mismatch)
-3. [StorageClass Issues](#storageclass-issues)
-4. [No Available PVs Matching the PVC](#no-available-pvs-matching-the-pvc)
-5. [Insufficient Resources](#insufficient-resources)
-6. [Binding Conflict](#binding-conflict)
+1. [Access Mode Mismatch](#1-access-mode-mismatch)
+2. [Size Mismatch](#2-size-mismatch)
+3. [StorageClass Issues](#3-storageclass-issues)
+4. [No Available PVs Matching the PVC](#4-no-available-pvs-matching-the-pvc)
+5. [Insufficient Resources](#5-insufficient-resources)
+6. [Binding Conflict](#6-binding-conflict)
 
 ---
 
