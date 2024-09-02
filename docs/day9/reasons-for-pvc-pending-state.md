@@ -2,12 +2,24 @@
 
 ### Table of Contents
 
+0. [Three States of PVC](#three-states-of-pvc)
 1. [Access Mode Mismatch](#1-access-mode-mismatch)
 2. [Size Mismatch](#2-size-mismatch)
 3. [StorageClass Issues](#3-storageclass-issues)
 4. [No Available PVs Matching the PVC](#4-no-available-pvs-matching-the-pvc)
 5. [Insufficient Resources](#5-insufficient-resources)
 6. [Binding Conflict](#6-binding-conflict)
+
+---
+### Three States of a PVC
+A Persistent Volume Claim (PVC) in Kubernetes can be in one of three states:
+
+Pending:
+The PVC is created, but it has not yet been bound to a PV. This typically occurs when no suitable PV is available that meets the PVC's requirements.
+Bound:
+The PVC has successfully found a matching PV and is now bound to it. The storage is available for use by the pod.
+Lost:
+This state occurs when a PVC was previously bound to a PV, but the PV is no longer available or has been deleted. This might happen if the underlying storage is removed or if there’s a configuration error.
 
 ---
 
