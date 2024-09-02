@@ -109,7 +109,17 @@ spec:
 ```
 
 **Explanation and Output:**
-This configuration creates a Pod with a container that writes a file to the `emptyDir` volume. The data stored in this volume will be deleted when the Pod is terminated.
+This configuration creates a Pod with a container that writes a file to the `emptyDir` volume. The data stored in this volume will be deleted when the Pod is terminated. 
+For CKA emptyDir: {} is fine and means unlimited resources but for real environment emptyDir with a sizeLimit is standard.
+
+example:
+
+```
+  volumes:
+  - name: mydir
+    emptyDir: {}
+      sizeLimit: 500Mi
+```
 
 [Back to TOC](#table-of-contents-toc)
 
