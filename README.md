@@ -161,6 +161,9 @@
 - [Volumes & Dynamic Provisioning](docs/day9/volumes-and-dynamic-provisioning.md)
 - [PV & PVC: Persistent Volumes & Persistent Volume Claims](docs/day9/persisten-volumes-and-persistent-volume-claims.md)
 - [PV Modes, Dynamic Provisioning & Reclaim Policies](docs/day9/persistent-volume-modes-and-dynamic-provisioning.md)
+- [Storing Images, Videos, and Other Files in Kubernetes Volumes](docs/day9/storing-images-videos-and-other-files-in-volumes.md)
+
+
   
 
 
