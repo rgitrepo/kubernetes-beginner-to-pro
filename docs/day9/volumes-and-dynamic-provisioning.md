@@ -205,9 +205,7 @@ spec:
       name: web-content
   volumes:
   - name: web-content
-    empty
-
-Dir: {}
+    emptyDir: {}
 ```
 
 [Back to TOC](#table-of-contents-toc)
