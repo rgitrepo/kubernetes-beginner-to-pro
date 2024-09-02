@@ -12,14 +12,17 @@
 
 ---
 ### Three States of a PVC
+
 A Persistent Volume Claim (PVC) in Kubernetes can be in one of three states:
 
-Pending:
-The PVC is created, but it has not yet been bound to a PV. This typically occurs when no suitable PV is available that meets the PVC's requirements.
-Bound:
-The PVC has successfully found a matching PV and is now bound to it. The storage is available for use by the pod.
-Lost:
-This state occurs when a PVC was previously bound to a PV, but the PV is no longer available or has been deleted. This might happen if the underlying storage is removed or if there’s a configuration error.
+1. **Pending**:
+   - The PVC has been created, but it has not yet been bound to a Persistent Volume (PV). This state typically occurs when there is no available PV that meets the PVC’s specified requirements, such as storage size, access mode, or StorageClass.
+
+2. **Bound**:
+   - The PVC has successfully been matched with a suitable PV, and the PVC is now bound to that PV. Once in this state, the storage is available for use by the pod that requested it.
+
+3. **Lost**:
+   - This state occurs when a PVC was previously bound to a PV, but the PV is no longer available or has been deleted. This can happen if the underlying storage is removed or if there is a configuration error that causes the PV to become unavailable.
 
 [Back to Table of Contents](#table-of-contents)
 
