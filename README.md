@@ -157,6 +157,7 @@
 - [Kube Config File](docs/day9/kubeconfig-file.md)
 - [Questions & Answers - Cluster](docs/day9/cluster-questions-and-answers.md)
 - [RBAC: Role-Based Access Control](docs/day9/rbac.md)
+- [In-Tree vs Out-of-Tree](docs/day9/in-tree-vs-out-of-tree.md)
 - [Volumes & Dynamic Provisioning](docs/day9/volumes-and-dynamic-provisioning.md)
   
 
