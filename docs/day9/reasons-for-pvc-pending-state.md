@@ -22,6 +22,7 @@ Lost:
 This state occurs when a PVC was previously bound to a PV, but the PV is no longer available or has been deleted. This might happen if the underlying storage is removed or if there’s a configuration error.
 
 [Back to Table of Contents](#table-of-contents)
+
 ---
 
 ### 1. Access Mode Mismatch
