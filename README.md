@@ -162,11 +162,11 @@
 - [PV & PVC: Persistent Volumes & Persistent Volume Claims](docs/day9/persisten-volumes-and-persistent-volume-claims.md)
 - [PV Modes, Dynamic Provisioning & Reclaim Policies](docs/day9/persistent-volume-modes-and-dynamic-provisioning.md)
 - [Storing Images, Videos, and Other Files in Kubernetes Volumes](docs/day9/storing-images-videos-and-other-files-in-volumes.md)
-- [Reasons for PVC Pending State](docs/day9/reasons-for-pvc-pending-state.md)
 - [Statically and Dynamically Provisioned PVCs](docs/day9/statically-and-dynamically-provisioned-pvc.md)
 - [Role of StorageClasses in Static Provisioning of Persistent Volumes](docs/day9/role-of-storageclass-in-static-provisioning-of-persistent-volumes.md)
 - [Role of StorageClasses in Dynamic Provisioning of Persistent Volumes](docs/day9/role-of-storageclass-in-dynamic-provisioning-of-persistent-volumes.md)
-
+- [Reasons for PVC Pending State](docs/day9/reasons-for-pvc-pending-state.md)
+- [Mastering kubectl Commands for PV, PVC, and SC](docs/day9/mastering-kubectl-commands-for-pv-pvc-and-sc.md)
 
   
 
