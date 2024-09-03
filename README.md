@@ -163,6 +163,7 @@
 - [PV Modes, Dynamic Provisioning & Reclaim Policies](docs/day9/persistent-volume-modes-and-dynamic-provisioning.md)
 - [Storing Images, Videos, and Other Files in Kubernetes Volumes](docs/day9/storing-images-videos-and-other-files-in-volumes.md)
 - [Reasons for PVC Pending State](docs/day9/reasons-for-pvc-pending-state.md)
+- [Statically and Dynamically Provisioned PVCs](docs/day9/statically-and-dynamically-provisioned-pvc.md)
 
 
   
