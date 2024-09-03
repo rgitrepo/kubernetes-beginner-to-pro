@@ -7,8 +7,6 @@ In Kubernetes, Persistent Volume Claims (PVCs) are used to request storage for p
 1. [Introduction to StorageClasses and PVCs](#introduction-to-storageclasses-and-pvcs)
 2. [What Happens if a StorageClass Doesn't Exist?](#what-happens-if-a-storageclass-doesnt-exist)
 3. [Default StorageClass and Its Role](#default-storageclass-and-its-role)
-4. [Using the `kubectl get sc` Command](#using-the-kubectl-get-sc-command)
-5. [Conclusion](#conclusion)
 
 ---
 
@@ -85,46 +83,4 @@ However, if there is no default StorageClass configured in the cluster, the PVC 
 
 [Back to TOC](#table-of-contents)
 
----
-
-### **Using the `kubectl get sc` Command**
-
-The `kubectl get sc` command is used to list all available StorageClasses in your Kubernetes cluster. This command is crucial for understanding what types of storage are available for dynamic provisioning and identifying the default StorageClass.
-
-#### **Example Command:**
-
-```bash
-kubectl get sc
-```
-
-**Output Example:**
-
-```plaintext
-NAME                 PROVISIONER          RECLAIMPOLICY   VOLUMEBINDINGMODE   ALLOWVOLUMEEXPANSION   AGE
-standard (default)   kubernetes.io/gce-pd   Delete          Immediate           true                   20d
-fast-storage         kubernetes.io/gce-pd   Delete          Immediate           true                   15d
-```
-
-**Explanation:**
-
-- **NAME**: The name of the StorageClass. For example, `standard` and `fast-storage`.
-- **PROVISIONER**: The plugin responsible for provisioning storage, such as `kubernetes.io/gce-pd` for Google Compute Engine’s Persistent Disk.
-- **RECLAIMPOLICY**: Defines what happens to a PV when its PVC is deleted (e.g., `Delete` or `Retain`).
-- **VOLUMEBINDINGMODE**: Indicates when the volume is bound to the PVC, typically `Immediate`.
-- **ALLOWVOLUMEEXPANSION**: Whether the PV can be resized after its creation.
-- **AGE**: The duration since the StorageClass was created.
-
-This command helps you verify the available StorageClasses and check which one is set as the default, ensuring that PVCs can be correctly provisioned.
-
-[Back to TOC](#table-of-contents)
-
----
-
-### **Conclusion**
-
-In Kubernetes, StorageClasses play a crucial role in the dynamic provisioning of Persistent Volumes. Without a StorageClass, Kubernetes cannot dynamically create PVs, leading to PVCs remaining in a pending state. Understanding how to use StorageClasses and the `kubectl get sc` command helps ensure that your storage is managed effectively, allowing for seamless and automated provisioning of storage resources.
-
-By mastering these concepts, you can avoid common pitfalls in Kubernetes storage management and ensure that your applications have the storage they need, when they need it.
-
-[Back to TOC](#table-of-contents)
 
