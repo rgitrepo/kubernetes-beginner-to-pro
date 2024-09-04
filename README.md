@@ -179,6 +179,8 @@
 
 - [ConfigMaps](docs/day10/configmaps.md)
 - [Interview Questions - ConfigMaps](docs/day10/interview-questions-configmaps.md)
+- [Secrets](docs/day10/secrets.md)
+- [Interview Questions - Secrets](docs/day10/interview-questions-secrets.md)
 
   
 
