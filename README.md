@@ -182,9 +182,9 @@
 - [Secrets](docs/day10/secrets.md)
 - [Secrets - Interview Questions](docs/day10/interview-questions-secrets.md)
 - [Sealed Secrets](docs/day10/sealed-secrets.md)
+- [Sealed Secrets](docs/day10/external-secret-operator-and-gcsm.md)
 
   
-
 
 </details>
 
