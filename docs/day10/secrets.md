@@ -14,8 +14,11 @@
    - [Custom Secrets](#custom-secrets)
 4. [Consuming Secrets](#4-consuming-secrets)
    - [Environment Variables](#environment-variables)
+     - [Example 1: Injecting a Simple Secret as an Environment Variable](#example-1-injecting-a-simple-secret-as-an-environment-variable)
    - [Volume Mounts](#volume-mounts)
+     - [Example 2: Mounting a Secret as a File](#example-2-mounting-a-secret-as-a-file)
    - [Pulling Images from Private Registries with `imagePullSecrets`](#pulling-images-from-private-registries-with-imagepullsecrets)
+     - [Example 3: Pulling an Image from a Private Registry](#example-3-pulling-an-image-from-a-private-registry)
 5. [Encoding vs. Encryption](#5-encoding-vs-encryption)
    - [Base64 Encoding](#base64-encoding)
    - [Encryption Overview](#encryption-overview)
@@ -29,6 +32,10 @@
    - [Sealed Secrets](#sealed-secrets)
    - [Other Alternatives](#other-alternatives)
 9. [Conclusion](#9-conclusion)
+
+---
+
+This Table of Contents now includes all relevant links for easier navigation through the tutorial.
 
 ---
 
@@ -104,55 +111,163 @@ Custom Secrets allow you to store any kind of sensitive data. They are defined i
 
 ### 4. Consuming Secrets
 
-Once Secrets are created, they can be consumed by Pods in several ways. One important use case is for pulling container images from a private registry, which is done using `imagePullSecrets`.
+Once Secrets are created, they can be consumed by Pods in various ways. Below are detailed examples to illustrate different methods of using Secrets in Kubernetes.
 
 #### Environment Variables
-You can inject Secrets into a container's environment variables:
-```yaml
-apiVersion: v1
-kind: Pod
-metadata:
-  name: my-pod
-spec:
-  containers:
-  - name: my-container
-    image: nginx
-    env:
-    - name: USERNAME
-      valueFrom:
-        secretKeyRef:
-          name: my-secret
-          key: username
-```
+
+**Example 1: Injecting a Simple Secret as an Environment Variable**
+
+In this example, we inject a Secret containing a username and password into a Pod's environment variables.
+
+1. **Create the Secret:**
+
+   Save the following command in a file named `create-secret.sh`:
+   ```bash
+   # create-secret.sh
+   kubectl create secret generic my-db-secret --from-literal=username=admin --from-literal=password=secret
+   ```
+
+   Run the command:
+   ```bash
+   bash create-secret.sh
+   ```
+
+   **Output:**
+   ```bash
+   secret/my-db-secret created
+   ```
+
+2. **Use the Secret in a Pod:**
+
+   Save the following YAML in a file named `pod-with-env-secret.yaml`:
+   ```yaml
+   # pod-with-env-secret.yaml
+   apiVersion: v1
+   kind: Pod
+   metadata:
+     name: my-pod
+   spec:
+     containers:
+     - name: my-container
+       image: nginx
+       env:
+       - name: USERNAME
+         valueFrom:
+           secretKeyRef:
+             name: my-db-secret
+             key: username
+       - name: PASSWORD
+         valueFrom:
+           secretKeyRef:
+             name: my-db-secret
+             key: password
+   ```
+
+   Apply the configuration:
+   ```bash
+   kubectl apply -f pod-with-env-secret.yaml
+   ```
+
+   **Output:**
+   ```bash
+   pod/my-pod created
+   ```
+
+3. **Verify the Pod:**
+
+   To verify that the environment variables have been set correctly, run:
+   ```bash
+   kubectl exec my-pod -- env | grep USERNAME
+   ```
+
+   **Output:**
+   ```bash
+   USERNAME=admin
+   ```
 
 #### Volume Mounts
-You can also mount Secrets as files in a container's filesystem:
-```yaml
-apiVersion: v1
-kind: Pod
-metadata:
-  name: my-pod
-spec:
-  containers:
-  - name: my-container
-    image: nginx
-    volumeMounts:
-    - name: my-secret-volume
-      mountPath: "/etc/secret"
-      readOnly: true
-  volumes:
-  - name: my-secret-volume
-    secret:
-      secretName: my-secret
-```
+
+**Example 2: Mounting a Secret as a File**
+
+In this example, we mount a Secret as a file inside the container.
+
+1. **Create the Secret:**
+
+   Save the following command in a file named `create-volume-secret.sh`:
+   ```bash
+   # create-volume-secret.sh
+   kubectl create secret generic my-file-secret --from-literal=config.yaml="apiVersion: v1\nkind: Config\nmetadata:\n  name: my-config"
+   ```
+
+   Run the command:
+   ```bash
+   bash create-volume-secret.sh
+   ```
+
+   **Output:**
+   ```bash
+   secret/my-file-secret created
+   ```
+
+2. **Use the Secret in a Pod:**
+
+   Save the following YAML in a file named `pod-with-volume-secret.yaml`:
+   ```yaml
+   # pod-with-volume-secret.yaml
+   apiVersion: v1
+   kind: Pod
+   metadata:
+     name: my-pod-with-volume
+   spec:
+     containers:
+     - name: my-container
+       image: nginx
+       volumeMounts:
+       - name: secret-volume
+         mountPath: "/etc/secret"
+         readOnly: true
+     volumes:
+     - name: secret-volume
+       secret:
+         secretName: my-file-secret
+   ```
+
+   Apply the configuration:
+   ```bash
+   kubectl apply -f pod-with-volume-secret.yaml
+   ```
+
+   **Output:**
+   ```bash
+   pod/my-pod-with-volume created
+   ```
+
+3. **Verify the Mounted Secret:**
+
+   To verify that the Secret has been mounted correctly as a file, run:
+   ```bash
+   kubectl exec my-pod-with-volume -- cat /etc/secret/config.yaml
+   ```
+
+   **Output:**
+   ```bash
+   apiVersion: v1
+   kind: Config
+   metadata:
+     name: my-config
+   ```
 
 #### Pulling Images from Private Registries with `imagePullSecrets`
-`imagePullSecrets` is used to pull images from private container registries. When you create a Secret containing your Docker registry credentials, you can specify it in your Pod specification using the `imagePullSecrets` field.
 
-Here's an example of how to create a Docker registry Secret and use it in a Pod:
+**Example 3: Pulling an Image from a Private Registry**
+
+This example demonstrates how to pull a container image from a private registry using a Secret.
 
 1. **Create the Docker Registry Secret:**
+
+   Save the following command in a file named `create-image-pull-secret.sh`:
    ```bash
+   # create-image-pull-secret.sh
    kubectl create secret docker-registry my-registry-secret \
      --docker-server=<your-registry-server> \
      --docker-username=<your-username> \
@@ -160,12 +275,25 @@ Here's an example of how to create a Docker registry Secret and use it in a Pod:
      --docker-email=<your-email>
    ```
 
+   Run the command (ensure you replace placeholders with actual values):
+   ```bash
+   bash create-image-pull-secret.sh
+   ```
+
+   **Output:**
+   ```bash
+   secret/my-registry-secret created
+   ```
+
 2. **Use the Secret in a Pod:**
+
+   Save the following YAML in a file named `pod-with-imagepullsecret.yaml`:
    ```yaml
+   # pod-with-imagepullsecret.yaml
    apiVersion: v1
    kind: Pod
    metadata:
-     name: my-pod
+     name: my-private-pod
    spec:
      containers:
      - name: my-container
@@ -174,11 +302,32 @@ Here's an example of how to create a Docker registry Secret and use it in a Pod:
      - name: my-registry-secret
    ```
 
-In this example:
-- The `my-registry-secret` is created using the `kubectl create secret docker-registry` command.
-- The `imagePullSecrets` field in the Pod specification references this Secret, allowing Kubernetes to authenticate to the private registry and pull the specified image.
+   Apply the configuration:
+   ```bash
+   kubectl apply -f pod-with-imagepullsecret.yaml
+   ```
 
-This is particularly useful when you are working with private Docker registries, ensuring that your images are pulled securely and without exposing your credentials.
+   **Output:**
+   ```bash
+   pod/my-private-pod created
+   ```
+
+3. **Verify the Pod:**
+
+   To check if the Pod was able to pull the image successfully, run:
+   ```bash
+   kubectl get pods my-private-pod
+   ```
+
+   **Output:**
+   ```bash
+   NAME            READY   STATUS    RESTARTS   AGE
+   my-private-pod  1/1     Running   0          10s
+   ```
+
+   This output indicates that the Pod is running, which means the image was successfully pulled from the private registry.
+
+
 
 [Back to TOC](#table-of-contents)
 
