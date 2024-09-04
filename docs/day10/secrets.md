@@ -103,7 +103,7 @@ Custom Secrets allow you to store any kind of sensitive data. They are defined i
 
 ### 4. Consuming Secrets
 
-Once Secrets are created, they can be consumed by Pods in two primary ways.
+Once Secrets are created, they can be consumed by Pods in several ways. One important use case is for pulling container images from a private registry, which is done using `imagePullSecrets`.
 
 #### Environment Variables
 You can inject Secrets into a container's environment variables:
@@ -145,7 +145,42 @@ spec:
       secretName: my-secret
 ```
 
+#### Using `imagePullSecrets`
+`imagePullSecrets` is used to pull images from private container registries. When you create a Secret containing your Docker registry credentials, you can specify it in your Pod specification using the `imagePullSecrets` field.
+
+Here's an example of how to create a Docker registry Secret and use it in a Pod:
+
+1. **Create the Docker Registry Secret:**
+   ```bash
+   kubectl create secret docker-registry my-registry-secret \
+     --docker-server=<your-registry-server> \
+     --docker-username=<your-username> \
+     --docker-password=<your-password> \
+     --docker-email=<your-email>
+   ```
+
+2. **Use the Secret in a Pod:**
+   ```yaml
+   apiVersion: v1
+   kind: Pod
+   metadata:
+     name: my-pod
+   spec:
+     containers:
+     - name: my-container
+       image: <your-private-image>
+     imagePullSecrets:
+     - name: my-registry-secret
+   ```
+
+In this example:
+- The `my-registry-secret` is created using the `kubectl create secret docker-registry` command.
+- The `imagePullSecrets` field in the Pod specification references this Secret, allowing Kubernetes to authenticate to the private registry and pull the specified image.
+
+This is particularly useful when you are working with private Docker registries, ensuring that your images are pulled securely and without exposing your credentials.
+
 [Back to TOC](#table-of-contents)
+
 
 ---
 
