@@ -178,9 +178,10 @@
 <summary>Day 10: Service Mesh, Secrets, CMs, External Secret Operator, Google Cloud Secret Manager</summary>
 
 - [ConfigMaps](docs/day10/configmaps.md)
-- [Interview Questions - ConfigMaps](docs/day10/interview-questions-configmaps.md)
+- [ConfigMaps - Interview Questions](docs/day10/interview-questions-configmaps.md)
 - [Secrets](docs/day10/secrets.md)
-- [Interview Questions - Secrets](docs/day10/interview-questions-secrets.md)
+- [Secrets - Interview Questions](docs/day10/interview-questions-secrets.md)
+- [Sealed Secrets](docs/day10/sealed-secrets.md)
 
   
 
