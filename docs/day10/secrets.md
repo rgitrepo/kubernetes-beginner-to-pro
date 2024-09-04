@@ -25,11 +25,10 @@
 7. [Common Issues with Secrets](#7-common-issues-with-secrets)
    - [Limited Scalability](#limited-scalability)
    - [Secret Exposure](#secret-exposure)
-8. [Interview Questions and Answers](#8-interview-questions-and-answers)
-9. [Alternative Solutions](#9-alternative-solutions)
+8. [Alternative Solutions](#8-alternative-solutions)
    - [Sealed Secrets](#sealed-secrets)
    - [Other Alternatives](#other-alternatives)
-10. [Conclusion](#10-conclusion)
+9. [Conclusion](#9-conclusion)
 
 ---
 
@@ -233,41 +232,7 @@ Since Secrets are only Base64 encoded, they can be easily decoded if exposed. It
 
 ---
 
-### 8. Interview Questions and Answers
-
-1. **What is the difference between encoding and encryption?**
-   - **Answer**: Encoding transforms data into a different format using a specific scheme, like Base64, and is reversible. Encryption transforms data into a secure format that can only be decrypted using a key.
-
-2. **How are Secrets stored in Kubernetes?**
-   - **Answer**: Secrets are stored encoded using Base64, not encrypted.
-
-3. **What are some best practices for managing Kubernetes Secrets?**
-   - **Answer**: Best practices include regular rotation of Secrets, limiting access to them, and avoiding storing them in version control systems.
-
-4. **Why does Kubernetes use encoding instead of encryption for Secrets?**
-   - **Answer**: Kubernetes uses encoding to avoid the complexity and overhead that encryption would add to the system, as Kubernetes is primarily focused on container orchestration rather than security.
-  
-5. **How do you configure a Pod to pull images from a private registry in Kubernetes?**
-   - **Answer**: To pull images from a private registry, you need to create a Docker registry Secret using the `kubectl create secret docker-registry` command. Then, reference this Secret in your Pod specification using the `imagePullSecrets` field:
-   ```yaml
-   apiVersion: v1
-   kind: Pod
-   metadata:
-     name: my-pod
-   spec:
-     containers:
-     - name: my-container
-       image: <your-private-image>
-     imagePullSecrets:
-     - name: my-registry-secret
-   ```
-
-[Back to TOC](#table-of-contents)
-
-
----
-
-### 9. Alternative Solutions
+### 8. Alternative Solutions
 
 #### Sealed Secrets
 Sealed Secrets is an open-source solution that allows you to encrypt Secrets before storing them in Kubernetes. This ensures that even if someone gains access to your Secrets, they cannot decode them without the encryption key.
@@ -279,7 +244,7 @@ Other alternatives include using third-party tools like HashiCorp Vault, which p
 
 ---
 
-### 10. Conclusion
+### 9. Conclusion
 
 Kubernetes Secrets are a powerful feature for managing sensitive data in a cluster. However, they come with limitations, particularly regarding security. Understanding how to create, consume, and manage Secrets is essential for maintaining a secure and efficient Kubernetes environment.
 
