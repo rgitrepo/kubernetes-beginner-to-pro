@@ -1,5 +1,7 @@
 # ConfigMaps
 
+---
+
 ## **Table of Contents**
 
 1. [Introduction to ConfigMaps](#introduction)
@@ -16,6 +18,8 @@
 12. [Handling Updates in ConfigMaps](#handling-updates)
 13. [Security Considerations](#security-considerations)
 14. [Industry Practices for ConfigMaps](#industry-practices)
+15. [Consuming ConfigMap Values in a Pod Command](#consuming-configmap-values)
+
 
 ---
 
