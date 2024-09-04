@@ -174,7 +174,15 @@
 </details>
 
 
+<details>
+<summary>Day 10: Service Mesh, Secrets, CMs, External Secret Operator, Google Cloud Secret Manager</summary>
 
+- [ConfigMaps](docs/day10/configmaps.md)
+
+  
+
+
+</details>
 
 
 
