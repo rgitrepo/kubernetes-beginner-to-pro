@@ -101,6 +101,7 @@ Custom Secrets allow you to store any kind of sensitive data. They are defined i
 
 ---
 
+
 ### 4. Consuming Secrets
 
 Once Secrets are created, they can be consumed by Pods in several ways. One important use case is for pulling container images from a private registry, which is done using `imagePullSecrets`.
@@ -145,7 +146,7 @@ spec:
       secretName: my-secret
 ```
 
-#### Using `imagePullSecrets`
+#### Pulling Images from Private Registries with `imagePullSecrets`
 `imagePullSecrets` is used to pull images from private container registries. When you create a Secret containing your Docker registry credentials, you can specify it in your Pod specification using the `imagePullSecrets` field.
 
 Here's an example of how to create a Docker registry Secret and use it in a Pod:
@@ -181,8 +182,8 @@ This is particularly useful when you are working with private Docker registries,
 
 [Back to TOC](#table-of-contents)
 
-
 ---
+
 
 ### 5. Encoding vs. Encryption
 
