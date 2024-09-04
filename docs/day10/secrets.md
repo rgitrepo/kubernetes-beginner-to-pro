@@ -246,8 +246,24 @@ Since Secrets are only Base64 encoded, they can be easily decoded if exposed. It
 
 4. **Why does Kubernetes use encoding instead of encryption for Secrets?**
    - **Answer**: Kubernetes uses encoding to avoid the complexity and overhead that encryption would add to the system, as Kubernetes is primarily focused on container orchestration rather than security.
+  
+5. **How do you configure a Pod to pull images from a private registry in Kubernetes?**
+   - **Answer**: To pull images from a private registry, you need to create a Docker registry Secret using the `kubectl create secret docker-registry` command. Then, reference this Secret in your Pod specification using the `imagePullSecrets` field:
+   ```yaml
+   apiVersion: v1
+   kind: Pod
+   metadata:
+     name: my-pod
+   spec:
+     containers:
+     - name: my-container
+       image: <your-private-image>
+     imagePullSecrets:
+     - name: my-registry-secret
+   ```
 
 [Back to TOC](#table-of-contents)
+
 
 ---
 
