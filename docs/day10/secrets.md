@@ -15,6 +15,7 @@
 4. [Consuming Secrets](#consuming-secrets)
    - [Environment Variables](#environment-variables)
    - [Volume Mounts](#volume-mounts)
+   - [Pulling Images from Private Registries with `imagePullSecrets`](#pulling-images-from-private-registries-with-imagepullsecrets)
 5. [Encoding vs. Encryption](#encoding-vs-encryption)
    - [Base64 Encoding](#base64-encoding)
    - [Encryption Overview](#encryption-overview)
