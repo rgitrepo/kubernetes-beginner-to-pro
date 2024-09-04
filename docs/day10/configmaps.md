@@ -412,21 +412,272 @@ data:
 
 ### **9. Real-world Example: Using ConfigMaps** <a name="real-world-example"></a>
 
-Consider a 3-tier application where the backend service needs to connect to a database. The database URL and logging level can be stored in a ConfigMap, allowing the backend service to fetch this configuration without hardcoding it.
+To fully understand how ConfigMaps are used in real-world scenarios, it’s important to see them applied in a practical context. This section will walk you through a few different examples of how ConfigMaps can be used to configure applications in Kubernetes, illustrating their flexibility and power.
 
-**YAML Example:**
+#### **Example 1: Configuring a Web Application**
+
+Imagine you have a simple web application that requires configuration settings such as the application environment (e.g., production or development), the number of worker processes, and a base URL for the API it communicates with.
+
+**Step 1: Create the ConfigMap**
+
+**YAML File: `webapp-config.yaml`**
 ```yaml
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: backend-config
+  name: webapp-config
 data:
-  database_url: "jdbc:mysql://db:3306/mydb"
-  log_level: "DEBUG"
+  APP_ENV: "production"
+  WORKER_PROCESSES: "4"
+  API_BASE_URL: "https://api.example.com"
 ```
 
-**Deploying the Application:**
-- The backend service retrieves the `database_url` and `log_level` from the ConfigMap during startup.
+**Command to Apply:**
+```bash
+kubectl apply -f webapp-config.yaml
+```
+
+**Step 2: Configure the Pod to Use the ConfigMap**
+
+**YAML File: `webapp-pod.yaml`**
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: webapp-pod
+spec:
+  containers:
+  - name: webapp-container
+    image: nginx
+    env:
+    - name: APP_ENV
+      valueFrom:
+        configMapKeyRef:
+          name: webapp-config
+          key: APP_ENV
+    - name: WORKER_PROCESSES
+      valueFrom:
+        configMapKeyRef:
+          name: webapp-config
+          key: WORKER_PROCESSES
+    - name: API_BASE_URL
+      valueFrom:
+        configMapKeyRef:
+          name: webapp-config
+          key: API_BASE_URL
+```
+
+**Step 3: Apply the Pod Definition**
+
+**Command to Apply:**
+```bash
+kubectl apply -f webapp-pod.yaml
+```
+
+**Step 4: Verify the Environment Variables**
+
+To ensure the application is correctly configured, you can check the environment variables inside the running container.
+
+**Command:**
+```bash
+kubectl exec -it webapp-pod -- printenv
+```
+
+**Expected Output:**
+```
+APP_ENV=production
+WORKER_PROCESSES=4
+API_BASE_URL=https://api.example.com
+```
+
+**Explanation:**
+- The `webapp-config` ConfigMap contains key-value pairs that represent configuration settings for the web application.
+- The `webapp-pod.yaml` file defines a Pod that uses these ConfigMap values as environment variables.
+- By executing the command inside the container, you can verify that the application is running with the correct environment settings.
+
+---
+
+#### **Example 2: Configuring a Database Connection**
+
+Consider a scenario where you have a microservice that needs to connect to a database. The connection details such as the database host, port, username, and password are stored in a ConfigMap.
+
+**Step 1: Create the ConfigMap**
+
+**YAML File: `db-config.yaml`**
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: db-config
+data:
+  DB_HOST: "db.example.com"
+  DB_PORT: "5432"
+  DB_USER: "admin"
+  DB_PASSWORD: "password123"
+```
+
+**Command to Apply:**
+```bash
+kubectl apply -f db-config.yaml
+```
+
+**Step 2: Configure the Pod to Use the ConfigMap**
+
+**YAML File: `db-pod.yaml`**
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: db-pod
+spec:
+  containers:
+  - name: db-container
+    image: postgres
+    env:
+    - name: DB_HOST
+      valueFrom:
+        configMapKeyRef:
+          name: db-config
+          key: DB_HOST
+    - name: DB_PORT
+      valueFrom:
+        configMapKeyRef:
+          name: db-config
+          key: DB_PORT
+    - name: DB_USER
+      valueFrom:
+        configMapKeyRef:
+          name: db-config
+          key: DB_USER
+    - name: DB_PASSWORD
+      valueFrom:
+        configMapKeyRef:
+          name: db-config
+          key: DB_PASSWORD
+    command: ["/bin/sh", "-c", "echo Connecting to $DB_HOST:$DB_PORT with user $DB_USER"]
+```
+
+**Step 3: Apply the Pod Definition**
+
+**Command to Apply:**
+```bash
+kubectl apply -f db-pod.yaml
+```
+
+**Step 4: Check the Pod Logs**
+
+To verify that the database connection settings are correctly applied, check the logs of the running Pod.
+
+**Command:**
+```bash
+kubectl logs db-pod
+```
+
+**Expected Output:**
+```
+Connecting to db.example.com:5432 with user admin
+```
+
+**Explanation:**
+- The `db-config` ConfigMap stores the database connection details, including the host, port, username, and password.
+- The `db-pod.yaml` file configures a Pod that consumes these values as environment variables.
+- The command inside the Pod uses these environment variables to simulate a database connection setup, which is verified by checking the Pod's logs.
+
+---
+
+#### **Example 3: Configuring Application Settings via Mounted Volumes**
+
+In some cases, applications are designed to read configurations from files rather than environment variables. You can mount a ConfigMap as a volume to provide these configuration files.
+
+**Step 1: Create the ConfigMap**
+
+**YAML File: `app-settings.yaml`**
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-settings
+data:
+  settings.conf: |
+    log_level=INFO
+    max_connections=100
+    timeout=30
+```
+
+**Command to Apply:**
+```bash
+kubectl apply -f app-settings.yaml
+```
+
+**Step 2: Configure the Pod to Use the ConfigMap as a Volume**
+
+**YAML File: `settings-pod.yaml`**
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: settings-pod
+spec:
+  containers:
+  - name: app-container
+    image: busybox
+    volumeMounts:
+    - name: settings-volume
+      mountPath: "/etc/app-config"
+      readOnly: true
+    command: ["/bin/sh", "-c", "cat /etc/app-config/settings.conf"]
+  volumes:
+  - name: settings-volume
+    configMap:
+      name: app-settings
+```
+
+**Step 3: Apply the Pod Definition**
+
+**Command to Apply:**
+```bash
+kubectl apply -f settings-pod.yaml
+```
+
+**Step 4: Check the Pod Logs**
+
+To confirm that the configuration file was correctly mounted and read by the application, inspect the Pod's logs.
+
+**Command:**
+```bash
+kubectl logs settings-pod
+```
+
+**Expected Output:**
+```
+log_level=INFO
+max_connections=100
+timeout=30
+```
+
+**Explanation:**
+- The `app-settings` ConfigMap contains a multi-line configuration file (`settings.conf`).
+- In the `settings-pod.yaml` file, this ConfigMap is mounted as a volume at `/etc/app-config` within the container.
+- The application (simulated by a command in this example) reads the configuration from the mounted file, and the content is verified by checking the Pod’s logs.
+
+---
+
+**Summary of Real-World Scenarios:**
+
+1. **Web Application Configuration:** 
+   - Configures a web application with environment settings such as environment type, worker processes, and API base URL using a ConfigMap.
+
+2. **Database Connection Setup:**
+   - Uses a ConfigMap to store and pass database connection details to a microservice.
+
+3. **Application Settings via File Mounting:**
+   - Demonstrates how to provide application settings as a configuration file by mounting a ConfigMap as a volume.
+
+**Key Takeaways:**
+
+- **Flexibility:** ConfigMaps allow you to manage application configuration independently of your application code, providing greater flexibility in deploying and managing applications.
+- **Security:** While ConfigMaps are not inherently secure, they offer a structured way to manage non-sensitive configuration data.
+- **Simplicity:** Using ConfigMaps can simplify your deployment process by externalizing configuration and making it easier to update application settings without rebuilding your container images.
 
 [Back to TOC](#table-of-contents)
 
