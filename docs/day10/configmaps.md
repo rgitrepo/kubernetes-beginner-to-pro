@@ -244,10 +244,10 @@ spec:
 
 ### **12. Handling Updates in ConfigMaps** <a name="handling-updates"></a>
 
-When a ConfigMap is updated, the changes do not automatically propagate to the running Pods unless the ConfigMap is mounted as a volume. If you are using ConfigMaps as environment variables, you will need to restart the Pod to apply the changes.
+When a ConfigMap is updated, the changes do not automatically propagate to the running Pods unless the ConfigMap is mounted as a volume. If you are using ConfigMaps as **environment variables**, you will need to **restart** the Pod to apply the changes.
 
 **Auto-Reloading ConfigMaps with Volumes:**
-- When ConfigMaps are mounted as volumes, the updated values will be automatically loaded into the Pod without needing a restart. Kubernetes periodically checks for changes and updates the volume contents.
+- When ConfigMaps are mounted as **volumes**, the updated values will be **automatically** loaded into the Pod without needing a restart. Kubernetes periodically checks for changes and updates the volume contents.
 
 **Command to Update ConfigMap:**
 ```bash
