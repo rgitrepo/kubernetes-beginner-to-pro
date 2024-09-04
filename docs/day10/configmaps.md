@@ -331,3 +331,89 @@ By following these industry practices, you can ensure that your use of ConfigMap
 
 [Back to TOC](#table-of-contents)
 
+---
+
+### **15. Consuming ConfigMap Values in a Pod Command** <a name="consuming-configmap-values"></a>
+
+In Kubernetes, you can pass values from a ConfigMap as environment variables to a container within a Pod. These environment variables can then be used in commands executed by the container. This is a common pattern when you want to configure the behavior of your application dynamically without hardcoding values into your container image.
+
+#### **Example Scenario:**
+
+Let’s assume you have a ConfigMap that stores two configuration keys, `SPECIAL_LEVEL_KEY` and `SPECIAL_TYPE_KEY`, and you want to use these values in a command executed by the container when it starts.
+
+**ConfigMap YAML:**
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: special-config
+data:
+  SPECIAL_LEVEL_KEY: "Hard"
+  SPECIAL_TYPE_KEY: "Boss"
+```
+
+**Pod YAML File:**
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: special-pod
+spec:
+  containers:
+  - name: special-container
+    image: busybox
+    command: ["/bin/echo", "$(SPECIAL_LEVEL_KEY) $(SPECIAL_TYPE_KEY)"]
+    env:
+    - name: SPECIAL_LEVEL_KEY
+      valueFrom:
+        configMapKeyRef:
+          name: special-config
+          key: SPECIAL_LEVEL_KEY
+    - name: SPECIAL_TYPE_KEY
+      valueFrom:
+        configMapKeyRef:
+          name: special-config
+          key: SPECIAL_TYPE_KEY
+```
+
+#### **Explanation of What’s Going On:**
+
+1. **ConfigMap Definition:**
+   - The ConfigMap `special-config` contains two key-value pairs:
+     - `SPECIAL_LEVEL_KEY` is set to `"Hard"`.
+     - `SPECIAL_TYPE_KEY` is set to `"Boss"`.
+
+2. **Pod Specification:**
+   - The Pod `special-pod` is defined with a single container named `special-container`, using the `busybox` image.
+   - The `command` field specifies the command that the container will run when it starts. Here, the command is `"/bin/echo"`, which will print the values passed to it.
+   - The values to be printed are `$(SPECIAL_LEVEL_KEY) $(SPECIAL_TYPE_KEY)`. These are placeholders that will be replaced by the values of the corresponding environment variables when the command is executed.
+
+3. **Environment Variables:**
+   - The environment variables `SPECIAL_LEVEL_KEY` and `SPECIAL_TYPE_KEY` are defined in the `env` section of the container specification.
+   - Each environment variable is populated with the value from the `special-config` ConfigMap using the `valueFrom` field. Specifically:
+     - `SPECIAL_LEVEL_KEY` is sourced from the `SPECIAL_LEVEL_KEY` key in the `special-config` ConfigMap.
+     - `SPECIAL_TYPE_KEY` is sourced from the `SPECIAL_TYPE_KEY` key in the `special-config` ConfigMap.
+
+4. **Command Execution:**
+   - When the container starts, the `"/bin/echo"` command is executed. The environment variables `SPECIAL_LEVEL_KEY` and `SPECIAL_TYPE_KEY` are substituted with their respective values from the ConfigMap.
+   - The final command that gets executed is:
+     ```bash
+     /bin/echo "Hard Boss"
+     ```
+   - This command will output `"Hard Boss"` to the container’s standard output.
+
+#### **Learning Points:**
+
+- **Dynamic Configuration:** By using ConfigMaps and environment variables, you can dynamically configure containers at runtime without modifying the container image. This makes your deployments more flexible and easier to manage.
+  
+- **Environment Variable Substitution:** The use of `$(...)` in the `command` field is a shell feature that allows environment variable substitution. Kubernetes replaces these placeholders with the actual values of the environment variables at runtime.
+
+- **ConfigMap Consumption:** The `valueFrom.configMapKeyRef` field is crucial for pulling specific values from a ConfigMap and using them as environment variables in your containers.
+
+- **Command Execution:** The command field in the Pod specification allows you to override the default command in the container image with a custom command, making it possible to tailor the container's behavior based on dynamic input from ConfigMaps.
+
+**Best Practice:**
+- Always validate that the environment variables are correctly set and that the ConfigMap keys exist to avoid runtime errors. 
+
+[Back to TOC](#table-of-contents)
+
