@@ -186,8 +186,8 @@
 - [kubectl Commands to Manage and Troubleshoot Secrets](docs/day10/kubectl-commands-to-manage-and-troubleshoot-secrets.md)
 - [Implementing TLS, mTLS, and Service Mesh](docs/day10/implementing-tls-mtls-and-service-mesh.md)
 - [OSI Model](docs/day10/osi-model.md)
-- [Sidecar vs Sidecarless Model in Istio](docs/day10/sidecar-vs-sidecarless-pattern.md)
-sidecar-vs-sidecarless-pattern.md
+- [Sidecar vs Sidecarless Model in Service Mesh](docs/day10/sidecar-vs-sidecarless-pattern.md)
+
   
 
 </details>
