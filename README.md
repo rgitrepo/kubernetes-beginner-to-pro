@@ -189,6 +189,7 @@
 - [Sidecar vs Sidecarless Model in Service Mesh](docs/day10/sidecar-vs-sidecarless-pattern.md)
 - [eBPF (extended Berkeley Packet Filter)](docs/day10/ebpf.md)
 - [Celium](docs/day10/celium.md)
+- [Istio](docs/day10/istio.md)
 
   
 
