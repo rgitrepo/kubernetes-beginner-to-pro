@@ -11,8 +11,10 @@ This tutorial is designed to provide a thorough understanding of using the Exter
 6. [Configuring External Secret Operator](#configuring-external-secret-operator)
 7. [Using GCSM with External Secret Operator](#using-gcsm-with-external-secret-operator)
 8. [Rotating Secrets](#rotating-secrets)
-9. [Troubleshooting and Validation](#troubleshooting-and-validation)
-10. [Conclusion](#conclusion)
+9. [Security Considerations](#security-considerations)
+10. [Use Cases and Applications](#use-cases-and-applications)
+11. [Troubleshooting and Validation](#troubleshooting-and-validation)
+12. [Conclusion](#conclusion)
 
 ---
 
@@ -34,13 +36,8 @@ Before diving into the step-by-step tutorial, it’s important to understand the
 3. **External Secret**:
    - The External Secret configuration references the Secret Store and the specific secrets stored externally (in GCSM). When this External Secret is applied, it pulls the secret from GCSM, makes a copy, and automatically syncs it into your Kubernetes cluster as a Kubernetes secret.
 
-4. **Security Considerations**:
-   - **No Encryption in Transit**: In this setup, there’s no need for additional encryption beyond what GCSM provides. The secret is safely pulled into Kubernetes and stored as a base64-encoded value. If the secret were encrypted, you would need a private key to decrypt it, which adds complexity.
-   - **Base64 Encoding**: The secret is stored in base64 encoding, making it non-readable by humans, but this is not encryption. This method is sufficient since the secret isn't being publicly showcased or pushed in code where encryption might be necessary.
-
-5. **Use Cases**:
-   - **Templates**: Secrets pulled via the External Secret Operator can be used as templates across multiple environments, ensuring consistency.
-   - **Cross-Cluster Synchronization**: Secrets can be synchronized across multiple Kubernetes clusters, making it easier to manage them centrally.
+**How It Works**:
+- **Automatic Syncing**: The External Secret pulls the secret from GCSM based on the configuration. It makes a copy of the secret and stores it as a Kubernetes secret. The process is automated, meaning that the secret will continue to sync with GCSM according to the specified interval.
 
 Now, let’s go through the steps in detail.
 
@@ -57,6 +54,8 @@ Before starting, ensure you have:
 
 Creating a service account is the first step. This account will act on behalf of your Kubernetes cluster to access secrets stored in GCSM.
 
+**Command:**
+
 ```bash
 gcloud iam service-accounts create my-secret-sa \
     --description="Service account for accessing secrets" \
@@ -68,6 +67,8 @@ gcloud iam service-accounts create my-secret-sa \
 #### 2. Assign Roles to the Service Account
 
 Next, you must grant the service account the necessary permissions to access the secrets in GCSM.
+
+**Command:**
 
 ```bash
 gcloud projects add-iam-policy-binding <your-project-id> \
@@ -81,6 +82,8 @@ gcloud projects add-iam-policy-binding <your-project-id> \
 
 You then create a JSON key for the service account, which will be used to authenticate the Kubernetes cluster with GCSM.
 
+**Command:**
+
 ```bash
 gcloud iam service-accounts keys create ~/key.json \
     --iam-account=my-secret-sa@<your-project-id>.iam.gserviceaccount.com
@@ -89,6 +92,8 @@ gcloud iam service-accounts keys create ~/key.json \
 **Important Point:** The transcript stresses the need to use the JSON format for the key, as other formats like `p12` are not supported by Kubernetes for this use case.
 
 **Why this is important:** This key is your cluster's method of proving its identity to GCSM. Without this key, your cluster can't pull the secrets, making this step critical for the setup.
+
+**File Name:** `gcp-secret-key.yaml`
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -99,6 +104,8 @@ gcloud iam service-accounts keys create ~/key.json \
 #### 1. Store the Service Account Key as a Secret
 
 Now, store the `key.json` file as a Kubernetes secret. This is necessary so that the External Secret Operator can use it to authenticate with GCSM.
+
+**YAML File: `gcp-secret-key.yaml`**
 
 ```yaml
 apiVersion: v1
@@ -111,7 +118,7 @@ data:
   gcp-key.json: <base64-encoded-json-key>
 ```
 
-Apply this secret:
+**Command:**
 
 ```bash
 kubectl apply -f gcp-secret-key.yaml
@@ -129,6 +136,8 @@ kubectl apply -f gcp-secret-key.yaml
 
 The External Secret Operator is installed using Helm, which allows Kubernetes to fetch secrets from external sources like GCSM.
 
+**Commands:**
+
 ```bash
 helm repo add external-secrets https://charts.external-secrets.io
 helm repo update
@@ -140,6 +149,8 @@ helm install external-secrets external-secrets/external-secrets
 #### 2. Configure the Secret Store
 
 Now, configure the `SecretStore` which tells the External Secret Operator where and how to fetch secrets from GCSM.
+
+**YAML File: `gcp-secrets-store.yaml`**
 
 ```yaml
 apiVersion: external-secrets.io/v1alpha1
@@ -157,7 +168,7 @@ spec:
           key: gcp-key.json
 ```
 
-Apply the SecretStore:
+**Command:**
 
 ```bash
 kubectl apply -f gcp-secrets-store.yaml
@@ -176,6 +187,8 @@ kubectl apply -f gcp-secrets-store.yaml
 #### 1. Create an External Secret Resource
 
 This resource tells Kubernetes to fetch the secret from GCSM and store it as a Kubernetes secret.
+
+**YAML File: `my-external-secret.yaml`**
 
 ```yaml
 apiVersion: external-secrets.io/v1alpha1
@@ -196,7 +209,7 @@ spec:
         key: projects/<your-project-id>/secrets/my-secret/versions/latest
 ```
 
-Apply the ExternalSecret:
+**Command:**
 
 ```bash
 kubectl apply -f my-external-secret.yaml
@@ -211,19 +224,41 @@ kubectl apply -f my-external-secret.yaml
 
 **Important Point:** The transcript explains that this method doesn't require additional encryption because the secret is simply being pulled securely into Kubernetes. The secrets are base64 encoded but not encrypted, which is adequate for this use case. If encryption were necessary, a private key would be required for decryption.
 
-
-
 [Back to Table of Contents](#table-of-contents)
 
 ---
 
 ### Rotating Secrets
 
-You can rotate secrets by updating them in GCSM. The External Secret Operator will automatically pull the updated secret based on the refresh interval defined.
+You can rotate
+
+ secrets by updating them in GCSM. The External Secret Operator will automatically pull the updated secret based on the refresh interval defined.
 
 **Important Point:** The transcript emphasizes the importance of secret rotation policies, especially in companies that require secrets to be rotated regularly, such as every 30 days.
 
 **Why this is important:** Secret rotation is vital for maintaining security. Regularly rotating secrets reduces the risk of unauthorized access if a secret is compromised.
+
+[Back to Table of Contents](#table-of-contents)
+
+---
+
+### Security Considerations
+
+**Base64 Encoding vs. Encryption**: The secrets pulled into Kubernetes are base64 encoded, which means they are not easily readable by humans but are not encrypted. This is generally sufficient when the secret isn't being publicly exposed or included in code. If the secret needed to be encrypted, additional steps involving private keys would be required.
+
+**Why Encryption Might Be Needed**: If you were pushing secrets to a public repository or exposing them in a way where unauthorized users could access them, encryption would be necessary to protect the data. However, in the case of secrets managed by GCSM and pulled into Kubernetes, the focus is on secure retrieval and usage within the cluster, not on public exposure.
+
+[Back to Table of Contents](#table-of-contents)
+
+---
+
+### Use Cases and Applications
+
+**Templates**: The secrets managed by the External Secret Operator can be used as templates across multiple environments, ensuring consistency in how sensitive data is handled across your infrastructure.
+
+**Cross-Cluster Synchronization**: One of the powerful features of the External Secret Operator is its ability to synchronize secrets across multiple Kubernetes clusters, making it easier to manage secrets centrally in organizations with complex, multi-cluster environments.
+
+**Multi-Cloud Support**: The flexibility to integrate with various secret management systems, such as AWS Secrets Manager, GCSM, and HashiCorp Vault, makes the External Secret Operator ideal for organizations operating in multi-cloud environments.
 
 [Back to Table of Contents](#table-of-contents)
 
