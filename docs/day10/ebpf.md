@@ -1,10 +1,6 @@
-https://kodekloud.com/blog/ebpf-essentials-devops/#comparing-ebpf-to-the-sidecar-approach
+# Understanding eBPF
 
-Here's the revised version of the document with links to the Table of Contents (TOC) and links back to the TOC after each section:
-
----
-
-# Table of Contents
+## Table of Contents
 
 1. [Understanding eBPF](#understanding-ebpf)
    - [Understanding the Linux Kernel](#understanding-the-linux-kernel)
