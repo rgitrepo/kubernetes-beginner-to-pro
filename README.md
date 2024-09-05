@@ -183,6 +183,7 @@
 - [Secrets - Interview Questions](docs/day10/interview-questions-secrets.md)
 - [Sealed Secrets](docs/day10/sealed-secrets.md)
 - [External Secret Operator & GCSM](docs/day10/external-secret-operator-and-gcsm.md)
+- [kubectl Commands to Manage and Troubleshoot Secrets](docs/day10/kubectl-commands-to-manage-and-troubleshoot-secrets.md)
 
   
 
