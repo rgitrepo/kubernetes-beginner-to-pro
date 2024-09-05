@@ -20,7 +20,7 @@ The OSI (Open Systems Interconnection) model is a conceptual framework used to u
    - This layer handles the addressing and routing of data packets. It is where IP (Internet Protocol) operates, directing data packets from the source to the destination across multiple networks.
 
 6. **Layer 2 - Data Link Layer**:
-   - The Data Link Layer provides node-to-node data transfer—a link between two directly connected nodes. It detects and possibly corrects errors that may occur in the Physical Layer. It handles MAC addresses and the layout of data into frames.
+   - The Data Link Layer provides node-to-node data transfer—a link between two directly connected nodes. It detects and possibly corrects errors that may occur in the Physical Layer. It handles MAC addresses and the layout of data into frames. Ethernet.
 
 7. **Layer 1 - Physical Layer**:
    - The Physical Layer is concerned with the physical connection between devices. It includes the hardware elements like cables, switches, and network interface cards (NICs). This layer transmits raw bit streams over a physical medium.
