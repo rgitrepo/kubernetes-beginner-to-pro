@@ -336,9 +336,7 @@ osm mesh status
 **Explanation**:
 - These commands allow you to verify that the Service Mesh is operating as expected, ensuring secure and efficient service communication.
 
-[Back to Table of Contents](#table-of-contents
-
-)
+[Back to Table of Contents](#table-of-contents)
 
 ---
 
