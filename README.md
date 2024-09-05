@@ -184,7 +184,7 @@
 - [Sealed Secrets](docs/day10/sealed-secrets.md)
 - [External Secret Operator & GCSM](docs/day10/external-secret-operator-and-gcsm.md)
 - [kubectl Commands to Manage and Troubleshoot Secrets](docs/day10/kubectl-commands-to-manage-and-troubleshoot-secrets.md)
-- [Implementing TLS, mTLS, and Service Mesh](docs/day10/sealed-secrets.md)
+- [Implementing TLS, mTLS, and Service Mesh](docs/day10/implementing-tls-mtls-and-service-mesh.md)
 
   
 
