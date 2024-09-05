@@ -393,12 +393,13 @@ ConfigMaps are mutable by default, meaning their values can be changed after the
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: example-config
-  annotations:
-    "kubectl.kubernetes.io/last-applied-configuration": "true"
-    "kubectl.kubernetes.io/immutable": "true"
+  name: my-config
+  namespace: default
 data:
-  key: "value"
+  my-key: my-value
+  another-key: another-value
+immutable: true
+
 ```
 
 **Why Make ConfigMaps Immutable?**
