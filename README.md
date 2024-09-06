@@ -181,6 +181,7 @@
 - [ConfigMaps - Consumption via Pod Commands](docs/day10/consuming-configmaps-from-pod-commands.md)
 - [ConfigMaps - Consumption via Files](docs/day10/configmaps-creation-and-consumption-from-files.md)
 - [ConfigMaps - Consumption via Directories](docs/day10/consuming-configmaps-from-directories.md)
+- [ConfigMaps - RBAC with Cloud-Based Examples](docs/day10/rbac-with-cloud-based-examples.md)
 - [ConfigMaps - Interview Questions](docs/day10/interview-questions-configmaps.md)
 - [Secrets](docs/day10/secrets.md)
 - [Secrets - Interview Questions](docs/day10/interview-questions-secrets.md)
