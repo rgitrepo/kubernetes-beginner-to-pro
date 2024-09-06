@@ -10,11 +10,8 @@
 4. [Consuming ConfigMap Values as Environment Variables](#consuming-configmap)
     - [YAML Example: Injecting Environment Variables from a ConfigMap](#yaml-example-injecting-env)
 5. [Verifying Environment Variables in Pods](#verifying-environment-variables)
-6. [Security Best Practices](#security-best-practices)
-    - [Immutability for ConfigMaps](#immutability-configmaps)
-    - [Using ReadOnly Volumes](#readonly-volumes)
-7. [Handling Updates in ConfigMaps](#handling-updates)
-8. [Summary and Best Practices](#summary)
+6. [Handling Updates in ConfigMaps](#handling-updates)
+7. [Summary and Best Practices](#summary)
 
 ---
 
