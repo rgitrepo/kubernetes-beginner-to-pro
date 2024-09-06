@@ -243,9 +243,7 @@ roleRef:
 
 ---
 
-#### **Example
-
-: GCP IAM Roles for ConfigMap Access** <a name="gcp-example"></a>
+#### **Example: GCP IAM Roles for ConfigMap Access** <a name="gcp-example"></a>
 
 GCP uses Identity and Access Management (IAM) to control access to resources. You can grant IAM roles to service accounts and use Kubernetes RBAC to manage fine-grained access to ConfigMaps.
 
