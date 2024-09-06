@@ -1,4 +1,4 @@
-### **Tutorial: ConfigMaps in Kubernetes – Comprehensive Guide**
+### **ConfigMaps - Introduction + Security**
 
 ---
 
