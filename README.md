@@ -178,6 +178,7 @@
 <summary>Day 10: Service Mesh, Secrets, CMs, External Secret Operator, Google Cloud Secret Manager</summary>
 
 - [ConfigMaps - Introduction + Security](docs/day10/configmaps.md)
+- [ConfigMaps - Consumption via Environment Variables](docs/day10/consuming-configmaps-using-environment-variables.md)
 - [ConfigMaps - Consumption via Pod Commands](docs/day10/consuming-configmaps-from-pod-commands.md)
 - [ConfigMaps - Consumption via Files](docs/day10/configmaps-creation-and-consumption-from-files.md)
 - [ConfigMaps - Consumption via Directories](docs/day10/consuming-configmaps-from-directories.md)
