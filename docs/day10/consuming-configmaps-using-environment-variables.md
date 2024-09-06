@@ -148,7 +148,9 @@ The output shows that the environment variables `APP_ENV`, `API_URL`, and `MAX_R
 ### **6. Handling Updates in ConfigMaps** <a name="handling-updates"></a>
 
 When you update a ConfigMap, the changes do not automatically propagate to Pods using the ConfigMap as environment variables. 
-_You need to **restart** the Pod to apply the updated environment variables. Update is automatic in case of Volumes. _
+
+You need to **restart** the Pod to apply the updated environment variables. Update is automatic in case of Volumes.
+
 Almost always try to use volume mounts and avoid environment variables.
 
 **Command to Restart Pods:**
