@@ -145,64 +145,10 @@ The output shows that the environment variables `APP_ENV`, `API_URL`, and `MAX_R
 
 [Back to TOC](#table-of-contents)
 
----
-
-### **6. Security Best Practices** <a name="security-best-practices"></a>
-
-#### **Immutability for ConfigMaps** <a name="immutability-configmaps"></a>
-
-Making ConfigMaps immutable can prevent accidental changes in production environments. An immutable ConfigMap ensures that once created, it cannot be modified, providing consistency and reducing the risk of unexpected behavior.
-
-**Example:**
-```yaml
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: app-config
-  immutable: true  # Makes the ConfigMap immutable
-data:
-  APP_ENV: "production"
-  API_URL: "https://api.example.com"
-  MAX_RETRIES: "5"
-```
-
-Once you set a ConfigMap as immutable, you cannot update it. If changes are required, a new ConfigMap must be created.
-
-[Back to TOC](#table-of-contents)
 
 ---
 
-#### **Using ReadOnly Volumes** <a name="readonly-volumes"></a>
-
-If you mount ConfigMaps as volumes instead of using environment variables, always mark them as `readOnly` to prevent accidental modification of the configuration data.
-
-**Example:**
-```yaml
-apiVersion: v1
-kind: Pod
-metadata:
-  name: app-pod
-spec:
-  containers:
-  - name: app-container
-    image: nginx
-    volumeMounts:
-    - name: config-volume
-      mountPath: "/etc/config"
-      readOnly: true  # Ensures the volume is mounted as read-only
-  volumes:
-  - name: config-volume
-    configMap:
-      name: app-config
-```
-
-This ensures that the mounted ConfigMap is read-only and cannot be altered by the application.
-
-[Back to TOC](#table-of-contents)
-
----
-
-### **7. Handling Updates in ConfigMaps** <a name="handling-updates"></a>
+### **6. Handling Updates in ConfigMaps** <a name="handling-updates"></a>
 
 When you update a ConfigMap, the changes do not automatically propagate to Pods using the ConfigMap as environment variables. You need to restart the Pod to apply the updated environment variables.
 
@@ -217,7 +163,7 @@ This will recreate the Pods, injecting the updated ConfigMap values as environme
 
 ---
 
-### **8. Summary and Best Practices** <a name="summary"></a>
+### **7. Summary and Best Practices** <a name="summary"></a>
 
 In this tutorial, we covered how to consume ConfigMap values as environment variables in Kubernetes. Using environment variables provides a convenient way to externalize configuration while keeping application code portable and environment-independent.
 
