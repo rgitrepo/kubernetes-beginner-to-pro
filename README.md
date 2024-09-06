@@ -177,7 +177,7 @@
 <details>
 <summary>Day 10: Service Mesh, Secrets, CMs, External Secret Operator, Google Cloud Secret Manager</summary>
 
-- [ConfigMaps](docs/day10/configmaps.md)
+- [ConfigMaps - Introduction + Security](docs/day10/configmaps.md)
 - [ConfigMaps - Creation & Consumption from Files](docs/day10/configmaps-creation-and-consumption-from-files.md)
 - [ConfigMaps - Consumption from Directories](docs/day10/consuming-configmaps-from-directories.md)
 - [ConfigMaps - Interview Questions](docs/day10/interview-questions-configmaps.md)
