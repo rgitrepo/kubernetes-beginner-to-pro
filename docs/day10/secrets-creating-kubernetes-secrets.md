@@ -181,6 +181,16 @@ Then, reference this Secret in your Pod specification using the `imagePullSecret
      - name: my-docker-secret  # name given to secret docker registry
    ```
 
+<your-private-image>
+- **Docker Hub**: `docker.io/<username>/<repository>:<tag>`
+- **AWS ECR**: `<aws_account_id>.dkr.ecr.<region>.amazonaws.com/<repository>:<tag>`
+- **Azure ACR**: `<registry-name>.azurecr.io/<repository>:<tag>`
+- **Google GCR**: `gcr.io/<project-id>/<repository>:<tag>`
+- **GitLab Container Registry**: `registry.gitlab.com/<username>/<repository>:<tag>`
+- **Quay.io**: `quay.io/<username>/<repository>:<tag>`
+
+These are the formats you would use when specifying private container images from each respective registry in Kubernetes YAML files.
+
 
 #### **YAML Example**
 Alternatively, you can define a Docker registry Secret using a YAML manifest:
