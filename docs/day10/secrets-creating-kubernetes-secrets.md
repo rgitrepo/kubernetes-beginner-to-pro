@@ -181,7 +181,8 @@ Then, reference this Secret in your Pod specification using the `imagePullSecret
      - name: my-docker-secret  # name given to secret docker registry
    ```
 
-<your-private-image>
+Here’s a summarized one-liner format for each cloud solution:
+
 - **Docker Hub**: `docker.io/<username>/<repository>:<tag>`
 - **AWS ECR**: `<aws_account_id>.dkr.ecr.<region>.amazonaws.com/<repository>:<tag>`
 - **Azure ACR**: `<registry-name>.azurecr.io/<repository>:<tag>`
