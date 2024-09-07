@@ -185,6 +185,7 @@
 - [ConfigMaps - RBAC with Cloud-Based Examples](docs/day10/rbac-with-cloud-based-examples.md)
 - [ConfigMaps - Interview Questions](docs/day10/interview-questions-configmaps.md)
 - [Secrets - Introduction & Overview](docs/day10/secrets.md)
+- [Secrets - Base64 Encoding & Decoding](docs/day10/secrets-base64-encoding-and-decoding.md)
 - [Secrets - Creating Kubernetes Secrets](docs/day10/secrets-creating-kubernetes-secrets.md)
 - [Secrets - Consuming via Environment Variables](docs/day10/secrets-consuming-via-environment-variables.md)
 - [Secrets - Consuming via Files (Volume Mounts)](docs/day10/secrets-consuming-via-files.md)
