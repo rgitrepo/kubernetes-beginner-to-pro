@@ -1,4 +1,4 @@
-### **ConfigMaps - Introduction and Security Considerations in Kubernetes**
+### **ConfigMaps - Introduction & Overview**
 
 ---
 
