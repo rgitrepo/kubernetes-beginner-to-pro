@@ -185,7 +185,7 @@
 - [ConfigMaps - RBAC with Cloud-Based Examples](docs/day10/rbac-with-cloud-based-examples.md)
 - [ConfigMaps - Interview Questions](docs/day10/interview-questions-configmaps.md)
 - [Secrets](docs/day10/secrets.md)
-- [Secrets - Consuming via Environment Variables](docs/day10/consuming-secrets-via-environment-variables.md)
+- [Secrets - Consuming via Environment Variables](docs/day10/consuming-via-environment-variables.md)
 - [Secrets - Interview Questions](docs/day10/interview-questions-secrets.md)
 - [Sealed Secrets](docs/day10/sealed-secrets.md)
 - [External Secret Operator & GCSM](docs/day10/external-secret-operator-and-gcsm.md)
