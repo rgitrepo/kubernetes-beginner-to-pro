@@ -177,8 +177,8 @@ Then, reference this Secret in your Pod specification using the `imagePullSecret
      containers:
      - name: my-container
        image: <your-private-image>
-     imagePullSecrets:
-     - name: my-registry-secret
+     imagePullSecrets:         # field/key that pulls secret images from dockerhub
+     - name: my-docker-secret  # name given to secret docker registry
    ```
 
 
