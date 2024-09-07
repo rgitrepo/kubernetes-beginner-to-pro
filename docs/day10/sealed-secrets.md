@@ -95,7 +95,7 @@ metadata:
   name: mysecret
 type: Opaque
 data:
-  key1: bXl2YWx1ZQ==
+  key1: bXl2YWx1ZQ==    # encrypted by base64
 ```
 
 #### Encrypting the Secret Using kubeseal
