@@ -1,4 +1,4 @@
-## **Tutorial: Consuming Kubernetes Secrets via Volume Mounts**
+## **Consuming Kubernetes Secrets via Files (Volume Mounts)**
 
 ---
 
