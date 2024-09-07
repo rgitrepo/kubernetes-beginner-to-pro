@@ -77,53 +77,229 @@ kubectl apply -f my-secret.yaml
 
 ### **4. Types of Kubernetes Secrets** <a name="4-types-of-secrets"></a>
 
-Kubernetes Secrets come in different types, each suited to specific use cases.
+### **Kubernetes Secrets - Introduction and Overview**
+
+---
+
+### **Table of Contents**
+
+1. [Introduction to Kubernetes Secrets](#1-introduction-to-kubernetes-secrets)
+2. [Why Use Kubernetes Secrets?](#2-why-use-secrets)
+3. [Creating Kubernetes Secrets](#3-creating-secrets)
+4. [Types of Kubernetes Secrets](#4-types-of-secrets)
+   - [Generic Secrets](#generic-secrets)
+   - [Opaque Secrets](#opaque-secrets)
+   - [TLS Secrets](#tls-secrets)
+   - [Docker Secrets](#docker-secrets)
+5. [Ways to Consume Secrets](#5-ways-to-consume-secrets)
+6. [Security Best Practices for Secrets](#6-security-best-practices)
+7. [Handling Updates to Secrets](#7-handling-updates-to-secrets)
+8. [Conclusion](#8-conclusion)
+
+---
+
+### **1. Introduction to Kubernetes Secrets** <a name="1-introduction-to-kubernetes-secrets"></a>
+
+Kubernetes Secrets provide a way to securely store sensitive information such as passwords, tokens, SSH keys, and certificates. By abstracting sensitive data from Pods and application code, Secrets improve the security of containerized applications. Kubernetes Secrets are stored in the `etcd` database in Base64-encoded format and can be encrypted for added security.
+
+[Back to TOC](#table-of-contents)
+
+---
+
+### **2. Why Use Kubernetes Secrets?** <a name="2-why-use-secrets"></a>
+
+Kubernetes Secrets offer several advantages:
+- **Security**: Secrets are stored separately from Pods and images, minimizing the risk of exposure.
+- **Encryption**: Secrets can be encrypted at rest, ensuring that sensitive data remains secure.
+- **Controlled Access**: Access to Secrets can be managed using Kubernetes Role-Based Access Control (RBAC), limiting who can access or modify them.
+- **Ease of Management**: Secrets can be rotated or updated without changing application code or redeploying container images.
+
+[Back to TOC](#table-of-contents)
+
+---
+
+### **3. Creating Kubernetes Secrets** <a name="3-creating-secrets"></a>
+
+Kubernetes Secrets can be created using `kubectl` commands or YAML manifest files.
+
+#### **Example: Creating a Secret via Command Line**
+```bash
+kubectl create secret generic my-secret \
+  --from-literal=username=admin \
+  --from-literal=password=my-password
+```
+
+#### **Example: Creating a Secret via YAML**
+
+You can define a Secret in a YAML file:
+
+```yaml
+# secret.yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: my-secret
+type: Opaque
+data:
+  username: YWRtaW4=  # Base64-encoded 'admin'
+  password: bXktcGFzc3dvcmQ=  # Base64-encoded 'my-password'
+```
+
+**Apply the Secret:**
+```bash
+kubectl apply -f secret.yaml
+```
+
+**Tip:** You can use Base64 encoding to manually convert sensitive information into Base64 before adding it to the YAML:
+```bash
+echo -n 'my-password' | base64
+```
+
+This command will output the encoded string (`bXktcGFzc3dvcmQ=`), which you can then insert into the `data` field.
+
+[Back to TOC](#table-of-contents)
+
+---
+
+### **4. Types of Kubernetes Secrets** <a name="4-types-of-secrets"></a>
+
 
 #### **1. Generic Secrets** <a name="generic-secrets"></a>
 
-These store arbitrary key-value pairs, such as database credentials, API tokens, or configuration data.
+Generic Secrets allow you to store arbitrary key-value pairs, such as API tokens, database credentials, or other sensitive information that your application requires.
 
 **Example:**
 ```yaml
 apiVersion: v1
 kind: Secret
 metadata:
-  name: generic-secret
-type: Opaque
+  name: app-secret
+type: Opaque  # Default type for generic secrets
 data:
   api-key: ZmFrZS1hcGkta2V5  # Base64-encoded 'fake-api-key'
 ```
 
+In this example:
+- **Key**: `api-key`
+- **Value**: Base64-encoded string `ZmFrZS1hcGkta2V5` (which decodes to `fake-api-key`).
+
+---
+
 #### **2. Opaque Secrets** <a name="opaque-secrets"></a>
 
-Opaque Secrets are the default type and store any binary or textual data.
-
-**Example (via command line):**
-```bash
-kubectl create secret generic opaque-secret --from-literal=key=value
-```
-
-#### **3. TLS Secrets** <a name="tls-secrets"></a>
-
-TLS Secrets are used for SSL/TLS certificates and private keys, often in conjunction with Ingress resources for HTTPS.
+Opaque is the default type when creating Secrets, and it’s used to store arbitrary binary or textual data. If you don't specify a type when creating a Secret, it defaults to `Opaque`.
 
 **Example:**
 ```bash
-kubectl create secret tls tls-secret \
+kubectl create secret generic opaque-secret \
+  --from-literal=username=admin \
+  --from-literal=password=secretpassword
+```
+
+This creates a Secret named `opaque-secret` with key-value pairs `username` and `password`. The data is stored in Base64-encoded format, but is otherwise not structured for a specific use case.
+
+**Verification:**
+```bash
+kubectl get secret opaque-secret -o yaml
+```
+
+---
+
+#### **3. TLS Secrets** <a name="tls-secrets"></a>
+
+TLS Secrets are designed to store SSL/TLS certificates and their associated private keys. They are commonly used with Ingress controllers to enable HTTPS traffic.
+
+**Example:**
+```bash
+kubectl create secret tls my-tls-secret \
   --cert=/path/to/tls.crt \
   --key=/path/to/tls.key
 ```
 
+This command creates a TLS Secret, where the certificate and private key are stored securely.
+
+**YAML Example:**
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: my-tls-secret
+type: kubernetes.io/tls
+data:
+  tls.crt: <base64-encoded-cert>
+  tls.key: <base64-encoded-key>
+```
+
+**Use Case:**
+TLS Secrets are commonly used with Ingress resources to terminate HTTPS connections at the edge of the Kubernetes cluster.
+
+**Ingress Example:**
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: tls-ingress
+spec:
+  tls:
+  - hosts:
+    - example.com
+    secretName: my-tls-secret
+  rules:
+  - host: example.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: my-service
+            port:
+              number: 80
+```
+
+---
+
 #### **4. Docker Secrets** <a name="docker-secrets"></a>
 
-Docker Secrets store credentials for pulling container images from private Docker registries.
+Docker Secrets store credentials needed to pull images from private Docker registries. This type of Secret is used with the `imagePullSecrets` field in Pod specifications.
 
 **Example:**
 ```bash
-kubectl create secret docker-registry docker-secret \
-  --docker-username=myuser \
-  --docker-password=mypassword \
-  --docker-server=myregistry.com
+kubectl create secret docker-registry my-docker-secret \
+  --docker-username=<your-username> \
+  --docker-password=<your-password> \
+  --docker-email=<your-email> \
+  --docker-server=<your-registry-server>
+```
+
+This creates a Secret named `my-docker-secret` that stores Docker registry credentials.
+
+**YAML Example:**
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: my-docker-secret
+type: kubernetes.io/dockerconfigjson
+data:
+  .dockerconfigjson: <base64-encoded-docker-config>
+```
+
+**Use Case:**
+Docker Secrets are used when pulling container images from private registries. In your Pod definition, you can specify the Docker Secret under the `imagePullSecrets` section.
+
+**Pod Example:**
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: private-pod
+spec:
+  containers:
+  - name: my-app
+    image: my-private-registry/my-app
+  imagePullSecrets:
+  - name: my-docker-secret
 ```
 
 [Back to TOC](#table-of-contents)
