@@ -166,6 +166,22 @@ kubectl create secret docker-registry my-docker-secret \
 
 This command creates a Secret called `my-docker-secret` that stores Docker credentials.
 
+Then, reference this Secret in your Pod specification using the `imagePullSecrets` field:
+  
+   ```yaml
+   apiVersion: v1
+   kind: Pod
+   metadata:
+     name: my-pod
+   spec:
+     containers:
+     - name: my-container
+       image: <your-private-image>
+     imagePullSecrets:
+     - name: my-registry-secret
+   ```
+
+
 #### **YAML Example**
 Alternatively, you can define a Docker registry Secret using a YAML manifest:
 ```yaml
