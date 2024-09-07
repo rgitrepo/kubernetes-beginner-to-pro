@@ -1,4 +1,4 @@
-### **Creating Kubernetes Secrets: A Comprehensive Guide**
+## **Creating Kubernetes Secrets
 
 ---
 
