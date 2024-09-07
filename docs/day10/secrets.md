@@ -7,7 +7,7 @@
 1. [Introduction to Kubernetes Secrets](#1-introduction-to-kubernetes-secrets)
 2. [Why Use Kubernetes Secrets?](#2-why-use-secrets)
 3. [Creating Kubernetes Secrets](#3-creating-secrets)
-4. [Types of Kubernetes Secrets](#4-types-of-secrets)
+4. [Types of Kubernetes Secrets](#4-types-of-secrets--1)
    - [Generic Secrets](#generic-secrets)
    - [Opaque Secrets](#opaque-secrets)
    - [TLS Secrets](#tls-secrets)
