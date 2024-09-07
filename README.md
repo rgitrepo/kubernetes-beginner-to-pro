@@ -178,17 +178,20 @@
 <summary>Day 10: Service Mesh, Secrets, CMs, External Secret Operator, Google Cloud Secret Manager</summary>
 
 - [ConfigMaps - Introduction + Security](docs/day10/configmaps.md)
+- [ConfigMaps - Consuming via Environment Variables](docs/day10/consuming-configmaps-using-environment-variables.md)
 - [ConfigMaps - Consuming in Pods](docs/day10/consuming-configmaps-from-pod-commands.md)
 - [ConfigMaps - Consuming via Files](docs/day10/configmaps-creation-and-consumption-from-files.md)
 - [ConfigMaps - Consuming via Directories](docs/day10/consuming-configmaps-from-directories.md)
 - [ConfigMaps - RBAC with Cloud-Based Examples](docs/day10/rbac-with-cloud-based-examples.md)
 - [ConfigMaps - Interview Questions](docs/day10/interview-questions-configmaps.md)
+  
 - [Secrets](docs/day10/secrets.md)
 - [Secrets - Consuming via Environment Variables](docs/day10/secrets-consuming-via-environment-variables.md)
 - [Secrets - Consuming via Files (Volume Mounts)](docs/day10/secrets-consuming-via-files.md)
 - [Secrets - Consuming via Directories (Volume Mounts)](docs/day10/secrets-consuming-via-directories.md)
 - [Secrets - Consuming in Pods](docs/day10/secrets-consuming-in-pods.md)
 - [Secrets - Interview Questions](docs/day10/interview-questions-secrets.md)
+  
 - [Sealed Secrets](docs/day10/sealed-secrets.md)
 - [External Secret Operator & GCSM](docs/day10/external-secret-operator-and-gcsm.md)
 - [kubectl Commands to Manage and Troubleshoot Secrets](docs/day10/kubectl-commands-to-manage-and-troubleshoot-secrets.md)
