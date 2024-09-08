@@ -208,6 +208,99 @@ kubectl apply -f my-external-secret.yaml
 
 ---
 
+Here’s the updated example with explanations and connections to the fields in other YAML files, specifically for GCP Service Account authentication using External Secret Operator (ESO). I’ll use a YAML structure similar to the one you’ve provided, and explain each field in detail.
+
+---
+
+### GCP Service Account Authentication with ESO
+
+This example demonstrates how to authenticate with Google Cloud Secret Manager (GCSM) using a GCP Service Account. The Service Account credentials are stored in Kubernetes as a secret, which ESO will use to fetch secrets from GCSM.
+
+**GCP Service Account Authentication Overview**:
+- **Service Account**: A long-lived credential (static) JSON file.
+- **Kind=Secret**: This Kubernetes secret contains the GCP service account JSON, allowing ESO to authenticate with GCSM and retrieve secrets.
+- **Secret Manager Accessor Role**: This role is required for the service account to read secrets from GCSM.
+
+---
+
+### YAML File Example: Storing the GCP Service Account in Kubernetes
+
+**YAML File**: `gcpsm-secret.yaml`
+
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: gcpsm-secret    # Name of the Kubernetes secret
+  labels:
+    type: gcpsm         # A label to easily identify this as GCP Secret Manager-related
+type: Opaque            # The type of secret (Opaque indicates arbitrary user-defined data)
+stringData:
+  secret-access-credentials: |-   # The GCP service account credentials are stored as a key-value pair
+    {
+      "type": "service_account",    # Defines the type of the GCP account as a service account
+      "project_id": "external-secrets-operator",  # GCP project where the service account exists
+      "private_key_id": "",   # Private key ID, will be auto-generated when the key is created
+      "private_key": "-----BEGIN PRIVATE KEY-----\nA key\n-----END PRIVATE KEY-----\n",  # The private key for secure access
+      "client_email": "test-service-account@external-secrets-operator.iam.gserviceaccount.com",  # Service account email
+      "client_id": "client ID",   # Unique client ID for the service account
+      "auth_uri": "https://accounts.google.com/o/oauth2/auth",  # OAuth 2.0 authorization URI
+      "token_uri": "https://oauth2.googleapis.com/token",  # URI to obtain the access token
+      "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",  # URI for the provider's cert
+      "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/test-service-account%40external-secrets-operator.iam.gserviceaccount.com"  # Service account's certificate URI
+    }
+```
+
+### Explanation and Connections to Other YAML Files
+
+1. **`apiVersion: v1` and `kind: Secret`**: This defines the Kubernetes object as a secret. In other parts of the tutorial (e.g., the [Storing Service Account Key](#storing-service-account-key-as-a-kubernetes-secret) section), this YAML file represents the secret that will hold the GCP Service Account credentials. ESO will later use this to authenticate with GCSM.
+
+2. **`metadata.name: gcpsm-secret`**: This is the name of the secret. In your Secret Store YAML (e.g., [Configuring the Secret Store](#configuring-the-secret-store) section), you will reference this secret under `spec.provider.gcp.auth.secretRef.name`, indicating that this secret contains the necessary credentials for GCP.
+
+3. **`labels`**: Labels provide a way to easily identify this secret as part of GCP Secret Manager. While not critical, it's good practice to use labels to categorize resources. In larger clusters, labels can help distinguish different types of resources.
+
+4. **`type: Opaque`**: The `Opaque` type indicates that the secret holds arbitrary data, like credentials or keys. This is consistent with how Kubernetes manages secrets for various services. It corresponds to the secret type used in previous examples (e.g., [Storing Service Account Key](#storing-service-account-key-as-a-kubernetes-secret)).
+
+5. **`stringData.secret-access-credentials`**: The key `secret-access-credentials` holds the entire GCP service account JSON. In the Secret Store YAML file ([Configuring the Secret Store](#configuring-the-secret-store)), you’ll notice this field is accessed through `spec.provider.gcp.auth.secretRef.key` to authenticate with GCP.
+
+6. **Connection to Secret Store**: In the Secret Store YAML, this secret (`gcpsm-secret`) is referenced in this manner:
+    ```yaml
+    auth:
+      secretRef:
+        name: gcpsm-secret   # Refers to this secret created here
+        key: secret-access-credentials  # Refers to the key in the secret containing the JSON
+    ```
+
+7. **GCP Service Account JSON**:
+   - **`type`**: Specifies that this is a GCP service account.
+   - **`project_id`**: Links to your GCP project where the service account is created. The `project_id` is critical because it determines the context in which the service account operates. This must match the project where your secrets are stored.
+   - **`private_key` and `client_email`**: The `private_key` allows secure authentication with GCP, and `client_email` defines the service account's identity. ESO will use these credentials to authenticate.
+   - **OAuth and Token URIs**: These URIs handle authentication and token exchange for secure communication with GCP.
+
+---
+
+### Next Steps: Connecting the Secret to External Secrets
+
+Once the service account is stored in Kubernetes as a secret, the next step is to configure the `SecretStore` YAML and link it to this secret to authenticate with GCSM.
+
+Refer back to the [Configuring the Secret Store](#configuring-the-secret-store) section, where you would link the secret in the following way:
+
+**YAML Snippet**:
+```yaml
+auth:
+  secretRef:
+    name: gcpsm-secret   # Refers to the Kubernetes secret created with the GCP credentials
+    key: secret-access-credentials  # Refers to the JSON key within the secret
+```
+
+By doing this, you ensure that the External Secret Operator can use the `gcpsm-secret` to authenticate with GCP and fetch secrets securely.
+
+[Back to Table of Contents](#table-of-contents)
+
+---
+
+
+
 ### Syncing and Rotating Secrets
 
 ESO allows for automatic secret rotation. When secrets in GCSM or other cloud services are rotated, the External Secret Operator will sync the updated secret into Kubernetes based on the `refreshInterval`.
