@@ -206,9 +206,6 @@ kubectl apply -f my-external-secret.yaml
 
 [Back to Table of Contents](#table-of-contents)
 
----
-
-Here’s the updated example with explanations and connections to the fields in other YAML files, specifically for GCP Service Account authentication using External Secret Operator (ESO). I’ll use a YAML structure similar to the one you’ve provided, and explain each field in detail.
 
 ---
 
