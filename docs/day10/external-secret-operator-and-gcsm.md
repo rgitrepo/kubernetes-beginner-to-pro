@@ -265,6 +265,7 @@ kubectl apply -f my-external-secret.yaml
   <img src="../../pics/external-secret.draw.io.drawio.png" alt="External Secret">
 </div>
 
+---
 
 
 | **File**                 | **Field**                                  | **Referenced In**                                                           | **Other File Field**                                     |
@@ -275,8 +276,6 @@ kubectl apply -f my-external-secret.yaml
 | `my-external-secret.yaml` | `remoteRef.key`                            | **Secret in GCP Secret Manager** (fetches the actual secret from GCP)        | N/A                                                      |
 
 ---
-
-This table organizes the exact fields from each file and shows how they are connected to other files, allowing for easier visualization and mapping. Let me know if you need further details!
 
 
 
