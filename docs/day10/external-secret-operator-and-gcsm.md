@@ -254,9 +254,34 @@ spec:
 kubectl apply -f my-external-secret.yaml
 ```
 
-> **Explanation**: This External Secret resource pulls the secret from GCP Secret Manager and stores it in Kubernetes as `my-k8s-secret`. The `refreshInterval` ensures that the secret is updated every hour.
+> **Explanation**: This External Secret resource pulls the secret from **GCP Secret Manager** and stores it in Kubernetes as `my-k8s-secret`. The `refreshInterval` ensures that the secret is updated every hour.
 
 ---
+
+
+### **Summary of Connections Across Files**
+
+<div style="text-align: center;">
+  <img src="../../pics/external-secret.draw.io.drawio.png" alt="External Secret" style="width: 700px; height: 500px;">
+</div>
+
+
+
+| **File**                 | **Field**                                  | **Referenced In**                                                           | **Other File Field**                                     |
+|--------------------------|--------------------------------------------|-----------------------------------------------------------------------------|----------------------------------------------------------|
+| `gcpsm-secret.yaml`       | `metadata.name: gcpsm-secret`              | **SecretStore YAML** under `spec.provider.gcp.auth.secretRef.name`           | `gcp-secret-store.yaml`                                  |
+| `gcpsm-secret.yaml`       | `stringData.secret-access-credentials`     | **SecretStore YAML** under `spec.provider.gcp.auth.secretRef.key`            | `gcp-secret-store.yaml`                                  |
+| `gcp-secret-store.yaml`   | `metadata.name: gcp-secrets-store`         | **ExternalSecret YAML** under `spec.secretStoreRef.name`                     | `my-external-secret.yaml`                                |
+| `my-external-secret.yaml` | `remoteRef.key`                            | **Secret in GCP Secret Manager** (fetches the actual secret from GCP)        | N/A                                                      |
+
+---
+
+This table organizes the exact fields from each file and shows how they are connected to other files, allowing for easier visualization and mapping. Let me know if you need further details!
+
+
+
+
+
 
 ### Syncing and Rotating Secrets
 
