@@ -121,7 +121,7 @@ gcloud iam service-accounts keys create ~/key.json \
     --iam-account=my-secret-sa@<your-project-id>.iam.gserviceaccount.com
 ```
 
-> **Explanation**: This command generates a JSON file containing the credentials for the service account. These credentials will be stored as a Kubernetes secret and used by the External Secret Operator to authenticate with GCP Secret Manager.
+> **Explanation**: This command generates a JSON file containing the credentials for the service account. These credentials will be stored as a Kubernetes secret and used by the **External Secret Operator** to authenticate with **GCP Secret Manager**.
 
 Here’s an example of what the **JSON file** looks like for GCP Service Account:
 
