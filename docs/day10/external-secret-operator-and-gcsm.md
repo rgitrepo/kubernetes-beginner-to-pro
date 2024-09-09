@@ -17,9 +17,10 @@ This tutorial guides you through the process of managing secrets in Kubernetes u
     - 5.1 [Storing GCP Service Account Key as a Kubernetes Secret](#storing-gcp-service-account-key-as-a-kubernetes-secret)
     - 5.2 [Configuring the Secret Store](#configuring-the-secret-store)
     - 5.3 [Creating and Applying an External Secret Resource](#creating-and-applying-an-external-secret-resource)
-6. [Syncing and Rotating Secrets](#syncing-and-rotating-secrets)
-7. [Security and Encryption](#security-and-encryption)
-8. [Conclusion](#conclusion)
+6. [Diagram of Connections Across Files](#diagram-of-connections-across-files)
+7. [Syncing and Rotating Secrets](#syncing-and-rotating-secrets)
+8. [Security and Encryption](#security-and-encryption)
+9. [Conclusion](#conclusion)
 
 ---
 
@@ -259,7 +260,7 @@ kubectl apply -f my-external-secret.yaml
 ---
 
 
-### **Summary of Connections Across Files**
+### **Diagram of Connections Across Files**
 
 <div style="text-align: center;">
   <img src="../../pics/external-secret.draw.io.drawio.png" alt="External Secret">
