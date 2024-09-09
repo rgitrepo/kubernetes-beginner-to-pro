@@ -262,7 +262,7 @@ kubectl apply -f my-external-secret.yaml
 ### **Summary of Connections Across Files**
 
 <div style="text-align: center;">
-  <img src="../../pics/external-secret.draw.io.drawio.png" alt="External Secret" style="width: 700px; height: 500px;">
+  <img src="../../pics/external-secret.draw.io.drawio.png" alt="External Secret">
 </div>
 
 
