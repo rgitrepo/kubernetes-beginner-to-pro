@@ -266,22 +266,8 @@ kubectl apply -f my-external-secret.yaml
   <img src="../../pics/external-secret.draw.io.drawio.png" alt="External Secret">
 </div>
 
----
-
-
-| **File**                 | **Field**                                  | **Referenced In**                                                           | **Other File Field**                                     |
-|--------------------------|--------------------------------------------|-----------------------------------------------------------------------------|----------------------------------------------------------|
-| `gcpsm-secret.yaml`       | `metadata.name: gcpsm-secret`              | **SecretStore YAML** under `spec.provider.gcp.auth.secretRef.name`           | `gcp-secret-store.yaml`                                  |
-| `gcpsm-secret.yaml`       | `stringData.secret-access-credentials`     | **SecretStore YAML** under `spec.provider.gcp.auth.secretRef.key`            | `gcp-secret-store.yaml`                                  |
-| `gcp-secret-store.yaml`   | `metadata.name: gcp-secrets-store`         | **ExternalSecret YAML** under `spec.secretStoreRef.name`                     | `my-external-secret.yaml`                                |
-| `my-external-secret.yaml` | `remoteRef.key`                            | **Secret in GCP Secret Manager** (fetches the actual secret from GCP)        | N/A                                                      |
 
 ---
-
-
-
-
-
 
 ### Syncing and Rotating Secrets
 
@@ -294,86 +280,6 @@ ESO automatically syncs secrets from the cloud provider's secret manager based o
 This tutorial has provided a complete walkthrough for setting up External Secret Operator (ESO) with GCP, AWS, and Azure. The process includes creating service accounts, storing credentials as Kubernetes secrets, configuring ESO, and syncing secrets from cloud providers into Kubernetes clusters.
 
 [Back to Table of Contents](#table-of-contents)
-
-
-
-
-
-
-
-
-
----
----
-When pasting code into GitHub markdown (`.md` files), GitHub doesn't automatically apply syntax highlighting unless you explicitly specify the language for the code block. To maintain the colored syntax (with keys in red and values in green, as you mentioned), you need to tell GitHub which language you're using.
-
-For YAML, you can specify the language by adding `yaml` after the triple backticks (` ```yaml `) at the start of your code block. Here's how you do it:
-
-### Example:
-
-Instead of this:
-
-    ``` 
-    apiVersion: v1
-    kind: Secret
-    metadata:
-      name: gcpsm-secret
-    ```
-
-Use this:
-
-    ```yaml
-    apiVersion: v1
-    kind: Secret
-    metadata:
-      name: gcpsm-secret
-    ```
-
-This will ensure that GitHub applies the correct syntax highlighting for YAML when rendering the code block.
-
-### Full Example in Markdown:
-
-```yaml
-apiVersion: v1
-kind: Secret
-metadata:
-  name: gcpsm-secret    # The name of the Kubernetes secret
-  labels:
-    type: gcpsm         # Label to categorize this secret (for GCP Secret Manager)
-type: Opaque            # Opaque means this secret holds arbitrary data
-stringData:
-  secret-access-credentials: |-   # Storing the actual service account credentials from the JSON key
-    {
-      "type": "service_account",
-      "project_id": "external-secrets-operator",  # GCP project ID
-      "private_key_id": "private-key-id",   # Private key ID from the JSON file
-      "private_key": "-----BEGIN PRIVATE KEY-----\nYOUR_PRIVATE_KEY\n-----END PRIVATE KEY-----\n",  # The private key
-      "client_email": "your-service-account@external-secrets-operator.iam.gserviceaccount.com",  # The service account email
-      "client_id": "client-id",   # Client ID from the JSON file
-      "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-      "token_uri": "https://oauth2.googleapis.com/token",
-      "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-      "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/your-service-account%40external-secrets-operator.iam.gserviceaccount.com"
-    }
-```
-
-This will preserve the syntax highlighting for YAML in your GitHub markdown file. Make sure to specify `yaml` for all YAML code blocks, and similarly, you can use other language identifiers like `bash`, `json`, `python`, etc., for other types of code.
-
-Let me know if you need any more help!
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
