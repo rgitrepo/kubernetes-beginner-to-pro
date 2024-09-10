@@ -1,17 +1,19 @@
-Here’s the updated tutorial with the appropriate GCP Secret Manager (GCPSM) JSON details added at the correct steps. I've also included comments to make each step easier to follow.
+Here’s the updated tutorial with the project name `external-secrets-operator` as requested:
 
 ---
 
-### Tutorial: External Secret Operator (ESO) with AWS, GCP, and Azure
+### Tutorial: External Secret Operator (ESO) with GCP Secret Manager (GCPSM)
 
-This tutorial guides you through the process of managing secrets in Kubernetes using the External Secret Operator (ESO) with cloud secret management systems such as AWS Secrets Manager, Google Cloud Secret Manager (GCPSM), and Azure Key Vault. It includes creating service accounts, storing secrets, configuring ESO, and securely accessing external secrets from these providers.
+This tutorial will guide you through managing secrets in Kubernetes using the External Secret Operator (ESO) with **Google Cloud Secret Manager (GCPSM)**. We will cover setting up an IAM service account, storing service account credentials, configuring the Secret Store, and retrieving secrets using ExternalSecret.
+
+---
 
 #### Table of Contents
 1. [Introduction](#introduction)
 2. [Understanding the Flow](#understanding-the-flow)
 3. [Prerequisites](#prerequisites)
 4. [Creating an IAM Service Account](#creating-an-iam-service-account)
-    - 4.1 [Assigning Roles and Permissions (GCP, AWS, Azure)](#assigning-roles-and-permissions-gcp-aws-azure)
+    - 4.1 [Assigning Roles and Permissions (GCP)](#assigning-roles-and-permissions-gcp)
     - 4.2 [Creating and Downloading the JSON Key](#creating-and-downloading-the-json-key)
 5. [Complete Setup of External Secrets in Kubernetes](#complete-setup-of-external-secrets-in-kubernetes)
     - 5.1 [Storing GCP Service Account Key as a Kubernetes Secret](#storing-gcp-service-account-key-as-a-kubernetes-secret)
@@ -26,43 +28,38 @@ This tutorial guides you through the process of managing secrets in Kubernetes u
 
 ### Introduction
 
-The External Secret Operator (ESO) allows Kubernetes to fetch secrets from cloud secret management systems like AWS Secrets Manager, GCP Secret Manager (GCPSM), and Azure Key Vault. ESO automatically syncs these secrets into Kubernetes, simplifying secret management across environments.
-
-[Back to Table of Contents](#table-of-contents)
+The External Secret Operator (ESO) allows Kubernetes to securely fetch secrets from **Google Cloud Secret Manager (GCPSM)**. ESO automatically syncs these secrets into Kubernetes, simplifying secret management.
 
 ---
 
 ### Understanding the Flow
 
-The ESO process involves:
-1. **Service Account Setup**: Create a service account with the necessary roles in GCP, AWS, or Azure.
-2. **Secret Storage in Kubernetes**: Store the service account credentials as a Kubernetes secret, which ESO uses to authenticate with the cloud provider.
-3. **Secret Store Configuration**: Define a Secret Store in Kubernetes that points to the cloud provider's secret manager and links to the service account secret.
-4. **External Secret Creation**: Create an ExternalSecret resource in Kubernetes to fetch secrets from the cloud provider and sync them into Kubernetes as native secrets.
-
-[Back to Table of Contents](#table-of-contents)
+The process involves the following steps:
+1. **Service Account Setup**: Create a GCP service account with necessary roles.
+2. **Secret Storage in Kubernetes**: Store the service account credentials as a Kubernetes secret, which ESO uses to authenticate with GCP Secret Manager.
+3. **Secret Store Configuration**: Define a Secret Store in Kubernetes that links to the service account secret.
+4. **External Secret Creation**: Create an ExternalSecret resource in Kubernetes to fetch secrets from GCPSM and sync them into Kubernetes.
 
 ---
 
 ### Prerequisites
 
-Before you begin, make sure you have:
+Before starting, make sure you have:
 - A working Kubernetes cluster with `kubectl` access.
-- An account in AWS, GCP, or Azure with the Secret Manager API enabled.
-- Basic knowledge of Kubernetes secrets and cloud service identities (IAM roles, service accounts).
-
-[Back to Table of Contents](#table-of-contents)
+- A GCP account with Secret Manager API enabled.
+- Basic knowledge of Kubernetes secrets and IAM roles.
 
 ---
 
 ### Creating an IAM Service Account
 
-This section covers how to create an IAM service account for GCP, AWS, or Azure. The service account will allow Kubernetes to authenticate with the respective cloud provider's secret manager.
+In this section, we will create a service account in GCP and assign the necessary permissions to access **GCP Secret Manager (GCPSM)**.
 
-#### Assigning Roles and Permissions (GCP, AWS, Azure)
+#### Assigning Roles and Permissions (GCP)
 
-**For GCP**:
 1. **Create Service Account**:
+
+    Run the following command to create a new service account in your GCP project. Replace `<your-project-id>` with `external-secrets-operator`.
 
     ```bash
     gcloud iam service-accounts create my-secret-sa \
@@ -70,92 +67,45 @@ This section covers how to create an IAM service account for GCP, AWS, or Azure.
         --display-name="my-secret-sa"
     ```
 
+    This will create a service account named `my-secret-sa` in the GCP project `external-secrets-operator`.
+
 2. **Grant the Secret Accessor Role**:
 
+    Now, assign the **Secret Manager Secret Accessor** role to the service account, which allows it to access secrets in GCPSM:
+
     ```bash
-    gcloud projects add-iam-policy-binding <your-project-id> \
-        --member="serviceAccount:my-secret-sa@<your-project-id>.iam.gserviceaccount.com" \
+    gcloud projects add-iam-policy-binding external-secrets-operator \
+        --member="serviceAccount:my-secret-sa@external-secrets-operator.iam.gserviceaccount.com" \
         --role="roles/secretmanager.secretAccessor"
     ```
-
-**For AWS**:
-1. **Create an IAM Policy**:
-
-    ```json
-    {
-      "Version": "2012-10-17",
-      "Statement": [
-        {
-          "Effect": "Allow",
-          "Action": "secretsmanager:GetSecretValue",
-          "Resource": "*"
-        }
-      ]
-    }
-    ```
-
-2. **Attach the Policy**: Attach this IAM policy to the Kubernetes worker node’s IAM role to allow access to AWS Secrets Manager.
-
-**For Azure**:
-1. **Create Managed Identity and Assign Roles**:
-
-    ```bash
-    az ad sp create-for-rbac --name my-key-vault-reader \
-        --role "Key Vault Reader" --scopes /subscriptions/<subscription-id>
-    ```
-
-> **Explanation**: Each service provider requires specific permissions to allow Kubernetes to retrieve secrets. You need to ensure the service account has the appropriate roles to access the secret manager.
-
-[Back to Table of Contents](#table-of-contents)
 
 ---
 
 #### Creating and Downloading the JSON Key
 
-Once the service account is created and permissions are assigned, generate and download the service account key.
-
-**For GCP**:
+Once the service account is created and permissions are assigned, you need to generate and download the **JSON key** for the service account.
 
 ```bash
 gcloud iam service-accounts keys create ~/key.json \
-    --iam-account=my-secret-sa@<your-project-id>.iam.gserviceaccount.com
+    --iam-account=my-secret-sa@external-secrets-operator.iam.gserviceaccount.com
 ```
 
-> **Explanation**: This command generates a **JSON** file containing the **credentials for the service account**. These credentials will be stored as a **Kubernetes secret** and used by the **External Secret Operator** to authenticate with **GCP Secret Manager**.
-
-Here’s an example of what the **JSON file** looks like for GCP Service Account:
-
-```json
-{
-  "type": "service_account",
-  "project_id": "external-secrets-operator",
-  "private_key_id": "some-private-key-id",
-  "private_key": "-----BEGIN PRIVATE KEY-----\nYOUR_PRIVATE_KEY\n-----END PRIVATE KEY-----\n",
-  "client_email": "my-secret-sa@external-secrets-operator.iam.gserviceaccount.com",
-  "client_id": "client-id",
-  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-  "token_uri": "https://oauth2.googleapis.com/token",
-  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/my-secret-sa%40external-secrets-operator.iam.gserviceaccount.com"
-}
-```
-
-- **`project_id`**: The GCP project where secrets are stored.
-- **`private_key_id`** and **`private_key`**: Used for authentication.
-- **`client_email`**: Email for the service account.
-- **`auth_uri`** and **`token_uri`**: URIs used for authentication and token retrieval.
-
-[Back to Table of Contents](#table-of-contents)
+This command will create a **JSON file** (`~/key.json`) containing the credentials for the service account. These credentials will be stored as a Kubernetes secret.
 
 ---
 
 ### Complete Setup of External Secrets in Kubernetes
 
-Now that the service account is set up, we’ll proceed to storing the JSON key in Kubernetes, configuring the Secret Store, and setting up External Secrets.
+Now that the service account is ready, we’ll proceed to:
+1. Store the JSON key in Kubernetes.
+2. Configure the Secret Store.
+3. Create the ExternalSecret resource to fetch secrets from GCPSM.
+
+---
 
 #### Storing GCP Service Account Key as a Kubernetes Secret
 
-The GCP service account credentials (the JSON file generated earlier) need to be stored securely in Kubernetes as a secret.
+The GCP service account credentials (from the `key.json` file) need to be stored in Kubernetes as a secret.
 
 **YAML File**: `gcpsm-secret.yaml`
 
@@ -168,33 +118,28 @@ metadata:
     type: gcpsm         # Label to categorize this secret (for GCP Secret Manager)
 type: Opaque            # Opaque means this secret holds arbitrary data
 stringData:
-  secret-access-credentials: |-   # Storing the actual service account credentials from the JSON key
+  secret-access-credentials: |-   # Storing the service account credentials from the JSON key
     {
       "type": "service_account",
-      "project_id": "external-secrets-operator",  # GCP project ID
-      "private_key_id": "private-key-id",   # Private key ID from the JSON file
-      "private_key": "-----BEGIN PRIVATE KEY-----\nYOUR_PRIVATE_KEY\n-----END PRIVATE KEY-----\n",  # The private key
-      "client_email": "your-service-account@external-secrets-operator.iam.gserviceaccount.com",  # The service account email
-      "client_id": "client-id",   # Client ID from the JSON file
+      "project_id": "external-secrets-operator",  # GCP project ID from key.json
+      "private_key_id": "abcdef1234567890abcdef1234567890abcdef12",  # From key.json
+      "private_key": "-----BEGIN PRIVATE KEY-----\nYOUR_PRIVATE_KEY\n-----END PRIVATE KEY-----\n",  # From key.json
+      "client_email": "my-secret-sa@external-secrets-operator.iam.gserviceaccount.com",  # From key.json
+      "client_id": "123456789012345678901",  # From key.json
       "auth_uri": "https://accounts.google.com/o/oauth2/auth",
       "token_uri": "https://oauth2.googleapis.com/token",
       "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-      "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/your-service-account%40external-secrets-operator.iam.gserviceaccount.com"
+      "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/my-secret-sa%40external-secrets-operator.iam.gserviceaccount.com"
     }
 ```
 
-**Command**:
-```bash
-kubectl apply -f gcpsm-secret.yaml
-```
-
-> **Explanation**: This Kubernetes secret holds the GCP service account credentials, which will be referenced later by the Secret Store to authenticate Kubernetes with GCP Secret Manager.
+- The **key.json** values are copied into the Kubernetes secret (`gcpsm-secret.yaml`), allowing the External Secret Operator (ESO) to use these credentials to authenticate with GCP Secret Manager.
 
 ---
 
 #### Configuring the Secret Store
 
-Once the service account credentials are stored in Kubernetes, you need to configure a Secret Store that tells ESO how to authenticate with GCP and retrieve secrets.
+Once the service account credentials are stored in Kubernetes, you need to configure the Secret Store. The Secret Store defines how Kubernetes will connect to GCPSM using the stored credentials.
 
 **YAML File**: `gcp-secret-store.yaml`
 
@@ -207,27 +152,20 @@ metadata:
 spec:
   provider:
     gcp:
-      projectID: external-secrets-operator   # GCP project where the secrets
-
- are stored
+      projectID: external-secrets-operator   # GCP project ID
       auth:
         secretRef:
-          name: gcpsm-secret   # References 'metadata.name' in the Secret file (gcpsm-secret.yaml)
-          key: secret-access-credentials  # References 'stringData.secret-access-credentials' in the Secret file (gcpsm-secret.yaml)
+          name: gcpsm-secret   # References the Kubernetes secret (gcpsm-secret.yaml)
+          key: secret-access-credentials  # The field in the secret holding the credentials
 ```
 
-**Command**:
-```bash
-kubectl apply -f gcp-secret-store.yaml
-```
-
-> **Explanation**: The Secret Store defines how Kubernetes will connect to GCP Secret Manager using the service account credentials stored in the Kubernetes secret (`gcpsm-secret`). ESO will use this configuration to retrieve secrets from GCP.
+- **Explanation**: The **`secretRef.name`** points to the Kubernetes secret (`gcpsm-secret`), and the **`secretRef.key`** field references the key within the secret (`secret-access-credentials`), which contains the service account credentials copied from `key.json`.
 
 ---
 
 #### Creating and Applying an External Secret Resource
 
-Next, create an External Secret resource in Kubernetes. This resource specifies which secret from GCP Secret Manager should be synced into Kubernetes.
+Next, create an External Secret resource that specifies which secret from GCP Secret Manager should be synced into Kubernetes.
 
 **YAML File**: `my-external-secret.yaml`
 
@@ -235,7 +173,7 @@ Next, create an External Secret resource in Kubernetes. This resource specifies 
 apiVersion: external-secrets.io/v1alpha1
 kind: ExternalSecret
 metadata:
-  name: my-external-secret   # The name of the External Secret
+  name: my-external-secret   # Name of the External Secret
   namespace: external-secrets
 spec:
   refreshInterval: "1h"   # Specifies how often the secret should be refreshed from GCP
@@ -247,18 +185,17 @@ spec:
   data:
     - secretKey: api-key    # The key under which this secret will be stored in Kubernetes
       remoteRef:
-        key: projects/<your-project-id>/secrets/my-secret/versions/latest  # Reference to the GCP secret to fetch (GCPSM)
+        key: projects/external-secrets-operator/secrets/my-secret/versions/latest  # Reference to the GCP secret to fetch
 ```
 
-**Command**:
-```bash
-kubectl apply -f my-external-secret.yaml
-```
-
-> **Explanation**: This External Secret resource pulls the secret from **GCP Secret Manager** and stores it in Kubernetes as `my-k8s-secret`. The `refreshInterval` ensures that the secret is updated every hour.
+- **Explanation**:
+  - The **`remoteRef.key`** specifies the path to the secret in **GCP Secret Manager**. This format is always `projects/external-secrets-operator/secrets/<secret-name>/versions/latest`.
+  - In this example:
+    - **`projects/external-secrets-operator`** refers to the GCP project.
+    - **`secrets/my-secret`** is the name of the secret stored in GCP.
+    - **`versions/latest`** ensures that the latest version of the secret is fetched.
 
 ---
-
 
 ### **Diagram of Connections Across Files**
 
@@ -266,21 +203,20 @@ kubectl apply -f my-external-secret.yaml
   <img src="../../pics/external-secret.draw.io.drawio.png" alt="External Secret">
 </div>
 
-
 ---
+
+
 
 ### Syncing and Rotating Secrets
 
-ESO automatically syncs secrets from the cloud provider's secret manager based on the `refreshInterval`. If a secret is rotated in GCP, AWS, or Azure, ESO will update the Kubernetes secret, ensuring the cluster always has the latest version.
+ESO automatically syncs secrets from the cloud provider's secret manager based on the `refreshInterval`. If a secret is rotated in GCP, ESO will update the Kubernetes secret, ensuring the cluster always has the latest version.
 
 ---
 
 ### Conclusion
 
-This tutorial has provided a complete walkthrough for setting up External Secret Operator (ESO) with GCP, AWS, and Azure. The process includes creating service accounts, storing credentials as Kubernetes secrets, configuring ESO, and syncing secrets from cloud providers into Kubernetes clusters.
+This tutorial has provided a complete walkthrough for setting up External Secret Operator (ESO) with **GCP Secret Manager**. The process includes creating service accounts, storing credentials as Kubernetes secrets, configuring ESO, and syncing secrets from GCP into Kubernetes clusters.
 
-[Back to Table of Contents](#table-of-contents)
+---
 
-
-
-
+This version now reflects your project name `external-secrets-operator` at all necessary steps. Let me know if any further adjustments are needed!
