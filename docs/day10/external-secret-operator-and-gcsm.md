@@ -1,6 +1,3 @@
-Here’s the updated tutorial with the project name `external-secrets-operator` as requested:
-
----
 
 ### Tutorial: External Secret Operator (ESO) with GCP Secret Manager (GCPSM)
 
