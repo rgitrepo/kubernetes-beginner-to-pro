@@ -56,10 +56,10 @@ In this section, we will create a service account in GCP and assign the necessar
 
 1. **Create Service Account**:
 
-    Run the following command to create a new service account in your GCP project. Replace `<your-project-id>` with `external-secrets-operator`.
+    Run the following command to create a new service account in your GCP project.
 
     ```bash
-    gcloud iam service-accounts create my-secret-sa \
+    gcloud iam service-accounts create **my-secret-sa** \
         --description="Service account for accessing secrets" \
         --display-name="my-secret-sa"
     ```
