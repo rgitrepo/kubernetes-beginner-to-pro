@@ -192,6 +192,27 @@ spec:
     - **`secrets/my-secret`** is the name of the secret stored in GCP.
     - **`versions/latest`** ensures that the latest version of the secret is fetched.
 
+
+In the `my-external-secret.yaml` file, the fields `target.name` and `remoteRef.key` serve two distinct purposes, even though both are related to secrets:
+
+
+### How They Work Together:
+1. **remoteRef.key**: This field points to the **source** of the secret in **Google Cloud Secret Manager**.
+   - The secret is fetched from `projects/external-secrets-operator/secrets/my-secret/versions/latest`.
+   
+2. **target.name**: This field defines where the fetched secret will be stored **inside Kubernetes**.
+   - Once the secret is retrieved from GCP, it is stored as a Kubernetes secret named `my-k8s-secret`.
+
+In summary:
+- `remoteRef.key` tells ESO **which external secret** to fetch from **GCP Secret Manager**.
+- `target.name` defines the **name of the Kubernetes secret** that will be created with the data fetched from the external source.
+
+### Example Scenario:
+- You have a secret named `my-secret` in GCP Secret Manager, and ESO will fetch the latest version of this secret.
+- ESO will then create or update a Kubernetes secret called `my-k8s-secret` in your Kubernetes namespace with the content of the secret from GCP.
+
+So, the data comes from `my-secret` in GCP, and Kubernetes will store it under `my-k8s-secret`.
+
 ---
 
 ### **Diagram of Connections Across Files**
@@ -200,10 +221,8 @@ spec:
   <img src="../../pics/external-secret.draw.io.drawio.png" alt="External Secret">
 </div>
 
+
 ---
-
-
-
 ### Syncing and Rotating Secrets
 
 ESO automatically syncs secrets from the cloud provider's secret manager based on the `refreshInterval`. If a secret is rotated in GCP, ESO will update the Kubernetes secret, ensuring the cluster always has the latest version.
