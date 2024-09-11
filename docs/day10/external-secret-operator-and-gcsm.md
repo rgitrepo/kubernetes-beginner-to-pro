@@ -265,7 +265,3 @@ Once ESO retrieves the secret from GCPSM, it is stored in Kubernetes as a **Kube
 ### Conclusion
 
 This tutorial has provided a complete walkthrough for setting up External Secret Operator (ESO) with **GCP Secret Manager**. The process includes creating service accounts, storing credentials as Kubernetes secrets, configuring ESO, and syncing secrets from GCP into Kubernetes clusters.
-
----
-
-This version includes your updated project name, detailed encryption process, and clarifies the role of encryption and decryption in secret management. Let me know if any further adjustments are needed!
