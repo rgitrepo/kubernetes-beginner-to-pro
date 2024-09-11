@@ -1,6 +1,3 @@
-Here is the updated tutorial based on your requirements, with the project name `external-secrets-operator` and enhanced details:
-
----
 
 ### Tutorial: External Secret Operator (ESO) with GCP Secret Manager (GCPSM)
 
@@ -11,24 +8,28 @@ This tutorial will guide you through managing secrets in Kubernetes using the Ex
 #### Table of Contents
 1. [Introduction](#introduction)
 2. [Understanding the Flow](#understanding-the-flow)
-3. [Prerequisites](#prerequisites)
-4. [Creating an IAM Service Account](#creating-an-iam-service-account)
-    - 4.1 [Assigning Roles and Permissions (GCP)](#assigning-roles-and-permissions-gcp)
-    - 4.2 [Creating and Downloading the JSON Key](#creating-and-downloading-the-json-key)
-5. [Complete Setup of External Secrets in Kubernetes](#complete-setup-of-external-secrets-in-kubernetes)
-    - 5.1 [Storing GCP Service Account Key as a Kubernetes Secret](#storing-gcp-service-account-key-as-a-kubernetes-secret)
-    - 5.2 [Configuring the Secret Store](#configuring-the-secret-store)
-    - 5.3 [Creating and Applying an External Secret Resource](#creating-and-applying-an-external-secret-resource)
-6. [Diagram of Connections Across Files](#diagram-of-connections-across-files)
-7. [Syncing and Rotating Secrets](#syncing-and-rotating-secrets)
-8. [Security and Encryption](#security-and-encryption)
-9. [Conclusion](#conclusion)
+3. [Encryption and Decryption in Secret Management](#encryption-and-decryption-in-secret-management)
+    - 3.1 [Encryption During Transit](#encryption-during-transit)
+    - 3.2 [Decryption in Google Cloud](#decryption-in-google-cloud)
+    - 3.3 [Why Use Cloud Secret Managers?](#why-use-cloud-secret-managers)
+4. [Prerequisites](#prerequisites)
+5. [Creating an IAM Service Account](#creating-an-iam-service-account)
+    - 5.1 [Assigning Roles and Permissions (GCP)](#assigning-roles-and-permissions-gcp)
+    - 5.2 [Creating and Downloading the JSON Key](#creating-and-downloading-the-json-key)
+6. [Complete Setup of External Secrets in Kubernetes](#complete-setup-of-external-secrets-in-kubernetes)
+    - 6.1 [Storing GCP Service Account Key as a Kubernetes Secret](#storing-gcp-service-account-key-as-a-kubernetes-secret)
+    - 6.2 [Configuring the Secret Store](#configuring-the-secret-store)
+    - 6.3 [Creating and Applying an External Secret Resource](#creating-and-applying-an-external-secret-resource)
+7. [Diagram of Connections Across Files](#diagram-of-connections-across-files)
+8. [Syncing and Rotating Secrets](#syncing-and-rotating-secrets)
+9. [Security and Encryption in Kubernetes](#security-and-encryption-in-kubernetes)
+10. [Conclusion](#conclusion)
 
 ---
 
 ### Introduction
 
-The External Secret Operator (ESO) allows Kubernetes to securely fetch secrets from **Google Cloud Secret Manager (GCPSM)**. ESO automatically syncs these secrets into Kubernetes, simplifying secret management.
+The External Secret Operator (ESO) allows Kubernetes to securely fetch secrets from **Google Cloud Secret Manager (GCPSM)**. ESO automatically syncs these secrets into Kubernetes, simplifying secret management and ensuring that secrets are securely stored and transmitted across environments.
 
 ---
 
@@ -39,6 +40,37 @@ The process involves the following steps:
 2. **Secret Storage in Kubernetes**: Store the service account credentials as a Kubernetes secret, which ESO uses to authenticate with GCP Secret Manager.
 3. **Secret Store Configuration**: Define a Secret Store in Kubernetes that references the service account secret.
 4. **External Secret Creation**: Create an ExternalSecret resource in Kubernetes to fetch secrets from GCPSM and sync them into Kubernetes. It has references to **GCP Secret Manager** and to the **Secret Store**.
+
+---
+
+### Encryption and Decryption in Secret Management
+
+When managing sensitive data such as secrets, encryption is essential to ensure that secrets remain secure both at rest (when stored) and in transit (when being transmitted between services). Here's how encryption and decryption work with ESO and GCP Secret Manager.
+
+#### Encryption During Transit
+
+When ESO requests a secret from **Google Cloud Secret Manager (GCPSM)**, the **secret is transmitted securely** using **TLS encryption** over the network. This ensures that even though the secret is already decrypted by GCPSM (explained below), no one can intercept or view the secret while it's being sent from GCPSM to the Kubernetes cluster.
+
+- **TLS (Transport Layer Security)** provides encryption for data in transit, preventing unauthorized access during transmission.
+  
+#### Decryption in Google Cloud
+
+Before transmitting the secret to Kubernetes, **Google Cloud Secret Manager (GCPSM) decrypts the secret within Google's infrastructure**. This means that the secret is **stored encrypted** in GCPSM, but when ESO requests it, GCPSM decrypts it internally before sending it to Kubernetes.
+
+- The decrypted secret is then sent securely to ESO over a **TLS-encrypted connection**, ensuring that the secret is safe during transit.
+
+So, the **decryption happens inside Google Cloud** before the secret leaves its environment. Kubernetes never handles the secret in its encrypted form during this transfer.
+
+#### Why Use Cloud Secret Managers?
+
+**Kubernetes does not natively encrypt secrets** by default, and while Kubernetes can be configured to encrypt secrets at rest, it relies heavily on third-party integrations or tools to do so. By using cloud secret managers like GCPSM, **the burden of encryption, decryption, and secure storage is shifted to the cloud provider**, which offers a more robust, secure, and managed way of handling sensitive data.
+
+Cloud secret managers:
+- Provide **built-in encryption** at rest and in transit.
+- Handle **secret rotation** and access control efficiently.
+- Offer **centralized management** of secrets across environments.
+
+By leveraging GCPSM, Kubernetes ensures that secrets are securely managed and protected, reducing the need for complex, custom encryption configurations within the cluster itself.
 
 ---
 
@@ -144,7 +176,9 @@ Once the service account credentials are stored in Kubernetes, you need to confi
 **YAML File**: `gcp-secret-store.yaml`
 
 ```yaml
-apiVersion: external-secrets.io/v1alpha1
+apiVersion: external-secrets.io/v1
+
+alpha1
 kind: SecretStore
 metadata:
   name: gcp-secrets-store   # The name of the Secret Store
@@ -195,29 +229,6 @@ spec:
     - **`secrets/my-secret`** is the name of the secret stored in GCP.
     - **`versions/latest`** ensures that the latest version of the secret is fetched.
 
-
-In the `my-external-secret.yaml` file, the fields `target.name` and `remoteRef.key` serve two distinct purposes, even though both are
-
- related to secrets:
-
-
-#### How They Work Together: The relationship between External Secret's remoteRef.key & target.name
-1. **remoteRef.key**: This field points to the **source** of the secret in **Google Cloud Secret Manager**.
-   - The secret is fetched from `projects/external-secrets-operator/secrets/my-secret/versions/latest`.
-   
-2. **target.name**: This field defines where the fetched secret will be stored **inside Kubernetes**.
-   - Once the secret is retrieved from GCP, it is stored as a Kubernetes secret named `my-k8s-secret`.
-
-In summary:
-- `remoteRef.key` tells ESO **which external secret** to fetch from **GCP Secret Manager**.
-- `target.name` defines the **name of the Kubernetes secret** that will be created with the data fetched from the external source.
-
-### Example Scenario:
-- You have a secret named `my-secret` in GCP Secret Manager, and ESO will fetch the latest version of this secret.
-- ESO will then create or update a Kubernetes secret called `my-k8s-secret` in your Kubernetes namespace with the content of the secret from GCP.
-
-So, the data comes from `my-secret` in GCP, and Kubernetes will store it under `my-k8s-secret`.
-
 ---
 
 ### **Diagram of Connections Across Files**
@@ -228,19 +239,23 @@ So, the data comes from `my-secret` in GCP, and Kubernetes will store it under `
 
 
 ---
+
 ### Syncing and Rotating Secrets
 
 ESO automatically syncs secrets from the cloud provider's secret manager based on the `refreshInterval`. If a secret is rotated in GCP, ESO will update the Kubernetes secret, ensuring the cluster always has the latest version.
 
 ---
 
-### Security and Encryption
+### Security and Encryption in Kubernetes
 
 #### Encryption at Rest in GCP
 All secrets in **Google Cloud Secret Manager** (GCPSM) are encrypted by default using Google-managed encryption keys. Optionally, you can use customer-managed encryption keys (CMEK) to control the encryption of your secrets.
 
 #### Encryption in Transit
-When ESO fetches the secrets from GCPSM, they are transmitted securely using **TLS encryption** to ensure that secrets are safe during transit.
+When ESO fetches the secrets from GCPSM, they are transmitted securely using **TLS encryption** to ensure that secrets are protected while being transmitted. **TLS encryption** ensures that data in transit remains private and protected from interception.
+
+#### Decryption Process
+The secret remains **encrypted at rest** in GCP, but when ESO requests the secret, GCPSM **decrypts it** inside Google's infrastructure. The **decrypted secret** is then sent to ESO over the secure TLS connection, ensuring that the secret remains secure during transmission.
 
 #### In Kubernetes
 Once ESO retrieves the secret from GCPSM, it is stored in Kubernetes as a **Kubernetes Secret**. Kubernetes secrets are base64-encoded by default but not encrypted. However, you can configure Kubernetes to encrypt secrets at rest using Kubernetes' native encryption mechanisms.
@@ -250,3 +265,7 @@ Once ESO retrieves the secret from GCPSM, it is stored in Kubernetes as a **Kube
 ### Conclusion
 
 This tutorial has provided a complete walkthrough for setting up External Secret Operator (ESO) with **GCP Secret Manager**. The process includes creating service accounts, storing credentials as Kubernetes secrets, configuring ESO, and syncing secrets from GCP into Kubernetes clusters.
+
+---
+
+This version includes your updated project name, detailed encryption process, and clarifies the role of encryption and decryption in secret management. Let me know if any further adjustments are needed!
