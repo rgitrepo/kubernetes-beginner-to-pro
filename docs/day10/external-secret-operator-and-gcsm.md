@@ -34,8 +34,8 @@ The External Secret Operator (ESO) allows Kubernetes to securely fetch secrets f
 The process involves the following steps:
 1. **Service Account Setup**: Create a GCP service account with necessary roles. For it we create a **secret file** or **key**. 
 2. **Secret Storage in Kubernetes**: Store the service account credentials as a Kubernetes secret, which ESO uses to authenticate with GCP Secret Manager.
-3. **Secret Store Configuration**: Define a Secret Store in Kubernetes that links to the service account secret.
-4. **External Secret Creation**: Create an ExternalSecret resource in Kubernetes to fetch secrets from GCPSM and sync them into Kubernetes.
+3. **Secret Store Configuration**: Define a Secret Store in Kubernetes that references the service account secret.
+4. **External Secret Creation**: Create an ExternalSecret resource in Kubernetes to fetch secrets from GCPSM and sync them into Kubernetes. It has references to **GCP Secret Manager** and to the **Secret Store**.
 
 ---
 
