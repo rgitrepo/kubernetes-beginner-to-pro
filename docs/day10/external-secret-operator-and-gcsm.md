@@ -196,7 +196,7 @@ spec:
 In the `my-external-secret.yaml` file, the fields `target.name` and `remoteRef.key` serve two distinct purposes, even though both are related to secrets:
 
 
-### How They Work Together:
+### How They Work Together: The relationship between External Secret's remoteRef.key & target.name
 1. **remoteRef.key**: This field points to the **source** of the secret in **Google Cloud Secret Manager**.
    - The secret is fetched from `projects/external-secrets-operator/secrets/my-secret/versions/latest`.
    
