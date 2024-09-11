@@ -29,6 +29,20 @@
 
 In Kubernetes, managing sensitive data like passwords, API keys, and tokens securely is crucial. By default, Kubernetes Secrets are only encoded using Base64, making them susceptible to unauthorized access if not handled carefully. This tutorial covers Sealed Secrets, an extension to Kubernetes Secrets that ensures they are encrypted and can only be decrypted by the cluster.
 
+**Bitnami** is a company that offers ready-to-use application packages and containers for different platforms. It simplifies the deployment and management of complex applications by providing pre-configured, tested, and optimized solutions. Bitnami maintains **Helm charts**, which are essentially templates that help deploy Kubernetes applications in a streamlined and easy-to-manage way.
+
+**Sealed Secrets** is a project from Bitnami that helps manage sensitive data, like passwords or API keys, in Kubernetes clusters. In Kubernetes, secrets are used to store and manage this sensitive data, but they are only base64-encoded, which means they are not fully encrypted and are vulnerable if someone gains access to your cluster.
+
+### What Sealed Secrets Does:
+- **Encryption**: Sealed Secrets allow you to encrypt Kubernetes secrets. The secret can only be decrypted by the controller running in the Kubernetes cluster. Even if someone gets access to the encrypted Sealed Secret, they won't be able to decrypt it without access to the cluster's private key.
+- **Security**: It provides an additional layer of security for sensitive data, making it safer to store and manage secrets in version control systems (like Git), as the secrets are encrypted and not in plain text.
+
+### How Bitnami Is Involved:
+- **Bitnami Helm Chart**: Bitnami provides an official **Helm chart** for Sealed Secrets. This chart helps users easily deploy and manage the Sealed Secrets controller in their Kubernetes clusters.
+- **Ease of Use**: By using the Bitnami Sealed Secrets Helm chart, the setup and configuration of Sealed Secrets in Kubernetes become much easier. Bitnami ensures that the Helm chart is well-maintained and updated, making it a trusted and reliable option for managing sealed secrets.
+
+In short, **Bitnami** simplifies the deployment of **Sealed Secrets** by providing a ready-to-use Helm chart, and Sealed Secrets itself is used for securely managing encrypted secrets in Kubernetes.
+
 ---
 
 ### Setting Up Sealed Secrets
