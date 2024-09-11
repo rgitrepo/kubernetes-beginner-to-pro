@@ -1,3 +1,6 @@
+Here is the updated tutorial based on your requirements, with the project name `external-secrets-operator` and enhanced details:
+
+---
 
 ### Tutorial: External Secret Operator (ESO) with GCP Secret Manager (GCPSM)
 
@@ -32,7 +35,7 @@ The External Secret Operator (ESO) allows Kubernetes to securely fetch secrets f
 ### Understanding the Flow
 
 The process involves the following steps:
-1. **Service Account Setup**: Create a GCP service account with necessary roles. For it we create a **secret file** or **key**. 
+1. **Service Account Setup**: Create a GCP service account with necessary roles. For this, you create a **secret file** or **key**. 
 2. **Secret Storage in Kubernetes**: Store the service account credentials as a Kubernetes secret, which ESO uses to authenticate with GCP Secret Manager.
 3. **Secret Store Configuration**: Define a Secret Store in Kubernetes that references the service account secret.
 4. **External Secret Creation**: Create an ExternalSecret resource in Kubernetes to fetch secrets from GCPSM and sync them into Kubernetes. It has references to **GCP Secret Manager** and to the **Secret Store**.
@@ -193,7 +196,9 @@ spec:
     - **`versions/latest`** ensures that the latest version of the secret is fetched.
 
 
-In the `my-external-secret.yaml` file, the fields `target.name` and `remoteRef.key` serve two distinct purposes, even though both are related to secrets:
+In the `my-external-secret.yaml` file, the fields `target.name` and `remoteRef.key` serve two distinct purposes, even though both are
+
+ related to secrets:
 
 
 #### How They Work Together: The relationship between External Secret's remoteRef.key & target.name
@@ -229,10 +234,19 @@ ESO automatically syncs secrets from the cloud provider's secret manager based o
 
 ---
 
-### Conclusion
+### Security and Encryption
 
-This tutorial has provided a complete walkthrough for setting up External Secret Operator (ESO) with **GCP Secret Manager**. The process includes creating service accounts, storing credentials as Kubernetes secrets, configuring ESO, and syncing secrets from GCP into Kubernetes clusters.
+#### Encryption at Rest in GCP
+All secrets in **Google Cloud Secret Manager** (GCPSM) are encrypted by default using Google-managed encryption keys. Optionally, you can use customer-managed encryption keys (CMEK) to control the encryption of your secrets.
+
+#### Encryption in Transit
+When ESO fetches the secrets from GCPSM, they are transmitted securely using **TLS encryption** to ensure that secrets are safe during transit.
+
+#### In Kubernetes
+Once ESO retrieves the secret from GCPSM, it is stored in Kubernetes as a **Kubernetes Secret**. Kubernetes secrets are base64-encoded by default but not encrypted. However, you can configure Kubernetes to encrypt secrets at rest using Kubernetes' native encryption mechanisms.
 
 ---
 
-This version now reflects your project name `external-secrets-operator` at all necessary steps. Let me know if any further adjustments are needed!
+### Conclusion
+
+This tutorial has provided a complete walkthrough for setting up External Secret Operator (ESO) with **GCP Secret Manager**. The process includes creating service accounts, storing credentials as Kubernetes secrets, configuring ESO, and syncing secrets from GCP into Kubernetes clusters.
