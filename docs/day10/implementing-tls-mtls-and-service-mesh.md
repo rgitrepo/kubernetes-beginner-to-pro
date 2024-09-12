@@ -56,7 +56,7 @@
 
 ### What is a Service Mesh?
 
-**Service Mesh** is a dedicated infrastructure layer that controls service-to-service communication in a microservices architecture. It manages how different parts of an application share data with one another. The Service Mesh is often implemented using a sidecar proxy model, where a lightweight proxy is deployed alongside each service to manage its network communication.
+**Service Mesh** is a dedicated infrastructure layer that controls **service-to-service** communication in a microservices architecture. It manages how different parts of an application share data with one another. The Service Mesh is often implemented using a **sidecar proxy model**, where a lightweight proxy is deployed alongside each service to manage its network communication.
 
 **Key Concepts of Service Mesh**:
 - **Traffic Management**: Service Mesh can intelligently route and manage traffic between services, implementing strategies like load balancing, traffic splitting, and retries.
