@@ -6,7 +6,7 @@ In this tutorial, we will explore the differences between the **Sidecar** and **
 
 ### Table of Contents
 
-1. [Introduction](#introduction )
+1. [Introduction](#introduction)
 2. [Understanding the Sidecar Pattern](#understanding-the-sidecar-pattern)
    - [Key Features of the Sidecar Pattern](#key-features-of-the-sidecar-pattern)
    - [Drawbacks of the Sidecar Pattern](#drawbacks-of-the-sidecar-pattern)
