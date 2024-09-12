@@ -17,7 +17,7 @@
 ### 1. Introduction to Sidecar Containers <a name="introduction"></a>
 In Kubernetes, a **sidecar container** is a helper container that runs alongside the main application container in a Pod. It provides auxiliary features like logging, proxying, caching, or monitoring to the primary container without being the main focus of the application. This pattern is often used to extend the functionalities of the primary application without modifying it directly.
 
-[Back to TOC](#toc)
+[Back to TOC](#table-of-contents-toc)
 
 ---
 
@@ -40,7 +40,7 @@ containers:
 ```
 The `sidecar-logger` container’s purpose is likely for logging, making it a sidecar.
 
-[Back to TOC](#toc)
+[Back to TOC](#table-of-contents-toc)
 
 ---
 
@@ -55,7 +55,7 @@ volumeMounts:
 ```
 Both containers accessing the same `volumeMount` suggest a sidecar relationship.
 
-[Back to TOC](#toc)
+[Back to TOC](#table-of-contents-toc)
 
 ---
 
@@ -65,7 +65,7 @@ Both containers accessing the same `volumeMount` suggest a sidecar relationship.
 
 Look for differences in the `livenessProbe` and `readinessProbe` sections of the containers to help identify their roles.
 
-[Back to TOC](#toc)
+[Back to TOC](#table-of-contents-toc)
 
 ---
 
@@ -74,7 +74,7 @@ The **sidecar** container typically starts and stops concurrently with the main 
 
 Look for indications that the containers are expected to run in tandem, as opposed to `initContainers`, which run before the main container starts.
 
-[Back to TOC](#toc)
+[Back to TOC](#table-of-contents-toc)
 
 ---
 
@@ -91,7 +91,7 @@ ports:
 
 If one container’s port is exposed to the outside and another's isn’t, the latter is likely a sidecar.
 
-[Back to TOC](#toc)
+[Back to TOC](#table-of-contents-toc)
 
 ---
 
@@ -108,7 +108,7 @@ containers:
 ```
 Here, `fluentd` acts as the sidecar, supporting the logging function for the main app.
 
-[Back to TOC](#toc)
+[Back to TOC](#table-of-contents-toc)
 
 ---
 
@@ -143,7 +143,7 @@ In this example:
 - **`container-1`** is the main app container, exposing port `8080` for external traffic.
 - **`container-2`** is the sidecar container, sharing a `volumeMount` for logging purposes but not exposing any external ports.
 
-[Back to TOC](#toc)
+[Back to TOC](#table-of-contents-toc)
 
 ---
 
@@ -152,5 +152,5 @@ A sidecar container provides support for the main application container by shari
 
 By understanding these distinctions, you can easily identify the sidecar pattern in Kubernetes Pods.
 
-[Back to TOC](#toc)
+[Back to TOC](#table-of-contents-toc)
 
