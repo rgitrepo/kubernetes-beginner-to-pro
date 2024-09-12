@@ -3,23 +3,38 @@
 ## Tutorial: Implementing TLS, mTLS, and Service Mesh in Kubernetes
 
 ### Table of Contents
+Here is the updated Table of Contents (TOC) with links for the tutorial:
+
+---
+
+## Tutorial: Implementing TLS, mTLS, and Service Mesh in Kubernetes
+
+### Table of Contents
 1. [Introduction](#introduction)
+   - [What is TLS?](#what-is-tls)
+   - [What is mTLS?](#what-is-mtls)
+   - [What is a Service Mesh?](#what-is-a-service-mesh)
+   - [Why Are These Important?](#why-are-these-important)
 2. [Setting Up TLS](#setting-up-tls)
-    - [Creating a TLS Secret](#creating-a-tls-secret)
-    - [Enforcing TLS in Ingress](#enforcing-tls-in-ingress)
+   - [Creating a TLS Secret](#creating-a-tls-secret)
+   - [Enforcing TLS in Ingress](#enforcing-tls-in-ingress)
 3. [Implementing mTLS](#implementing-mtls)
-    - [Creating an mTLS Secret](#creating-an-mtls-secret)
-    - [Enforcing mTLS in Istio](#enforcing-mtls-in-istio)
+   - [Creating an mTLS Secret](#creating-an-mtls-secret)
+   - [Enforcing mTLS in Istio](#enforcing-mtls-in-istio)
 4. [Service Mesh with Cilium](#service-mesh-with-cilium)
-    - [Installing Cilium](#installing-cilium)
-    - [Enabling Cilium Service Mesh](#enabling-cilium-service-mesh)
+   - [Installing Cilium](#installing-cilium)
+   - [Enabling Cilium Service Mesh](#enabling-cilium-service-mesh)
 5. [Service Mesh with OSM](#service-mesh-with-osm)
-    - [Installing Open Service Mesh (OSM)](#installing-open-service-mesh-osm)
-    - [Enabling mTLS in OSM](#enabling-mtls-in-osm)
+   - [Installing Open Service Mesh (OSM)](#installing-open-service-mesh-osm)
+   - [Enabling mTLS in OSM](#enabling-mtls-in-osm)
 6. [Troubleshooting and Validation](#troubleshooting-and-validation)
-    - [Validate TLS/mTLS Configuration](#validate-tlsmtls-configuration)
-    - [Check Service Mesh Status](#check-service-mesh-status)
+   - [Validate TLS/mTLS Configuration](#validate-tlsmtls-configuration)
+   - [Check Service Mesh Status](#check-service-mesh-status)
 7. [Conclusion](#conclusion)
+
+---
+
+This should help with easy navigation between sections of the tutorial.
 
 ---
 
