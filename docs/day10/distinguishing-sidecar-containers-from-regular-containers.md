@@ -154,6 +154,3 @@ By understanding these distinctions, you can easily identify the sidecar pattern
 
 [Back to TOC](#toc)
 
----
-
-This concludes the tutorial on identifying sidecar containers in Kubernetes Pods. If you have further questions or need additional examples, feel free to explore related concepts like `initContainers` and `livenessProbes` for a deeper understanding.
