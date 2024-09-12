@@ -198,7 +198,7 @@
 - [Implementing TLS, mTLS, and Service Mesh](docs/day10/implementing-tls-mtls-and-service-mesh.md)
 - [OSI Model](docs/day10/osi-model.md)
 - [Sidecar vs Sidecarless Model in Service Mesh](docs/day10/sidecar-vs-sidecarless-pattern.md)
-- [Distinguishing Sidecar Containers from Regular Containers)](docs/day10/distinguishing-sidecar-containers-from-regular-containers.md)
+- [Distinguishing Sidecar Containers from Regular Containers](docs/day10/distinguishing-sidecar-containers-from-regular-containers.md)
 - [eBPF (extended Berkeley Packet Filter)](docs/day10/ebpf.md)
 - [Cilium](docs/day10/cilium.md)
 - [Istio](docs/day10/istio.md)
