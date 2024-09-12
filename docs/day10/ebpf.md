@@ -2,14 +2,14 @@
 
 ## Table of Contents
 
-1. [Understanding eBPF](#understanding-ebpf)
+1. [Understanding eBPF](#i-understanding-ebpf)
    - [Understanding the Linux Kernel](#understanding-the-linux-kernel)
    - [Why Changing the Kernel Isn’t Easy](#why-changing-the-kernel-isnt-easy)
    - [The Challenge with Kernel Modules](#the-challenge-with-kernel-modules)
    - [Enter eBPF: A Safer, More Flexible Approach](#enter-ebpf-a-safer-more-flexible-approach)
    - [eBPF in Action](#ebpf-in-action)
    
-2. [Writing eBPF Programs](#writing-ebpf-programs)
+2. [Writing eBPF Programs](#ii-writing-ebpf-programs)
    - [What is eBPF?](#what-is-ebpf)
    - [Programming eBPF: Language Choices](#programming-ebpf-language-choices)
    - [Kernel vs. User Space Code](#kernel-vs-user-space-code)
@@ -17,12 +17,12 @@
    - [eBPF Maps: Bridging Kernel and User Space](#ebpf-maps-bridging-kernel-and-user-space)
    - [A Glimpse into Opensnoop: An eBPF Example](#a-glimpse-into-opensnoop-an-ebpf-example)
 
-3. [The Rise of Cloud-Native and eBPF](#the-rise-of-cloud-native-and-ebpf)
+3. [The Rise of Cloud-Native and eBPF](#iii-the-rise-of-cloud-native-and-ebpf)
    - [One Kernel Rules Them All](#one-kernel-rules-them-all)
    - [Comparing eBPF to the Sidecar Approach](#comparing-ebpf-to-the-sidecar-approach)
    - [Understanding eBPF and Process Isolation](#understanding-ebpf-and-process-isolation)
    
-4. [eBPF for Enhanced Cloud-Native Tools](#ebpf-for-enhanced-cloud-native-tools)
+4. [eBPF for Enhanced Cloud-Native Tools](#iv-ebpf-for-enhanced-cloud-native-tools)
    - [eBPF in Networking](#ebpf-in-networking)
    - [Observability: Seeing All with eBPF](#observability-seeing-all-with-ebpf)
    - [Security: eBPF at the Forefront](#security-ebpf-at-the-forefront)
