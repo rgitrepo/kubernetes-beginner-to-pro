@@ -261,9 +261,6 @@ spec:
 
 **Istio** is a powerful service mesh that provides a comprehensive suite of tools for managing microservices. With its advanced traffic management, security policies, and observability features, Istio enables you to build resilient, secure, and scalable applications.
 
-By following this tutorial, you should now have a solid understanding of Istio’s capabilities and how to implement it in a Kubernetes environment. Whether you’re looking to improve your application’s reliability, enforce security policies, or gain deeper insights into service performance, Istio offers the tools you need to succeed.
 
-[Back to Table of
-
- Contents](#table-of-contents)
+[Back to Table of Contents](#table-of-contents)
 
