@@ -1,6 +1,3 @@
-Here’s a tutorial about using the **Istio Dashboard** to gain insights into your Kubernetes environment, focusing on Kiali, Grafana, and Loki for observability.
-
----
 
 ## Istio Dashboard Tutorial
 
