@@ -207,10 +207,17 @@
 - [Liveness Probes](docs/day10/liveness-probes.md)
 
   
-
 </details>
 
+<details>
+<summary>Day 11: Monitoring, Logging, Tracing, Profiling, Prometheus, Jaeger, OTel, Grafana, eBPF</summary>
 
+- [Observability](docs/day11/observability.md)
+- [Monitoring](docs/day11/monitoring.md)
+
+
+
+</details>
 
 
 
