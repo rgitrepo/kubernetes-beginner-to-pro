@@ -202,6 +202,7 @@
 - [eBPF (extended Berkeley Packet Filter)](docs/day10/ebpf.md)
 - [Cilium](docs/day10/cilium.md)
 - [Istio](docs/day10/istio.md)
+- [Liveness Probes](docs/day10/liveness-probes.md)
 
   
 
