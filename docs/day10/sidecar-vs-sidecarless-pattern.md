@@ -22,7 +22,7 @@ In this tutorial, we will explore the differences between the **Sidecar** and **
 
 ### Introduction
 
-Service Meshes in Kubernetes environments are essential for managing communication between microservices. Traditionally, this has been accomplished using the **Sidecar Pattern**, where each Pod in the mesh contains an additional container (the sidecar) responsible for handling network-related tasks. However, as Kubernetes environments scale, the **Sidecarless Pattern** has emerged as an alternative, aiming to reduce the overhead associated with sidecars by moving these responsibilities to the kernel level.
+Service Meshes in Kubernetes environments are essential for managing communication between microservices. Traditionally, this has been accomplished using the **Sidecar Pattern**, where each Pod in the mesh contains an additional container (the sidecar) responsible for handling network-related tasks. However, as Kubernetes environments scale, the **Sidecarless Pattern** has emerged as an alternative, aiming to reduce the overhead associated with sidecars by moving these responsibilities to the kernel level. Most companies because of huge overhead of sidecar pattern have started shifting to sidecarless pattern. CNCF also has a Cilium certification. So the future is sidecarless.
 
 In this tutorial, we will cover both patterns, their benefits, drawbacks, and practical implementations.
 
