@@ -22,7 +22,7 @@
 
 Liveness probes are critical for ensuring application availability and can be configured using different methods, depending on the nature of the application.
 
-[Back to TOC](#toc)
+[Back to TOC](#table-of-contents-toc)
 
 ---
 
@@ -39,7 +39,7 @@ Liveness probes can be configured using three methods:
 #### 2.3 TCP Socket Liveness Probe <a name="tcp-probe"></a>
 - The probe attempts to open a TCP connection to a specified port in the container. If the connection is successful, the container is considered healthy.
 
-[Back to TOC](#toc)
+[Back to TOC](#table-of-contents-toc)
 
 ---
 
@@ -104,7 +104,7 @@ spec:
 ```
 This probe tries to establish a TCP connection to port `8080`. If successful, the container is marked as healthy.
 
-[Back to TOC](#toc)
+[Back to TOC](#table-of-contents-toc)
 
 ---
 
@@ -130,7 +130,7 @@ kubectl logs <pod-name> -c <container-name>
 ```
 Use this to inspect container logs and gather more information about what may be causing the probe to fail.
 
-[Back to TOC](#toc)
+[Back to TOC](#table-of-contents-toc)
 
 ---
 
@@ -159,7 +159,7 @@ spec:
 **Output:**
 If the `/healthz` endpoint returns a `200 OK` response, the container is marked as healthy. Otherwise, Kubernetes restarts the container.
 
-[Back to TOC](#toc)
+[Back to TOC](#table-of-contents-toc)
 
 ---
 
@@ -185,7 +185,7 @@ spec:
 **Output:**
 If the file `/tmp/healthy` exists, the container is healthy. If the file is missing or unreadable, the container will be restarted.
 
-[Back to TOC](#toc)
+[Back to TOC](#table-of-contents-toc)
 
 ---
 
@@ -209,7 +209,7 @@ spec:
 **Output:**
 If Kubernetes can establish a TCP connection to port `8080`, the container is healthy. If not, the container will be restarted.
 
-[Back to TOC](#toc)
+[Back to TOC](#table-of-contents-toc)
 
 ---
 
@@ -229,7 +229,7 @@ Adjust `periodSeconds` and `timeoutSeconds` so the probe fits the operational ne
 #### 6.4 View Events and Logs
 Check the pod’s events and logs (using `kubectl get events` or `kubectl logs`) to diagnose why a probe is failing.
 
-[Back to TOC](#toc)
+[Back to TOC](#table-of-contents-toc)
 
 ---
 
@@ -239,7 +239,7 @@ Check the pod’s events and logs (using `kubectl get events` or `kubectl logs`)
 
 Liveness probes in Kubernetes ensure that applications stay healthy by automatically detecting and recovering from failures. By configuring HTTP, Exec, or TCP probes, you can manage container restarts and keep your application running smoothly. Understanding how to define and troubleshoot these probes is key to maintaining application availability in a Kubernetes cluster.
 
-[Back to TOC](#toc)
+[Back to TOC](#table-of-contents-toc)
 
 ---
 
