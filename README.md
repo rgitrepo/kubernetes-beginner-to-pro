@@ -202,7 +202,8 @@
 - [eBPF (extended Berkeley Packet Filter)](docs/day10/ebpf.md)
 - [Cilium](docs/day10/cilium.md)
 - [Istio](docs/day10/istio.md)
-- [ztunnel](docs/day10/ztunnel.md)
+- [Istio - ztunnel](docs/day10/ztunnel.md)
+- [Istio - Dashboard](docs/day10/istio-dashboard.md)
 - [Liveness Probes](docs/day10/liveness-probes.md)
 
   
