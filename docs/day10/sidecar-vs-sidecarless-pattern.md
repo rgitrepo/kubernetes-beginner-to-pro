@@ -34,7 +34,7 @@ In this tutorial, we will cover both patterns, their benefits, drawbacks, and pr
 
 #### Key Features of the Sidecar Pattern
 
-The **Sidecar Pattern** involves deploying a sidecar container alongside the main application container within the same Pod. This sidecar, typically a lightweight proxy, manages network communication tasks like routing, load balancing, and security enforcement.
+The **Sidecar Pattern** involves deploying a sidecar container alongside the main application container within the same Pod. This sidecar, typically a lightweight proxy, manages network communication tasks like routing, load balancing, and security enforcement. The sidecar containers talk to other sidecar containers in the mesh. 
 
 1. **Decoupling of Responsibilities**: The application container focuses solely on business logic, while the sidecar handles networking and security tasks.
 2. **Security and Observability**: Sidecars enforce mTLS for secure communication, collect metrics, and logs, and ensure consistent policies across services.
