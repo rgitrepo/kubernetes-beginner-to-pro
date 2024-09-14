@@ -29,7 +29,6 @@
 - [Kube-Proxy vs CNI](docs/day2/kube-proxy-vs-cni.md)
 - [Blog Summary: Scaling Kubernetes to 7,500 Nodes](docs/day2/scaling-kubernetes-to-7500-nodes-summary.md)
 - [Optional: Scenarios on Pod Communication](docs/day2/scenarios-on-pod-communication.md)
-- [Optional: Key Metrics](docs/day2/key-metrics.md)
 - [Resources](docs/day2/resources.md)
 
 </details>
