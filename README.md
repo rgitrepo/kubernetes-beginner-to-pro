@@ -218,7 +218,7 @@
 - [Grafana](docs/day11/grafana.md)
 - [Logging](docs/day11/logging.md)
 - [Tracing & Profiling](docs/day11/tracing-and-profiling.md)
-
+- [eBPF-based Tools & OpenTelemetry (OTel)](docs/day11/ebpf-tools-and-otel.md)
 
 
 </details>
