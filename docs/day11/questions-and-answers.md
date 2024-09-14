@@ -109,9 +109,7 @@ While SRE tasks like observability, monitoring, and alerting may seem repetitive
 ---
 
 ### **Q11: Can OTel (OpenTelemetry) be used without Grafana for metric dashboards?**  
-No, **OpenTelemetry (OTel)** itself is not a dashboarding tool. It’s a framework for collecting and exporting telemetry data (logs, metrics, and traces). To visualize the metrics, you still need a dashboarding solution like **
-
-Grafana**. You can use OTel to gather and export metrics, but you need to integrate it with a tool like **Prometheus** and **Grafana** to create dashboards.
+No, **OpenTelemetry (OTel)** itself is not a dashboarding tool. It’s a framework for collecting and exporting telemetry data (logs, metrics, and traces). To visualize the metrics, you still need a dashboarding solution like **Grafana**. You can use OTel to gather and export metrics, but you need to integrate it with a tool like **Prometheus** and **Grafana** to create dashboards.
 
 [Back to TOC](#table-of-contents-toc)
 
