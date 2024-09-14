@@ -215,6 +215,8 @@
 - [Key Metrics](docs/day11/key-metrics.md)
 - [How to Scrape Metrics](docs/day11/how-to-scrape-metrics.md)
 - [Prometheus](docs/day11/prometheus.md)
+- [Grafana](docs/day11/grafana.md)
+- [Logging](docs/day11/logging.md)
 
 
 
