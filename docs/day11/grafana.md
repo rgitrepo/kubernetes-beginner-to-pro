@@ -1,22 +1,19 @@
-Here is a detailed tutorial about **Grafana**, based on the transcript, covering its architecture, integration with Prometheus, and how to create dashboards. This tutorial is tailored for learning, with organized sections and links for easy navigation.
-
----
 
 # Grafana Tutorial
 
 ## Table of Contents
-1. [Introduction to Grafana](#introduction-to-grafana)
-2. [Grafana Architecture](#grafana-architecture)
-3. [Grafana Installation](#grafana-installation)
-   1. [Installing Grafana Using Helm](#installing-grafana-using-helm)
-   2. [Manual Grafana Installation](#manual-grafana-installation)
-4. [Integrating Grafana with Prometheus](#integrating-grafana-with-prometheus)
-5. [Creating Dashboards in Grafana](#creating-dashboards-in-grafana)
-   1. [Using Pre-built Dashboards](#using-pre-built-dashboards)
-   2. [Creating Custom Dashboards](#creating-custom-dashboards)
-6. [Setting Up Alerts in Grafana](#setting-up-alerts-in-grafana)
-7. [Advanced Grafana Features](#advanced-grafana-features)
-8. [Conclusion](#conclusion)
+1. [Introduction to Grafana](#1-introduction-to-grafana)
+2. [Grafana Architecture](#2-grafana-architecture)
+3. [Grafana Installation](#3-grafana-installation)
+   1. [Installing Grafana Using Helm](#31-installing-grafana-using-helm)
+   2. [Manual Grafana Installation](#32-manual-grafana-installation)
+4. [Integrating Grafana with Prometheus](#4-integrating-grafana-with-prometheus)
+5. [Creating Dashboards in Grafana](#5-creating-dashboards-in-grafana)
+   1. [Using Pre-built Dashboards](#51-using-pre-built-dashboards)
+   2. [Creating Custom Dashboards](#52-creating-custom-dashboards)
+6. [Setting Up Alerts in Grafana](#6-setting-up-alerts-in-grafana)
+7. [Advanced Grafana Features](#7-advanced-grafana-features)
+8. [Conclusion](#8-conclusion)
 
 ---
 
@@ -73,6 +70,10 @@ Grafana can be easily deployed in Kubernetes using **Helm**, a package manager f
      type: LoadBalancer
    ```
 
+[Back to TOC](#table-of-contents)
+
+---
+
 ### 3.2. Manual Grafana Installation
 Grafana can also be installed manually on a server or a local machine.
 
@@ -118,6 +119,10 @@ Grafana offers **pre-built dashboards** for common use cases, which makes it eas
 2. **Enter the Dashboard ID** from Grafana Labs (e.g., for Kubernetes, use ID `6417`).
 3. **Load the Dashboard** and select the **Prometheus** data source.
 4. The pre-built dashboard will load with default charts for **Kubernetes cluster monitoring**.
+
+[Back to TOC](#table-of-contents)
+
+---
 
 ### 5.2. Creating Custom Dashboards
 Creating a custom dashboard allows you to define your own metrics and visualizations based on specific needs.
