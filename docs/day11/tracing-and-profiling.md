@@ -27,7 +27,7 @@ Tracing helps you measure the time taken by various functions in your applicatio
 
 ## **2. What is Tracing?**
 
-Tracing in the context of software development refers to tracking the execution of a function or a sequence of functions to understand how much time each part of the code takes to execute. This can help identify performance bottlenecks and improve system efficiency.
+Tracing in the context of software development refers to tracking the execution of a function or a sequence of functions to understand how much time each part of the code takes to execute. This can help identify performance bottlenecks and improve system efficiency. Tracing is mostly used by developers.
 
 ### **2.1. Jaeger: A Popular Tracing Tool**
 One of the most widely used tools for tracing is **Jaeger**. Jaeger is used for monitoring and troubleshooting microservices-based distributed systems. It allows you to monitor how requests propagate through different services and how long each part of the system takes to respond.
@@ -81,7 +81,7 @@ By using tracing, you can see that **f3** is taking the longest, and you might c
 
 ## **3. What is Profiling?**
 
-Profiling is another key tool for optimizing your application. While tracing focuses on tracking the flow of requests or functions, **profiling** focuses on resource utilization, such as CPU and memory usage. Profiling helps in identifying hotspots and inefficient resource usage in your application and is mostly used by developers. Profiling on the other hand is more of a devops tool. Profiling is also calling **sampling**.
+Profiling is another key tool for optimizing your application. While tracing focuses on tracking the flow of requests or functions, **profiling** focuses on resource utilization, such as CPU and memory usage. Profiling helps in identifying hotspots and inefficient resource usage in your application. It is more of a devops tool. Profiling is also calling **sampling**.
 
 ### **3.1. How Profiling Works**
 Profiling collects **samples** of a running application over a certain time period to understand how the system's resources are being used. Unlike tracing, profiling doesn’t require any changes to your code or redeployments.
