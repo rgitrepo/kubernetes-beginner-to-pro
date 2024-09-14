@@ -221,10 +221,15 @@
 - [eBPF-based Tools (Pixie) & OpenTelemetry (OTel)](docs/day11/ebpf-tools-and-otel.md)
 - [Questions & Answers](docs/day11/questions-and-answers.md)
 
-
 </details>
 
+<details>
+<summary>Day 12: Runtime Security & HA Config, Network Policies, Falco, OPA, Tracee, Security Context</summary>
 
+- [HA Config & Quoram](docs/day12/ha-config-and-quoram.md)
+
+
+</details>
 
 
 
