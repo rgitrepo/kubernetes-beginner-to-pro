@@ -175,7 +175,7 @@ Prometheus is widely used in production environments to monitor both infrastruct
 ---
 
 ## 9. Best Practices for Using Prometheus
-- **Configure proper scraping intervals**: Choose appropriate scraping intervals based on the metric’s importance. Critical metrics may require shorter intervals.
+- **Configure proper scraping intervals**: Choose appropriate scraping intervals based on the metric’s importance. Critical metrics may require shorter intervals. Normally intervals are between 30-60s. For financial applications they are around 10-15s.
 - **Use labels effectively**: Leverage labels to categorize and aggregate metrics in Prometheus queries.
 - **Alert on actionable metrics**: Avoid alert fatigue by setting up alerts only on critical issues that require human intervention.
 - **Leverage Grafana for visualization**: Combine Prometheus with Grafana for effective visualizations.
