@@ -84,9 +84,31 @@ By using tracing, you can see that **f3** is taking the longest, and you might c
 Profiling is another key tool for optimizing your application. While tracing focuses on tracking the flow of requests or functions, **profiling** focuses on resource utilization, such as CPU and memory usage. Profiling helps in identifying hotspots and inefficient resource usage in your application. It is more of a devops tool. Profiling is also calling **sampling**.
 
 ### **3.1. How Profiling Works**
-Profiling collects **samples** of a running application over a certain time period to understand how the system's resources are being used. Unlike tracing, profiling doesn’t require any changes to your code or redeployments.
 
-For example, profiling can tell you which functions consume the most CPU cycles or how memory is being allocated across different processes.
+Profiling works by taking snapshots of your system’s resource usage at spontaneous intervals without needing to modify your code or redeploy your application. At its core, profiling monitors how your system’s resources—such as CPU and memory—are being consumed. Unlike tracing, which focuses on the flow of function calls, profiling captures the **call stack** at various intervals and analyzes how long processes spend on each task.
+
+#### **Hidden Code Sampling:**
+In profiling, there is often a **hidden code** that is executed at **spontaneous intervals** to sample the **call stack** at runtime. This hidden code interacts directly with the **CPU** to request information about which processes are active at that particular moment. Here's how it works:
+
+1. The profiler inserts a hidden code that intermittently **interrupts the CPU** and **samples the call stack**.
+2. This sampling is performed at the **thread level**, meaning each thread in your application is monitored individually to gather performance data.
+3. The profiler then records the responses from the CPU, which indicate what code is currently running and how much time is being spent on it.
+
+This allows the profiler to create a detailed **profile** of your application’s performance over time without requiring you to manually modify or re-instrument your code.
+
+The advantage of profiling with this approach is that it operates on **runtime data**, meaning it continuously samples processes during execution and can quickly highlight bottlenecks or inefficiencies.
+
+#### **CPU Sampling Workflow**:
+1. A process reaches the CPU for execution.
+2. The hidden profiling code intercepts this process and **samples** its **call stack**.
+3. The CPU returns information about the current state of the process and which function is being executed.
+4. The profiler aggregates this information into **profile data** that shows which functions and threads consume the most CPU time.
+
+Through this sampling method, profiling tools like **flame charts** and **flame graphs** are generated, offering insights into resource-heavy processes that may need optimization.
+
+[Back to TOC](#table-of-contents)
+
+---
 
 ### **3.2. Flame Charts vs Flame Graphs**
 There are two popular ways to visualize profiling data:
