@@ -27,7 +27,7 @@ Tracing helps you measure the time taken by various functions in your applicatio
 
 ## **2. What is Tracing?**
 
-Tracing in the context of software development refers to tracking the execution of a function or a sequence of functions to understand how much time each part of the code takes to execute. This can help identify performance bottlenecks and improve system efficiency. Tracing is mostly used by developers.
+Tracing in the context of software development refers to tracking the execution of a function or a sequence of functions to understand how much time each part of the code takes to execute. This can help identify performance bottlenecks and improve system efficiency. Tracing is mostly used by developers. Over 90% of tracing requires external code to be injected for it to trace.
 
 ### **2.1. Jaeger: A Popular Tracing Tool**
 One of the most widely used tools for tracing is **Jaeger**. Jaeger is used for monitoring and troubleshooting microservices-based distributed systems. It allows you to monitor how requests propagate through different services and how long each part of the system takes to respond.
@@ -35,7 +35,7 @@ One of the most widely used tools for tracing is **Jaeger**. Jaeger is used for 
 Jaeger is installed as an **operator** in Kubernetes and works by tracking **spans**, which are units of work within a trace.
 
 ### **2.2. How Tracing Works**
-Tracing tracks the calls between different services or functions and measures the time taken for each call. In Kubernetes, Jaeger can be used by instrumenting your code or adding Jaeger as a sidecar container to your application.
+Tracing tracks the calls between different services or functions and measures the time taken for each call. In Kubernetes, Jaeger can be used by **instrumenting your code** or adding Jaeger as a **sidecar container** to your application.
 
 Each request is broken down into **spans**, and Jaeger collects these spans to generate an end-to-end trace of the request.
 
