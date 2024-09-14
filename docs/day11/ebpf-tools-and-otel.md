@@ -33,7 +33,8 @@ This method makes traditional logging and monitoring tools less intrusive and re
 ---
 
 ### Video Talk (Pixie)
-[![Watch the video](https://img.youtube.com/vi/iJ3sToUJDcA/0.jpg)](https://www.youtube.com/watch?v=iJ3sToUJDcA)
+<a href="https://www.youtube.com/watch?v=iJ3sToUJDcA" target="_blank">Watch the video on YouTube</a>
+
 
 ---
 
