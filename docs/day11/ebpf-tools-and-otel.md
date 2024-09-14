@@ -11,12 +11,12 @@ Here is the updated tutorial with all TOC links and sublinks properly working:
    - [Pixie Topology Graph](#22-pixie-topology-graph)
    - [Monitoring and Logging with Pixie](#23-monitoring-and-logging-with-pixie)
    - [Advanced Use Cases](#24-advanced-use-cases)
-3. [Introduction to OpenTelemetry (OTel)](#introduction-to-opentelemetry-otel)
-   - [OTel's Collector and Processor](#otels-collector-and-processor)
-   - [OTel in Grafana](#otel-in-grafana)
-   - [Setting Up Alerts and Metrics with OTel](#setting-up-alerts-and-metrics-with-otel)
-4. [Comparison Between eBPF Tools and OTel](#comparison-between-ebpf-tools-and-otel)
-5. [Conclusion](#conclusion)
+3. [Introduction to OpenTelemetry (OTel)](#3-introduction-to-opentelemetry-otel)
+   - [OTel's Collector and Processor](#31-otels-collector-and-processor)
+   - [OTel in Grafana](#32-otel-in-grafana)
+   - [Setting Up Alerts and Metrics with OTel](#33-setting-up-alerts-and-metrics-with-otel)
+4. [Comparison Between eBPF Tools and OTel](#4-comparison-between-ebpf-tools-and-otel)
+5. [Conclusion](#5-conclusion)
 
 ---
 
