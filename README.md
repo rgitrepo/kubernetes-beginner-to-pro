@@ -212,8 +212,8 @@
 <details>
 <summary>Day 11: Monitoring, Logging, Tracing, Profiling, Prometheus, Jaeger, OTel, Grafana, eBPF</summary>
 
-- [Observability](docs/day11/observability.md)
-- [Monitoring](docs/day11/monitoring.md)
+
+- [Key Metrics](docs/day11/key-metrics.md)
 
 
 
