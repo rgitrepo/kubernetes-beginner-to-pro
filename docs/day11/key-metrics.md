@@ -1,19 +1,19 @@
 # Kubernetes Metrics Tutorial
 
 ## Table of Contents
-1. [etcd_server_has_leader](#etcd_server_has_leader)
-2. [etcd_server_leader_changes_seen_total](#etcd_server_leader_changes_seen_total)
-3. [etcd_network_peer_round_trip_time_seconds_bucket](#etcd_network_peer_round_trip_time_seconds_bucket)
-4. [etcd_server_proposals_failed_total](#etcd_server_proposals_failed_total)
-5. [workqueue_adds_total](#workqueue_adds_total)
-6. [workqueue_depth](#workqueue_depth)
-7. [kubelet_running_pods](#kubelet_running_pods)
-8. [kubelet_pod_start_duration_seconds_count](#kubelet_pod_start_duration_seconds_count)
-9. [kubelet_running_containers](#kubelet_running_containers)
-10. [rule_syncs_total](#rule_syncs_total)
-11. [apiserver_admission_controller_duration_seconds_bucket](#apiserver_admission_controller_duration_seconds_bucket)
-12. [process_cpu_seconds_total](#process_cpu_seconds_total)
-13. [apiserver_request_total](#apiserver_request_total)
+1. [etcd_server_has_leader](#1-etcd_server_has_leader)
+2. [etcd_server_leader_changes_seen_total](#2-etcd_server_leader_changes_seen_total)
+3. [etcd_network_peer_round_trip_time_seconds_bucket](#3-etcd_network_peer_round_trip_time_seconds_bucket)
+4. [etcd_server_proposals_failed_total](#4-etcd_server_proposals_failed_total)
+5. [workqueue_adds_total](#5-workqueue_adds_total)
+6. [workqueue_depth](#6-workqueue_depth)
+7. [kubelet_running_pods](#7-kubelet_running_pods)
+8. [kubelet_pod_start_duration_seconds_count](#8-kubelet_pod_start_duration_seconds_count)
+9. [kubelet_running_containers](#9-kubelet_running_containers)
+10. [rule_syncs_total](#10-rule_syncs_total)
+11. [apiserver_admission_controller_duration_seconds_bucket](#11-apiserver_admission_controller_duration_seconds_bucket)
+12. [process_cpu_seconds_total](#12-process_cpu_seconds_total)
+13. [apiserver_request_total](#13-apiserver_request_total)
 
 ---
 
