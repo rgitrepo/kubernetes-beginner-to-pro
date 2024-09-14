@@ -1,3 +1,6 @@
+Here is the updated tutorial with all TOC links and sublinks properly working:
+
+---
 
 ### **eBPF-based Tools & OpenTelemetry (OTel) Tutorial**
 
@@ -179,4 +182,3 @@ Whether you choose Pixie for its efficiency and ease of use or OTel for its robu
 **Note**: If your focus is purely on application-level telemetry, OTel is an excellent choice. However, if you want kernel-level metrics with minimal overhead, Pixie is the way to go.
 
 [Back to TOC](#table-of-contents)
-
