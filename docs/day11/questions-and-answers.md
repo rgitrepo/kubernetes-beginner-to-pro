@@ -1,26 +1,23 @@
-Here’s the Table of Contents (TOC) with links to each question, and after each question, there’s a link back to the TOC.
-
----
 
 ### **Table of Contents (TOC)**
 
-1. [Can we create clusters using GKE and then rely on instances for running Kubernetes? Which one is reliable for Kubernetes?](#q1)
-2. [What role does an SRE (Site Reliability Engineer) play in observability?](#q2)
-3. [Can a beginner get a job in cloud computing?](#q3)
-4. [Is there a simpler solution for distributed tracing?](#q4)
-5. [Why does downtime occur in Blue-Green deployment, even when creating separate environments for the new revision?](#q5)
-6. [How can downtime be reduced in Blue-Green deployments?](#q6)
-7. [How can we scrape metrics in a multi-master Kubernetes cluster where all requests are routed through a front-facing API load balancer?](#q7)
-8. [Can we use eBPF to trace and monitor Kubernetes clusters?](#q8)
-9. [What is a simple way to contribute to CNCF (Cloud Native Computing Foundation) projects?](#q9)
-10. [How can you make boring SRE (Site Reliability Engineering) work more engaging?](#q10)
-11. [Can OTel (OpenTelemetry) be used without Grafana for metric dashboards?](#q11)
-12. [How can downtime occur in DNS-based blue-green deployments?](#q12)
-13. [How can we set retention periods for metrics in Grafana or Prometheus?](#q13)
-14. [Can we generate custom metrics using tools like the Node Exporter?](#q14)
-15. [Is Pixie capable of replacing Prometheus or OpenTelemetry?](#q15)
-16. [Can eBPF be installed in a Kubernetes namespace using Helm charts?](#q16)
-17. [How can we contribute to open-source projects like CNCF incubating projects?](#q17)
+1. [Can we create clusters using GKE and then rely on instances for running Kubernetes? Which one is reliable for Kubernetes?](#q1-can-we-create-clusters-using-gke-and-then-rely-on-instances-for-running-kubernetes-which-one-is-reliable-for-kubernetes)
+2. [What role does an SRE (Site Reliability Engineer) play in observability?](#q2-what-role-does-an-sre-site-reliability-engineer-play-in-observability)
+3. [Can a beginner get a job in cloud computing?](#q3-can-a-beginner-get-a-job-in-cloud-computing)
+4. [Is there a simpler solution for distributed tracing?](#q4-is-there-a-simpler-solution-for-distributed-tracing)
+5. [Why does downtime occur in Blue-Green deployment, even when creating separate environments for the new revision?](#q5-why-does-downtime-occur-in-blue-green-deployment-even-when-creating-separate-environments-for-the-new-revision)
+6. [How can downtime be reduced in Blue-Green deployments?](#q6-how-can-downtime-be-reduced-in-blue-green-deployments)
+7. [How can we scrape metrics in a multi-master Kubernetes cluster where all requests are routed through a front-facing API load balancer?](#q7-how-can-we-scrape-metrics-in-a-multi-master-kubernetes-cluster-where-all-requests-are-routed-through-a-front-facing-api-load-balancer)
+8. [Can we use eBPF to trace and monitor Kubernetes clusters?](#q8-can-we-use-ebpf-to-trace-and-monitor-kubernetes-clusters)
+9. [What is a simple way to contribute to CNCF (Cloud Native Computing Foundation) projects?](#q9-what-is-a-simple-way-to-contribute-to-cncf-cloud-native-computing-foundation-projects)
+10. [How can you make boring SRE (Site Reliability Engineering) work more engaging?](#q10-how-can-you-make-boring-sre-site-reliability-engineering-work-more-engaging)
+11. [Can OTel (OpenTelemetry) be used without Grafana for metric dashboards?](#q11-can-otel-opentelemetry-be-used-without-grafana-for-metric-dashboards)
+12. [How can downtime occur in DNS-based blue-green deployments?](#q12-how-can-downtime-occur-in-dns-based-blue-green-deployments)
+13. [How can we set retention periods for metrics in Grafana or Prometheus?](#q13-how-can-we-set-retention-periods-for-metrics-in-grafana-or-prometheus)
+14. [Can we generate custom metrics using tools like the Node Exporter?](#q14-can-we-generate-custom-metrics-using-tools-like-the-node-exporter)
+15. [Is Pixie capable of replacing Prometheus or OpenTelemetry?](#q15-is-pixie-capable-of-replacing-prometheus-or-opentelemetry)
+16. [Can eBPF be installed in a Kubernetes namespace using Helm charts?](#q16-can-ebpf-be-installed-in-a-kubernetes-namespace-using-helm-charts)
+17. [How can we contribute to open-source projects like CNCF incubating projects?](#q17-how-can-we-contribute-to-open-source-projects-like-cncf-incubating-projects)
 
 ---
 
@@ -112,7 +109,9 @@ While SRE tasks like observability, monitoring, and alerting may seem repetitive
 ---
 
 ### **Q11: Can OTel (OpenTelemetry) be used without Grafana for metric dashboards?**  
-No, **OpenTelemetry (OTel)** itself is not a dashboarding tool. It’s a framework for collecting and exporting telemetry data (logs, metrics, and traces). To visualize the metrics, you still need a dashboarding solution like **Grafana**. You can use OTel to gather and export metrics, but you need to integrate it with a tool like **Prometheus** and **Grafana** to create dashboards.
+No, **OpenTelemetry (OTel)** itself is not a dashboarding tool. It’s a framework for collecting and exporting telemetry data (logs, metrics, and traces). To visualize the metrics, you still need a dashboarding solution like **
+
+Grafana**. You can use OTel to gather and export metrics, but you need to integrate it with a tool like **Prometheus** and **Grafana** to create dashboards.
 
 [Back to TOC](#table-of-contents-toc)
 
@@ -137,9 +136,7 @@ For **Grafana** dashboards:
 ---
 
 ### **Q14: Can we generate custom metrics using tools like the Node Exporter?**  
-Yes, you can generate custom metrics using the **Node Exporter** or similar tools. Node Exporter provides system-level metrics (like CPU and memory usage), but you can extend it by adding custom exporters or writing custom Prometheus exporters that expose
-
- your application's metrics.
+Yes, you can generate custom metrics using the **Node Exporter** or similar tools. Node Exporter provides system-level metrics (like CPU and memory usage), but you can extend it by adding custom exporters or writing custom Prometheus exporters that expose your application's metrics.
 
 [Back to TOC](#table-of-contents-toc)
 
@@ -167,7 +164,3 @@ You can contribute to CNCF projects by:
 You can also connect with other contributors via issue discussions and developer forums for collaboration.
 
 [Back to TOC](#table-of-contents-toc)
-
---- 
-
-Now all links are correctly functioning. Let me know if you need further assistance!
