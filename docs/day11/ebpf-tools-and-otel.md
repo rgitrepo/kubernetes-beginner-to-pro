@@ -31,8 +31,9 @@ This method makes traditional logging and monitoring tools less intrusive and re
 [Back to TOC](#table-of-contents)
 
 ---
+
 ### Video Talk (Pixie)
-<iframe width="560" height="315" src="https://www.youtube.com/embed/iJ3sToUJDcA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+[![Watch the video](https://img.youtube.com/vi/iJ3sToUJDcA/0.jpg)](https://www.youtube.com/watch?v=iJ3sToUJDcA)
 
 ---
 
