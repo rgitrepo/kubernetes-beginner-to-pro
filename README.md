@@ -217,6 +217,7 @@
 - [Prometheus](docs/day11/prometheus.md)
 - [Grafana](docs/day11/grafana.md)
 - [Logging](docs/day11/logging.md)
+- [Tracing & Profiling](docs/day11/tracing-and-profiling.md)
 
 
 
