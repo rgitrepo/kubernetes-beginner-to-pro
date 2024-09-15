@@ -227,7 +227,7 @@
 <summary>Day 12: Runtime Security & HA Config, Network Policies, Falco, OPA, Tracee, Security Context</summary>
 
 - [HA Clusters](docs/day12/ha-clusters.md)
-- [CICD Automatic vs Manual ](docs/day12/cicd-automatic-vs-manual.md)
+- [Interviwe Questions - few](docs/day12/interview-questions.md)
 
 </details>
 
