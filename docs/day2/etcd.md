@@ -163,6 +163,25 @@ This means that if the number of node failures is less than or equal to the faul
      - With 7 nodes, at least 4 nodes need to be operational to reach quorum.
      - The cluster can tolerate 3 node failures (because with 4 nodes left, quorum can still be achieved).
 
+
+#### **Node Quorum Table**
+
+| **Total Nodes** | **Quorum (Available Nodes)** | **Fault Tolerance (Nodes that can fail)** |
+|-----------------|------------------------------|-------------------------------------------|
+| 4               | 3                            | 1                                         |
+| 5               | 3                            | 2                                         |
+| 6               | 4                            | 2                                         |
+| 7               | 4                            | 3                                         |
+| 8               | 5                            | 3                                         |
+
+---
+
+#### **Explanation**:
+Using **odd numbers** of total nodes provides the most fault tolerance while requiring fewer nodes. For example, both **5** and **6** total nodes offer the same **fault tolerance** of **2 nodes**, meaning either setup can tolerate the failure of up to 2 nodes and still maintain high availability. However, having an odd number of nodes (like 5) is more **cost-effective** because it provides the same level of tolerance with fewer nodes. Therefore, it is typically more efficient to choose an odd number of total nodes when configuring a highly available system. 
+
+This is why in most HA setups, odd numbers of nodes are preferred, as they reduce the infrastructure cost without sacrificing fault tolerance.
+
+
 ### Key Points:
 - **Odd Number of Nodes**: Using an odd number of nodes ensures that the cluster can always achieve a majority (quorum) even if some nodes fail.
 - **Quorum**: More than half of the total nodes need to be operational to maintain the cluster’s functionality.
