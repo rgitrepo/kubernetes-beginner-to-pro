@@ -228,6 +228,7 @@
 
 - [HA Clusters](docs/day12/ha-clusters.md)
 - [Interviwe Questions - few](docs/day12/interview-questions.md)
+- [Benchmarking with kubebench](docs/day12/benchmarking-with-kubebench.md)
 
 </details>
 
