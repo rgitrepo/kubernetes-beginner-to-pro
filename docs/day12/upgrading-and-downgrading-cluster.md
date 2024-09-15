@@ -96,7 +96,7 @@ For clusters created with `kubeadm`, the process is more involved:
 1. **Check Available Versions:**
    Use the following command to check which Kubernetes versions are available:
    ```bash
-   sudo apt-cache madison kubeadm
+   sudo apt-cache madison kubeadm | tac
    ```
 
 2. **Upgrade `kubeadm` Tool:**
