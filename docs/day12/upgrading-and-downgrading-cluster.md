@@ -7,9 +7,9 @@ This updated section now includes the **downgrade process**, along with the reas
 ## **Upgrading and Downgrading Kubernetes Cluster: Step-by-Step Guide**
 
 ### **Table of Contents**
-1. [Introduction](#introduction)
-2. [Preparation Before Upgrading](#preparation-before-upgrading)
-3. [Upgrade Steps](#upgrade-steps)
+1. [Introduction](#1-introduction)
+2. [Preparation Before Upgrading](#2-preparation-before-upgrading)
+3. [Upgrade Steps](#3-upgrade-steps)
    - [1. Step 1: Check Available Versions](#step-1-check-available-versions)
    - [2. Step 2: Upgrade `kubeadm` on the Control Plane Node](#step-2-upgrade-kubeadm-on-the-control-plane-node)
    - [3. Step 3: Drain and Cordon the Control Plane Node](#step-3-drain-and-cordon-the-control-plane-node)
@@ -17,13 +17,13 @@ This updated section now includes the **downgrade process**, along with the reas
    - [5. Step 5: Upgrade the `kubelet` and `kubectl` on the Control Plane Node](#step-5-upgrade-the-kubelet-and-kubectl-on-the-control-plane-node)
    - [6. Step 6: Uncordon the Control Plane Node](#step-6-uncordon-the-control-plane-node)
    - [7. Step 7: Upgrade Worker Nodes](#step-7-upgrade-worker-nodes)
-4. [Downgrade Process](#downgrade-process)
+4. [Downgrade Process](4-#downgrade-process)
    - [Step 1: Downgrade `kubeadm`](#step-1-downgrade-kubeadm)
    - [Step 2: Downgrade the Control Plane](#step-2-downgrade-the-control-plane)
    - [Step 3: Downgrade Worker Nodes](#step-3-downgrade-worker-nodes)
-5. [Reasons for Upgrading One Node at a Time](#reasons-for-upgrading-one-node-at-a-time)
-6. [Commands and Outputs](#commands-and-outputs)
-7. [Additional Resources](#additional-resources)
+5. [Reasons for Upgrading One Node at a Time](#5-reasons-for-upgrading-one-node-at-a-time)
+6. [Commands and Outputs](#6-commands-and-outputs)
+7. [Additional Resources](#7-additional-resources)
 
 ---
 
