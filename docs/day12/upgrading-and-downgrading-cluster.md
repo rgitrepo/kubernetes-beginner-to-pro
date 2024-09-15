@@ -90,7 +90,7 @@ gcloud container clusters upgrade <CLUSTER_NAME> --master --cluster-version=<NEW
 ---
 
 #### **2. Upgrading Using `kubeadm`**
-For clusters created with `kubeadm`, the process is more involved:
+For clusters created with `kubeadm`, the process is more involved. Memorize these commands to pass CKA, CKS.
 
 **Step-by-Step Process for `kubeadm`:**
 1. **Check Available Versions:**
