@@ -226,7 +226,7 @@
 <details>
 <summary>Day 12: Runtime Security & HA Config, Network Policies, Falco, OPA, Tracee, Security Context</summary>
 
-- [HA Config & Quoram](docs/day12/ha-config-and-quoram.md)
+- [HA Clusters](docs/day12/ha-clusters.md)
 - [CICD Automatic vs Manual ](docs/day12/cicd-automatic-vs-manual.md)
 
 </details>
