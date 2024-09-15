@@ -227,8 +227,9 @@
 <summary>Day 12: Runtime Security & HA Config, Network Policies, Falco, OPA, Tracee, Security Context</summary>
 
 - [HA Clusters](docs/day12/ha-clusters.md)
-- [Interviwe Questions - few](docs/day12/interview-questions.md)
+- [Interviwe Questions](docs/day12/interview-questions.md)
 - [Benchmarking with `kube-bench`](docs/day12/benchmarking-with-kube-bench.md)
+- [Upgrading & Downgrading Clusters](docs/day12/upgrading-and-downgrading-clusters.md)
 
 </details>
 
