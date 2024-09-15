@@ -230,6 +230,8 @@
 - [Interviwe Questions](docs/day12/interview-questions.md)
 - [Benchmarking with `kube-bench`](docs/day12/benchmarking-with-kube-bench.md)
 - [Upgrading & Downgrading Clusters](docs/day12/upgrading-and-downgrading-clusters.md)
+- [Runtime Security Intro](docs/day12/runtime-security-intro.md)
+- [Security Context & Capabilities](docs/day12/security-context-and-capabilities.md)
 
 </details>
 
