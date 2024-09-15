@@ -125,9 +125,9 @@ Using an odd number of nodes ensures that the cluster can achieve quorum (a majo
 
 #### Formula for Quorum
 The formula to determine the quorum is:
-Quorum = (N / 2) + 1
+Quorum = floor (N / 2) + 1
 
-Where N is the total number of nodes in the cluster. This ensures that the cluster can tolerate up to (N - 1) / 2 node failures.
+Where N is the total number of nodes in the cluster. This ensures that the cluster can tolerate up to (N - 1) / 2 node failures. Floor rounds the value down.
 
 #### Fault Tolerance
 Fault tolerance refers to the cluster’s ability to continue functioning correctly even when some nodes fail. The number of nodes that can fail while still maintaining quorum is given by:
@@ -138,7 +138,7 @@ This means that if the number of node failures is less than or equal to the faul
 #### Examples:
 1. **3 Nodes**:
    - **Quorum Calculation**:
-     Quorum = (3 / 2) + 1 = 2 (since 3 / 2 = 1.5, rounded up to 2)
+     Quorum = (3 / 2) + 1 = 2 (since 3 / 2 = 1.5, rounded down to 1)
    - **Fault Tolerance Calculation**:
      Fault Tolerance = (3 - 1) / 2 = 1
    - **Explanation**:
@@ -147,7 +147,7 @@ This means that if the number of node failures is less than or equal to the faul
 
 2. **5 Nodes**:
    - **Quorum Calculation**:
-     Quorum = (5 / 2) + 1 = 3 (since 5 / 2 = 2.5, rounded up to 3)
+     Quorum = (5 / 2) + 1 = 3 (since 5 / 2 = 2.5, rounded down to 2)
    - **Fault Tolerance Calculation**:
      Fault Tolerance = (5 - 1) / 2 = 2
    - **Explanation**:
@@ -156,7 +156,7 @@ This means that if the number of node failures is less than or equal to the faul
 
 3. **7 Nodes**:
    - **Quorum Calculation**:
-     Quorum = (7 / 2) + 1 = 4 (since 7 / 2 = 3.5, rounded up to 4)
+     Quorum = (7 / 2) + 1 = 4 (since 7 / 2 = 3.5, rounded down to 3)
    - **Fault Tolerance Calculation**:
      Fault Tolerance = (7 - 1) / 2 = 3
    - **Explanation**:
