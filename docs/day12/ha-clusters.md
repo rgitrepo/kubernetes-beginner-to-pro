@@ -32,6 +32,8 @@ A Highly Available (HA) cluster is designed to ensure that your application or s
    - **Scaling**: Worker nodes should be dynamically scaled based on load to handle increased traffic without overwhelming any single node. Kubernetes can automatically scale worker nodes up or down as needed, ensuring better resource utilization and availability(.
 
    - [More Details about Quorum](https://github.com/rgitrepo/kubernetes-beginner-to-pro/blob/main/docs/day2/etcd.md#number-of-nodes-and-quorum)
+   - <a href="https://github.com/rgitrepo/kubernetes-beginner-to-pro/blob/main/docs/day2/etcd.md#number-of-nodes-and-quorum" target="_blank">More Details about Quorum</a>
+
 
    [Back to TOC](#table-of-contents-toc)
 
