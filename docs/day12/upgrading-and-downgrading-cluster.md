@@ -98,6 +98,7 @@ For clusters created with `kubeadm`, the process is more involved:
    ```bash
    sudo apt-cache madison kubeadm | tac
    ```
+In the Linux operating system, the tac command is used to concatenate and print the files in reverse format. When the input or specified file is not provided to the command then the tac command will read the standard input. The tac command is exactly opposite to the “cat” command.
 
 2. **Upgrade `kubeadm` Tool:**
    Upgrade `kubeadm` before upgrading the cluster:
