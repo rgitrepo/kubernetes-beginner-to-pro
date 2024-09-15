@@ -115,7 +115,7 @@
 - [Certificates: Issuer vs Cluster Issuer](docs/day7/certificates-issuer-vs-cluster-issuer.md)
 - [Public and Private Keys](docs/day7/public-and-private-keys.md)
 - [TLS and mTLS](docs/day7/tls-and-mtls.md)
-- [Let's Encrypt: Revolutionizing Web Security with Free, Automated SSL/TLS Certificates](docs/day7/lets-encrypt.md)
+- [Let's Encrypt: Certificiation Authority with Free, Automated SSL/TLS Certificates](docs/day7/lets-encrypt.md)
 - [Install Cert Manager](docs/day7/install-cert-manager.md)
 - [Cluster Issuer YAML Manifest](docs/day7/cluster-issuer-yaml-manifest.md)
 - [Prod vs Staging Servers](docs/day7/prod-vs-staging-server.md)
