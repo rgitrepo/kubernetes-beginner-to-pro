@@ -26,10 +26,12 @@ A Highly Available (HA) cluster is designed to ensure that your application or s
 
 ### 2. **Number of Nodes (Master and Worker Nodes)**  
    - **Master Nodes**: Master nodes manage the control plane components of Kubernetes, such as the API server, controller manager, etcd, and scheduler. Having at least three master nodes across multiple zones or regions ensures redundancy and continued operation, even if one or more master nodes fail.
-     - **Quorum and etcd**: etcd, which stores the cluster state, needs a majority (quorum) of master nodes to be available. For example, in a three-node cluster, at least two nodes must be functional to maintain consistency and availability.
+     - **Quorum and etcd**: etcd, which stores the cluster state, needs a majority (quorum) of master nodes to be available. For example, in a three-node cluster, at least two nodes must be functional to maintain consistency and availability. 
    - **Worker Nodes**: Worker nodes are responsible for running application containers. For high availability, it is important to have multiple worker nodes, so if one node fails, the workload can be handled by others.
-   - **Odd Number of Nodes**: It's recommended to have an odd number of master nodes (e.g., 3, 5, 7) to ensure quorum, which increases the fault tolerance of the cluster. The quorum formula is `n/2 + 1`, where `n` is the total number of nodes.
-   - **Scaling**: Worker nodes should be dynamically scaled based on load to handle increased traffic without overwhelming any single node. Kubernetes can automatically scale worker nodes up or down as needed, ensuring better resource utilization and availability.
+   - **Odd Number of Nodes**: It's recommended to have an odd number of master nodes (e.g., 3, 5, 7) to ensure quorum, which increases the fault tolerance of the cluster. The quorum formula is `floor(n/2) + 1`, where `n` is the total number of nodes.
+   - **Scaling**: Worker nodes should be dynamically scaled based on load to handle increased traffic without overwhelming any single node. Kubernetes can automatically scale worker nodes up or down as needed, ensuring better resource utilization and availability(.
+
+   - [More Details about Quorum](https://github.com/rgitrepo/kubernetes-beginner-to-pro/blob/main/docs/day2/etcd.md#number-of-nodes-and-quorum)
 
    [Back to TOC](#table-of-contents-toc)
 
