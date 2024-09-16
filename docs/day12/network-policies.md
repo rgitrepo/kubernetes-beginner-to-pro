@@ -1,35 +1,31 @@
 
-## **Network Policies in Kubernetes**
 
----
+## **Network Policies in Kubernetes**
 
 ### **Updated Table of Contents**
 
-1. [Introduction to Network Policies](#introduction)
-2. [Ingress and Egress Traffic Explained](#ingress-egress)
-3. [Understanding Network Policies in Kubernetes](#understanding-policies)
-4. [How Network Policies Are Applied](#policy-application)
-    - [Interview Question](#question-default-restriction)
-5. [Examples of Network Policies](#policy-examples)
-    - [Example 1: Denying All Traffic by Default](#deny-all)
-        - [Interview Question](#question-deny-all)
-    - [Example 2: Allowing Traffic Only Between Specific Pods](#allow-specific-pods)
-        - [Interview Question](#question-allow-specific-pods)
-    - [Example 3: Restricting Traffic by CIDR Block](#restrict-cidr)
-6. [Working with Labels and Selectors](#labels-selectors)
-    - [Example of Confusion with Multiple PodSelectors](#example-confusion)
-    - [Interview Question](#question-labels)
-7. [Using Namespace Selectors](#namespace-selectors)
-8. [Working with IP Blocks](#ip-blocks)
-9. [Practical Usage in Cloud and Common Issues](#cloud-usage)
+1. [Introduction to Network Policies](#introduction-to-network-policies)
+2. [Ingress and Egress Traffic Explained](#ingress-and-egress-traffic-explained)
+3. [Understanding Network Policies in Kubernetes](#understanding-network-policies-in-kubernetes)
+4. [How Network Policies Are Applied](#how-network-policies-are-applied)
+    - [Interview Question](#what-happens-if-no-network-policy-is-applied-to-a-pod)
+5. [Examples of Network Policies](#examples-of-network-policies)
+    - [Example 1: Denying All Traffic by Default](#denying-all-traffic-by-default)
+        - [Interview Question](#what-happens-if-no-network-policy-is-applied-to-a-pod)
+    - [Example 2: Allowing Traffic Only Between Specific Pods](#allowing-traffic-only-between-specific-pods)
+        - [Interview Question](#how-can-you-restrict-pod-to-pod-communication-using-network-policies)
+    - [Example 3: Restricting Traffic by CIDR Block](#restricting-traffic-by-cidr-block)
+6. [Working with Labels and Selectors](#working-with-labels-and-selectors)
+    - [Example of Confusion with Multiple PodSelectors](#example-of-confusion-with-multiple-podselectors)
+        - [Interview Question](#what-is-the-difference-between-the-podselector-at-the-top-level-of-a-network-policy-and-the-one-used-inside-the-ingress-egress-rules)
+7. [Using Namespace Selectors](#using-namespace-selectors)
+8. [Working with IP Blocks](#working-with-ip-blocks)
+9. [Practical Usage in Cloud and Common Issues](#practical-usage-in-cloud-and-common-issues)
 10. [Conclusion](#conclusion)
-
 
 ---
 
-
-
-### **1. Introduction to Network Policies** <a name="introduction"></a>
+### **1. Introduction to Network Policies** <a name="introduction-to-network-policies"></a>
 
 **Network Policies** in Kubernetes are used to control the flow of network traffic to and from Pods within a cluster. They act like firewall rules for Pods, restricting the ingress (incoming) and egress (outgoing) traffic based on certain rules and selectors.
 
@@ -38,11 +34,11 @@
 - **Egress traffic**: Traffic leaving a Pod.
 - By default, **all traffic** (both ingress and egress) is allowed in Kubernetes until restricted by a network policy.
 
-**[Back to TOC](#table-of-contents)**
+**[Back to TOC](#updated-table-of-contents)**
 
 ---
 
-### **2. Ingress and Egress Traffic Explained** <a name="ingress-egress"></a>
+### **2. Ingress and Egress Traffic Explained** <a name="ingress-and-egress-traffic-explained"></a>
 
 To understand network policies, it’s important to grasp the difference between ingress and egress traffic:
 
@@ -55,11 +51,11 @@ For example, imagine two services:
 
 **Real-world analogy**: Imagine playing a game of catch. When you throw the ball, it's leaving your hand (egress) and entering your friend's hands (ingress). The same principle applies to traffic between Pods.
 
-**[Back to TOC](#table-of-contents)**
+**[Back to TOC](#updated-table-of-contents)**
 
 ---
 
-### **3. Understanding Network Policies in Kubernetes** <a name="understanding-policies"></a>
+### **3. Understanding Network Policies in Kubernetes** <a name="understanding-network-policies-in-kubernetes"></a>
 
 Network policies in Kubernetes are applied using YAML files that define how traffic is managed for certain Pods. These policies allow users to:
 1. **Restrict traffic** based on source and destination.
@@ -93,11 +89,11 @@ spec:
           role: frontend
 ```
 
-**[Back to TOC](#table-of-contents)**
+**[Back to TOC](#updated-table-of-contents)**
 
 ---
 
-### **4. How Network Policies Are Applied** <a name="policy-application"></a>
+### **4. How Network Policies Are Applied** <a name="how-network-policies-are-applied"></a>
 
 By default, Kubernetes allows all traffic into and out of Pods. Applying a Network Policy changes this behavior. A key **interview question** often asked is whether any traffic restrictions exist by default in Kubernetes — **there are none** until a policy is applied.
 
@@ -107,13 +103,17 @@ By default, Kubernetes allows all traffic into and out of Pods. Applying a Netwo
 
 **Important Note**: When a policy is applied, only the traffic allowed by that policy will be permitted. All other traffic will be blocked.
 
-**[Back to TOC](#table-of-contents)**
+<a name="what-happens-if-no-network-policy-is-applied-to-a-pod"></a>**Interview Question**:  
+- **What happens if no network policy is applied to a Pod?**
+    - By default, all traffic (both ingress and egress) is allowed.
+
+**[Back to TOC](#updated-table-of-contents)**
 
 ---
 
-### **5. Examples of Network Policies** <a name="policy-examples"></a>
+### **5. Examples of Network Policies** <a name="examples-of-network-policies"></a>
 
-#### **Example 1: Denying All Traffic by Default** <a name="deny-all"></a>
+#### **Example 1: Denying All Traffic by Default** <a name="denying-all-traffic-by-default"></a>
 
 This policy blocks all incoming and outgoing traffic for the selected Pods:
 
@@ -150,17 +150,15 @@ Allowed Ingress: None
 Allowed Egress: None
 ```
 
-This command provides detailed information on the applied policy, including which types of traffic are affected and the specific rules in place. It’s very useful for debugging and ensuring that the policy behaves as expected.
-
-<a name="question-no-policy"></a>**Interview Question**:  
+<a name="what-happens-if-no-network-policy-is-applied-to-a-pod"></a>**Interview Question**:  
 - **What happens if no network policy is applied to a Pod?**
     - By default, all traffic (both ingress and egress) is allowed.
 
-**[Back to TOC](#table-of-contents)**
+**[Back to TOC](#updated-table-of-contents)**
 
 ---
 
-#### **Example 2: Allowing Traffic Only Between Specific Pods** <a name="allow-specific-pods"></a>
+#### **Example 2: Allowing Traffic Only Between Specific Pods** <a name="allowing-traffic-only-between-specific-pods"></a>
 
 This example shows how to allow traffic between specific Pods:
 
@@ -204,15 +202,15 @@ Allowed Ingress:
     - PodSelector: app=frontend
 ```
 
-<a name="question-restrict-pod"></a>**Interview Question**:  
+<a name="how-can-you-restrict-pod-to-pod-communication-using-network-policies"></a>**Interview Question**:  
 - **How can you restrict Pod-to-Pod communication using network policies?**
     - By applying specific network policies, such as the one above, where only selected Pods (like frontend) are allowed to communicate with backend Pods.
 
-**[Back to TOC](#table-of-contents)**
+**[Back to TOC](#updated-table-of-contents)**
 
 ---
 
-#### **Example 3: Restricting Traffic by CIDR Block** <a name="restrict-cidr"></a>
+#### **Example 3: Restricting Traffic by CIDR Block** <a name="restricting-traffic-by-cidr-block"></a>
 
 This example demonstrates how to use a CIDR block to restrict traffic from a specific range of IP addresses.
 
@@ -228,6 +226,8 @@ spec:
       app: backend
   policyTypes:
   - Ingress
+
+
   ingress:
   - from:
     - ipBlock:
@@ -254,16 +254,14 @@ PodSelector:  app=backend
 PolicyTypes:  Ingress
 Allowed Ingress:
   - From:
-    - IPBlock: 10.0.
-
-0.0/16, except 10.0.1.0/24
+    - IPBlock: 10.0.0.0/16, except 10.0.1.0/24
 ```
 
-**[Back to TOC](#table-of-contents)**
+**[Back to TOC](#updated-table-of-contents)**
 
 ---
 
-### **6. Working with Labels and Selectors** <a name="labels-selectors"></a>
+### **6. Working with Labels and Selectors** <a name="working-with-labels-and-selectors"></a>
 
 In network policies, **labels** and **selectors** are used to identify the Pods that the policy applies to. However, students sometimes get confused about multiple occurrences of `podSelector` in a policy file—especially when dealing with both the target Pods and the source Pods (for ingress traffic, for example).
 
@@ -314,7 +312,7 @@ spec:
 - **Egress `podSelector`**: 
     - This defines **where the traffic is allowed to go to**. Here, the backend Pods are allowed to send traffic **to the database Pods** (`matchLabels: app: database`).
 
-**Common Confusion:**
+<a name="example-of-confusion-with-multiple-podselectors"></a>**Common Confusion**:
 - Students often mistake the top-level `podSelector` for the one in the ingress or egress rules. **The top-level `podSelector` applies the policy to the Pods (backend), while the lower-level `podSelector` defines the source or destination of the traffic (frontend, logging, database)**.
 
 **Verify the policy using `kubectl describe`:**
@@ -323,7 +321,7 @@ spec:
 kubectl describe networkpolicy allow-frontend-to-backend-and-logging
 ```
 
-**Output Example:**
+**Output Example**:
 
 ```plaintext
 Name:         allow-frontend-to-backend-and-logging
@@ -342,20 +340,15 @@ Allowed Egress:
 
 This output shows that the policy applies to the backend Pods (`PodSelector: app=backend`), and allows ingress traffic from the frontend and logging Pods, while allowing egress traffic to the database Pods.
 
----
-
-**Interview Question**:  
+<a name="what-is-the-difference-between-the-podselector-at-the-top-level-of-a-network-policy-and-the-one-used-inside-the-ingress-egress-rules"></a>**Interview Question**:  
 - **What is the difference between the `podSelector` at the top level of a Network Policy and the one used inside the ingress/egress rules?**
     - The top-level `podSelector` defines which Pods the policy applies to, while the `podSelector` inside ingress/egress rules defines the source or destination Pods for the traffic.
 
----
-
-**[Back to TOC](#table-of-contents)**
-
+**[Back to TOC](#updated-table-of-contents)**
 
 ---
 
-### **7. Using Namespace Selectors** <a name="namespace-selectors"></a>
+### **7. Using Namespace Selectors** <a name="using-namespace-selectors"></a>
 
 You can also apply policies based on namespaces. This is useful if you want to isolate certain namespaces or limit communication between namespaces.
 
@@ -383,11 +376,11 @@ spec:
 **Explanation**:
 - This allows ingress traffic to the frontend Pods in the `production` namespace only from Pods in the `dev` namespace.
 
-**[Back to TOC](#table-of-contents)**
+**[Back to TOC](#updated-table-of-contents)**
 
 ---
 
-### **8. Working with IP Blocks** <a name="ip-blocks"></a>
+### **8. Working with IP Blocks** <a name="working-with-ip-blocks"></a>
 
 IP blocks can be used in network policies to allow or deny traffic based on IP addresses.
 
@@ -402,11 +395,11 @@ For example:
 In this configuration:
 - Traffic is allowed from `10.0.0.0/16` but denied from `10.0.1.0/24`.
 
-**[Back to TOC](#table-of-contents)**
+**[Back to TOC](#updated-table-of-contents)**
 
 ---
 
-### **9. Practical Usage in Cloud and Common Issues** <a name="cloud-usage"></a>
+### **9. Practical Usage in Cloud and Common Issues** <a name="practical-usage-in-cloud-and-common-issues"></a>
 
 It’s important to note that network policies may behave differently in various cloud environments. For example, **GKE (Google Kubernetes Engine)** requires additional configuration to enable network policies.
 
@@ -419,7 +412,7 @@ gcloud container clusters update my-cluster --update-addons=NetworkPolicy=ENABLE
 
 Once enabled, you can apply network policies to restrict traffic between Pods and services.
 
-**[Back to TOC](#table-of-contents)**
+**[Back to TOC](#updated-table-of-contents)**
 
 ---
 
@@ -427,5 +420,5 @@ Once enabled, you can apply network policies to restrict traffic between Pods an
 
 Network Policies in Kubernetes provide a robust mechanism to control traffic flow between Pods, services, and even external sources. They help enhance security, reduce unnecessary traffic, and optimize network resource usage. By mastering network policies, you can ensure better isolation and security within your Kubernetes cluster, a critical aspect for production environments.
 
-**[Back to TOC](#table-of-contents)**
+**[Back to TOC](#updated-table-of-contents)**
 
