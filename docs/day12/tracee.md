@@ -162,9 +162,11 @@ Here’s a typical workflow when using Tracee for runtime security:
 
 ### **6. Conclusion**
 
-Tracee is a powerful tool for monitoring runtime security in Kubernetes clusters. It captures system calls using eBPF, which is efficient and operates in near-real time, providing critical insights into your container’s behavior. By setting up Tracee and configuring custom policies, you can effectively monitor and secure your containerized applications without significant performance overhead.
+Tracee is a powerful tool for monitoring runtime security in Kubernetes clusters. It captures system calls using eBPF, which is efficient and operates in near-real time, providing critical insights into your container’s behavior. By setting up Tracee and configuring custom policies, you can effectively monitor and secure your containerized applications without significant performance overhead. 
 
 The combination of Tracee with other security tools like **seccomp** and **capabilities** creates a robust security framework for your Kubernetes environment.
+
+Note: Tracee isn't used by larger organizations much as they have their own tools. 
 
 [Back to TOC](#table-of-contents)
 
