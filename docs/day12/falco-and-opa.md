@@ -38,7 +38,7 @@ Falco is a runtime security tool that monitors system calls in near real-time. I
 **[Back to TOC](#table-of-contents)**
 
 #### **2.2 Why Falco for Observability** <a name="falco-for-observability"></a>
-Falco is widely adopted because it provides near real-time detection of security anomalies. However, it only provides alerts and doesn't enforce any action, unlike other tools like Prometheus, which might already fetch logs and provide alerts.
+Falco is widely adopted because it provides near real-time detection of security anomalies. However, it only provides alerts and doesn't enforce any action, unlike other tools like Prometheus, which might already fetch logs and provide alerts. It is a widely adopted tool but many companies also avoid it as Prometheus and other tools also do alerting and adding another tool in the stack adds to more work requiring testing and maintainance of another tool.
 
 **[Back to TOC](#table-of-contents)**
 
