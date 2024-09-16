@@ -401,18 +401,76 @@ In this configuration:
 
 ### **9. Practical Usage in Cloud and Common Issues** <a name="practical-usage-in-cloud-and-common-issues"></a>
 
-It’s important to note that network policies may behave differently in various cloud environments. For example, **GKE (Google Kubernetes Engine)** requires additional configuration to enable network policies.
+When working with network policies in cloud-managed Kubernetes clusters, the behavior of network policies may differ depending on the provider. This section will explain how to enable and work with network policies in **Google Kubernetes Engine (GKE)**, **Azure Kubernetes Service (AKS)**, and **Amazon Elastic Kubernetes Service (EKS)**.
 
-- **In GKE**, network policies may not work out-of-the-box unless you explicitly enable network policy support.
+#### **Google Kubernetes Engine (GKE)**
 
-Command to enable network policies in GKE:
-```bash
-gcloud container clusters update my-cluster --update-addons=NetworkPolicy=ENABLED
-```
+GKE offers two types of clusters: **Standard** and **Autopilot**. Here’s how network policies differ between them:
 
-Once enabled, you can apply network policies to restrict traffic between Pods and services.
+1. **Autopilot Cluster**:
+   - In Autopilot mode, **network policies are enabled by default**. This means you can immediately apply your network policies through YAML files, and they will function as expected without additional setup.
+   
+2. **Standard Cluster**:
+   - In Standard GKE clusters, network policies are **not enabled by default**. You cannot enable network policies via the GUI (dropdown or click selection). Instead, you must use a command-line interface to enable network policies.
 
-**[Back to TOC](#updated-table-of-contents)**
+   **Command to enable network policies on a Standard GKE cluster**:
+   ```bash
+   gcloud container clusters update my-cluster --update-addons=NetworkPolicy=ENABLED --zone my-zone
+   ```
+
+   Once enabled, you can apply network policies to your Pods.
+
+#### **Azure Kubernetes Service (AKS)**
+
+In **Azure Kubernetes Service (AKS)**, network policies are not enabled by default either. However, AKS supports both **Azure network policies** and **Kubernetes network policies**. Here's how you can work with them:
+
+1. **Kubernetes Network Policies**:
+   - If you want to use Kubernetes-native network policies, you must enable the `networkPolicy` option when creating the cluster.
+   
+   **Command to enable Kubernetes network policies in AKS**:
+   ```bash
+   az aks create --resource-group myResourceGroup --name myAKSCluster --network-policy azure
+   ```
+
+2. **Azure Network Policies**:
+   - Azure-specific network policies are supported, and you can choose between **Azure** or **Kubernetes** policy options. By default, Azure network policies may be more tightly integrated with the Azure networking stack.
+
+#### **Amazon Elastic Kubernetes Service (EKS)**
+
+In **Amazon EKS**, network policies also require additional setup because Kubernetes network policies are not enabled by default. EKS provides flexibility in how network policies are managed, but it requires using a **CNI plugin** such as **Calico** to implement network policies.
+
+1. **Enable Calico for Network Policies**:
+   - To enable network policies in EKS, you typically need to install and configure the Calico CNI plugin.
+   
+   **Command to install Calico in EKS**:
+   ```bash
+   kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
+   ```
+
+   Once Calico is installed, you can apply network policies as you would in a regular Kubernetes setup.
+
+#### **Comparison Summary**
+
+- **GKE Autopilot**: Network policies enabled by default.
+- **GKE Standard**: Requires a command-line command to enable network policies.
+- **AKS**: Network policies must be enabled during cluster creation, and you can choose between Kubernetes and Azure policies.
+- **EKS**: Requires the installation of a CNI plugin like Calico to enable network policies.
+
+#### **Interview Question** <a name="question-cloud-policy"></a>  
+- **In cloud-managed Kubernetes clusters, what differences exist between enabling network policies in GKE, AKS, and EKS?**
+  
+  **Answer**:
+  - In **GKE**:
+    - **Autopilot clusters** have network policies enabled by default.
+    - **Standard clusters** require the command-line activation of network policies (`gcloud container clusters update ...`).
+  - In **AKS**:
+    - You must specify the `--network-policy` option at the time of cluster creation, allowing you to choose between Azure and Kubernetes network policies.
+  - In **EKS**:
+    - Network policies are not enabled by default, but you can install the **Calico CNI plugin** to enable them.
+
+
+**[Back to TOC](#table-of-contents)**
+
 
 ---
 
