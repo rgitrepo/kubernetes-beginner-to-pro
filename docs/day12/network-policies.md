@@ -103,6 +103,7 @@ By default, Kubernetes allows all traffic into and out of Pods. Applying a Netwo
 
 ### **5. Examples of Network Policies** <a name="policy-examples"></a>
 
+
 #### **Example 1: Denying All Traffic by Default** <a name="deny-all"></a>
 
 This policy blocks all incoming and outgoing traffic for the selected Pods:
@@ -122,7 +123,29 @@ spec:
 
 **Explanation**:
 - The `podSelector: {}` selects all Pods in the namespace.
-- Both `Ingress` and `Egress` are blocked.
+- Both `Ingress` and `Egress` traffic are blocked.
+
+To verify the applied policy and see which traffic is restricted, use the following command:
+
+```bash
+kubectl describe networkpolicy deny-all
+```
+
+**Output Example**:
+```plaintext
+Name:         deny-all
+Namespace:    default
+PodSelector:  <none> (Allowing the specific Pods to be affected)
+PolicyTypes:  Ingress, Egress
+Allowed Ingress: None
+Allowed Egress: None
+```
+
+This command provides detailed information on the applied policy, including which types of traffic are affected and the specific rules in place. It’s very useful for debugging and ensuring that the policy behaves as expected.
+
+**Interview Question**:  
+- **What happens if no network policy is applied to a Pod?**
+    - By default, all traffic (both ingress and egress) is allowed.
 
 **[Back to TOC](#table-of-contents)**
 
@@ -130,7 +153,7 @@ spec:
 
 #### **Example 2: Allowing Traffic Only Between Specific Pods** <a name="allow-specific-pods"></a>
 
-Suppose you have a **frontend** and **backend** service, and you want to allow traffic from frontend Pods to the backend Pods only. This is how you can define the policy:
+This example shows how to allow traffic between specific Pods:
 
 ```yaml
 apiVersion: networking.k8s.io/v1
@@ -152,41 +175,54 @@ spec:
 ```
 
 **Explanation**:
-- This policy applies to Pods with the label `app: backend`.
-- Only Pods with the label `app: frontend` can send ingress traffic to them.
+- The policy applies to Pods labeled as `app: backend`.
+- Only Pods labeled `app: frontend` are allowed to communicate with the backend Pods.
 
-**Output**: After applying this policy, only frontend Pods will be able to communicate with the backend Pods. All other traffic will be blocked.
+You can use the `kubectl describe networkpolicy allow-frontend-to-backend` command to check this policy:
+
+```bash
+kubectl describe networkpolicy allow-frontend-to-backend
+```
+
+**Output Example**:
+```plaintext
+Name:         allow-frontend-to-backend
+Namespace:    default
+PodSelector:  app=backend
+PolicyTypes:  Ingress
+Allowed Ingress: 
+  - From:
+    - PodSelector: app=frontend
+```
+
+**Interview Question**:  
+- **How can you restrict Pod-to-Pod communication using network policies?**
+    - By applying specific network policies, such as the one above, where only selected Pods (like frontend) are allowed to communicate with backend Pods.
 
 **[Back to TOC](#table-of-contents)**
 
 ---
 
-#### **Example 3: Restricting Traffic by CIDR Block** <a name="restrict-cidr"></a>
+### **6. Working with Labels and Selectors** <a name="labels-selectors"></a>
 
-If you want to restrict traffic to only allow IPs within a certain CIDR block, you can use an IPBlock rule.
+In network policies, **labels** and **selectors** determine which Pods are affected. Use the following command to see all Pods and their labels:
 
-```yaml
-apiVersion: networking.k8s.io/v1
-kind: NetworkPolicy
-metadata:
-  name: restrict-by-cidr
-  namespace: default
-spec:
-  podSelector:
-    matchLabels:
-      app: web
-  policyTypes:
-  - Ingress
-  ingress:
-  - from:
-    - ipBlock:
-        cidr: 192.168.1.0/24
-        except:
-        - 192.168.1.5/32
+```bash
+kubectl get pods --show-labels
 ```
 
-**Explanation**:
-- Traffic is only allowed from IPs in the `192.168.1.0/24` range except from the IP `192.168.1.5`.
+To narrow it down and view only Pods within a specific namespace:
+
+```bash
+kubectl get ns --show-labels
+```
+
+**Interview Question**:  
+- **What is the importance of labels in applying network policies?**
+    - Labels help identify which Pods a policy applies to. Without proper labels, network policies may not behave as expected.
+
+**[Back to TOC](#table-of-contents)**
+
 
 **[Back to TOC](#table-of-contents)**
 
