@@ -235,6 +235,7 @@
 - [Seccomp](docs/day12/seccomp.md)
 - [Tracee](docs/day12/tracee.md)
 - [Falco & OPA](docs/day12/falco-and-opa.md)
+- [Network Policies](docs/day12/network-policies.md)
 
 </details>
 
