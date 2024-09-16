@@ -3,25 +3,31 @@
 
 ---
 
-### **Table of Contents**
+### **Updated Table of Contents**
+
 1. [Introduction to Network Policies](#introduction)
 2. [Ingress and Egress Traffic Explained](#ingress-egress)
 3. [Understanding Network Policies in Kubernetes](#understanding-policies)
 4. [How Network Policies Are Applied](#policy-application)
+    - [Interview Question](#question-default-restriction)
 5. [Examples of Network Policies](#policy-examples)
     - [Example 1: Denying All Traffic by Default](#deny-all)
-        - [Interview Question: What happens if no network policy is applied to a Pod?](#question-no-policy)
+        - [Interview Question](#question-deny-all)
     - [Example 2: Allowing Traffic Only Between Specific Pods](#allow-specific-pods)
-        - [Interview Question: How can you restrict Pod-to-Pod communication using network policies?](#question-restrict-pod)
+        - [Interview Question](#question-allow-specific-pods)
     - [Example 3: Restricting Traffic by CIDR Block](#restrict-cidr)
 6. [Working with Labels and Selectors](#labels-selectors)
-    - [Interview Question: What is the importance of labels in applying network policies?](#question-labels)
+    - [Example of Confusion with Multiple PodSelectors](#example-confusion)
+    - [Interview Question](#question-labels)
 7. [Using Namespace Selectors](#namespace-selectors)
 8. [Working with IP Blocks](#ip-blocks)
 9. [Practical Usage in Cloud and Common Issues](#cloud-usage)
 10. [Conclusion](#conclusion)
 
+
 ---
+
+
 
 ### **1. Introduction to Network Policies** <a name="introduction"></a>
 
@@ -259,23 +265,93 @@ Allowed Ingress:
 
 ### **6. Working with Labels and Selectors** <a name="labels-selectors"></a>
 
-In network policies, **labels** and **selectors** determine which Pods are affected. Use the following command to see all Pods and their labels:
+In network policies, **labels** and **selectors** are used to identify the Pods that the policy applies to. However, students sometimes get confused about multiple occurrences of `podSelector` in a policy file—especially when dealing with both the target Pods and the source Pods (for ingress traffic, for example).
 
-```bash
-kubectl get pods --show-labels
+There are two primary levels where `podSelector` is used:
+1. **At the top level**: This defines which Pods the network policy is **applied to**.
+2. **Within the ingress/egress rules**: This identifies the Pods **from which traffic is allowed or denied**.
+
+Here’s an example policy with multiple `podSelector` entries:
+
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-frontend-to-backend-and-logging
+  namespace: default
+spec:
+  # This podSelector selects the Pods the policy is applied to (in this case, the backend Pods)
+  podSelector:
+    matchLabels:
+      app: backend
+  policyTypes:
+  - Ingress
+  - Egress
+  ingress:
+  - from:
+    # This podSelector defines the Pods from which ingress traffic is allowed (frontend Pods)
+    podSelector:
+      matchLabels:
+        app: frontend
+  - from:
+    # Another podSelector defines the Pods from which ingress traffic is allowed (logging Pods)
+    podSelector:
+      matchLabels:
+        app: logging
+  egress:
+  - to:
+    # This podSelector defines the Pods to which egress traffic is allowed (database Pods)
+    podSelector:
+      matchLabels:
+        app: database
 ```
 
-To narrow it down and view only Pods within a specific namespace:
+#### **Explanation of the `podSelector` confusion:**
+- **Top-level `podSelector`**: 
+    - This is used to specify which Pods the policy applies to. In the example above, the policy applies to the **backend Pods** (because of the `matchLabels: app: backend`).
+- **Ingress `podSelector`**: 
+    - This is used to define **where the traffic is allowed to come from**. In the example, traffic is allowed **from the frontend and logging Pods** (`matchLabels: app: frontend` and `app: logging`).
+- **Egress `podSelector`**: 
+    - This defines **where the traffic is allowed to go to**. Here, the backend Pods are allowed to send traffic **to the database Pods** (`matchLabels: app: database`).
+
+**Common Confusion:**
+- Students often mistake the top-level `podSelector` for the one in the ingress or egress rules. **The top-level `podSelector` applies the policy to the Pods (backend), while the lower-level `podSelector` defines the source or destination of the traffic (frontend, logging, database)**.
+
+**Verify the policy using `kubectl describe`:**
 
 ```bash
-kubectl get ns --show-labels
+kubectl describe networkpolicy allow-frontend-to-backend-and-logging
 ```
 
-<a name="question-labels"></a>**Interview Question**:  
-- **What is the importance of labels in applying network policies?**
-    - Labels help identify which Pods a policy applies to. Without proper labels, network policies may not behave as expected.
+**Output Example:**
+
+```plaintext
+Name:         allow-frontend-to-backend-and-logging
+Namespace:    default
+PodSelector:  app=backend
+PolicyTypes:  Ingress, Egress
+Allowed Ingress:
+  - From:
+    - PodSelector: app=frontend
+  - From:
+    - PodSelector: app=logging
+Allowed Egress:
+  - To:
+    - PodSelector: app=database
+```
+
+This output shows that the policy applies to the backend Pods (`PodSelector: app=backend`), and allows ingress traffic from the frontend and logging Pods, while allowing egress traffic to the database Pods.
+
+---
+
+**Interview Question**:  
+- **What is the difference between the `podSelector` at the top level of a Network Policy and the one used inside the ingress/egress rules?**
+    - The top-level `podSelector` defines which Pods the policy applies to, while the `podSelector` inside ingress/egress rules defines the source or destination Pods for the traffic.
+
+---
 
 **[Back to TOC](#table-of-contents)**
+
 
 ---
 
