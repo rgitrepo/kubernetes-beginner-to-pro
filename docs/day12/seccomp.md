@@ -29,7 +29,7 @@ In Kubernetes, security is a critical concern, particularly when dealing with sy
 
 Seccomp (Secure Computing Mode) is a powerful tool that allows you to limit the system calls (syscalls) that containers can execute. By restricting access to sensitive kernel functions, you can reduce the attack surface of your containers, making your Kubernetes cluster more secure.
 
-In Kubernetes, seccomp is configured using profiles—JSON files that specify which syscalls are allowed and which are denied. By applying these profiles to your pods, you can control their interaction with the kernel and enforce security boundaries.
+In Kubernetes, seccomp is configured using profiles—JSON files that specify which syscalls are allowed and which are denied. By applying these profiles to your pods, you can control their interaction with the kernel and enforce security boundaries. It hasn't been adopted by too many companies yet but is part of CSK certification. 
 
 [Back to TOC](#table-of-contents)
 
@@ -136,7 +136,7 @@ spec:
         localhostProfile: "/path/to/seccomp/profile.json"
 ```
 
-In this example, we apply a local seccomp profile to the pod's container.
+In this example, we apply a local seccomp profile to the pod's container. The localhostProfile path is to be an absolute path. For CKS localhostProfile is used and not some remote server.
 
 [Back to TOC](#table-of-contents)
 
