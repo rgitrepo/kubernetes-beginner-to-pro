@@ -61,7 +61,7 @@ helm repo update
 helm install tracee aqua/tracee
 ```
 
-This will create a namespace for Tracee, install the required components, and run Tracee as a DaemonSet across your Kubernetes nodes.
+This will create a **namespace** for Tracee, **install** the required components, and run Tracee as a **DaemonSet** across your Kubernetes nodes.
 
 #### **Step 2: Configuring Tracee DaemonSet**
 
