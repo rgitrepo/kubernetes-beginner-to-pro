@@ -25,7 +25,6 @@ A **ReplicaSet** is a Kubernetes resource that ensures a specified number of pod
   <img src="../../pics/replicaset-replicacontroller-spanning-nodes.png" alt="ReplicaSet Spanning Nodes" style="width: 600px; height: 400px;">
 </div>
 
-pics/replicaset-replicacontroller-spanning-nodes.png
 [Back to TOC](#table-of-contents)
 
 ---
