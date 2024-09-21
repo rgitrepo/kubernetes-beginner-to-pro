@@ -22,7 +22,7 @@ A **ReplicaSet** is a Kubernetes resource that ensures a specified number of pod
 **Interview Tip:** You might be asked to explain the difference between a ReplicaSet and a Deployment, or why ReplicaSets are preferred over Replica Controllers.
 
 <div style="text-align: center;">
-  <img src="../../pics/replicaset-replicacontroller-spanning-nodes.png" alt="ReplicaSet Spanning Nodes" style="width: 600px; height: 400px;">
+  <img src="../../pics/replicaset-replicacontroller-spanning-nodes.png" alt="ReplicaSet Spanning Nodes" style="width: 500px; height: 300px;">
 </div>
 
 [Back to TOC](#table-of-contents)
