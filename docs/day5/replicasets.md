@@ -172,7 +172,9 @@ spec:
 
 ### 5. Understanding Selectors and Labels <a name="understanding-selectors-and-labels"></a>
 
-Selectors and labels are crucial in ReplicaSets. The selector determines which pods belong to the ReplicaSet based on their labels. The labels in the pod template must match the selector labels.
+Selectors and labels are crucial in ReplicaSets. The selector determines which pods belong to the ReplicaSet based on their labels. The labels in the pod template must match the selector labels. 
+
+The template under a ReplicaSet has details of the pods to be created with the replicaset then why bother having a selector? It's because having a selector allows replicasets to also manage pods that were not created as part of the replicaset creation. As an example if there were pods created before the creation of replicaset creation those pods if they have labels that match the label identified under selector and matchLabels will also become part of the replicaset.
 
 **Interview Tip:** You may be asked how selectors and labels function in maintaining the desired state of a ReplicaSet.
 
