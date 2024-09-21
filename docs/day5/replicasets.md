@@ -21,7 +21,7 @@ A **ReplicaSet** is a Kubernetes resource that ensures a specified number of pod
 
 **Interview Tip:** You might be asked to explain the difference between a ReplicaSet and a Deployment, or why ReplicaSets are preferred over Replica Controllers.
 
-[Back to TOC](#toc)
+[Back to TOC](#table-of-contents)
 
 ---
 
@@ -77,7 +77,7 @@ spec:
         image: redis:latest
 ```
 
-[Back to TOC](#toc)
+[Back to TOC](#table-of-contents)
 
 ---
 
@@ -121,7 +121,7 @@ kubectl scale rs rs-demo --replicas=5
 replicaset.apps/rs-demo scaled
 ```
 
-[Back to TOC](#toc)
+[Back to TOC](#table-of-contents)
 
 ---
 
@@ -158,7 +158,7 @@ spec:
 - `metadata`: Includes the name and labels.
 - `spec`: Defines the desired state, including replicas, selector, and pod template.
 
-[Back to TOC](#toc)
+[Back to TOC](#table-of-contents)
 
 ---
 
@@ -195,7 +195,7 @@ kubectl apply -f rs-example.yaml
 replicaset.apps/rs-example created
 ```
 
-[Back to TOC](#toc)
+[Back to TOC](#table-of-contents)
 
 ---
 
@@ -215,7 +215,7 @@ pod "<pod-name>" deleted
 
 Immediately after deletion, a new pod is created to replace the deleted one.
 
-[Back to TOC](#toc)
+[Back to TOC](#table-of-contents)
 
 ---
 
@@ -238,7 +238,7 @@ kubectl describe pod <pod-name> | grep Annotations
 Annotations: maintainer=your-email@example.com
 ```
 
-[Back to TOC](#toc)
+[Back to TOC](#table-of-contents)
 
 ---
 
@@ -300,7 +300,7 @@ ownerReferences:
 
 **Interview Tip:** Be prepared to discuss how `ownerReferences` ensures that Kubernetes controllers like ReplicaSets manage the lifecycle of pods, including how they automatically replace failed pods to maintain the desired state.
 
-[Back to TOC](#toc)
+[Back to TOC](#table-of-contents)
 
 
 ---
@@ -350,6 +350,6 @@ Consider a scenario where a ReplicaSet is scaling down from 5 pods to 3. The con
 
 **Interview Tip:** Be prepared to explain the logic behind these prioritization rules and how they help maintain the health and balance of the Kubernetes cluster during scaling operations.
 
-[Back to TOC](#toc)
+[Back to TOC](#table-of-contents)
 
 
