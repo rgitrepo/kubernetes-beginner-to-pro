@@ -211,7 +211,7 @@ replicaset.apps/rs-example created
 
 ### 6. Deleting Pods in a ReplicaSet <a name="deleting-pods-in-a-replicaset"></a>
 
-When a pod managed by a ReplicaSet is deleted, the ReplicaSet automatically creates a new one to maintain the desired replica count.
+When a pod managed by a ReplicaSet is deleted, the ReplicaSet automatically creates a new one to maintain the desired replica count. That's why ReplicaSet has under spec a template with details about the pod so that when a pod dies the replicaSet knows exactly the specifications of the pod it's going to create to replace the dead one.
 
 **Command to Delete a Pod:**
 ```bash
