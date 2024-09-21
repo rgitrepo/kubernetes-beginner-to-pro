@@ -17,10 +17,15 @@
 
 ### 1. Introduction to ReplicaSets <a name="introduction"></a>
 
-A **ReplicaSet** is a Kubernetes resource that ensures a specified number of pod replicas are running at all times. It can handle both homogeneous (identical) and heterogeneous (different) pods, depending on the configuration. Unlike the older Replica Controllers, ReplicaSets offer more flexibility and are the recommended approach in modern Kubernetes deployments.
+A **ReplicaSet** is a Kubernetes resource that ensures a specified number of pod replicas are running at all times. It can handle both homogeneous (identical) and heterogeneous (different) pods, depending on the configuration. Unlike the older Replica Controllers, ReplicaSets offer more flexibility and are the recommended approach in modern Kubernetes deployments. ReplicaSets and ReplicaControllers can span across different nodes if there's a need to scale. 
 
 **Interview Tip:** You might be asked to explain the difference between a ReplicaSet and a Deployment, or why ReplicaSets are preferred over Replica Controllers.
 
+<div style="text-align: center;">
+  <img src="../../pics/replicaset-replicacontroller-spanning-nodes.png" alt="ReplicaSet Spanning Nodes" style="width: 500px; height: 700px;">
+</div>
+
+pics/replicaset-replicacontroller-spanning-nodes.png
 [Back to TOC](#table-of-contents)
 
 ---
