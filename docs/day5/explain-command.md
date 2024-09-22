@@ -1,4 +1,3 @@
-Certainly! Here are a few examples using the `kubectl explain` command, along with sample outputs for common Kubernetes resources.
 
 ### Example 1: Explain Deployment
 
