@@ -143,6 +143,8 @@ service/my-nodeport-service created
 
 This service will expose the application on port 30007 on each node, redirecting traffic to port 8080 of the pods.
 
+NodePort values are from 30000-32767.
+
 [Back to TOC](#table-of-contents)
 
 ---
