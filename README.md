@@ -110,7 +110,7 @@
 </details>
 
 <details>
-<summary>Day 7: Adding SSL Cert to Application, Cert-Manager, Gateway API, Namespaces, Context, TLS</summary>
+<summary>Day 7: Adding SSL Cert to Application, Cert-Manager, Gateway API, Namespaces, Context, TLS, Resource Management</summary>
 
 - [Certificates Overview](docs/day7/certificates.md)
 - [Certificates: Issuer vs Cluster Issuer](docs/day7/certificates-issuer-vs-cluster-issuer.md)
@@ -131,6 +131,8 @@
 - [Namespace](docs/day7/namespace.md)
 - [Context](docs/day7/context.md)
 - [Noisy Neighbour Problem](docs/day7/noisy-neighbour-problem.md)
+- [Resource Management Commands](docs/day7/resource-management.md)
+  
 
 </details>
 
