@@ -1,4 +1,5 @@
 
+
 ## Kubernetes Contexts
 
 ### Table of Contents
@@ -8,7 +9,6 @@
 - [Creating and Changing Contexts](#creating-and-changing-contexts)
 - [Using Different Contexts to Query Resources](#using-different-contexts-to-query-resources)
 - [Understanding MySQL Connection Strings in Kubernetes](#understanding-mysql-connection-strings-in-kubernetes)
-- [Comparing Commands Across Contexts](#comparing-commands-across-contexts)
 - [Role of Users in Contexts](#role-of-users-in-contexts)
 - [Best Practices for Managing Contexts](#best-practices-for-managing-contexts)
 - [Summary](#summary)
@@ -37,7 +37,7 @@ kubectl config use-context my-cluster-context
 
 #### Creating a New Context
 
-Creating a context allows you to define which cluster, user, and namespace you want to work with. This is especially useful when managing multiple clusters or environments. The command to create a context is:
+Creating a context allows you to define which cluster, user, and namespace you want to work with. The command to create a context is:
 
 ```bash
 kubectl config set-context <context-name> --cluster=<cluster-name> --user=<user-name> --namespace=<namespace>
@@ -49,14 +49,9 @@ kubectl config set-context <context-name> --cluster=<cluster-name> --user=<user-
 kubectl config set-context dev-context --cluster=my-cluster --user=my-user --namespace=development
 ```
 
-- **`<context-name>`**: The name assigned to the context (e.g., `dev-context`).
-- **`<cluster-name>`**: The name of the Kubernetes cluster you want to connect to.
-- **`<user-name>`**: The user credentials for authentication.
-- **`<namespace>`**: The default namespace for this context.
-
 #### Changing the Current Context
 
-You might need to switch contexts frequently, especially when working in different environments. To change the current context, use:
+To change the current context, use:
 
 ```bash
 kubectl config use-context <context-name>
@@ -68,18 +63,58 @@ kubectl config use-context <context-name>
 kubectl config use-context prod-context
 ```
 
-This command changes the current context to `prod-context`, meaning all subsequent `kubectl` commands will operate in that specified context.
-
 ### Using Different Contexts to Query Resources
+
+#### Shortened and Long Commands
+
+When querying pods, you can use both short and long forms of the namespace flag:
+
+- **Get pods in a specific namespace**:
+
+```bash
+kubectl get pods -n dev
+```
+
+or
+
+```bash
+kubectl get pods --namespace=dev
+```
+
+- **Get all pods in the current namespace**:
+
+```bash
+kubectl get pods
+```
+
+- **Get pods in another namespace**:
+
+```bash
+kubectl get pods -n prod
+```
+
+or
+
+```bash
+kubectl get pods --namespace=prod
+```
+
+- **Get pods across all namespaces**:
+
+```bash
+kubectl get pods --all-namespaces
+```
+
+### Scenario Examples
 
 #### Scenario 1: Default Context
 
 When the context namespace is set to `default`, you can run:
 
 ```bash
-kubectl get pods --namespace=dev
+kubectl get pods -n dev
 kubectl get pods
-kubectl get pods --namespace=prod
+kubectl get pods -n prod
 ```
 
 #### Scenario 2: Change Context to Development
@@ -158,7 +193,7 @@ Here, `my-user` is the user who will authenticate when using the `dev-context`.
 1. **Descriptive Names**: Use clear names for contexts, clusters, and users.
 2. **Regular Review**: Check existing contexts with `kubectl config get-contexts` to manage them effectively.
 3. **Namespace Awareness**: Be mindful of the default namespace in your current context.
-4. **Direct Namespace Queries**: Use the `--namespace` flag in commands if you need to override the default.
+4. **Direct Namespace Queries**: Use the `-n` or `--namespace` flag in commands if you need to specify a namespace explicitly.
 
 ### Summary
 
