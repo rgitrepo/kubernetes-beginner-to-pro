@@ -1,5 +1,4 @@
 
-
 ## Kubernetes Contexts
 
 ### Table of Contents
@@ -9,6 +8,8 @@
 - [Creating and Changing Contexts](#creating-and-changing-contexts)
 - [Using Different Contexts to Query Resources](#using-different-contexts-to-query-resources)
 - [Understanding MySQL Connection Strings in Kubernetes](#understanding-mysql-connection-strings-in-kubernetes)
+- [Comparing Commands Across Contexts](#comparing-commands-across-contexts)
+- [Role of Users in Contexts](#role-of-users-in-contexts)
 - [Best Practices for Managing Contexts](#best-practices-for-managing-contexts)
 - [Summary](#summary)
 
@@ -34,35 +35,84 @@ kubectl config use-context my-cluster-context
 
 ### Creating and Changing Contexts
 
-To create a new context, use:
+#### Creating a New Context
+
+Creating a context allows you to define which cluster, user, and namespace you want to work with. This is especially useful when managing multiple clusters or environments. The command to create a context is:
+
+```bash
+kubectl config set-context <context-name> --cluster=<cluster-name> --user=<user-name> --namespace=<namespace>
+```
+
+**Example**:
 
 ```bash
 kubectl config set-context dev-context --cluster=my-cluster --user=my-user --namespace=development
 ```
 
-To update the current context's default namespace, use:
+- **`<context-name>`**: The name assigned to the context (e.g., `dev-context`).
+- **`<cluster-name>`**: The name of the Kubernetes cluster you want to connect to.
+- **`<user-name>`**: The user credentials for authentication.
+- **`<namespace>`**: The default namespace for this context.
+
+#### Changing the Current Context
+
+You might need to switch contexts frequently, especially when working in different environments. To change the current context, use:
 
 ```bash
-kubectl config set-context $(kubectl config current-context) --namespace=development
+kubectl config use-context <context-name>
 ```
 
-- **`$(kubectl config current-context)`** retrieves the name of the current context, updating its default namespace to `development`.
-
-### Using Different Contexts to Query Resources
-
-After setting up contexts, switch between them using:
+**Example**:
 
 ```bash
 kubectl config use-context prod-context
 ```
 
-For example, after switching to a context named `prod-context`, running:
+This command changes the current context to `prod-context`, meaning all subsequent `kubectl` commands will operate in that specified context.
+
+### Using Different Contexts to Query Resources
+
+#### Scenario 1: Default Context
+
+When the context namespace is set to `default`, you can run:
+
+```bash
+kubectl get pods --namespace=dev
+kubectl get pods
+kubectl get pods --namespace=prod
+```
+
+#### Scenario 2: Change Context to Development
+
+If you change the context to `dev`, you can run:
+
+```bash
+kubectl config set-context $(kubectl config current-context) --namespace=dev
+```
+
+Then, the following commands would apply:
 
 ```bash
 kubectl get pods
+kubectl get pods --namespace=default
+kubectl get pods --namespace=prod
 ```
 
-will list the pods in the default namespace of that context.
+#### Scenario 3: Change Context to Production
+
+If you change the context to `prod`, run:
+
+```bash
+kubectl config set-context $(kubectl config current-context) --namespace=prod
+```
+
+Then, execute:
+
+```bash
+kubectl get pods
+kubectl get pods --namespace=default
+kubectl get pods --namespace=dev
+```
 
 ### Understanding MySQL Connection Strings in Kubernetes
 
@@ -74,20 +124,34 @@ mysql.connect("db-service.dev.svc.cluster.local")
 
 #### Breakdown of the DNS Components:
 
-- **`cluster.local`**: This is the default domain for services in a Kubernetes cluster, indicating that the service is within the cluster.
-- **`svc`**: Stands for "service," denoting that this is a service endpoint.
-- **`dev`**: This specifies the namespace where the service resides. In this case, it's the `dev` namespace.
-- **`db-service`**: This is the name of the service that you're trying to connect to.
+- **`cluster.local`**: The default domain for services in a Kubernetes cluster.
+- **`svc`**: Denotes that this is a service endpoint.
+- **`dev`**: The namespace where the service resides.
+- **`db-service`**: The name of the service you’re connecting to.
 
-#### Comparison with Short Name Usage
-
-If you are already in the same namespace (e.g., `dev`), you can simplify the connection string:
+If you are in the same namespace, you can simplify the connection:
 
 ```python
 mysql.connect("db-service")
 ```
 
-Using the short name is valid because Kubernetes resolves service names to their respective IP addresses within the same namespace automatically.
+### Role of Users in Contexts
+
+The user is a critical component of a context because it defines the credentials and permissions used to authenticate to the cluster. Here’s why the user is significant:
+
+1. **Authentication**: The user specifies how you authenticate to the Kubernetes API server, which can involve client certificates, bearer tokens, or basic authentication.
+  
+2. **Authorization**: Once authenticated, the user's permissions are checked against Role-Based Access Control (RBAC) policies, determining what actions the user can perform (e.g., creating or deleting resources).
+
+3. **Context Management**: By managing users within contexts, you can enforce security and ensure that each environment is accessed appropriately.
+
+For example, when creating a context:
+
+```bash
+kubectl config set-context dev-context --cluster=my-cluster --user=my-user --namespace=development
+```
+
+Here, `my-user` is the user who will authenticate when using the `dev-context`.
 
 ### Best Practices for Managing Contexts
 
