@@ -101,6 +101,7 @@ To expose an NGINX Pod’s port 80 as a NodePort on port 30080:
 ```bash
 kubectl expose pod nginx --type=NodePort --port=80 --name=nginx-service --dry-run=client -o yaml
 ```
+(This will automatically use the pod’s labels as selectors, but you cannot specify the node port. You have to generate a definition file and then add the node port manually before creating the service with the pod.)
 
 Alternatively, you can use:
 
