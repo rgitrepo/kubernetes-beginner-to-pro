@@ -45,11 +45,10 @@ This command will display all the labels associated with the specified Pod.
 ### Synopsis
 Update the labels on a resource.
 
-A label key and value must begin with a letter or number, and may contain letters, numbers, hyphens, dots, and underscores, up to 63 characters each.
-Optionally, the key can begin with a DNS subdomain prefix and a single '/', like example.com/my-app.
-If --overwrite is true, then existing labels can be overwritten, otherwise attempting to overwrite a label will result in an error.
-If --resource-version is specified, then updates will use this resource version, otherwise the existing resource-version will be used.
-kubectl label [--overwrite] (-f FILENAME | TYPE NAME) KEY_1=VAL_1 ... KEY_N=VAL_N [--resource-versio
+- A label key and value must begin with a letter or number, and may contain letters, numbers, hyphens, dots, and underscores, up to 63 characters each.
+- Optionally, the key can begin with a DNS subdomain prefix and a single '/', like example.com/my-app.
+- If --overwrite is true, then existing labels can be overwritten, otherwise attempting to overwrite a label will result in an error.
+- If --resource-version is specified, then updates will use this resource version, otherwise the existing resource-version will be used.
 
 ```bash
   kubectl label [--overwrite] (-f FILENAME | TYPE NAME) KEY_1=VAL_1 ... KEY_N=VAL_N [--resource-version=version]
