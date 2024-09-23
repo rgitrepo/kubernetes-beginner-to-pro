@@ -71,11 +71,11 @@
 <summary>Day 5: Labels, Selectors, ReplicaSets, Deployments, Production Strategies</summary>
 
 - [Labels & Selectors](docs/day5/labels-selectors.md)
+- [Labels - Update & Add](docs/day5/update-and-add-labels.md)
 - [Revisiting Kubernetes Architecture](docs/day5/revisiting-kubernetes-architecture.md)
 - [Kubernetes YAML File Key Value Details](docs/day5/pod-yaml-file.md)
 - [Commands to see Labels](docs/day5/see-labels.md)
 - [kubectl Create vs Apply](docs/day5/kubectl-create-vs-apply.md)
-- [Update and Add Labels](docs/day5/update-and-add-labels.md)
 - [Metadata vs Spec Labels](docs/day5/metadata-vs-spec-labels.md)
 - [ReplicaSets](docs/day5/replicasets.md)
 - [Deployments](docs/day5/deployments.md)
