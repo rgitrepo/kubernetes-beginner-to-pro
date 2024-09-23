@@ -70,8 +70,8 @@
 <details>
 <summary>Day 5: Labels, Selectors, ReplicaSets, Deployments, Production Strategies</summary>
 
-- [Labels & Selectors](docs/day5/labels-selectors.md)
-- [Labels - Update & Add](docs/day5/update-and-add-labels.md)
+- [Labels & Selectors Using Yaml](docs/day5/labels-selectors.md)
+- [Labels Using Command Line](docs/day5/update-and-add-labels.md)
 - [Revisiting Kubernetes Architecture](docs/day5/revisiting-kubernetes-architecture.md)
 - [Kubernetes YAML File Key Value Details](docs/day5/pod-yaml-file.md)
 - [Commands to see Labels](docs/day5/see-labels.md)
