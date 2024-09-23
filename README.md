@@ -110,7 +110,7 @@
 </details>
 
 <details>
-<summary>Day 7: SSL Cert, Cert-Manager, TLS, Gateway API, Namespaces, Context, Resource Management</summary>
+<summary>Day 7: SSL, TLS, Cert-Manager, Gateway API, Namespaces, Context, Resource Management</summary>
 
 - [Certificates Overview](docs/day7/certificates.md)
 - [Certificates: Issuer vs Cluster Issuer](docs/day7/certificates-issuer-vs-cluster-issuer.md)
