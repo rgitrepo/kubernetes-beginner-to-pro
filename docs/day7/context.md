@@ -1,4 +1,5 @@
 
+
 ## Kubernetes Contexts
 
 ### Table of Contents
@@ -7,6 +8,7 @@
 - [Viewing and Setting Contexts](#viewing-and-setting-contexts)
 - [Creating and Changing Contexts](#creating-and-changing-contexts)
 - [Using Different Contexts to Query Resources](#using-different-contexts-to-query-resources)
+- [Understanding MySQL Connection Strings in Kubernetes](#understanding-mysql-connection-strings-in-kubernetes)
 - [Best Practices for Managing Contexts](#best-practices-for-managing-contexts)
 - [Summary](#summary)
 
@@ -61,6 +63,31 @@ kubectl get pods
 ```
 
 will list the pods in the default namespace of that context.
+
+### Understanding MySQL Connection Strings in Kubernetes
+
+When connecting to a MySQL database in Kubernetes, you might use a connection string like this:
+
+```python
+mysql.connect("db-service.dev.svc.cluster.local")
+```
+
+#### Breakdown of the DNS Components:
+
+- **`cluster.local`**: This is the default domain for services in a Kubernetes cluster, indicating that the service is within the cluster.
+- **`svc`**: Stands for "service," denoting that this is a service endpoint.
+- **`dev`**: This specifies the namespace where the service resides. In this case, it's the `dev` namespace.
+- **`db-service`**: This is the name of the service that you're trying to connect to.
+
+#### Comparison with Short Name Usage
+
+If you are already in the same namespace (e.g., `dev`), you can simplify the connection string:
+
+```python
+mysql.connect("db-service")
+```
+
+Using the short name is valid because Kubernetes resolves service names to their respective IP addresses within the same namespace automatically.
 
 ### Best Practices for Managing Contexts
 
