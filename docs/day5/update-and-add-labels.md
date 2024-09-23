@@ -68,7 +68,7 @@ kubectl label [--overwrite] (-f FILENAME | TYPE NAME) KEY_1=VAL_1 ... KEY_N=VAL_
   kubectl label pods --all status=unhealthy
   
   # Update a pod identified by the type and name in "pod.json"
-  kubectl label **-f** pod.json status=unhealthy
+  kubectl label <strong>-f <\strong> pod.json status=unhealthy
   
   # Update pod 'foo' only if the resource is unchanged from version 1
   kubectl label pods foo status=unhealthy --resource-version=1
