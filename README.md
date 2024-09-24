@@ -129,7 +129,7 @@
 - [Gateway API on Cloud Providers: GCP, AWS, and Azure](docs/day7/gateway-api-on-gcp-aws-and-azure.md)
 - [Applying Multiple YAML files](docs/day7/applying-multiple-yaml-files.md)
 - [Namespace](docs/day7/namespace.md)
-- [Context](docs/day7/context.md)
+- [Context & Namespace](docs/day7/context.md)
 - [Noisy Neighbour Problem](docs/day7/noisy-neighbour-problem.md)
 - [Resource Management Commands](docs/day7/resource-management.md)
   
