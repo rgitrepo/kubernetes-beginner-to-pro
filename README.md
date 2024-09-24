@@ -137,7 +137,7 @@
 </details>
 
 <details>
-<summary>Day 8: Tweaking the Kubernetes Scheduling Algo, Taints-Tolerations, Affinity, QOS, OpenCost</summary>
+<summary>Day 8: Scheduling Algo, Taints-Tolerations, Affinity, QOS, OpenCost</summary>
 
 - [CPU vs Memory](docs/day8/cpu-vs-memory.md)
 - [OOM Kill - Out Of Memory Kill](docs/day8/oom-kill.md)
