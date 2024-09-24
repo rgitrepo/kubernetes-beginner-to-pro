@@ -147,7 +147,8 @@
 - [Kyverno vs. LimitRanges and ResourceQuotas](docs/day8/kyverno-vs-limitranges-and-resourcequotas.md)
 - [Cost Optimization with OpenCost](docs/day8/cost-optimization-with-opencost.md)
 - [Taints & Tolerations](docs/day8/taints-and-tolerations.md)
-- [Nodename & NodeSelector](docs/day8/nodename-and-nodeselector.md)
+- [Scheduler Bypass: Nodename & NodeSelector](docs/day8/nodename-and-nodeselector.md)
+- [Scheduler Bypass: NodeName vs Binding](docs/day8/nodename-vs-binding.md)
 - [Pod Topology Spread Constraints](docs/day8/pod-topology-spread-constraints.md)
 - [Node Affinity and Pod Affinity/Anti-Affinity](docs/day8/node-affinity-and-pod-affinity-anti-affinity.md)
 
