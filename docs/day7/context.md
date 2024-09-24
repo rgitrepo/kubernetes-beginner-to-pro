@@ -103,6 +103,8 @@ kubectl get pods --namespace=prod
 
 ```bash
 kubectl get pods --all-namespaces
+# or
+kubectl get pods -A
 ```
 
 ### Scenario Examples
