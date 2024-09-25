@@ -478,7 +478,7 @@ This pod can be scheduled on nodes tainted with both `dedicated=special-use:NoSc
 ### 6. Master Node - Tainted by Default
 We've been talking about Worker Nodes mostly. But we also have a Master Node in a cluster, which is also like any other node and has all the capabilites of hosting a pod plus it runs all the management software. If you haven't noticed, the scheduler doesn't schedule any pods on the master node. Why is that? When the kubernetes cluster is first setup a taint is set on master node automatically that prevents any pods from being scheduled on this node. You can see this as well as modify this behiour if required. However, a best practice is to no deploy an application workload on the master node. 
 
-**To see the tain on master node**
+**To see the tain on master node or controlplane**
 
 ```bash
 kubectl describe node kubemaster | grep Taint
@@ -489,6 +489,19 @@ kubectl describe node kubemaster | grep Taint
 ```bash
 Taints: node-role.kubernetes.io/master:NoSchedule
 ```
+
+**To remove the taint from master node or controlplane**
+
+```bash
+kubectl taint node controlplane node-role.kubernetes.io/master:NoSchedule-
+```
+
+**Output:**
+```bash
+node/controlplane untainted
+```
+
+Adding a `-` at the end of taint removed it.
 
 [Back to TOC](#table-of-contents)
 
