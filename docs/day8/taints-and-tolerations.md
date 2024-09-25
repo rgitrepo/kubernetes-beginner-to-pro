@@ -481,7 +481,7 @@ We've been talking about Worker Nodes mostly. But we also have a Master Node in 
 **To see the tain on master node**
 
 ```bash
-   kubectl describe node kubemaster | grep Taint
+kubectl describe node kubemaster | grep Taint
 ```
 
 
