@@ -22,7 +22,7 @@
    - [Example 2: Tainting a Node with `PreferNoSchedule`](#example-2-tainting-a-node-with-prefernoschedule)
    - [Example 3: Tainting a Node with `NoExecute`](#example-3-tainting-a-node-with-noexecute)
    - [Example 4: Applying Tolerations in Pod YAML](#example-4-applying-tolerations-in-pod-yaml)
-6. [Master Node - Taint](#master-node-taint)
+6. [Master Node - Tainted by Default](#6-master-node---tainted-by-default)
 7. [Summary](#summary)
 
 ---
@@ -489,6 +489,8 @@ We've been talking about Worker Nodes mostly. But we also have a Master Node in 
 ```bash
 Taints: node-role.kubernetes.io/master:NoSchedule
 ```
+
+[Back to TOC](#table-of-contents)
 
 ---
 ### 7. Summary
