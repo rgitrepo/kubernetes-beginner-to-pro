@@ -81,7 +81,7 @@ kubectl taint nodes node1 dedicated=ml-tasks:NoSchedule
 node/node1 tainted
 ```
 
-This command adds a taint to `node1` with the key `dedicated`, value `ml-tasks`, and effect `NoSchedule`. This means that only pods with a matching toleration can be scheduled on `node1`.
+This command adds a taint to `node1` with the key `dedicated`, value `ml-tasks`, and effect `NoSchedule`. This means that only pods with a matching toleration can be scheduled on `node1`. Existing pods without toleration aren't evicted.
 
 [Back to TOC](#table-of-contents)
 
