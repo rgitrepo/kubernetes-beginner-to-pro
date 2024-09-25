@@ -79,6 +79,7 @@
 - [Metadata vs Spec Labels](docs/day5/metadata-vs-spec-labels.md)
 - [ReplicaSets](docs/day5/replicasets.md)
 - [Deployments](docs/day5/deployments.md)
+- [Labels and Selectors: Comparing Service, ReplicatSet, and Deployment](docs/day5/labelsl-and-selectors-comparing-service-replicaset-and-deployment.md)
 - [`kubectl explain` command](docs/day5/explain-command.md)
 - [Deployment Strategies](docs/day5/deployment-strategy.md)
 - [Rollout Strategy](docs/day5/rollout-strategy.md)
