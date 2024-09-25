@@ -22,7 +22,8 @@
    - [Example 2: Tainting a Node with `PreferNoSchedule`](#example-2-tainting-a-node-with-prefernoschedule)
    - [Example 3: Tainting a Node with `NoExecute`](#example-3-tainting-a-node-with-noexecute)
    - [Example 4: Applying Tolerations in Pod YAML](#example-4-applying-tolerations-in-pod-yaml)
-6. [Summary](#summary)
+6. [Master Node - Taint](#master-node-taint)
+7. [Summary](#summary)
 
 ---
 
@@ -474,8 +475,23 @@ This pod can be scheduled on nodes tainted with both `dedicated=special-use:NoSc
 [Back to TOC](#table-of-contents)
 
 ---
+### 6. Master Node - Tainted by Default
+We've been talking about Worker Nodes mostly. But we also have a Master Node in a cluster, which is also like any other node has all the capabilites of hosting a pod plus it runs all the management software. If you haven't noticed, the scheduler doesn't schedule any pods on the master node. Why is that? When the kubernetes cluster is first setup a taint is set on Master Node automatically that prevents any pods from being scheduled on this node. You can see this as well as modify this behiour if required. However, a best practice is to no deploy an application workload on the Master Node. 
 
-### 6. Summary
+**To see the tain on master node**
+
+```bash
+   kubectl describe node kubemaster | grep Taint
+```
+
+
+**Output:**
+```bash
+Taints: node-role.kubernetes.io/master:NoSchedule
+```
+
+---
+### 7. Summary
 
 Taints and tolerations are powerful mechanisms in Kubernetes for controlling pod placement and ensuring that nodes are used efficiently. By applying taints to nodes and corresponding tolerations to pods, you can manage your Kubernetes clusters to meet specific operational requirements. Whether using commands or YAML files, these tools provide flexibility and control over your cluster's behavior.
 
