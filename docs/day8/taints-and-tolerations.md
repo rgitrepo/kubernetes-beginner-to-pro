@@ -38,14 +38,14 @@ In Kubernetes, taints and tolerations work together to control which pods can be
 
 #### Taints
 
-A taint is applied to a Kubernetes node and prevents pods from being scheduled on that node unless the pod has a corresponding toleration. Taints are key-value pairs with an associated effect that determines how the taint affects pod scheduling.
+A taint is applied to a Kubernetes node and prevents pods from being scheduled on that node unless the pod has a corresponding **toleration**. Taints are key-value pairs with an associated effect that determines how the taint affects pod scheduling.
 
 - **Key**: A label key applied to the node.
 - **Value**: A label value paired with the key.
 - **Effect**: Determines how the taint is enforced:
-  - `NoSchedule`: Pods without matching tolerations will not be scheduled on the node.
-  - `PreferNoSchedule`: The scheduler will try to avoid placing pods on the node, but it’s not enforced strictly.
-  - `NoExecute`: Pods without matching tolerations will be evicted if they are running on the node.
+  - `NoSchedule`: Pods without matching tolerations will not be scheduled on the node. The existing one's if any without the toleration wont' be evicted.
+  - `PreferNoSchedule`: The scheduler will try to avoid placing pods wihtout tolerations on the node, but it’s not enforced strictly.
+  - `NoExecute`: Pods without matching tolerations will be evicted if they are running on the node. No new pods would be scheduled if they don't tolerate the taint.
 
 [Back to TOC](#table-of-contents)
 
