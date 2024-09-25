@@ -196,7 +196,7 @@ kubectl label pods example-pod app=new-app
 
 #### 4.3 Using Selectors to Filter Pods <a name="filtering-pods"></a>
 
-You can filter pods using selectors, which is particularly useful in large environments. Note `-l` and `--selctor` are interchangable.
+You can filter pods using selectors, which is particularly useful in large environments. Note `-l` and `--selector` are interchangable.
 
 **Example:**
 ```bash
