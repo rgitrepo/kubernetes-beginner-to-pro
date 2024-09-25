@@ -1,4 +1,7 @@
+
 ### Node Affinity and Pod Affinity/Anti-Affinity in Kubernetes
+
+---
 
 #### Table of Contents
 
@@ -8,21 +11,25 @@
    - [What is Pod Affinity and Anti-Affinity?](#what-is-pod-affinity-and-anti-affinity)
 3. [Node Affinity](#node-affinity)
    - [Required vs. Preferred Node Affinity](#required-vs-preferred-node-affinity)
+   - [Scheduling Modes](#scheduling-modes-table)
    - [YAML Example of Node Affinity](#yaml-example-of-node-affinity)
 4. [Pod Affinity and Anti-Affinity](#pod-affinity-and-anti-affinity)
    - [Required vs. Preferred Pod Affinity/Anti-Affinity](#required-vs-preferred-pod-affinityanti-affinity)
    - [YAML Example of Pod Affinity and Anti-Affinity](#yaml-example-of-pod-affinity-and-anti-affinity)
-5. [Practical Examples](#practical-examples)
+5. [Operators in Affinity Rules](#operators-in-affinity-rules)
+   - [Operators Table](#operators-table)
+   - [Examples of `matchExpressions`](#examples-of-matchexpressions)
+6. [Practical Examples](#practical-examples)
    - [Applying Node Affinity](#applying-node-affinity)
    - [Applying Pod Affinity/Anti-Affinity](#applying-pod-affinityanti-affinity)
    - [Verifying Pod Scheduling](#verifying-pod-scheduling)
-6. [Conclusion](#conclusion)
+7. [Conclusion](#conclusion)
 
 ---
 
 ### Introduction
 
-In Kubernetes, affinity and anti-affinity provide more granular control over where Pods are scheduled compared to basic `nodeSelector`. By defining rules based on node labels or other Pods' labels, you can ensure that your Pods are placed in the most optimal locations within your cluster. This tutorial will guide you through node affinity, pod affinity, and pod anti-affinity, with YAML examples and practical steps to apply these concepts.
+Affinity and Anti-Affinity rules provide more granular control over Pod scheduling in Kubernetes compared to simple node labels. With these rules, you can define where Pods should or should not be placed based on node or Pod labels. This tutorial will cover Node Affinity, Pod Affinity, and Pod Anti-Affinity, along with their scheduling modes, operators, and YAML examples.
 
 [Back to TOC](#table-of-contents)
 
@@ -32,14 +39,14 @@ In Kubernetes, affinity and anti-affinity provide more granular control over whe
 
 #### What is Node Affinity?
 
-Node Affinity is a way to constrain which nodes a Pod can be scheduled on based on node labels. It offers more flexibility and expressiveness than `nodeSelector` by allowing you to define both hard (required) and soft (preferred) rules for scheduling.
+Node Affinity is used to constrain which nodes a Pod can be scheduled on, based on node labels. It offers more flexibility than `nodeSelector`, with both hard and soft rules for scheduling.
 
 #### What is Pod Affinity and Anti-Affinity?
 
-Pod Affinity and Anti-Affinity allow you to constrain which nodes your Pods can be scheduled on based on the labels of Pods already running on those nodes. This enables you to co-locate or spread out Pods according to specific rules.
+Pod Affinity and Anti-Affinity allow you to control Pod scheduling based on the labels of other Pods running on the same or different nodes.
 
-- **Pod Affinity**: Ensures that a Pod is scheduled near other Pods that match certain labels.
-- **Pod Anti-Affinity**: Ensures that a Pod is scheduled away from other Pods that match certain labels.
+- **Pod Affinity**: Ensures that Pods are scheduled on nodes near other Pods with specific labels.
+- **Pod Anti-Affinity**: Ensures that Pods are scheduled away from nodes with other Pods that match specific labels.
 
 [Back to TOC](#table-of-contents)
 
@@ -49,12 +56,23 @@ Pod Affinity and Anti-Affinity allow you to constrain which nodes your Pods can 
 
 #### Required vs. Preferred Node Affinity
 
-- **Required Node Affinity** (`requiredDuringSchedulingIgnoredDuringExecution`): The scheduler must find a node that meets the specified criteria, or the Pod will not be scheduled.
-- **Preferred Node Affinity** (`preferredDuringSchedulingIgnoredDuringExecution`): The scheduler tries to find a node that meets the criteria, but if none are available, it will schedule the Pod on a node that doesn't match.
+- **Required Node Affinity**: (`requiredDuringSchedulingIgnoredDuringExecution`) is a hard constraint. If no nodes match the specified criteria, the Pod will not be scheduled.
+- **Preferred Node Affinity**: (`preferredDuringSchedulingIgnoredDuringExecution`) is a soft constraint. If no nodes match the specified criteria, the Pod will still be scheduled on other available nodes.
+
+#### Scheduling Modes Table
+
+| Mode | Description | Behavior |
+|---|---|---|
+| `requiredDuringSchedulingIgnoredDuringExecution` | Node must satisfy the condition when scheduling but ignores changes during execution. | Hard constraint, Pod won’t be scheduled if no matching nodes are found. |
+| `preferredDuringSchedulingIgnoredDuringExecution` | Scheduler prefers nodes that satisfy the condition but can still schedule on others if necessary. | Soft constraint, Pod will be scheduled even if no matching nodes are found. |
+| `requiredduringschedulingrequiredduringexecution` (Planned) | Node must satisfy condition during both scheduling and execution. | Not currently supported. Expected to be a stricter version of `requiredDuringSchedulingIgnoredDuringExecution`. |
+| `preferredduringschedulingrequiredduringexecution` (Planned) | Node is preferred during both scheduling and execution. | Expected to enforce soft constraints during both scheduling and execution. |
+
+[Back to TOC](#table-of-contents)
+
+---
 
 #### YAML Example of Node Affinity
-
-Here's an example YAML file showing both required and preferred node affinity:
 
 ```yaml
 apiVersion: v1
@@ -81,12 +99,13 @@ spec:
             values:
             - another-node-label-value
   containers:
-  - name: container
+  - name: nginx
     image: nginx
 ```
 
-- **Required**: The node must have a label `topology.kubernetes.io/zone` with the value `antarctica-east1` or `antarctica-west1`.
-- **Preferred**: The node preferably has a label `another-node-label-key` with the value `another-node-label-value`.
+In this example:
+- **Required**: Pod will only be scheduled on nodes in the `antarctica-east1` or `antarctica-west1` zones.
+- **Preferred**: Pod prefers nodes with the label `another-node-label-key=another-node-label-value`.
 
 [Back to TOC](#table-of-contents)
 
@@ -96,12 +115,10 @@ spec:
 
 #### Required vs. Preferred Pod Affinity/Anti-Affinity
 
-- **Required Pod Affinity/Anti-Affinity** (`requiredDuringSchedulingIgnoredDuringExecution`): The Pod will only be scheduled if the specified criteria are met. This is a "hard" constraint.
-- **Preferred Pod Affinity/Anti-Affinity** (`preferredDuringSchedulingIgnoredDuringExecution`): The Pod will try to be scheduled according to the criteria, but if it can't, it will still be scheduled. This is a "soft" constraint.
+- **Required Pod Affinity/Anti-Affinity**: (`requiredDuringSchedulingIgnoredDuringExecution`) ensures Pods are scheduled only if criteria are met.
+- **Preferred Pod Affinity/Anti-Affinity**: (`preferredDuringSchedulingIgnoredDuringExecution`) tries to respect criteria but will schedule Pods even if none meet the conditions.
 
 #### YAML Example of Pod Affinity and Anti-Affinity
-
-Here's an example YAML file showing both pod affinity and pod anti-affinity:
 
 ```yaml
 apiVersion: v1
@@ -131,12 +148,51 @@ spec:
               - S2
           topologyKey: topology.kubernetes.io/zone
   containers:
-  - name: container
+  - name: nginx
     image: nginx
 ```
 
-- **Pod Affinity**: The Pod will only be scheduled in a zone that already has a Pod with the label `security=S1`.
-- **Pod Anti-Affinity**: The scheduler will try to avoid scheduling the Pod in a zone that has a Pod with the label `security=S2`.
+- **Pod Affinity**: The Pod will only be scheduled in zones that already have a Pod with the label `security=S1`.
+- **Pod Anti-Affinity**: The Pod prefers to avoid zones that already have Pods with the label `security=S2`.
+
+[Back to TOC](#table-of-contents)
+
+---
+
+### Operators in Affinity Rules
+
+Affinity rules use specific operators to match expressions against node or Pod labels.
+
+#### Operators Table
+
+| Operator | Description | Example |
+|---|---|---|
+| `In` | Matches when the label value is in a list of specified values. | `topology.kubernetes.io/zone In (antarctica-east1, antarctica-west1)` |
+| `NotIn` | Matches when the label value is not in a list of specified values. | `security NotIn (S2, S3)` |
+| `Exists` | Matches when the label key is present, regardless of value. | `security Exists` |
+| `DoesNotExist` | Matches when the label key is not present. | `security DoesNotExist` |
+| `Gt` | Matches when the label value is greater than a specified value. | `version Gt 2` |
+| `Lt` | Matches when the label value is less than a specified value. | `version Lt 5` |
+
+#### Examples of `matchExpressions`
+
+```yaml
+matchExpressions:
+- key: topology.kubernetes.io/zone
+  operator: In
+  values:
+  - antarctica-east1
+  - antarctica-west1
+- key: security
+  operator: NotIn
+  values:
+  - S2
+  - S3
+```
+
+In this example:
+- The first expression matches nodes in the specified zones.
+- The second expression avoids nodes with the `security` label set to `S2` or `S3`.
 
 [Back to TOC](#table-of-contents)
 
@@ -146,33 +202,29 @@ spec:
 
 #### Applying Node Affinity
 
-Save the node affinity YAML file as `pod-with-node-affinity.yaml` and apply it using the following command:
+Save the node affinity YAML file as `pod-with-node-affinity.yaml` and apply it:
 
 ```bash
 kubectl apply -f pod-with-node-affinity.yaml
 ```
 
-This command will schedule the Pod according to the defined node affinity rules.
-
 #### Applying Pod Affinity/Anti-Affinity
 
-Save the pod affinity/anti-affinity YAML file as `pod-with-pod-affinity.yaml` and apply it using the following command:
+Save the pod affinity/anti-affinity YAML file as `pod-with-pod-affinity.yaml` and apply it:
 
 ```bash
 kubectl apply -f pod-with-pod-affinity.yaml
 ```
 
-This command will schedule the Pod based on the affinity and anti-affinity rules specified.
-
 #### Verifying Pod Scheduling
 
-To verify where the Pods have been scheduled, use the following command:
+To verify where the Pods have been scheduled:
 
 ```bash
 kubectl get pods -o wide
 ```
 
-This will show the nodes on which the Pods have been scheduled, allowing you to confirm that the affinity/anti-affinity rules were respected.
+This command will show the nodes on which Pods were scheduled, allowing you to confirm that affinity/anti-affinity rules were respected.
 
 [Back to TOC](#table-of-contents)
 
@@ -180,8 +232,8 @@ This will show the nodes on which the Pods have been scheduled, allowing you to 
 
 ### Conclusion
 
-Understanding and using affinity and anti-affinity in Kubernetes allows you to have fine-grained control over how and where your Pods are scheduled. By applying the concepts covered in this tutorial, including node affinity and pod affinity/anti-affinity, you can ensure that your workloads are optimally placed within your cluster.
+By leveraging Node Affinity and Pod Affinity/Anti-Affinity in Kubernetes, you gain control over where Pods are scheduled, ensuring your cluster runs optimally. This tutorial covered both affinity types, scheduling
 
-This tutorial provided YAML examples and practical steps to help you implement these features effectively in your Kubernetes environment.
+ modes, operators, and practical examples, equipping you to implement these features effectively in your Kubernetes environment.
 
-[Back to TOC](#table-of-contents)
+[Back to TOC](#table-of-contents) 
