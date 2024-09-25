@@ -128,6 +128,8 @@ spec:
     value: "ml-tasks"
     effect: "NoSchedule"
 ```
+Note the values under taints are encoded in **double-quotes**.
+
 
 **Applying the Configuration:**
 
