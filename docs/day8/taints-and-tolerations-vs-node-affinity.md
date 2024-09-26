@@ -213,6 +213,16 @@ Using both **Taints & Tolerations** and **Node Affinity** ensures that:
 - **Green Pod** will go to the green node and be repelled from all other nodes.
 - **Grey Pods** will be scheduled only on grey nodes, as they have no affinity or tolerations.
 
+ 
+<div style="text-align: center;">
+  <img src="../../pics/taints-and-tolerations-with-node-affinity.png" alt="Node Affinity Alone" style="width: 500px; height: 300px;">
+</div>
+
+
+
+
+
+
 [Back to TOC](#table-of-contents)
 
 ---
