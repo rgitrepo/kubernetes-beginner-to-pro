@@ -13,7 +13,7 @@
 3. [Step 2: Using Node Affinity Alone](#step-2-using-node-affinity-alone)
    - [What is Node Affinity?](#what-is-node-affinity)
    - [How to Use Node Affinity](#how-to-use-node-affinity)
-   - [Weakness](#weakness-2)
+   - [Weakness](#weakness-1)
 4. [Step 3: Combining Taints & Tolerations with Node Affinity](#step-3-combining-taints--tolerations-with-node-affinity)
    - [Why Combine Both?](#why-combine-both)
    - [How to Implement the Combination](#how-to-implement-the-combination)
