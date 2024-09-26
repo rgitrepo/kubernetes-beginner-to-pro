@@ -215,7 +215,7 @@ Using both **Taints & Tolerations** and **Node Affinity** ensures that:
 
  
 <div style="text-align: center;">
-  <img src="../../pics/taints-and-tolerations-with-node-affinity.png" alt="Node Affinity Alone" style="width: 500px; height: 300px;">
+  <img src="../../pics/taints-and-tolerations-with-node-affinity.png" alt="Node Affinity Alone" style="width: 500px; height: 400px;">
 </div>
 
 
