@@ -145,7 +145,7 @@
 - [QoS: Quality of Service](docs/day8/qos-quality-of-service.md)
 - [Policies: API Objects, Contollers, Kubelet ](docs/day8/policies.md)
 - [G vs Gi, M vs Mi, K vs Ki, and CPU Cores](docs/day8/comparison-of-decimal-and-binary-units-for-data-storage-and-cpu-usage.md)
-- [LimitRanges & Resource Quotas](docs/day8/limitranges-and-resourcequotas.md)
+- [Pods, Resource Quotas, and LimitRanges](docs/day8/limitranges-and-resourcequotas.md)
 - [Kyverno vs. LimitRanges and ResourceQuotas](docs/day8/kyverno-vs-limitranges-and-resourcequotas.md)
 - [Cost Optimization with OpenCost](docs/day8/cost-optimization-with-opencost.md)
 - [Taints & Tolerations](docs/day8/taints-and-tolerations.md)
