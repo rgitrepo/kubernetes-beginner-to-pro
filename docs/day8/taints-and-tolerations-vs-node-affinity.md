@@ -145,7 +145,7 @@ Apply **Node Affinity** to the blue, red, and green Pods to ensure they are sche
 **Node Affinity** ensures that Pods are scheduled on nodes with matching labels. However, it does not prevent grey Pods from being scheduled on blue, red, or green nodes because nodes cannot repel Pods.
 
 <div style="text-align: center;">
-  <img src="../../pics/node-affinity-alone.png" alt="Node Affinity Alone" style="width: 500px; height: 200px;">
+  <img src="../../pics/node-affinity-alone.png" alt="Node Affinity Alone" style="width: 500px; height: 400px;">
 </div>
 
 
