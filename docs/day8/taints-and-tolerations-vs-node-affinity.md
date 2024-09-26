@@ -1,6 +1,6 @@
 ## **Taints & Tolerations vs Node Affinity in Kubernetes**
 
----
+
 
 ### Table of Contents
 
