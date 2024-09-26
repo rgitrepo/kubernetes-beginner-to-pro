@@ -144,6 +144,7 @@
 - [OOM Kill - Out Of Memory Kill](docs/day8/oom-kill.md)
 - [QoS: Quality of Service](docs/day8/qos-quality-of-service.md)
 - [Policies: API Objects, Contollers, Kubelet ](docs/day8/policies.md)
+- [Comparison of Decimal (SI) and Binary (IEC) Units for Data Storage and CPU Usage](docs/day8/comparison-of-decimal-and-binary-units-for-data-strage-and-cpu-usage.md)
 - [LimitRanges & Resource Quotas](docs/day8/limitranges-and-resourcequotas.md)
 - [Kyverno vs. LimitRanges and ResourceQuotas](docs/day8/kyverno-vs-limitranges-and-resourcequotas.md)
 - [Cost Optimization with OpenCost](docs/day8/cost-optimization-with-opencost.md)
