@@ -94,7 +94,7 @@ Tolerations are applied to Pods so they can land on the nodes with the correspon
 Using **Taints & Tolerations** alone will prevent Pods from landing on nodes they don't tolerate. However, because grey nodes have no taints, the blue, red, and green Pods could still be scheduled on grey nodes, which is not desired.
 
 <div style="text-align: center;">
-  <img src="../../pics/taints-and-tolerations-alone.png" alt="Taints & Tolerations Alone">
+  <img src="../../pics/taints-and-tolerations-alone.png" alt="Taints & Tolerations Alone" style="width: 600px; height: 400px;">
 </div>
 
 
