@@ -1,4 +1,4 @@
-## **Comparison of Decimal (SI) and Binary (IEC) Units for Data Storage and CPU Usage**
+## **Memory & CPU Units**
 
 ### **SI vs IEC: Understanding the Difference**
 
