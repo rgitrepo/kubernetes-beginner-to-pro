@@ -5,7 +5,7 @@
 ### Table of Contents
 
 1. [Introduction to Resource Quotas and LimitRanges](#introduction-to-resource-quotas-and-limitranges)
-2. [How Pods Interact with Resource Quotas and LimitRanges](#how-pods-interact-with-resource-quotas-and-limitaranges)
+2. [How Pods Interact with Resource Quotas and LimitRanges](#how-pods-interact-with-resource-quotas-and-limitranges)
    - [How Resource Quotas Affect Pods](#how-resource-quotas-affect-pods)
    - [Can Pods Directly Have Resource Quotas?](#can-pods-directly-have-resource-quotas)
    - [How Pods Adhere to LimitRanges](#how-pods-adhere-to-limitaranges)
