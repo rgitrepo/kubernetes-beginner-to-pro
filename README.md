@@ -138,7 +138,7 @@
 </details>
 
 <details>
-<summary>Day 8: Scheduling Algo, Taints-Tolerations, Affinity, QOS, OpenCost, Limite Ranges, Resource Quotas, Memory & CPU units</summary>
+<summary>Day 8: Scheduling, Taints and Tolerations, Node Affinity, QoS, OpenCost, Limite Ranges, Resource Quotas, Memory and CPU Units</summary>
 
 - [CPU vs Memory](docs/day8/cpu-vs-memory.md)
 - [OOM Kill - Out Of Memory Kill](docs/day8/oom-kill.md)
