@@ -50,7 +50,7 @@
 
 ---
 
-#### **CPU Usage Units**
+### **CPU Usage Units**
 
 CPU usage is generally measured in terms of processing power allocated or consumed by a process. The most common unit for CPU usage is **millicores**, which is derived from the CPU cores of the machine.
 
@@ -60,15 +60,3 @@ CPU usage is generally measured in terms of processing power allocated or consum
 
 These units are particularly used in Kubernetes or container orchestration systems where resources are allocated as a fraction of CPU cores.
 
----
-
-### **Combined Summary:**
-- **Data Storage**:
-  - **1 GB** = 1,000,000,000 bytes (SI)
-  - **1 GiB** = 1,073,741,824 bytes (IEC)
-  
-- **CPU Usage**:
-  - **1 CPU core** = 1,000 millicores
-  - **1 millicore** = 1/1000 of a CPU core
-
-Both data storage and CPU usage units help manage and allocate resources precisely, whether you're tracking storage in gigabytes or CPU usage in millicores.
