@@ -21,7 +21,7 @@
 5. [Comprehensive Coverage of LimitRanges](#comprehensive-coverage-of-limitaranges)
    - [LimitRange Scenarios](#limitrange-scenarios)
    - [LimitRange YAML Examples](#limitrange-yaml-examples)
-6. [Example: Resource Quotas and LimitRanges Together](#example-resource-quotas-and-limitaranges-together)
+6. [Example: Resource Quotas and LimitRanges Together](#example-resource-quotas-and-limitranges-together)
 7. [Conclusion](#conclusion)
 
 ---
