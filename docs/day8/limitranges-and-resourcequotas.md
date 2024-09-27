@@ -1,4 +1,4 @@
-### Updated Tutorial: Pods, Resource Quotas, and LimitRanges in Kubernetes
+## Pods, Resource Quotas, and LimitRanges in Kubernetes
 
 ---
 
@@ -10,8 +10,9 @@
    - [Can Pods Directly Have Resource Quotas?](#can-pods-directly-have-resource-quotas)
    - [How Pods Adhere to LimitRanges](#how-pods-adhere-to-limitaranges)
    - [What Happens if Pod Requests Exceed LimitRanges?](#what-happens-if-pod-requests-exceed-limitaranges)
-3. [Example YAML for Pods, Resource Quotas, and LimitRanges](#example-yaml-for-pods-resource-quotas-and-limitaranges)
-4. [Conclusion](#conclusion)
+3. [Understanding `limits`, `default`, and `defaultRequest`](#understanding-limits-default-and-defaultrequest)
+4. [Example YAML for Pods, Resource Quotas, and LimitRanges](#example-yaml-for-pods-resource-quotas-and-limitaranges)
+5. [Conclusion](#conclusion)
 
 ---
 
@@ -67,6 +68,23 @@ maximum cpu usage per Container is 500m, but request is 600m
 
 ---
 
+### Understanding `limits`, `default`, and `defaultRequest`
+
+#### Limits:
+- **Maximum amount** of resources that a container can use.
+- If a container tries to use more than the specified limit, Kubernetes will enforce this limit by throttling the container or terminating it.
+
+#### Default:
+- **Maximum limit** applied to a container if no specific limit is defined in the Pod’s or container’s resource specification.
+- It serves as a fallback when a Pod does not explicitly define limits. The **default** value becomes the cap on resource usage.
+
+#### DefaultRequest:
+- Defines the **minimum amount of resources** that a container will request if the Pod does not specify its own resource requests.
+- This value is used by the Kubernetes scheduler to find a suitable node with enough resources to schedule the Pod.
+- It ensures that a container is always allocated sufficient resources to function properly.
+
+---
+
 ### Example YAML for Pods, Resource Quotas, and LimitRanges
 
 Here’s an example demonstrating how Pods interact with **Resource Quotas** and **LimitRanges** in Kubernetes.
@@ -82,12 +100,12 @@ metadata:
 spec:
   limits:
   - default:
-      cpu: "500m"
-      memory: "512Mi"
+      cpu: "500m"           # Default maximum CPU limit for containers
+      memory: "512Mi"       # Default maximum memory limit for containers
     defaultRequest:
-      cpu: "250m"
-      memory: "256Mi"
-    type: Container
+      cpu: "250m"           # Default minimum CPU request (scheduler uses this)
+      memory: "256Mi"       # Default minimum memory request (scheduler uses this)
+    type: Container         # These limits and requests apply to containers in Pods
 ```
 
 #### Pod YAML (without Resource Requests/Limits)
@@ -102,9 +120,12 @@ spec:
   containers:
   - name: nginx-container
     image: nginx
+    # No resource requests or limits are specified, so Kubernetes will apply defaultRequest and default values from the LimitRange.
 ```
 
-Since this Pod does not specify any resource requests or limits, Kubernetes will apply the default values from the **LimitRange** (250m CPU request, 512Mi memory limit).
+Since this Pod does not specify any resource requests or limits, Kubernetes will apply the default values from the **LimitRange**:
+- **defaultRequest**: 250m CPU and 256Mi memory are reserved for the Pod by the scheduler.
+- **default**: The Pod is limited to 500m CPU and 512Mi memory.
 
 #### Pod YAML (with Custom Resource Requests/Limits)
 
@@ -120,14 +141,16 @@ spec:
     image: nginx
     resources:
       requests:
-        cpu: "300m"
-        memory: "300Mi"
+        cpu: "300m"          # Pod explicitly requests 300m CPU
+        memory: "300Mi"       # Pod explicitly requests 300Mi memory
       limits:
-        cpu: "600m"
-        memory: "600Mi"
+        cpu: "600m"           # Pod has a limit of 600m CPU, which must adhere to the LimitRange.
+        memory: "600Mi"        # Pod has a memory limit of 600Mi.
 ```
 
-This Pod has custom resource requests and limits. If the requests or limits exceed the values specified in the **LimitRange**, the Pod will not be created.
+This Pod has custom resource requests and limits. If the requests or limits exceed the values specified in the **LimitRange**, the Pod will not be created. Since the custom values fall within the **LimitRange**:
+- The Pod requests 300m CPU and 300Mi memory.
+- The Pod is limited to 600m CPU and 600Mi memory.
 
 [Back to TOC](#table-of-contents)
 
@@ -137,7 +160,7 @@ This Pod has custom resource requests and limits. If the requests or limits exce
 
 Pods in Kubernetes are governed by the resource quotas and limit ranges defined at the namespace level. While Pods cannot directly set quotas, they can specify their own resource requests and limits. Kubernetes ensures that these specifications fall within the constraints of the namespace’s **LimitRange** and **Resource Quota**.
 
-Understanding how these tools work together is crucial for efficient resource management in a Kubernetes cluster.
+Understanding how these tools work together is crucial for efficient resource management in a Kubernetes cluster. The fields `limits`, `default`, and `defaultRequest` offer flexible ways to manage resource allocation and usage within a namespace.
 
 [Back to TOC](#table-of-contents)
 
