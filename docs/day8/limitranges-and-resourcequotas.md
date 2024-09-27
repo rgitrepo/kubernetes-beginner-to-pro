@@ -11,7 +11,7 @@
    - [How Pods Adhere to LimitRanges](#how-pods-adhere-to-limitaranges)
    - [What Happens if Pod Requests Exceed LimitRanges?](#what-happens-if-pod-requests-exceed-limitaranges)
    - [What Happens if Pod's Requests Are Lower than DefaultRequest?](#what-happens-if-pods-requests-are-lower-than-defaultrequest)
-   - [Handling Multiple LimitRanges](#handling-multiple-limitaranges)
+   - [Handling Multiple LimitRanges](#handling-multiple-limitranges)
    - [Enforcing Multiple Resource Limits](#enforcing-multiple-resource-limits)
 3. [Understanding `limits`, `default`, and `defaultRequest`](#understanding-limits-default-and-defaultrequest)
 4. [Comprehensive Coverage of Resource Quotas](#comprehensive-coverage-of-resource-quotas)
