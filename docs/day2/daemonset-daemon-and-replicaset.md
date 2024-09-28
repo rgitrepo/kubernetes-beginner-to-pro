@@ -55,6 +55,8 @@ There is an important distinction between a **daemon** and a **DaemonSet**, part
    - **DaemonSet**: Ensures specific pods, like monitoring agents or network proxies, are running across all relevant nodes.
 
 [Back to Table of Contents](#table-of-contents)
+
+
 ---
 
 ### Comparison between DaemonSet and ReplicaSet
