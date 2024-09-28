@@ -44,8 +44,8 @@ Authorization is like a class monitor who ensures students only attend the class
 
 - **Purpose**: To enforce policies on the requests after they have been authenticated and authorized.
 - **Types**:
-  - **Validating Admission Controllers**: These controllers check if the requests comply with the policies.
   - **Mutating Admission Controllers**: These controllers can modify the requests to ensure they meet certain criteria.
+  - **Validating Admission Controllers**: These controllers check if the requests comply with the policies.
 
 Imagine admission control as the final check before a student is allowed to attend a class, ensuring they meet all the prerequisites.
 
