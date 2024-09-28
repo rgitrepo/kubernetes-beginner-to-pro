@@ -20,7 +20,7 @@ This is a common interview question: "If the master node goes down and the appli
 ## Main Functions of Kube-API Server
 
 <div style="text-align: center;">
-  <img src="../../pics/kube-api-server.gif" alt="Kube-Api-Server" style="width: 600px; height: 450px;">
+  <img src="../../pics/kube-api-server.gif" alt="Kube-Api-Server" style="width: 600px; height: 400px;">
 </div>
 
 ### Authentication
