@@ -1,7 +1,3 @@
-Here’s the updated tutorial focused solely on **Static Pods in Kubernetes**, with more detailed explanations and examples, while removing the focus on DaemonSets and Deployments.
-
----
-
 ### Tutorial: Deep Dive into Static Pods in Kubernetes
 
 #### Table of Contents
