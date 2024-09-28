@@ -23,7 +23,7 @@
 etcd is a distributed, highly consistent key-value store that plays a crucial role in Kubernetes (k8s) as the only stateful component. The name etcd is derived from “etc,” which is the location of system configuration files in Linux, and “d” stands for distributed.
 
 <div style="text-align: center;">
-  <img src="../../pics/etcd.gif" alt="ETCD" style="width: 600px; height: 400px;">
+  <img src="../../pics/etcd.gif" alt="ETCD" style="width: 600px; height: 300px;">
 </div>
 
 ### Key Features of etcd
