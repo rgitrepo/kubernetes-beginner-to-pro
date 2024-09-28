@@ -51,7 +51,7 @@
 </details>
 
 <details>
-<summary>Day 4: Pods in Production, SideCar vs init Containers, Trivy, Kyverno</summary>
+<summary>Day 4: Static Pods, Pod & Container Lifecycle, SideCar vs init Containers, Trivy, Kyverno, Kube Linter, Kube Bench, Backoff Algorithms</summary>
 
 - [Trivy: Image Security](docs/day4/image-security.md)
 - ['bat' Command](docs/day4/bat-command.md)
