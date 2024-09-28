@@ -94,6 +94,9 @@ While **ReplicaSets** are used for general workloads requiring scalability acros
 3. **Monitoring Agents**:
    - Tools like **Prometheus Node Exporter** are often deployed via DaemonSets to monitor each node in the cluster.
 
+
+[Back to Table of Contents](#table-of-contents)
+
 ---
 
 ### YAML Examples
@@ -167,6 +170,9 @@ spec:
 - `replicas: 3`: Specifies 3 pod replicas should be created.
 - `selector`: Links the ReplicaSet to pods with matching labels.
 
+
+[Back to Table of Contents](#table-of-contents)
+
 ---
 
 ### Selectors and Node Affinity
@@ -210,6 +216,9 @@ spec:
 **Comments**:
 - `nodeAffinity`: Ensures DaemonSet pods are only scheduled on nodes with the required labels.
 - **Node Affinity** allows for more flexibility and replaces the older `nodeName` method.
+
+
+[Back to Table of Contents](#table-of-contents)
 
 ---
 
@@ -271,9 +280,12 @@ Here’s the process:
 
 This method leverages Kubernetes' built-in tools to simplify the process of creating and managing DaemonSets, as there is no `kubectl create daemonset` command by default.
 
+[Back to Table of Contents](#table-of-contents)
 
 ---
 
 ### Conclusion
 **DaemonSets** are essential for deploying node-level services across your Kubernetes cluster, ensuring system-critical pods like **kube-proxy** or **Weave-net** are running on all necessary nodes. While **ReplicaSets** focus on managing the number of pod replicas, **DaemonSets** focus on ensuring each node has a specific pod, making them perfect for system services that need to be present across all nodes.
+
+[Back to Table of Contents](#table-of-contents)
 
