@@ -11,7 +11,8 @@ Daemon Sets, Daemons, and ReplicaSets
    - [DaemonSet Example](#daemonset-example)
    - [ReplicaSet Example](#replicaset-example)
 7. [Selectors and Node Affinity](#selectors-and-node-affinity)
-8. [Conclusion](#conclusion)
+8. [Creating a DaemonSet from Other Resources](#creating-a-daemonset-from-other-resources)
+9. [Conclusion](#conclusion)
 
 ---
 
