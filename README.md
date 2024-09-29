@@ -154,6 +154,7 @@
 - [Scheduler Health](docs/day8/scheduler-health.md)
 - [Scheduler Bypass: Nodename & NodeSelector](docs/day8/nodename-and-nodeselector.md)
 - [Scheduler Bypass: NodeName vs Binding](docs/day8/nodename-vs-binding.md)
+- [Deploy Additional Scheduler](docs/day8/deploy-additional-scheduler.md)
 - [Pod Topology Spread Constraints](docs/day8/pod-topology-spread-constraints.md)
 - [Node Affinity and Pod Affinity/Anti-Affinity](docs/day8/node-affinity-and-pod-affinity-anti-affinity.md)
 - [Taints & Tolerations vs Node Affinity](docs/day8/taints-and-tolerations-vs-node-affinity.md)
