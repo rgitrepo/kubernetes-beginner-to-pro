@@ -12,7 +12,7 @@
 7. [Managing Static Pods via Configuration Files](#managing-static-pods-via-configuration-files)
 8. [Using Runtime Commands for Static Pods](#using-runtime-commands-for-static-pods)
 9. [Examples of Static Pods](#examples-of-static-pods)
-10. [Using `-o yaml` to Identify Static Pods](#using-o-yaml-to-identify-static-pods)
+10. [Using `-o yaml` to Identify Static Pods](#using--o-yaml-to-identify-static-pods)
 11. [Conclusion](#conclusion)
 
 ---
