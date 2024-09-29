@@ -89,6 +89,8 @@ Once the service and configuration files are set up:
    systemctl enable my-scheduler.service
    ```
 
+[Back to Table of Contents](#table-of-contents)
+
 ---
 
 ### Deploying the Scheduler as a Pod
@@ -129,6 +131,8 @@ Apply this YAML file to deploy the custom scheduler pod.
 kubectl apply -f my-custom-scheduler.yaml
 ```
 
+[Back to Table of Contents](#table-of-contents)
+
 ---
 
 ### Managing Multiple Schedulers in Kubernetes
@@ -149,6 +153,8 @@ spec:
 ```
 
 This pod will now be scheduled by `my-custom-scheduler` instead of the default scheduler.
+
+[Back to Table of Contents](#table-of-contents)
 
 ---
 
@@ -180,8 +186,12 @@ Additionally, you can view the logs of the scheduler pod to inspect its behavior
 kubectl logs my-custom-scheduler --namespace kube-system
 ```
 
+[Back to Table of Contents](#table-of-contents)
+
 ---
 
 ### Conclusion
 
 Deploying and managing additional schedulers in Kubernetes allows for advanced scheduling configurations. Whether using systemd services or deploying the scheduler as a pod, configuring multiple schedulers provides flexibility for specialized workloads. Verifying the scheduler’s operation through `kubectl` commands ensures that it is functioning as expected.
+
+[Back to Table of Contents](#table-of-contents)
