@@ -97,6 +97,14 @@ default       static-greenbox-node01   1/1   Running   0   19s   10.244.1.2   no
 
 From the output, we can see that the pod `static-greenbox-node01` is running on the node called `node01`.
 
+Note below the only static-greenbox-node01 matches node01. The remaining two pods end with frontend an backend but the nodes are node01 and node02 respectively indicating they are not static pods. Node name is added at the end of static pods.
+
+```bash
+default       static-greenbox-node01   1/1   Running   0   19s   10.244.1.2   node01   <none>   <none>
+default       dynamic-app-frontend     2/2   Running   0   10m   10.244.1.10  node01   <none>   <none>
+default       dynamic-app-backend      1/1   Running   0   8m    10.244.1.12  node02   <none>   <none>
+```
+
 #### Step 2: SSH into the Node
 
 Once we know the pod is running on `node01`, we SSH into the node to investigate its configuration.
