@@ -189,6 +189,7 @@
 <details>
 <summary>Day 10: Service Mesh, Secrets, CMs, External Secret Operator, Google Cloud Secret Manager</summary>
 
+- [Kubernetes `env` Value Types](docs/day10/env-value-type.md)
 - [ConfigMaps - Introduction & Overview](docs/day10/configmaps.md)
 - [ConfigMaps - Consuming via Environment Variables](docs/day10/consuming-configmaps-using-environment-variables.md)
 - [ConfigMaps - Consuming in Pods](docs/day10/consuming-configmaps-from-pod-commands.md)
