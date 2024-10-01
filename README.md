@@ -69,7 +69,7 @@
 </details>
 
 <details>
-<summary>Day 5: Labels, Selectors, ReplicaSets, Deployments, Production Strategies</summary>
+<summary>Day 5: Labels, Selectors, ReplicaSets, Deployments, Deployment Strategies, Updates, Production Strategies</summary>
 
 - [Labels & Selectors Using Yaml](docs/day5/labels-selectors.md)
 - [Labels Using Command Line](docs/day5/update-and-add-labels.md)
