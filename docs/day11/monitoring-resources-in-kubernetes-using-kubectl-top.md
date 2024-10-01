@@ -9,7 +9,7 @@
 4. [Identifying the Node Consuming the Most Memory (Bytes)](#identifying-the-node-consuming-the-most-memory-bytes)
 5. [Identifying the Pod Consuming the Most Memory (Bytes) in the Default Namespace](#identifying-the-pod-consuming-the-most-memory-bytes-in-the-default-namespace)
 6. [Identifying the Pod Consuming the Least CPU (Cores) in the Default Namespace](#identifying-the-pod-consuming-the-least-cpu-cores-in-the-default-namespace)
-7. [Outputs Without `--sort-by`](#outputs-without-sort-by)
+7. [Outputs Without `--sort-by`](#outputs-without---sort-by)
 8. [Conclusion](#conclusion)
 
 ---
