@@ -36,7 +36,7 @@ These factors will dictate the level of risk you can take during deployment and 
 Depending on the criticality of the application, different deployment strategies may be more appropriate:
 - **Blue-Green Deployment**: Suitable for applications where some downtime is acceptable. This strategy involves running two environments (blue and green), switching traffic from one to the other during deployment.
 - **Canary Deployment**: Used when you want to minimize risk by rolling out the deployment to a small subset of users before a full rollout.
-- **Rolling Update**: Commonly used when you need to update the application without taking it offline. This strategy updates the application in stages, maintaining availability throughout the process.
+- **Rolling Update**: Commonly used when you need to update the application without taking it offline. This strategy updates the application in stages, maintaining availability throughout the process. It's also the default update strategy if none is specified.
 
 If the application is highly critical (e.g., financial services), a strategy that ensures zero downtime, such as a rolling update or a sophisticated canary deployment, would be preferred.
 
