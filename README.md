@@ -62,6 +62,7 @@
 - [Backoff Algorithms](docs/day4/backoff-algorithms.md)
 - [Init Containers](docs/day4/init-container.md)
 - [Sidecar vs Init Containers](docs/day4/sidecar-vs-init-containers.md)
+- [Overriding CMD and ENTRYPOINT of Dockerfile in Pod Definition YAML](docs/day4/overriding-command-and-entrypoint-in-kubernetes-pod-defiintion-yaml.md)
 - [Pod and Container Lifecycle](docs/day4/container-cycle.md)
 - [Termination of Pods](docs/day4/termination-of-pods.md)
 - [Runtime Class](docs/day4/runtime-class.md)
