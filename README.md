@@ -224,6 +224,7 @@
 <summary>Day 11: Monitoring, Logging, Tracing, Profiling, Prometheus, Jaeger, OTel, Grafana, eBPF</summary>
 
 
+- [Monitoring Resources in Kubernetes using `kubectl top`](docs/day11/monitoring-resources-in-kubernetes-using-kubectl-top.md)
 - [How to Scrape Metrics](docs/day11/how-to-scrape-metrics.md)
 - [Key Metrics](docs/day11/key-metrics.md)
 - [Prometheus](docs/day11/prometheus.md)
