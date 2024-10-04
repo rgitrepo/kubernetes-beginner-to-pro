@@ -204,6 +204,7 @@
 - [Secrets - Consuming via Files (Volume Mounts)](docs/day10/secrets-consuming-via-files.md)
 - [Secrets - Consuming via Directories (Volume Mounts)](docs/day10/secrets-consuming-via-directories.md)
 - [Secrets - Consuming in Pods](docs/day10/secrets-consuming-in-pods.md)
+- [Secrets - How Pods Pull Images from a Private Docker Registry Using `ImagePullSecrets`](docs/day10/how-pods-pull-images-from-a-private-docker-registry-using-imagepullsecrets.md)
 - [Secrets - Interview Questions](docs/day10/interview-questions-secrets.md)
 - [Sealed Secrets](docs/day10/sealed-secrets.md)
 - [External Secret Operator & GCSM](docs/day10/external-secret-operator-and-gcsm.md)
