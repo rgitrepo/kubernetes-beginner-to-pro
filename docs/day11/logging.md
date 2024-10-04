@@ -33,6 +33,9 @@ You can view logs for a specific pod by using the `kubectl logs` command.
 #### Example:
 ```bash
 kubectl logs nginx-pod
+
+# For namespace elastic-stack
+kubectl logs nginx-pod -n elastic-stack
 ```
 
 This command will fetch logs from the pod named `nginx-pod`.
