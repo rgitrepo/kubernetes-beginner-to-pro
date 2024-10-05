@@ -117,6 +117,11 @@ Before upgrading the node, you must cordon and drain it. This ensures no new wor
    ```bash
    kubectl drain <control-plane-node> --ignore-daemonsets --delete-local-data
    ```
+   ```bash
+   # Command to drain pod that isn't part of ReplicaController, Job, Deployment, Replicaset. Basically that won't come back if deleted.
+   kubectl drain <control-plane-node> --ignore-daemonsets --force
+   ```
+   
 
    - **`--ignore-daemonsets`**: Daemonset-managed pods will not be evicted during a drain. These pods are typically used for infrastructure services like logging or monitoring and should continue running.
    - **`--delete-local-data`**: This flag allows you to delete local data from the node if necessary, which may include temporary files created by applications.
