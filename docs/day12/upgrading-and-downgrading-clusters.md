@@ -65,7 +65,7 @@ kubectl get pods -A
 The upgrade process in Kubernetes follows a specific order. **First, you upgrade the control plane, then the worker nodes. Always upgrade one node at a time**.
 
 <div style="text-align: center;">
-  <img src="../../pics/kubeadm-upgrade.png" alt="kubeadm upgrade" style="width: 900px; height: 700px;">
+  <img src="../../pics/kubeadm-upgrade.png" alt="kubeadm upgrade" style="width: 900px; height: 500px;">
 </div>
 ---
 
