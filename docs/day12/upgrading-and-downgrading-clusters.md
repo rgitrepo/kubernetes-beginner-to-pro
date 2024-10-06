@@ -264,4 +264,5 @@ Server Version: v1.30.0
 
 ---
 
-This concludes the tutorial on upgrading both the **control plane node** (`controlplane`) and the **worker node** (`node01`) to Kubernetes version `v1.30.0`.
+**Reference**:
+[Updating Kubeadm Clusters](https://kubernetes.io/docs/tasks/administer-cluster/kubeadm/kubeadm-upgrade/)
