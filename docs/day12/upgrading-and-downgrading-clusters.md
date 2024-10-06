@@ -110,6 +110,27 @@ Verify that the upgrade was successful by running:
 kubeadm version
 ```
 
+Output:
+
+```bash
+kubeadm version: &version.Info{
+  Major:"1", 
+  Minor:"29", 
+  GitVersion:"v1.29.0", 
+  GitCommit:"abcdef123456", 
+  GitTreeState:"clean", 
+  BuildDate:"2024-06-15T12:34:56Z", 
+  GoVersion:"go1.20.5", 
+  Compiler:"gc", 
+  Platform:"linux/amd64"
+}
+```
+
+This output shows the `kubeadm` version information, including the `GitVersion`, `GitCommit`, `BuildDate`, `GoVersion`, and the platform it's installed on.
+
+
+
+
 [Back to TOC](#table-of-contents)
 
 ---
