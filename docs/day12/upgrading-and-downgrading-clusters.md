@@ -62,7 +62,12 @@ kubectl get pods -A
 
 ### **3. Upgrade Steps**
 
-The upgrade process in Kubernetes follows a specific order. First, you upgrade the control plane, then the worker nodes. Always upgrade one node at a time.
+The upgrade process in Kubernetes follows a specific order. **First, you upgrade the control plane, then the worker nodes. Always upgrade one node at a time**.
+
+<div style="text-align: center;">
+  <img src="../../pics/container-pod-node-cluster.png" alt="Kubernetes Architecture" style="width: 700px; height: 500px;">
+</div>
+
 
 #### **Step 1: Check Available Versions**
 
