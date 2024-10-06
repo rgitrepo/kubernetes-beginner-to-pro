@@ -73,6 +73,17 @@ Use this command to see which versions of `kubeadm` are available for upgrade:
 sudo apt-cache madison kubeadm
 ```
 
+**Output:**
+
+```bash
+kubeadm | 1.29.2-00 | http://apt.kubernetes.io/ kubernetes-xenial/main amd64 Packages
+kubeadm | 1.29.1-00 | http://apt.kubernetes.io/ kubernetes-xenial/main amd64 Packages
+kubeadm | 1.29.0-00 | http://apt.kubernetes.io/ kubernetes-xenial/main amd64 Packages
+kubeadm | 1.28.3-00 | http://apt.kubernetes.io/ kubernetes-xenial/main amd64 Packages
+kubeadm | 1.28.2-00 | http://apt.kubernetes.io/ kubernetes-xenial/main amd64 Packages
+```
+
+
 ---
 
 <div style="text-align: center;">
