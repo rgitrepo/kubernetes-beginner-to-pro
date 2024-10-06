@@ -224,7 +224,7 @@ Server Version: v1.30.0
 
 - **`--ignore-daemonsets`**: This option is useful when draining a node. It ensures that **DaemonSet-managed pods** (like monitoring agents, logging agents) are not disrupted during the node drain. DaemonSet pods are usually critical to the cluster, so ignoring them ensures minimal disruption.
 
-- **`--force`**: This flag allows you to force the eviction of pods that cannot be drained normally (e.g., unmanaged or misconfigured pods without a proper termination grace period). Use this option with caution as it can forcefully remove essential pods, potentially causing application downtime.
+- **`--force`**: This flag allows you to force the eviction of pods that cannot be drained normally (e.g., unmanaged or misconfigured pods without a proper termination grace period). Use this option with caution as it can forcefully remove essential pods, potentially causing application downtime. Pods that aren't controlled by ReplicaController, ReplicaSet, Deployment, job etc give an error when being drained as they can't be recreated automatically and will be lost forever if drained. Using the `--force` option drains them as well.
 
 [Back to Table of Contents](#table-of-contents)
 
