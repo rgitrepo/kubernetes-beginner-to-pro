@@ -252,6 +252,7 @@
 - [Tracee](docs/day12/tracee.md)
 - [Falco & OPA](docs/day12/falco-and-opa.md)
 - [Network Policies](docs/day12/network-policies.md)
+- [kubectx & kubens: Switchin Between Context & Namespaces](docs/day12/kubectx-and-kubens.md)
 
 </details>
 
