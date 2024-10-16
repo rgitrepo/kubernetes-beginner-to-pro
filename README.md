@@ -179,6 +179,7 @@
 - [Role of StorageClasses in Dynamic Provisioning of Persistent Volumes](docs/day9/role-of-storageclass-in-dynamic-provisioning-of-persistent-volumes.md)
 - [Reasons for PVC Pending State](docs/day9/reasons-for-pvc-pending-state.md)
 - [Mastering kubectl Commands for PV, PVC, and SC](docs/day9/mastering-kubectl-commands-for-pv-pvc-and-sc.md)
+- [Why Many Companies Avoid Running Databases on Kubernetes](docs/day9/why-many-companies-avoid-running-databases-on-kubernetes.md)
 
   
 
