@@ -137,7 +137,7 @@ kind: Service
 metadata:
   name: my-headless-service
 spec:
-  clusterIP: None
+  clusterIP: None    # Notice this for headless service
   selector:
     app: MyApp
   ports:
@@ -165,8 +165,8 @@ kind: Service
 metadata:
   name: my-external-name-service
 spec:
-  type: ExternalName
-  externalName: example.com
+  type: ExternalName            # type of service is External Name
+  externalName: example.com     # external name service 
 ```
 
 This service will resolve to `example.com` when accessed within the cluster.
