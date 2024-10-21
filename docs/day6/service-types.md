@@ -50,16 +50,6 @@ spec:
   type: ClusterIP
 ```
 
-**Command to Create Service:**
-```bash
-kubectl apply -f cluster-ip-service.yaml
-```
-
-**Output:**
-```bash
-service/my-cluster-ip-service created
-```
-
 This service will only be accessible within the cluster on port 80, redirecting traffic to port 8080 of the selected pods.
 
 [Back to TOC](#table-of-contents)
@@ -88,15 +78,6 @@ spec:
   type: LoadBalancer
 ```
 
-**Command to Create Service:**
-```bash
-kubectl apply -f load-balancer-service.yaml
-```
-
-**Output:**
-```bash
-service/my-load-balancer-service created
-```
 
 The service will expose the application on port 80, balancing traffic among the pods on port 8080.
 
@@ -129,16 +110,6 @@ spec:
       targetPort: 8080
       nodePort: 30007
   type: NodePort
-```
-
-**Command to Create Service:**
-```bash
-kubectl apply -f nodeport-service.yaml
-```
-
-**Output:**
-```bash
-service/my-nodeport-service created
 ```
 
 This service will expose the application on port 30007 on each node, redirecting traffic to port 8080 of the pods.
@@ -175,16 +146,6 @@ spec:
       targetPort: 8080
 ```
 
-**Command to Create Service:**
-```bash
-kubectl apply -f headless-service.yaml
-```
-
-**Output:**
-```bash
-service/my-headless-service created
-```
-
 This service does not assign an IP but will allow direct access to the pods on port 8080.
 
 [Back to TOC](#table-of-contents)
@@ -206,16 +167,6 @@ metadata:
 spec:
   type: ExternalName
   externalName: example.com
-```
-
-**Command to Create Service:**
-```bash
-kubectl apply -f external-name-service.yaml
-```
-
-**Output:**
-```bash
-service/my-external-name-service created
 ```
 
 This service will resolve to `example.com` when accessed within the cluster.
