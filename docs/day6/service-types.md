@@ -91,7 +91,7 @@ A NodePort service exposes the application on a static port on each node in the 
 
 #### Security Considerations <a name="nodeport-security"></a>
 
-Opening a NodePort exposes a specific port on all nodes, which can be a potential entry point for attacks. Hackers can scan for open ports and exploit them if not properly secured. It’s recommended to avoid using NodePort in production environments unless necessary.
+Opening a NodePort exposes a specific port on all nodes, which can be a potential entry point for attacks. Hackers can scan for open ports and exploit them if not properly secured. It’s recommended to **avoid using NodePort in production environments** unless necessary.
 
 #### Example and Output <a name="nodeport-example"></a>
 
