@@ -94,7 +94,7 @@
 
 - [Deployments and Service](docs/day6/problems-with-deployment.md)
 - [Application Deployment Begins](docs/day6/application-deployment-begins.md)
-- [Service Types](docs/day6/service-types.md)
+- [Service Types: Cluster IP, Node Port, Load Balancer, Headless, External Name](docs/day6/service-types.md)
 - [Endpoints vs Endpoint-Slices](docs/day6/endpoints-and-endpoint-slices.md)
 - [Editing Endpoint Slices](docs/day6/editing-endpoint-slices.md)
 - [Endpoint Slices Review](docs/day6/endpoint-slices-review.md)
