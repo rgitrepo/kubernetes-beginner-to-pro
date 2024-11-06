@@ -158,11 +158,7 @@ Here’s how traffic flows with this Service:
      - **Kubernetes Federation**: Allows centralized management of resources across multiple clusters, enabling cross-cluster Service discovery and application consistency.
      - **Service Mesh (e.g., Istio)**: Adds a layer for managing communication between microservices across clusters. Service Meshes provide advanced networking capabilities, such as traffic routing, load balancing, and security, enabling seamless cross-cluster communication.
 
----
-
-This summary captures the primary ways Kubernetes handles **Services and Deployments** within a cluster, as well as the tools needed to extend their functionality across multiple clusters.
-
-
+[Back to Table of Contents](#table-of-contents)
 
 ---
 
