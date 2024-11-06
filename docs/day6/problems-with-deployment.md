@@ -14,8 +14,9 @@
    - 3.1 [What is a Service?](#31-what-is-a-service)
    - 3.2 [How Services Connect to Deployments](#32-how-services-connect-to-deployments)
    - 3.3 [Creating and Managing Services](#33-creating-and-managing-services)
-4. [Conclusion](#4-conclusion)
-5. [References](#5-references)
+4. [Scope of Services and Deployments](#scope-of-services-and-deployments-in-kubernetes)
+5. [Conclusion](#4-conclusion)
+6. [References](#5-references)
 
 ---
 
