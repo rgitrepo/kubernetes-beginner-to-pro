@@ -50,8 +50,7 @@ spec:
   type: ClusterIP
 ```
 
-This service will only be accessible within the cluster on port 80, redirecting traffic to port 8080 of the selected pods. The target port is 8080 is not of a pod but of container inside the pod. For more details about ports:  
-[Details about NodePort, Port, and Target Port](/docs/day6/ports-in-services.md#node-port-service-port-and-target-port-explained)
+This service will only be accessible within the cluster on port 80, redirecting traffic to port 8080 of the selected pods. The target port is 8080 is not of a pod but of container inside the pod. For more details about ports:  [NodePort, Port, and Target Port](/docs/day6/ports-in-services.md#node-port-service-port-and-target-port-explained)
 
 
 [Back to TOC](#table-of-contents)
