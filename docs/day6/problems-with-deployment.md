@@ -167,7 +167,7 @@ This summary captures the primary ways Kubernetes handles **Services and Deploym
 ---
 
 
-### 4. Conclusion
+### 5. Conclusion
 
 Deployments and Services in Kubernetes work together to provide a robust, scalable, and accessible application environment. Deployments handle the lifecycle of Pods, ensuring they’re always running and updated, while Services expose these Pods and route traffic to them. The label selectors in both resources are essential to linking Deployments with Services, enabling reliable networking for applications.
 
@@ -175,7 +175,7 @@ Deployments and Services in Kubernetes work together to provide a robust, scalab
 
 ---
 
-### 5. References
+### 6. References
 
 - Kubernetes Documentation: [Deployments](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/)
 - Kubernetes Documentation: [Services](https://kubernetes.io/docs/concepts/services-networking/service/)
