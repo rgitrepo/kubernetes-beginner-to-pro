@@ -211,7 +211,7 @@ Here is an example of inspecting the ConfigMap in the terminal:
 Here is an example of checking the logs of a Pod consuming a ConfigMap:
 ![Pod log output](https://example.com/pod-file-output)
 
-(Note: Replace these URLs with actual screenshots.)
+**(Note: Replace these URLs with actual screenshots.)**
 
 [Back to TOC](#table-of-contents)
 
