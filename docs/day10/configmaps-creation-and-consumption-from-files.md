@@ -61,7 +61,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: my-config
-data:
+data:                        # instead of spec for configmap it's data
   config-file.properties: |
     key1=value1
     key2=value2
