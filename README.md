@@ -219,7 +219,10 @@
 - [Istio](docs/day10/istio.md)
 - [Istio - ztunnel](docs/day10/ztunnel.md)
 - [Istio - Dashboard](docs/day10/istio-dashboard.md)
+- [Liveness, Readiness, and Startup Probes](docs/day10/liveness-readiness-and-startup-probes.md)
 - [Liveness Probes](docs/day10/liveness-probes.md)
+- [Readiness Probes](docs/day10/readiness-probes.md)
+- [Startup Probes](docs/day10/startup-probes.md)
 
   
 </details>
