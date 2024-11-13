@@ -15,7 +15,6 @@ readinessProbe:
     - /tmp/healthy
   initialDelaySeconds: 5
   periodSeconds: 5
-
 ```
 
 
