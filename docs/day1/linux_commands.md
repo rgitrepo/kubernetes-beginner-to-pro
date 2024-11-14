@@ -248,9 +248,7 @@ Welcome to Linux.
 - `-r`: Recursively search directories.
 - `-i`: Ignore case distinctions.
 - `-n`: Show line numbers.
-- `-v`:
-
- Invert match.
+- `-v`: Invert match.
 
 ## 14. `ping`
 **Description**: Send ICMP ECHO_REQUEST to network hosts.
