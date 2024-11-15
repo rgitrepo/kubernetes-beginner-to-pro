@@ -6,12 +6,12 @@ In a Stacked ETCD Topology the etcd storage cluster and the Kubernetes control p
 1. Is etcd pod is running on control plane.
 2. Is api-serve server for etcd pointing to localhost or control plane for communication.
 
-1. Pod Running on Control Plane
+#### Pod Running on Control Plane
 ![image](https://github.com/user-attachments/assets/da30b509-295a-4b15-94e3-9dc79a2d1e68)
 
 Since etcd pod is running on the controlplane node it is therefore a stacked topology.
 
-2. Kube-Apiserver pointing to local host or control plane for communication.
+#### Kube-Apiserver pointing to local host or control plane for communication.
 
    ```
    kubectl describle pod kube-apiserver-cluster1-controlplane -n kube-system
