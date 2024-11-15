@@ -10,7 +10,6 @@ In a Stacked ETCD Topology the etcd storage cluster and the Kubernetes control p
 
    ```
    kubectl get pods -n kube-system
-   
    ```
 
 ![image](https://github.com/user-attachments/assets/da30b509-295a-4b15-94e3-9dc79a2d1e68)
@@ -21,7 +20,6 @@ Since etcd pod is running on the controlplane node it is therefore a stacked top
 
    ```
    kubectl describle pod kube-apiserver-cluster1-controlplane -n kube-system
-   
    ```
 
    ![image](https://github.com/user-attachments/assets/9bc81a83-9067-4833-9304-c9b82cf3eab0)
