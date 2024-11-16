@@ -3,8 +3,8 @@
 In a Stacked ETCD Topology the etcd storage cluster and the Kubernetes control plane share the same physical nodes. It contrasts with an External ETCD Topology, where etcd nodes are separate and dedicated only to running etcd, independent of the control plane nodes.
 
 ### Ways to Determine Topology of ETCD
-1. Is etcd pod is running on control plane.
-2. Is api-serve server for etcd pointing to localhost or control plane for communication.
+1.  ETCD pod is running on control plane.
+2. Api-serve server for etcd pointing to localhost or control plane for communication.
 
 #### 1. Pod Running on Control Plane
 
