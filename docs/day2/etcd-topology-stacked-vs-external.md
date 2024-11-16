@@ -41,11 +41,13 @@ To restore this content, you can run the 'unminimize' command.
 Last login: Sat Nov 16 17:21:48 2024 from 192.17.25.15
 ```
 
+Now we check if etcd file is there for static pod:
 ```
 cluster1-controlplane ~ ➜  ls /etc/kubernetes/manifests/
 etcd.yaml  kube-apiserver.yaml  kube-controller-manager.yaml  kube-scheduler.yaml
 ```
 
+There is a file etcd.yaml for static pod that's on control plane node.
 
 #### 2. Kube-Apiserver pointing to local host or control plane for communication.
 
