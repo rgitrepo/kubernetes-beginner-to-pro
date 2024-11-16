@@ -49,7 +49,7 @@ etcd.yaml  kube-apiserver.yaml  kube-controller-manager.yaml  kube-scheduler.yam
 
 There is a file etcd.yaml for static pod that's on control plane node.
 
-#### 2. Kube-Apiserver pointing to local host or control plane for communication.
+#### 2. Kube-Apiserver etcd IP address pointing to local host or to ip of control plane node (server) for communication.
 
    ```
    kubectl describle pod kube-apiserver-cluster1-controlplane -n kube-system
