@@ -30,15 +30,6 @@ cluster1-node01         Ready    <none>          101m   v1.29.0
 ```
 student-node ~ ➜  ssh cluster1-controlplane
 Welcome to Ubuntu 18.04.6 LTS (GNU/Linux 5.4.0-1106-gcp x86_64)
-
- * Documentation:  https://help.ubuntu.com
- * Management:     https://landscape.canonical.com
- * Support:        https://ubuntu.com/advantage
-This system has been minimized by removing packages and content that are
-not required on a system that users do not log into.
-
-To restore this content, you can run the 'unminimize' command.
-Last login: Sat Nov 16 17:21:48 2024 from 192.17.25.15
 ```
 
 Now we check if etcd file is there for static pod:
