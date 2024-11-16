@@ -4,9 +4,9 @@ In a Stacked ETCD Topology the etcd storage cluster and the Kubernetes control p
 
 ### Ways to Determine Topology of ETCD
 1.  ETCD pod is running on control plane.
-2. Api-serve server for etcd pointing to localhost or control plane for communication.
+3. Api-serve server for etcd pointing to localhost or control plane for communication.
 
-#### 1. Pod Running on Control Plane
+#### 1.1 Pod Running on Control Plane - looking at pods
 
    ```
    kubectl get pods -n kube-system
@@ -15,6 +15,20 @@ In a Stacked ETCD Topology the etcd storage cluster and the Kubernetes control p
 ![image](https://github.com/user-attachments/assets/da30b509-295a-4b15-94e3-9dc79a2d1e68)
 
 Since etcd pod is running on the controlplane node it is therefore a stacked topology.
+
+#### 1.1 Pod Running on Control Plane - logging into controlplane node in same context of cluster and looking for static pod files for etcd
+
+Ensure to have the right context by using `kubectl config use-context cluster1` as an example. 
+
+```
+student-node ~ ✖ k get nodes
+NAME                    STATUS   ROLES           AGE    VERSION
+cluster1-controlplane   Ready    control-plane   102m   v1.29.0
+cluster1-node01         Ready    <none>          101m   v1.29.0
+```
+
+
+
 
 #### 2. Kube-Apiserver pointing to local host or control plane for communication.
 
