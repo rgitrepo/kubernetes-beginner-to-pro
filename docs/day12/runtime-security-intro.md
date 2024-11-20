@@ -154,10 +154,13 @@ These settings help ensure that containers are running with the least privileges
 
 
 
+# Kubernetes Security Contexts
+
 Kubernetes provides SecurityContext at the pod level, allowing you to define the security settings for containers. These settings control aspects such as user permissions, privilege escalation, and filesystem access.
 
-Example SecurityContext YAML file:
+## Example SecurityContext YAML File
 
+```yaml
 apiVersion: v1
 kind: Pod
 metadata:
@@ -170,21 +173,21 @@ spec:
       runAsUser: 1000
       allowPrivilegeEscalation: false
       readOnlyRootFilesystem: true
+```
 
-runAsUser: Specifies the user ID that the container runs as.
-
-allowPrivilegeEscalation: Prevents the container from gaining additional privileges.
-
-readOnlyRootFilesystem: Ensures that the root filesystem of the container is read-only, preventing changes from within the container.
+- **runAsUser**: Specifies the user ID that the container runs as.
+- **allowPrivilegeEscalation**: Prevents the container from gaining additional privileges.
+- **readOnlyRootFilesystem**: Ensures that the root filesystem of the container is read-only, preventing changes from within the container.
 
 These settings help ensure that containers are running with the least privileges necessary to perform their tasks, reducing the attack surface.
 
-Privileged Context at Pod Level
+## Privileged Context at Pod Level
 
-The SecurityContext can be specified at the pod level, which means that the defined security settings are applied to all containers within the pod. This makes it easier to enforce consistent security policies across all containers in a pod, reducing configuration drift. For example, if you define runAsUser or allowPrivilegeEscalation in the pod-level SecurityContext, all containers inherit those settings unless they are overridden by a container-level specification.
+The SecurityContext can be specified at the pod level, which means that the defined security settings are applied to all containers within the pod. This makes it easier to enforce consistent security policies across all containers in a pod, reducing configuration drift. For example, if you define `runAsUser` or `allowPrivilegeEscalation` in the pod-level SecurityContext, all containers inherit those settings unless they are overridden by a container-level specification.
 
-Example YAML with Pod-Level SecurityContext:
+### Example YAML with Pod-Level SecurityContext
 
+```yaml
 apiVersion: v1
 kind: Pod
 metadata:
@@ -196,19 +199,20 @@ spec:
   containers:
   - name: secure-container
     image: nginx
+```
 
-runAsUser at the pod level sets the user ID that all containers run as by default.
-
-fsGroup defines the filesystem group for shared volumes in the pod, helping enforce proper permissions.
+- **runAsUser** at the pod level sets the user ID that all containers run as by default.
+- **fsGroup** defines the filesystem group for shared volumes in the pod, helping enforce proper permissions.
 
 Having the SecurityContext at the pod level is particularly useful for workloads that require consistent user permissions and file access control across multiple containers within a pod.
 
-Container-Level Precedence Over Pod-Level SecurityContext
+## Container-Level Precedence Over Pod-Level SecurityContext
 
 Kubernetes also allows SecurityContext to be defined at both the pod and container levels. When both levels are specified, the container-level SecurityContext takes precedence over the pod-level settings for that specific container. This setup provides flexibility to enforce common security defaults at the pod level while allowing individual containers to override specific settings if needed.
 
-Example YAML with Both Pod-Level and Container-Level SecurityContext:
+### Example YAML with Both Pod-Level and Container-Level SecurityContext
 
+```yaml
 apiVersion: v1
 kind: Pod
 metadata:
@@ -225,14 +229,16 @@ spec:
     securityContext:
       runAsUser: 4000
       readOnlyRootFilesystem: false
+```
 
 In the above example:
 
-Pod-Level SecurityContext: All containers inherit runAsUser: 2000 and fsGroup: 3000 by default.
-
-Container-Level SecurityContext (for container-2): Overrides the pod-level runAsUser to 4000 and sets readOnlyRootFilesystem to false.
+- **Pod-Level SecurityContext**: All containers inherit `runAsUser: 2000` and `fsGroup: 3000` by default.
+- **Container-Level SecurityContext** (for `container-2`): Overrides the pod-level `runAsUser` to `4000` and sets `readOnlyRootFilesystem` to `false`.
 
 This precedence mechanism helps ensure that you can define general security settings at the pod level while allowing for exceptions or special requirements at the container level. For example, most containers might not need elevated privileges, but a specific container might require a different setting to perform its function.
+
+
 
 
 
