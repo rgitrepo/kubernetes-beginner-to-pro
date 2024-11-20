@@ -152,11 +152,11 @@ spec:
 
 These settings help ensure that containers are running with the least privileges necessary to perform their tasks, reducing the attack surface.
 
-#### Privileged Context at Pod Level
+### Privileged Context at Pod Level
 
 The SecurityContext can be specified at the pod level, which means that the defined security settings are applied to all containers within the pod. This makes it easier to enforce consistent security policies across all containers in a pod, reducing configuration drift. For example, if you define `runAsUser` or `allowPrivilegeEscalation` in the pod-level SecurityContext, all containers inherit those settings unless they are overridden by a container-level specification.
 
-###### Example YAML with Pod-Level SecurityContext
+#### Example YAML with Pod-Level SecurityContext
 
 ```yaml
 apiVersion: v1
@@ -177,11 +177,11 @@ spec:
 
 Having the SecurityContext at the pod level is particularly useful for workloads that require consistent user permissions and file access control across multiple containers within a pod.
 
-#### Container-Level Precedence Over Pod-Level SecurityContext
+### Container-Level Precedence Over Pod-Level SecurityContext
 
 Kubernetes also allows SecurityContext to be defined at both the pod and container levels. When both levels are specified, the container-level SecurityContext takes precedence over the pod-level settings for that specific container. This setup provides flexibility to enforce common security defaults at the pod level while allowing individual containers to override specific settings if needed.
 
-##### Example YAML with Both Pod-Level and Container-Level SecurityContext
+#### Example YAML with Both Pod-Level and Container-Level SecurityContext
 
 ```yaml
 apiVersion: v1
