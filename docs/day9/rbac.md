@@ -330,11 +330,11 @@ metadata:
   namespace: my-namespace
 subjects:
 - kind: ServiceAccount
-  name: my-service-account
+  name: my-service-account   # Name is case sensitive
   namespace: my-namespace
 roleRef:
-  kind: Role
-  name: pod-reader
+  kind: Role                 #this must be Role or ClusterRole
+  name: pod-reader           # this must match the name of the Role or ClusterRole you wish to bind to
   apiGroup: rbac.authorization.k8s.io
 ```
 
