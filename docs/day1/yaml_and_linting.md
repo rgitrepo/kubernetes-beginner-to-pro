@@ -23,8 +23,8 @@ YAML (YAML Ain't Markup Language) is a human-readable data serialization standar
 YAML is case-sensitive. This means that `name` and `Name` are considered different keys. Here’s an example:
 
 ```yaml
-name: Prerit
-Name: Rishabh
+name: Roger
+Name: Tim
 ```
 
 Both `name` and `Name` are valid keys and can exist together in a YAML file.
@@ -38,7 +38,7 @@ For example, a Python dictionary can be serialized into YAML and then deserializ
 #### Python Dictionary
 ```python
 data = {
-    'name': 'Prerit',
+    'name': 'Roger',
     'age': 25,
     'languages': ['Python', 'JavaScript']
 }
@@ -46,7 +46,7 @@ data = {
 
 #### YAML Representation
 ```yaml
-name: Prerit
+name: Roger
 age: 25
 languages:
   - Python
@@ -61,7 +61,7 @@ YAML supports several data structures, including scalars (single values), lists,
 A scalar is a single value, such as a string or number.
 
 ```yaml
-name: Prerit
+name: Roger
 age: 25
 ```
 
@@ -80,7 +80,7 @@ A dictionary is a collection of key-value pairs.
 
 ```yaml
 person:
-  name: Prerit
+  name: Roger
   age: 25
   languages:
     - Python
@@ -96,14 +96,14 @@ Quoting is used in YAML to define strings that include special characters or to 
 YAML can usually infer the type of data without quotes.
 
 ```yaml
-name: Prerit
+name: Roger
 ```
 
 #### Single Quotes
 Use single quotes for strings that contain special characters or spaces.
 
 ```yaml
-name: 'Prerit'
+name: 'Roger'
 bio: 'Engineer & Developer'
 ```
 
@@ -120,11 +120,11 @@ YAML uses key-value pairs to represent data. The key is a unique identifier, and
 
 #### Example
 ```yaml
-name: Prerit
+name: Roger
 age: 25
 ```
 
-In this example, `name` and `age` are keys, and `Prerit` and `25` are their respective values.
+In this example, `name` and `age` are keys, and `Roger` and `25` are their respective values.
 
 ### Whitespace and Alignment
 
@@ -135,7 +135,7 @@ Use spaces (not tabs) to indent your YAML files.
 
 ```yaml
 person:
-  name: Prerit
+  name: Roger
   age: 25
   languages:
     - Python
@@ -161,7 +161,7 @@ pip install yamllint
 Create a YAML file `example.yaml`:
 
 ```yaml
-name: Prerit
+name: Roger
 age: 25
 languages:
   - Python
