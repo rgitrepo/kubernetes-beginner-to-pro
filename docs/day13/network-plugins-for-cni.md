@@ -1,3 +1,54 @@
+
+## Network Plugin in Kubernetes
+
+
+There are several plugins available, and these are some.
+
+### 1. Weave Net:
+
+To install,
+
+```
+kubectl apply -f
+```
+
+https://github.com/weaveworks/weave/releases/download/v2.8.1/weave-daemonset-k8s.yaml
+
+You can find details about the network plugins in the following documentation :
+
+https://kubernetes.io/docs/concepts/cluster-administration/addons/#networking-and-network-policy
+
+### 2. Flannel :
+
+To install,
+
+```
+kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/2140ac876ef134e0ed5af15c65e414cf26827915/Documentation/kube-flannel.yml
+```
+
+Note: As of now, flannel does not support Kubernetes network policies.
+
+3. Calico :
+
+### To install,
+
+```
+curl https://docs.projectcalico.org/manifests/calico.yaml -O
+```
+
+Apply the manifest using the following command.
+
+```
+kubectl apply -f calico.yaml
+```
+
+Calico is said to have the most advanced cni network plugin.
+
+In the CKA and CKAD exams, you won’t be asked to install the cni plugin. But if asked, you will be provided with the exact URL to install it.
+
+**Note: If there are multiple CNI configuration files in the directory, the kubelet uses the configuration file that comes first by name in lexicographic order.**
+
+
 The `-` at the end of the command is significant because it instructs `kubectl` to read input from **standard input (stdin)** rather than expecting a file. Here's why it's necessary in this context:
 
 ### Command Breakdown:
