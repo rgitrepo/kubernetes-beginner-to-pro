@@ -266,6 +266,7 @@
 
 - [Kubeadm vs Manual Installation](docs/day13/kubeadm-vs-manual-installation.md)
 - [Seeing logs with `journalctl` ](docs/day13/seeing-logs-with-journalctl.md)
+- [Weave Net Install for CNI](docs/day13/weavenet-install-for-cni.md)
 
 
 </details>
