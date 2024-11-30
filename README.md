@@ -265,6 +265,7 @@
 <summary>Day 13: Ad-Hoc Topics </summary>
 
 - [Kubeadm vs Manual Installation](docs/day13/kubeadm-vs-manual-installation.md)
+- [Seeing logs with `journalctl` ](docs/day13/seeing-logs-with-journalctl.md)
 
 
 </details>
