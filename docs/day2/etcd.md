@@ -113,9 +113,7 @@ The election process in Raft involves several steps to ensure a new leader is ch
 6. **Failure Handling**:
    - **Leader Failure**: If a leader fails, followers will no longer receive heartbeats. After an election timeout, the followers will transition to candidates and start a new election.
    - **Candidate Failure**: If a candidate fails to win an election, it returns to the follower state and waits for the next election timeout.
-   - **Network Partitions**: In the event of a network partition, some nodes may become isolated. These nodes will not receive heartbeats and will start
-
- an election. If the partitioned nodes form a majority, they will elect a new leader. When the partition heals, the old leader will step down if it discovers a higher term leader.
+   - **Network Partitions**: In the event of a network partition, some nodes may become isolated. These nodes will not receive heartbeats and will start an election. If the partitioned nodes form a majority, they will elect a new leader. When the partition heals, the old leader will step down if it discovers a higher term leader.
 
 ### Number of Nodes and Quorum
 When configuring an etcd cluster, it's essential to choose the right number of nodes to ensure high availability and fault tolerance. The optimal number of nodes is always an odd number. Here’s a detailed explanation:
